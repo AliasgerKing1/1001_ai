@@ -5,6 +5,6 @@ const Website = mongoose.Schema({
     name: String,
     link: String,
     path: String,
-    index : Number
+    index : String
 })
 module.exports = mongoose.model("website", Website);

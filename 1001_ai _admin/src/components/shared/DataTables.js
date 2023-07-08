@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-const DataTables = ({ title }) => {
+import { postWebsite } from "../../services/websiteDataService"
+const DataTables = ({ title, tagline }) => {
   const [dataSet, setDataSet] = useState([
     {
       name: 'vimeet',
@@ -20,6 +20,15 @@ const DataTables = ({ title }) => {
   const addNewData = () => {
     setDataSet([...dataSet, dataAdd]);
     setDataAdd({ name: '', link: '', path: '', index: '' });
+    postWebsite(dataSet).then(result => {
+      console.log(result.data)
+      if (result.data.status == 200) {
+        console.log("true")
+      } else {
+        console.log("false")
+
+      }
+    })
   };
   const handleInputChange = (e, field) => {
     setDataAdd({ ...dataAdd, [field]: e.target.value });
@@ -39,26 +48,33 @@ const DataTables = ({ title }) => {
                 <h5 className="mb-0">{title}</h5>
               </div>
               <div>
-              <div className="row">
-                <div className="col-lg-4">
-                <p className="card-subtitle mb-3">
-                  total numbers of website left to clone
-                </p>
+                <div className="row">
+                  <div className="col-lg-4">
+                    <p className="card-subtitle mb-3">
+                      {tagline}
+                    </p>
+                  </div>
+                  <div className="col-lg-1 offset-lg-7">
+                    <button type="button" class="justify-content-center w-100 btn mb-1 btn-rounded btn-primary d-flex align-items-center" onClick={addNewData}>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-plus fs-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M19 10h-14"></path>
+                        <path d="M5 6h14"></path>
+                        <path d="M14 14h-9"></path>
+                        <path d="M5 18h6"></path>
+                        <path d="M18 15v6"></path>
+                        <path d="M15 18h6"></path>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-                <div className="col-lg-1 offset-lg-7">
-                <button type="button" class="justify-content-center w-100 btn mb-1 btn-rounded btn-primary d-flex align-items-center" onClick={addNewData}>
-                        <i class="ti ti-send fs-4 me-2"></i>
-                        Submit
-                      </button>
-                </div>
-              </div>
               </div>
               <div className="top">
                 <div className="dataTables_info" id="multi_control_info" role="status" aria-live="polite">
-                  Showing 11 to 20 of 57 entries
+                  Showing 0 to 8 of {dataSet.length} entries
                 </div>
               </div>
-              <div className="table-responsive">
+              <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
                 <table
                   id="multi_control"
                   className="table border table-striped table-bordered display text-nowrap"
@@ -73,14 +89,6 @@ const DataTables = ({ title }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {dataSet.map((x, i) => (
-                      <tr key={i}>
-                        <td>{x.name}</td>
-                        <td>{x.link}</td>
-                        <td>{x.path}</td>
-                        <td>{x.index}</td>
-                      </tr>
-                    ))}
                     <tr>
                       <td className="data__table__input">
                         <input
@@ -115,6 +123,14 @@ const DataTables = ({ title }) => {
                         />
                       </td>
                     </tr>
+                    {dataSet.map((x, i) => (
+                      <tr key={i}>
+                        <td>{x.name}</td>
+                        <td>{x.link}</td>
+                        <td>{x.path}</td>
+                        <td className="pointer">{x.index}</td>
+                      </tr>
+                    ))}
                   </tbody>
                   <tfoot>
                     <tr>
@@ -140,5 +156,3 @@ const DataTables = ({ title }) => {
 export default DataTables;
 
 
-{/* <DataTables title="Website Left to Clone" />
-<DataTables title="Website Done" /> */}
