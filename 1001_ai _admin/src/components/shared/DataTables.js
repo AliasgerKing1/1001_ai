@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import { postWebsite } from "../../services/websiteDataService"
 const DataTables = ({ title, tagline }) => {
-  const [dataSet, setDataSet] = useState([
-    {
-      name: 'vimeet',
-      link: 'http://vimeet.com/index.html',
-      path: 'C:\\demos',
-      index: 'C:\\demos/html/index.html'
-    }
-  ]);
+  const [dataSet, setDataSet] = useState([]);
 
   const [dataAdd, setDataAdd] = useState({
     name: '',
+    url: '',
     link: '',
-    path: '',
-    index: ''
   });
 
   const addNewData = () => {
     setDataSet([...dataSet, dataAdd]);
-    setDataAdd({ name: '', link: '', path: '', index: '' });
+    setDataAdd({ name: '', link: '', url: '', index: '' });
     postWebsite(dataSet).then(result => {
       console.log(result.data)
       if (result.data.status == 200) {
@@ -83,9 +75,8 @@ const DataTables = ({ title, tagline }) => {
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th>Url</th>
                       <th>Link</th>
-                      <th>Path</th>
-                      <th>Index</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -93,7 +84,7 @@ const DataTables = ({ title, tagline }) => {
                       <td className="data__table__input">
                         <input
                           type="text"
-                          placeholder="name"
+                          placeholder="Website name"
                           onChange={(e) => handleInputChange(e, 'name')}
                           value={dataAdd.name}
                         />
@@ -101,43 +92,33 @@ const DataTables = ({ title, tagline }) => {
                       <td className="data__table__input">
                         <input
                           type="text"
-                          placeholder="link"
+                          placeholder="Website url"
+                          onChange={(e) => handleInputChange(e, 'url')}
+                          value={dataAdd.url}
+                        />
+                      </td>
+                      <td className="data__table__input">
+                        <input
+                          type="text"
+                          placeholder=" Website link"
                           onChange={(e) => handleInputChange(e, 'link')}
                           value={dataAdd.link}
-                        />
-                      </td>
-                      <td className="data__table__input">
-                        <input
-                          type="text"
-                          placeholder="path"
-                          onChange={(e) => handleInputChange(e, 'path')}
-                          value={dataAdd.path}
-                        />
-                      </td>
-                      <td className="data__table__input">
-                        <input
-                          type="text"
-                          placeholder="index"
-                          onChange={(e) => handleInputChange(e, 'index')}
-                          value={dataAdd.index}
                         />
                       </td>
                     </tr>
                     {dataSet.map((x, i) => (
                       <tr key={i}>
                         <td>{x.name}</td>
+                        <td>{x.url}</td>
                         <td>{x.link}</td>
-                        <td>{x.path}</td>
-                        <td className="pointer">{x.index}</td>
                       </tr>
                     ))}
                   </tbody>
                   <tfoot>
                     <tr>
                       <th>Name</th>
+                      <th>Url</th>
                       <th>Link</th>
-                      <th>Path</th>
-                      <th>Index</th>
                     </tr>
                   </tfoot>
                 </table>

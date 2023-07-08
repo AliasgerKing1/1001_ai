@@ -1,3 +1,11 @@
 .pointer {
     cursor: pointer !important;
 }
+
+.fl-right {
+    float: right !important;
+}
+
+.fl-left {
+    float: left !important;
+}
