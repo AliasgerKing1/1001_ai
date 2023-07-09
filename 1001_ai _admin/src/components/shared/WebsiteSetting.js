@@ -28,7 +28,7 @@ const WebsiteSetting = () => {
                 Website Clonning Ai
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Asign_Role == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Website_Clonning_Ai == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Asign_Role === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Website_Clonning_Ai === true ? ("checked") : null} />
                 </div>
                 {/* <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings ms-auto text-white pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -41,7 +41,7 @@ const WebsiteSetting = () => {
                 Asign Role
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Website_Clonning_Ai == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Website_Clonning_Ai == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Website_Clonning_Ai === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Website_Clonning_Ai === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -49,7 +49,7 @@ const WebsiteSetting = () => {
                 Image Generation Ai
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Image_Generation_Ai == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Image_Generation_Ai == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Image_Generation_Ai === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Image_Generation_Ai === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -57,7 +57,7 @@ const WebsiteSetting = () => {
                 Copy Writing Ai
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Copy_Writing_Ai == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Copy_Writing_Ai == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Copy_Writing_Ai === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Copy_Writing_Ai === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -65,7 +65,7 @@ const WebsiteSetting = () => {
                 Analytics
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Analytics == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Analytics == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Analytics === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Analytics === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -73,7 +73,7 @@ const WebsiteSetting = () => {
                 Presentation Maker
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Presentation_Maker == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Presentation_Maker == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Presentation_Maker === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Presentation_Maker === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -81,7 +81,7 @@ const WebsiteSetting = () => {
                 Automate It
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Automate_It == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Automate_It == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Automate_It === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Automate_It === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -89,7 +89,7 @@ const WebsiteSetting = () => {
                 Frontend Hosting
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Frontend_Hosting == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Frontend_Hosting == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Frontend_Hosting === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Frontend_Hosting === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -97,7 +97,7 @@ const WebsiteSetting = () => {
                 Backend Hosting
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Backend_Hosting == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Backend_Hosting == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Backend_Hosting === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Backend_Hosting === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -105,7 +105,7 @@ const WebsiteSetting = () => {
                 ENACC
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Enacc == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Enacc == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Enacc === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Enacc === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -113,7 +113,7 @@ const WebsiteSetting = () => {
                 VImate
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.VImate == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.VImate == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.VImate === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.VImate === true ? ("checked") : null} />
                 </div>
               </li>
               <li class="list-group-item d-flex align-items-center">
@@ -121,7 +121,7 @@ const WebsiteSetting = () => {
                 Task Manager
                 {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                 <div class="form-check form-check-inline ms-auto">
-                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Task_Manager == true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Task_Manager == true ? ("checked") : null} />
+                  <input class="form-check-input success pointer" type="checkbox" id="success2-check" value="option1" onClick={() => { webSetting.Task_Manager === true ? setWebSetting(false) : setWebSetting(true) }} checked={webSetting.Task_Manager === true ? ("checked") : null} />
                 </div>
               </li>
 

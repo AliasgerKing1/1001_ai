@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 
-import Coustomizer from '../../shared/Coustomizer'
 import ShoppingCart from "../../shared/ShoppingCart"
 import MobileNavbar from "../../shared/MobileNavbar"
 import Searchbar from "../../shared/Searchbar"
@@ -11,6 +10,7 @@ import WebsiteSetting from '../../shared/WebsiteSetting'
 import WebsiteName from '../../shared/WebsiteName'
 import ListedChart from "../../shared/ListedChart"
 import RoleTable from "../../shared/RoleTable"
+import PasswordGeneratorModal from "../../shared/PasswordGeneratorModal"
 const Home = () => {
   return (
     <>
@@ -47,9 +47,19 @@ const Home = () => {
               </div>
               <div className='row'>
                 <ListedChart />
+                <div class="col-md-8">
+          <div className="card">
+  <div className="card-body text-center">
+    <img src="/assets/dist/images/svg/2.svg" alt className="img-fluid mb-4" width={200} />
+    <h5 className="fw-semibold fs-5 mb-2">Create your new Delete Password!</h5>
+    <p className="mb-3">Get back to shopping and get rewards from it.</p>
+    <button className="btn btn-primary" data-bs-target="#password-generator-modal" data-bs-toggle="modal">Create new Password!</button>
+  </div>
+</div>
+</div>
+<PasswordGeneratorModal />
               </div>
               <RoleTable />
-
             </div>
           </div>
         </div>

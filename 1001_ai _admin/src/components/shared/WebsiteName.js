@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom"
-import { getWebsiteName } from '../../services/websiteDataService'
+import { getWebsiteDone } from '../../services/websiteDataService'
 
 const WebsiteName = () => {
     let [websiteData, setWebsiteData] = useState([])
-    let getWebsiteNameFun = async () => {
-        let result = await getWebsiteName();
+    let getWebsiteDoneFun = async () => {
+        let result = await getWebsiteDone();
         setWebsiteData(result.data)
     }
     useEffect(() => {
-        getWebsiteNameFun()
+        getWebsiteDoneFun()
     }, [])
     return (
         <>
@@ -20,12 +20,12 @@ const WebsiteName = () => {
                             <h4 class="card-title mb-0">Name of Websites</h4>
                         </div>
                         <ul class="list-group" style={{ maxHeight: '300px', overflowY: 'scroll' }}>
-                            {websiteData.map((x) => {
+                            {websiteData?.done?.map((x) => {
                                 return (
                                     <li class="list-group-item d-flex align-items-center" key={x.index}>
                                         <i data-feather="box" class="text-primary feather-sm me-2"></i>
-                                        <NavLink to="" className="text-white">
-                                            {x.name}
+                                                    <NavLink to="" className="text-white">
+                                                    {x.name}
                                         </NavLink>
                                         {/* <span class="badge bg-light-primary text-primary font-medium rounded-pill ms-auto">14</span> */}
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings ms-auto text-white pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -1,11 +1,17 @@
 import axios from "axios"
 
 let apiUrl = "http://localhost:4000/api/website/"
-let getWebsiteName = async () => {
-return await axios.get(`${apiUrl}name`)
+let getWebsiteleft = async () => {
+return await axios.get(`${apiUrl}left`)
 }
-let postWebsite = async (data) => {
-return await axios.post(`${apiUrl}add`, data)
+let postWebsiteLeft = async (data) => {
+return await axios.post(`${apiUrl}addleft`, data)
+}
+let getWebsiteDone = async () => {
+return await axios.get(`${apiUrl}done`)
+}
+let postWebsiteDone = async (data) => {
+return await axios.post(`${apiUrl}adddone`, data)
 }
 
-export { getWebsiteName, postWebsite }
+export { getWebsiteDone, postWebsiteDone, postWebsiteLeft, getWebsiteleft }
