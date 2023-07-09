@@ -38,9 +38,11 @@ let RolesData = [
     }
 ]
 const RoleTable = () => {
+
     let [memberName, setMemberName] = useState("")
-    let deleteMember = (data) => {
+    let deleteMember = async (data) => {
         setMemberName(data.name)
+   
     }
     return (
         <>
@@ -100,7 +102,9 @@ const RoleTable = () => {
                                                     class="dropdown-item d-flex align-items-center gap-3"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#danger-header-modal"
-                                                    onClick={()=> deleteMember(x)}  ><i className="fs-4 ti ti-trash" />
+                                                    onClick={()=> {
+                                                        deleteMember(x)
+                                                    }}  ><i className="fs-4 ti ti-trash" />
                                                     Delete
                                                 </button>
                                             </li>

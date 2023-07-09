@@ -1,25 +1,41 @@
 import React, {useState} from 'react'
-import SuccessOutlinedAlert from './SuccessOutlinedAlert';
-import ErrorOutlinedAlert from "../shared/ErrorOutlinedAlert"
+import {useDispatch, useSelector} from "react-redux"
+import {successRedFun, errorRedFun, successMsgRedFun, errorMsgRedFun} from "../../Redux/copyAlertReducer"
+import {getCode} from "../../services/PassowrdService"
+import {codeRed} from "../../Redux/PasswordcodeReducer"
 const PasswordGeneratorModal = () => {
-  let [clipboardSuccess, setClipBoardSuccess] = useState(false)
-  let [clipBoardError, setClipBoardError] = useState(false)
-  let [clipboardSuccessMsg, setClipBoardSuccessMsg] = useState(false)
-  let [clipBoardErrorMsg, setClipBoardErrorMsg] = useState(false)
+  let dispatch = useDispatch()
+  let state = useSelector(state => state.PasswordCodeReducer)
   let copyCode = () => {
     let codeString = document.getElementById("code").innerHTML;
  // Copy the code string to the clipboard
  navigator.clipboard.writeText(codeString)
  .then(() => {
-  setClipBoardSuccess(true)
-  setClipBoardError(false)
-   setClipBoardSuccessMsg('Code copied to clipboard Successfully!');
+  dispatch(successRedFun(true))
+  dispatch(errorRedFun(false))
+   dispatch(successMsgRedFun('Code copied to clipboard Successfully!'))
+   setTimeout(()=> {
+    dispatch(successRedFun(false))
+    dispatch(errorRedFun(false))
+   }, 3000)
+   const dismissButton = document.getElementById("dismiss");
+   if (dismissButton) {
+     dismissButton.click();
+   }
  })
  .catch((error) => {
-  setClipBoardSuccess(false)
-  setClipBoardError(true)
-   setClipBoardErrorMsg('Failed to copy code!');
+  dispatch(successRedFun(false))
+  dispatch(errorRedFun(true))
+   dispatch(errorMsgRedFun('Failed to copy code!'))
+   setTimeout(()=> {
+    dispatch(successRedFun(false))
+    dispatch(errorRedFun(false))
+   }, 3000)
  });
+  }
+  let newCode = async () => {
+    let result = await getCode()
+    dispatch(codeRed(result.data))
   }
   return (
     <>
@@ -29,17 +45,19 @@ const PasswordGeneratorModal = () => {
     <div className="modal-content">
       <div className="modal-body">
         <div className="text-center mt-2 mb-4">
-          <a href="index.html" className="text-success">
+  <a href="index.html" className="text-success">
             <span><img src="/assets/dist/images/logos/favicon.png" className="me-3" width={80} alt />
             </span>
           </a>
+  <button type="button" id="dismiss" className="btn-close me-2" data-bs-dismiss="modal" aria-label="Close" style={{float : "right"}} />
+
         </div>
         <h4>Generate New Password</h4>
-        <h2 className="text-center mb-4 mt-4" id="code">H F D 4 F 3 E 5 7 9</h2>
+        <h1 className="text-center mb-4 mt-4"><b id="code">{state}</b></h1>
         <button type="button" onClick={copyCode} class="btn mb-1 waves-effect waves-light btn-light-primary text-primary me-2">
                       Copy
                     </button>
-                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light-secondary text-secondary">
+                    <button type="button" onClick={newCode} class="btn mb-1 waves-effect waves-light btn-light-secondary text-secondary">
                       Generate New
                     </button>
 
@@ -50,9 +68,6 @@ const PasswordGeneratorModal = () => {
   {/* /.modal-dialog */}
 </div>
 {/* /.modal */}
-{clipboardSuccess == true ? (<SuccessOutlinedAlert msg={clipboardSuccessMsg} />) : null}
-{clipBoardError == true ? (<ErrorOutlinedAlert msg={clipBoardErrorMsg} />) : null}
-
     </>
   )
 }
