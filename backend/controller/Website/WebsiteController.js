@@ -1,18 +1,33 @@
 
 const routes = require("express").Router();
-const Website = require("../../models/Website");
+const WebsiteLeft = require("../../models/Websiteleft");
+const WebsiteDone = require("../../models/Websitedone");
 
-routes.post("/add", async (req, res) => {
+routes.post("/addleft", async (req, res) => {
     try {
-        await Website.create({$push : {left : req.body}})
+        await WebsiteLeft.create(req.body)
         res.send({sccess : true, status : 200})
     }catch(error) {   
         res.send({sccess : false, status : 409})
     }
 })
-routes.get("/name", async (req, res) => {
-    const website = await Website.find({});
-    res.send(website);
-
+routes.post("/adddone", async (req, res) => {
+    try {
+        await WebsiteDone.create(data)
+        res.send({sccess : true, status : 200})
+    }catch(error) {   
+        res.send({sccess : false, status : 409})
+    }
 })
+routes.get("/done", async (req, res) => {
+    const websiteDone = await WebsiteDone.find({});
+    res.send(websiteDone);
+    
+})
+routes.get("/left", async (req, res) => {
+    const websiteLeft = await WebsiteLeft.find({});
+    res.send(websiteLeft);
+    
+})
+// const websiteLeft = await WebsiteLeft.find({});
 module.exports = routes;

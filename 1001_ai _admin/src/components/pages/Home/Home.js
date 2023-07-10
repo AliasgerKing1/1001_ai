@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 
-import Coustomizer from '../../shared/Coustomizer'
 import ShoppingCart from "../../shared/ShoppingCart"
 import MobileNavbar from "../../shared/MobileNavbar"
 import Searchbar from "../../shared/Searchbar"
@@ -11,10 +10,25 @@ import WebsiteSetting from '../../shared/WebsiteSetting'
 import WebsiteName from '../../shared/WebsiteName'
 import ListedChart from "../../shared/ListedChart"
 import RoleTable from "../../shared/RoleTable"
+import PasswordGeneratorModal from "../../shared/PasswordGeneratorModal"
+import SuccessOutlinedAlert from '../../shared/SuccessOutlinedAlert';
+import ErrorOutlinedAlert from "../../shared/ErrorOutlinedAlert"
+import {getCode} from "../../../services/PassowrdService"
+import {codeRed} from "../../../Redux/PasswordcodeReducer"
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 const Home = () => {
+  let dispatch = useDispatch()
+  let state = useSelector(state=> state.copyAlertReducer)
+  let createPass = async () => {
+    let result = await getCode()
+    // console.log(result.data)
+    dispatch(codeRed(result.data))
+  }
   return (
     <>
       <div data-theme="dark">
+
         {/* Preloader */}
         {/* <div className="preloader">
     <img src="/assets/dist/images/logos/favicon.png" alt="loader" className="lds-ripple img-fluid" />
@@ -29,6 +43,10 @@ const Home = () => {
             {/* Header Start */}
             <Header />
             {/* Header End */}
+            <div style={{ position: 'fixed', top: '50px', right: '10px', zIndex: '9999' }}>
+        {state.success && <SuccessOutlinedAlert msg={state.successMsg} />}
+        {state.error && <ErrorOutlinedAlert msg={state.errorMsg} />}
+      </div>
             <div className="container-fluid">
               <div className="row">
                 <WebsiteCard trend="up" svg="" classVal="primary" title="Website left" ratio="+ 2.30%" noOfWebsite="5" value="$1,015.00" />
@@ -47,9 +65,19 @@ const Home = () => {
               </div>
               <div className='row'>
                 <ListedChart />
+                <div class="col-md-8">
+          <div className="card">
+  <div className="card-body text-center">
+    <img src="/assets/dist/images/svg/2.svg" alt className="img-fluid mb-4" width={200} />
+    <h5 className="fw-semibold fs-5 mb-2">Create your new Delete Password!</h5>
+    <p className="mb-3">Get back to shopping and get rewards from it.</p>
+    <button className="btn btn-primary" data-bs-target="#password-generator-modal" data-bs-toggle="modal" onClick={createPass}>Create new Password!</button>
+  </div>
+</div>
+</div>
+<PasswordGeneratorModal />
               </div>
               <RoleTable />
-
             </div>
           </div>
         </div>

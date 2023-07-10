@@ -5,11 +5,26 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 
+import {combineReducers, configureStore} from "@reduxjs/toolkit"
+import {Provider} from "react-redux"
+
+
+import copyAlertReducer from "./Redux/copyAlertReducer"
+import PasswordCodeReducer from "./Redux/PasswordcodeReducer"
+let rootReducer = combineReducers({
+  copyAlertReducer,
+  PasswordCodeReducer
+})
+let store = configureStore({
+  reducer : rootReducer
+})
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
     <App />
   </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

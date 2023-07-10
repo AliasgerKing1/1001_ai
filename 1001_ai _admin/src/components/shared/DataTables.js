@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
-import { postWebsite } from "../../services/websiteDataService"
+import React, { useEffect, useState } from 'react';
+import { getWebsiteleft, postWebsiteLeft } from "../../services/websiteDataService"
 const DataTables = ({ title, tagline }) => {
   const [dataSet, setDataSet] = useState([]);
-
+const [data, setData] = useState([])
   const [dataAdd, setDataAdd] = useState({
     name: '',
     url: '',
     link: '',
   });
-
+  let getWebsiteLeftFun = async() => {
+    let result = await getWebsiteleft()
+    setData(result.data)
+  }
+useEffect(()=> {
+  getWebsiteLeftFun()
+}, [])
   const addNewData = () => {
     setDataSet([...dataSet, dataAdd]);
-    setDataAdd({ name: '', link: '', url: '', index: '' });
-    postWebsite(dataSet).then(result => {
-      console.log(result.data)
-      if (result.data.status == 200) {
-        console.log("true")
-      } else {
-        console.log("false")
+    setDataAdd({ name: '', link: '', url: ''});
 
-      }
-    })
   };
   const handleInputChange = (e, field) => {
     setDataAdd({ ...dataAdd, [field]: e.target.value });
   };
+
 
   return (
     <>
@@ -106,7 +105,7 @@ const DataTables = ({ title, tagline }) => {
                         />
                       </td>
                     </tr>
-                    {dataSet.map((x, i) => (
+                    {data?.map((x, i) => (
                       <tr key={i}>
                         <td>{x.name}</td>
                         <td>{x.url}</td>

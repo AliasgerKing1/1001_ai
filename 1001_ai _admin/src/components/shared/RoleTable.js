@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 let RolesData = [
     {
         image: "/assets/dist/images/profile/user-1.jpg",
@@ -38,6 +38,12 @@ let RolesData = [
     }
 ]
 const RoleTable = () => {
+
+    let [memberName, setMemberName] = useState("")
+    let deleteMember = async (data) => {
+        setMemberName(data.name)
+   
+    }
     return (
         <>
             <table className="table border text-nowrap customize-table mb-0 align-middle">
@@ -79,7 +85,13 @@ const RoleTable = () => {
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{}}>
                                             <li>
-                                                <a className="dropdown-item d-flex align-items-center gap-3" href="#"><i className="fs-4 ti ti-plus" />Add</a>
+                                                <a className="dropdown-item d-flex align-items-center gap-2" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+   <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+   <path d="M9 17h6"></path>
+   <path d="M9 13h6"></path>
+</svg>Details</a>
                                             </li>
                                             <li>
                                                 <a className="dropdown-item d-flex align-items-center gap-3" href="#"><i className="fs-4 ti ti-edit" />Edit</a>
@@ -90,7 +102,9 @@ const RoleTable = () => {
                                                     class="dropdown-item d-flex align-items-center gap-3"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#danger-header-modal"
-                                                ><i className="fs-4 ti ti-trash" />
+                                                    onClick={()=> {
+                                                        deleteMember(x)
+                                                    }}  ><i className="fs-4 ti ti-trash" />
                                                     Delete
                                                 </button>
                                             </li>
@@ -113,18 +127,13 @@ const RoleTable = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                         </div>
                         <div className="modal-body">
-                            <h5 className="mt-0">Are you sure to delete hii ?</h5>
-                            <p>
-                                Cras mattis consectetur purus sit amet
-                                fermentum. Cras justo odio, dapibus ac facilisis
-                                in, egestas eget quam. Morbi leo risus, porta ac
-                                consectetur ac, vestibulum at eros.
-                            </p>
-                            <p>
-                                Praesent commodo cursus magna, vel scelerisque
-                                nisl consectetur et. Vivamus sagittis lacus vel
-                                augue laoreet rutrum faucibus dolor auctor.
-                            </p>
+                            <h5 className="mt-0">Are you sure to delete {memberName} ?</h5>
+                            <p>Type the password to delete the memeber below </p>
+     <form class="mt-4">
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="Admin Password" />
+            </div>
+        </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-light" data-bs-dismiss="modal">

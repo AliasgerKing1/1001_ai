@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
-import { postWebsite } from "../../services/websiteDataService"
+import React, { useEffect, useState } from 'react'
+import { NavLink } from "react-router-dom"
+import { getWebsiteDone, postWebsiteDone } from '../../services/websiteDataService';
 const DataTablesShow = ({ title, tagline }) => {
-  const [dataSet, setDataSet] = useState([
-    {
-      name: 'vimeet',
-      url: 'http://vimeet.com/index.html',
-      link: 'C:\\demos',
-      index: 'C:\\demos/html/index.html'
-    }
-  ]);
+  const [dataSet, setDataSet] = useState([]);
 
   const [dataAdd, setDataAdd] = useState({
     name: '',
@@ -16,11 +10,18 @@ const DataTablesShow = ({ title, tagline }) => {
     link: '',
     index: ''
   });
-
+  let [websiteData, setWebsiteData] = useState([])
+  let getWebsiteDoneFun = async () => {
+      let result = await getWebsiteDone();
+      setWebsiteData(result.data)
+  }
+  useEffect(() => {
+      getWebsiteDoneFun()
+  }, [])
   const addNewData = () => {
     setDataSet([...dataSet, dataAdd]);
     setDataAdd({ name: '', url: '', link: '', index: '' });
-    postWebsite(dataSet).then(result => {
+    postWebsiteDone(dataSet).then(result => {
       console.log(result.data)
       if (result.data.status == 200) {
         console.log("true")
@@ -69,7 +70,7 @@ const DataTablesShow = ({ title, tagline }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {dataSet.map((x, i) => (
+                    {websiteData?.done?.map((x, i) => (
                       <tr key={i}>
                         <td>{x.name}</td>
                         <td>{x.url}</td>
