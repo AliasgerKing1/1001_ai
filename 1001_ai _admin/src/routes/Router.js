@@ -1,7 +1,6 @@
 import { useRoutes } from "react-router-dom"
 
 import React from 'react'
-import Signup from "../components/pages/Signup/Signup"
 import Error404 from "../components/pages/Error404/Error404"
 import Layouts from "../Layouts/Layouts"
 import userRoutes from "./User/User"
@@ -12,10 +11,6 @@ const Router = () => {
         {
             path: "/",
             element: <Landing />
-        },
-        {
-            path: "/signup",
-            element: <Signup />
         },
         {
             path: "/signin",

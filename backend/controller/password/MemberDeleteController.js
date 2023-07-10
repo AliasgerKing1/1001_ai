@@ -1,9 +1,19 @@
 
 const routes = require("express").Router();
 const str = require("random-string")
-
-routes.get("/member", (req,res)=> {
-let code = str({length: 10})
-res.send(code)
+const Admin = require("../../models/Admin")
+routes.get("/member", async (req,res)=> {
+    let code = str({length: 10})
+    if(req.headers.token) {
+        let token = req.headers.token;
+        let obj = jwt.decode(token, "Aliasger web");
+        try {
+            let result = await Admin.updateOne({_id : obj._id} , {M_delete : code})
+        }catch (error) {
+            res.send({success : false, status : 401, err : error});
+        }
+        
+    }
+    res.send(code)
 })
 module.exports = routes;

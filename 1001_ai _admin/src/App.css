@@ -1,6 +1,6 @@
-.data__table__input>input {
-    background-color: #2A3447;
-    border: none;
-    color: #596881;
-    font-weight: bold;
+.data__table__input > input {
+  background-color: #2a3447 !important;
+  border: none !important;
+  color: #596881;
+  font-weight: bold;
 }

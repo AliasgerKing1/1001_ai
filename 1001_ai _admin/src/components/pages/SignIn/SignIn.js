@@ -1,6 +1,30 @@
-import React from 'react'
-import { NavLink } from "react-router-dom"
+import React, {useState} from 'react'
+import {NavLink, useNavigate} from "react-router-dom"
+import {useFormik} from "formik"
+import SigninSchema from "../../../Schemas/SigninSchema"
+let initialValues = {
+    username : "",
+    password : "",
+}
 const SignIn = () => {
+    let [showAlert, setShowAlert] = useState(false);
+    let [msg, setMsg] = useState("");
+    let navigate = useNavigate();
+    let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
+        initialValues : initialValues,
+        validationSchema : SigninSchema,
+        onSubmit : async () => {
+            // if(result.data.errType == 1) {
+            //     setShowAlert(true)
+            //     setMsg("This email or password is incorrect !")
+            //        }
+            //        else if(result.data.errType == 2) {
+            //     setShowAlert(true)
+            //     setMsg("This email or password is incorrect !")
+            //        }
+    }
+
+})
     return (
         <>
             <div data-theme="dark">
@@ -37,14 +61,16 @@ const SignIn = () => {
                                                 <p className="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">or sign in with</p>
                                                 <span className="border-top w-100 position-absolute top-50 start-50 translate-middle" />
                                             </div>
-                                            <form>
+                                            <form onSubmit={handleSubmit}>
                                                 <div className="mb-3">
                                                     <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
-                                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                                    <input type="text" className={`form-control ${errors.username && touched.username ? "is-invalid" : ""}`} onChange={handleChange} onBlur={handleBlur} value={values.username} id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                                    <div>{errors.username && touched.username ? (<small className='text-danger'>{errors.username}</small>) : null}</div>
                                                 </div>
                                                 <div className="mb-4">
                                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                                    <input type="password" className={`form-control ${errors.password && touched.password ? "is-invalid" : ""}`} onChange={handleChange} onBlur={handleBlur} value={values.password} id="exampleInputPassword1" />
+                                                    <div>{errors.password && touched.password ? (<small className='text-danger'>{errors.password}</small>) : null}</div>
                                                 </div>
                                                 <div className="d-flex align-items-center justify-content-between mb-4">
                                                     <div className="form-check">
