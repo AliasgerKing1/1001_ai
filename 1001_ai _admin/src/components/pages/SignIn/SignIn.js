@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {NavLink, useNavigate} from "react-router-dom"
 import {useFormik} from "formik"
 import SigninSchema from "../../../Schemas/SigninSchema"
+import { loginAdmin } from '../../../services/AdminService'
+import ErrorAlert from "../../shared/ErrorAlert"
 let initialValues = {
     username : "",
     password : "",
@@ -14,14 +16,21 @@ const SignIn = () => {
         initialValues : initialValues,
         validationSchema : SigninSchema,
         onSubmit : async () => {
-            // if(result.data.errType == 1) {
-            //     setShowAlert(true)
-            //     setMsg("This email or password is incorrect !")
-            //        }
-            //        else if(result.data.errType == 2) {
-            //     setShowAlert(true)
-            //     setMsg("This email or password is incorrect !")
-            //        }
+    let result = await loginAdmin(values)
+    console.log(result.data)
+   if(result.data.errType == 1) {
+                setShowAlert(true)
+                setMsg("This Username or password is incorrect !")
+                   }
+                   else if(result.data.errType == 2) {
+                setShowAlert(true)
+                setMsg("This Username or password is incorrect !")
+                   } else {
+                    setShowAlert(false)
+                    localStorage.setItem("admin_token", result.data.token)
+                   navigate("/auth/home")
+                   }
+         
     }
 
 })
@@ -64,13 +73,12 @@ const SignIn = () => {
                                             <form onSubmit={handleSubmit}>
                                                 <div className="mb-3">
                                                     <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
-                                                    <input type="text" className={`form-control ${errors.username && touched.username ? "is-invalid" : ""}`} onChange={handleChange} onBlur={handleBlur} value={values.username} id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                                    <input type="text" className={`form-control ${errors.username && touched.username ? "is-invalid" : ""}`} placeholder="Username" name="username" onChange={handleChange} onBlur={handleBlur} value={values.username} id="exampleInputEmail1" aria-describedby="emailHelp" />
                                                     <div>{errors.username && touched.username ? (<small className='text-danger'>{errors.username}</small>) : null}</div>
                                                 </div>
                                                 <div className="mb-4">
                                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                                    <input type="password" className={`form-control ${errors.password && touched.password ? "is-invalid" : ""}`} onChange={handleChange} onBlur={handleBlur} value={values.password} id="exampleInputPassword1" />
-                                                    <div>{errors.password && touched.password ? (<small className='text-danger'>{errors.password}</small>) : null}</div>
+                                                    <input type="password" placeholder="Password" name="password" className={`form-control ${errors.password && touched.password ? "is-invalid" : ""}`} onChange={handleChange} onBlur={handleBlur} value={values.password} id="exampleInputPassword1" /><div>{errors.password && touched.password ? (<small className='text-danger'>{errors.password}</small>) : null}</div>
                                                 </div>
                                                 <div className="d-flex align-items-center justify-content-between mb-4">
                                                     <div className="form-check">
@@ -81,12 +89,13 @@ const SignIn = () => {
                                                     </div>
                                                     <a className="text-primary fw-medium" href="authentication-forgot-password.html">Forgot Password ?</a>
                                                 </div>
-                                                <a href="index.html" className="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</a>
+                                                <button type='submit' className="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</button>
                                                 <div className="d-flex align-items-center justify-content-center">
-                                                    <p className="fs-4 mb-0 fw-medium">New to Modernize?</p>
-                                                    <NavLink className="text-primary fw-medium ms-2" to="/signup">Create an account</NavLink>
+                                                    {/* <p className="fs-4 mb-0 fw-medium">New to Modernize?</p>
+                                                    <NavLink className="text-primary fw-medium ms-2" to="/signup">Create an account</NavLink> */}
                                                 </div>
                                             </form>
+                                            { showAlert ? (<ErrorAlert  msg={msg}/>) : ""}
                                         </div>
                                     </div>
                                 </div>

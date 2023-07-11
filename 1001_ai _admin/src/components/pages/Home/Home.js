@@ -17,6 +17,7 @@ import {getCode} from "../../../services/PassowrdService"
 import {codeRed} from "../../../Redux/PasswordcodeReducer"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { getImage } from '../../../services/GenerationService'
 const Home = () => {
   let dispatch = useDispatch()
   let state = useSelector(state=> state.copyAlertReducer)
@@ -24,6 +25,11 @@ const Home = () => {
     let result = await getCode()
     // console.log(result.data)
     dispatch(codeRed(result.data))
+  }
+
+  let generateimage = async () => {
+let result = await getImage("hiii")
+console.log(result.data)
   }
   return (
     <>
@@ -78,6 +84,8 @@ const Home = () => {
 <PasswordGeneratorModal />
               </div>
               <RoleTable />
+
+              {/* <button type="button" className='btn btn-success' onClick={generateimage}>generate</button> */}
             </div>
           </div>
         </div>
