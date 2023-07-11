@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 
@@ -17,7 +17,7 @@ import {getCode} from "../../../services/PassowrdService"
 import {codeRed} from "../../../Redux/PasswordcodeReducer"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getImage } from '../../../services/GenerationService'
+// import { getImage } from '../../../services/GenerationService'
 const Home = () => {
   let dispatch = useDispatch()
   let state = useSelector(state=> state.copyAlertReducer)
@@ -27,10 +27,11 @@ const Home = () => {
     dispatch(codeRed(result.data))
   }
 
-  let generateimage = async () => {
-let result = await getImage("hiii")
-console.log(result.data)
-  }
+
+//   let generateimage = async () => {
+// let result = await getImage("hiii")
+// console.log(result.data)
+//   }
   return (
     <>
       <div data-theme="dark">

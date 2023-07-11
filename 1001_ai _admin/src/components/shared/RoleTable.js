@@ -42,7 +42,11 @@ const RoleTable = () => {
     let [memberName, setMemberName] = useState("")
     let deleteMember = async (data) => {
         setMemberName(data.name)
-   
+    }
+
+    let deleteMemberFinal = () => {
+        let admin_token = localStorage.getItem("admin_token")
+        
     }
     return (
         <>
@@ -139,7 +143,7 @@ const RoleTable = () => {
                             <button type="button" className="btn btn-light" data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button type="button" className="btn btn-light-danger text-danger font-medium">
+                            <button type="button" className="btn btn-light-danger text-danger font-medium" onClick={deleteMemberFinal}>
                                 Delete
                             </button>
                         </div>
