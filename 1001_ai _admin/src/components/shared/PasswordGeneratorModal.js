@@ -35,7 +35,6 @@ const PasswordGeneratorModal = () => {
   }
   let newCode = async () => {
     let admin_token = localStorage.getItem("admin_token")
-    console.log(admin_token)
     let result = await getCode(admin_token)
 
     dispatch(codeRed(result.data))

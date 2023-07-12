@@ -5,10 +5,9 @@ const Admin = require("../../models/Admin")
 let jwt = require("jsonwebtoken")
 routes.get("/member", async (req, res) => {
     let code = str({ length: 10 })
-    if (req.headers.token) {
-        console.log(code)
-        let token = req.headers.token;
-        let obj = jwt.decode(token, "Aliasger web");
+    if (req.headers.admin_token) {
+        let admin_token = req.headers.admin_token;
+        let obj = jwt.decode(admin_token, "Aliasger web");
         try {
             let result = await Admin.updateOne({ _id: obj._id }, { M_delete: code })
         } catch (error) {

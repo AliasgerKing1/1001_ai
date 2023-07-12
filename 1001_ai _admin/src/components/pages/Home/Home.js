@@ -22,8 +22,8 @@ const Home = () => {
   let dispatch = useDispatch()
   let state = useSelector(state=> state.copyAlertReducer)
   let createPass = async () => {
-    let result = await getCode()
-    // console.log(result.data)
+    let admin_token = localStorage.getItem("admin_token")
+    let result = await getCode(admin_token)
     dispatch(codeRed(result.data))
   }
 

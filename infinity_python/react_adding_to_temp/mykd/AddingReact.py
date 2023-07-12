@@ -12,23 +12,26 @@ def find_html_files(directory):
             if file.endswith(".html"):
                 html_files.append(os.path.join(root, file))
                 html_count += 1
-                if html_count > 2:
+                if html_count > 4:
                     return html_files
     return html_files
 
-directoryx = "C:\My Web Sites\circle_video"
+directoryx = "H:\Mkyd\mykd"
 # Call the function to find HTML files
 html_files = find_html_files(directoryx)
 file_path_xy = ""
 # Print the list of HTML files
 file_path_xy = html_files[0].rsplit("\\", 1)[0]
-# source_path = r"C:\Users\ACER\Desktop\1001_ai\ReactApp"
+
 source_pathx = file_path_xy
 # destination_path = fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}"
-destination_pathx = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}"
+destination_pathx = fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}"
+# destination_pathx = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}"
 shutil.copytree(source_pathx, destination_pathx)
 
-lst1= os.listdir(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}")
+lst1= os.listdir(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}")
+# lst1= os.listdir(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}")
+# lst1= os.listdir(fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\theme\{WebsiteName}")
 
 unique_values = set()  # Create an empty set to store unique values
 
@@ -41,27 +44,33 @@ for index, router in enumerate(lst1) :
       unique_values.add(router00)
 # ----------------------------------------------------------------------------------------------------------------   
 # Specify the source and destination paths
+source_path = r"H:\\1001_ai\ReactApp"
 # source_path = r"C:\Users\ACER\Desktop\1001_ai\ReactApp"
-source_path = r"C:\Users\hp\Desktop\1001_ai\ReactApp"
+# source_path = r"C:\Users\hp\Desktop\1001_ai\ReactApp"
+
 # destination_path = fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}"
-destination_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}"
+destination_path = fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}"
+# destination_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}"
 shutil.copytree(source_path, destination_path)
 
 
 # ----------------------------------------------------------------------------------------------------------------  
 
 def check_and_copy_folders(directory):
-    required_folders = ['bootstrap', 'css', 'fonts', 'images', 'js', 'video', 'dist', 'libs', 'jquery']
+    required_folders = ['bootstrap', 'css', 'fonts', 'images', 'js', 'video', 'dist', 'libs', 'jquery', 'audio']
     folder_count = 0
-    for folder in required_folders:
-        folder_path = os.path.join(directory, folder)
-        if os.path.exists(folder_path):
-            folder_count += 1
-            if folder_count >= 2:
-                # Copy the whole directory to a destination folder
 
-                # destination_folder = fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\assets"
-                destination_folder = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\assets"
+    # Iterate over the contents of the directory
+    for folder_name in os.listdir(directory):
+        folder_path = os.path.join(directory, folder_name)
+        
+        # Check if the current item is a directory and is in the required folders list
+        if os.path.isdir(folder_path) and folder_name in required_folders:
+            folder_count += 1
+
+            # If at least two required folders are found, copy the entire directory
+            if folder_count >= 2:
+                destination_folder = r"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\assets"
                 shutil.copytree(directory, destination_folder)
                 print("Folders copied successfully!")
                 return
@@ -141,7 +150,9 @@ with open(f"theme/{WebsiteName}/index.html", "r") as file:
   # ----------------------------------------------------------------------------------------------------------------  
 
 # Read the contents of the index.html file
-with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
+with open(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
+# with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
+# with open(fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
     content = file.readlines()
 
 # Find the line index where <div id="root"></div> appears
@@ -157,7 +168,9 @@ if index is not None:
     content.insert(index + 1, new_line)
 
 # Write the modified content back to the file
-with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
+with open(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
+# with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
+# with open(fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
     file.writelines(content)
   # ----------------------------------------------------------------------------------------------------------------  
 
@@ -176,7 +189,9 @@ with open(f"theme/{WebsiteName}/index.html", "r") as file:
   # ----------------------------------------------------------------------------------------------------------------  
 
 # Read the contents of the index.html file
-with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
+with open(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
+# with open(fr"C:\Users\hp\DesDktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
+# with open(fr"C:\Users\ACER\DesDktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'r') as file:
     content = file.readlines()
 
 # Find the line index where <div id="root"></div> appears
@@ -192,10 +207,14 @@ if index2 is not None:
     content.insert(index2 + 1, new_line2)
 
 # Write the modified content back to the file
-with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
+with open(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
+# with open(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
+# with open(fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\public\index.html", 'w') as file:
     file.writelines(content)
   # ----------------------------------------------------------------------------------------------------------------  
-folder_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages"  # Replace with the desired folder path
+folder_path = fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages"  # Replace with the desired folder path
+# folder_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages"  # Replace with the desired folder path
+# folder_path = fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages"  # Replace with the desired folder path
 
 if "assets" in unique_values:
     unique_values.remove("assets")
@@ -252,7 +271,9 @@ import React from 'react'
 
     # ----------------------------------------------------------------------------------------------------------------  
 
-  file_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages\{x}.js"
+  file_path = fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages\{x}.js"
+  # file_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages\{x}.js"
+  # file_path = fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\components\pages\{x}.js"
   # print(file_path)
   with open(file_path, 'r') as file:
     file_contents = file.read()
@@ -286,6 +307,17 @@ import React from 'react'
 
     # ----------------------------------------------------------------------------------------------------------------  
 
+  word_to_remove = '<!doctype'
+  with open(file_path, 'r') as file:
+      lines = file.readlines()
+
+  modified_lines = [line for line in lines if word_to_remove not in line]
+
+  with open(file_path, 'w') as file:
+      file.writelines(modified_lines)
+
+    # ----------------------------------------------------------------------------------------------------------------  
+
   word_to_remove = '<html'
   with open(file_path, 'r') as file:
       lines = file.readlines()
@@ -307,21 +339,21 @@ import React from 'react'
 
     # ----------------------------------------------------------------------------------------------------------------  
 
-
   with open(file_path, 'r') as file:
       file_contents = file.read()
-  modified_contents = re.sub(r'<img(.*?)>', r'<img\1/>', file_contents)
+
+  modified_contents = re.sub(r'<img([^/]*?)>', r'<img\1/>', file_contents)
 
   with open(file_path, 'w') as file:
       file.write(modified_contents)
 
-
     # ----------------------------------------------------------------------------------------------------------------  
 
+  
   with open(file_path, 'r') as file:
-        file_contents = file.read()
+      file_contents = file.read()
 
-  modified_contents = re.sub(r'<input(.*?)>', r'<input\1/>', file_contents)
+  modified_contents = re.sub(r'<input([^/]*?)>', r'<input\1/>', file_contents)
 
   with open(file_path, 'w') as file:
       file.write(modified_contents)
@@ -365,10 +397,20 @@ import React from 'react'
   # ----------------------------------------------------------------------------------------------------------------  
   
 
-if not os.path.exists(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes"):
-    os.mkdir(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes")
+if not os.path.exists(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes"):
+    os.mkdir(fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes")
 
-file_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes\Router.js"
+file_path = fr"H:\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes\Router.js"
+
+# if not os.path.exists(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes"):
+#     os.mkdir(fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes")
+
+# file_path = fr"C:\Users\hp\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes\Router.js"
+
+# if not os.path.exists(fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes"):
+#     os.mkdir(fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes")
+
+# file_path = fr"C:\Users\ACER\Desktop\1001_ai\infinity_python\react_adding_to_temp\mykd\code\{WebsiteName}\src\routes\Router.js"
 
 with open(file_path, "w") as wFile:
     # Write the initial part of the file
