@@ -3,6 +3,8 @@ import DataTables from '../../shared/DataTables'
 import DataTablesShow from "../../shared/DataTablesShow"
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
+import BreadBanner from "../../shared/BreadBanner"
+
 const DataList = () => {
   return (
     <>
@@ -22,6 +24,8 @@ const DataList = () => {
             <Header />
             {/* Header End */}
             <div className="container-fluid">
+              <BreadBanner title="Website List" />
+
               <DataTables title="Website Left to Clone" tagline="total numbers of website left to clone" />
               <DataTablesShow title="Website Done" tagline="total numbers of website clone successfully" />
             </div>

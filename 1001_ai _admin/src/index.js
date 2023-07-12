@@ -5,25 +5,27 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 
-import {combineReducers, configureStore} from "@reduxjs/toolkit"
-import {Provider} from "react-redux"
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import { Provider } from "react-redux"
 
 
 import copyAlertReducer from "./Redux/copyAlertReducer"
 import PasswordCodeReducer from "./Redux/PasswordcodeReducer"
+import WebsiteLeftReducer from "./Redux/WebsiteLeftReducer"
 let rootReducer = combineReducers({
   copyAlertReducer,
-  PasswordCodeReducer
+  PasswordCodeReducer,
+  WebsiteLeftReducer
 })
 let store = configureStore({
-  reducer : rootReducer
+  reducer: rootReducer
 })
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-    <App />
-  </BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 

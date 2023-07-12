@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { getWebsiteleft, postWebsiteLeft } from "../../services/websiteDataService"
+import { useDispatch, useSelector } from 'react-redux';
+import { webLeftRedFun } from "../../Redux/WebsiteLeftReducer"
+
 const DataTables = ({ title, tagline }) => {
+  let dispatch = useDispatch()
+  let state = useSelector(state => state.WebsiteLeftReducer)
   const [dataSet, setDataSet] = useState([]);
-const [data, setData] = useState([])
+  const [data, setData] = useState([])
   const [dataAdd, setDataAdd] = useState({
     name: '',
     url: '',
     link: '',
   });
-  let getWebsiteLeftFun = async() => {
+  let getWebsiteLeftFun = async () => {
     let result = await getWebsiteleft()
+    dispatch(webLeftRedFun(result.data))
     setData(result.data)
   }
-useEffect(()=> {
-  getWebsiteLeftFun()
-}, [])
-  const addNewData = () => {
+  useEffect(() => {
+    getWebsiteLeftFun()
+  }, [])
+
+  const submitData = () => {
     setDataSet([...dataSet, dataAdd]);
-    setDataAdd({ name: '', link: '', url: ''});
+    setDataAdd({ name: '', link: '', url: '' });
+  }
+  const addNewData = async () => {
+
+    let result = await postWebsiteLeft(dataSet)
+    setData([...data, result.data[0]])
+    dispatch(webLeftRedFun([...data, result.data[0]]))
 
   };
   const handleInputChange = (e, field) => {
@@ -62,10 +75,10 @@ useEffect(()=> {
               </div>
               <div className="top">
                 <div className="dataTables_info" id="multi_control_info" role="status" aria-live="polite">
-                  Showing 0 to 8 of {dataSet.length} entries
+                  Total&nbsp; {state.web_left.length}&nbsp; entries
                 </div>
               </div>
-              <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
+              <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'scroll', overflowX: 'auto' }}>
                 <table
                   id="multi_control"
                   className="table border table-striped table-bordered display text-nowrap"
@@ -94,6 +107,7 @@ useEffect(()=> {
                           placeholder="Website url"
                           onChange={(e) => handleInputChange(e, 'url')}
                           value={dataAdd.url}
+                          style={{ width: '100%' }}
                         />
                       </td>
                       <td className="data__table__input">
@@ -102,10 +116,11 @@ useEffect(()=> {
                           placeholder=" Website link"
                           onChange={(e) => handleInputChange(e, 'link')}
                           value={dataAdd.link}
+                          onBlur={submitData}
                         />
                       </td>
                     </tr>
-                    {data?.map((x, i) => (
+                    {state?.web_left?.map((x, i) => (
                       <tr key={i}>
                         <td>{x.name}</td>
                         <td>{x.url}</td>

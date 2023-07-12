@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { checkCode } from '../../services/PassowrdService'
 let RolesData = [
     {
         image: "/assets/dist/images/profile/user-1.jpg",
@@ -40,13 +41,22 @@ let RolesData = [
 const RoleTable = () => {
 
     let [memberName, setMemberName] = useState("")
+    let [delPass, setDelPass] = useState("")
     let deleteMember = async (data) => {
         setMemberName(data.name)
     }
 
-    let deleteMemberFinal = () => {
-        let admin_token = localStorage.getItem("admin_token")
-        
+    let deleteMemberFinal = async () => {
+        if (delPass.length == 0) {
+
+        } else {
+            let admin_token = localStorage.getItem("admin_token")
+            let result = await checkCode(admin_token, { password: delPass })
+            if (result.data.status == 200) {
+                //delete member code to write here
+            }
+        }
+
     }
     return (
         <>
@@ -90,12 +100,12 @@ const RoleTable = () => {
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{}}>
                                             <li>
                                                 <a className="dropdown-item d-flex align-items-center gap-2" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-   <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
-   <path d="M9 17h6"></path>
-   <path d="M9 13h6"></path>
-</svg>Details</a>
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                                                    <path d="M9 17h6"></path>
+                                                    <path d="M9 13h6"></path>
+                                                </svg>Details</a>
                                             </li>
                                             <li>
                                                 <a className="dropdown-item d-flex align-items-center gap-3" href="#"><i className="fs-4 ti ti-edit" />Edit</a>
@@ -106,7 +116,7 @@ const RoleTable = () => {
                                                     class="dropdown-item d-flex align-items-center gap-3"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#danger-header-modal"
-                                                    onClick={()=> {
+                                                    onClick={() => {
                                                         deleteMember(x)
                                                     }}  ><i className="fs-4 ti ti-trash" />
                                                     Delete
@@ -133,11 +143,11 @@ const RoleTable = () => {
                         <div className="modal-body">
                             <h5 className="mt-0">Are you sure to delete {memberName} ?</h5>
                             <p>Type the password to delete the memeber below </p>
-     <form class="mt-4">
-            <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Admin Password" />
-            </div>
-        </form>
+                            <form class="mt-4">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="delpass" placeholder="Admin Password" value={delPass} onChange={(e) => { setDelPass(e.target.value) }} />
+                                </div>
+                            </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-light" data-bs-dismiss="modal">

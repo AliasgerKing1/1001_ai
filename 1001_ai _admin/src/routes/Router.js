@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom"
 import React from 'react'
 import Error404 from "../components/pages/Error404/Error404"
 import Layouts from "../Layouts/Layouts"
-import userRoutes from "./User/User"
+import adminRoutes from "./Admin/Admin"
 import SignIn from "../components/pages/SignIn/SignIn"
 import Landing from "../components/pages/Landing/Landing"
 const Router = () => {
@@ -19,7 +19,7 @@ const Router = () => {
         {
             path: "auth",
             element: <Layouts />,
-            children: userRoutes
+            children: adminRoutes
         },
         {
             path: "*",

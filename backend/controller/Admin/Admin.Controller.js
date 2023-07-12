@@ -10,7 +10,6 @@ let username = req.body.username;
 let password = sha1(req.body.password);
 let trueUsername = await Admin.find({username : username})
 if(trueUsername.length == 1) {
-    console.log(trueUsername[0].password)
     if(trueUsername[0].password == password) {
         let obj = {_id : trueUsername[0]._id, email : trueUsername[0].email, username : trueUsername[0].username};
         let token = jwt.sign(obj , "Aliasger web");
