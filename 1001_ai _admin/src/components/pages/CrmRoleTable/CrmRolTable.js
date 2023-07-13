@@ -52,7 +52,7 @@ start Multiple table control element
                           Total &nbsp; {roles_list.length} &nbsp; roles &nbsp; & &nbsp;{role_prop_num.length}&nbsp; rights
                         </div>
                       </div>
-                      <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'scroll', overflowX: 'auto' }}>
+                      <div className="table-responsive" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'auto' }}>
                         <table
                           id="multi_control"
                           className="table border table-striped table-bordered display text-nowrap"

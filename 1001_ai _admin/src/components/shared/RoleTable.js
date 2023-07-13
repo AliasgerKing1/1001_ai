@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { checkCode } from '../../services/PassowrdService'
+import {NavLink} from "react-router-dom"
 let RolesData = [
     {
         image: "/assets/dist/images/profile/user-1.jpg",
@@ -108,7 +109,7 @@ const RoleTable = () => {
                                                 </svg>Details</a>
                                             </li>
                                             <li>
-                                                <a className="dropdown-item d-flex align-items-center gap-3" href="#"><i className="fs-4 ti ti-edit" />Edit</a>
+                                                <NavLink className="dropdown-item d-flex align-items-center gap-3" to="/auth/crm/table"><i className="fs-4 ti ti-edit" />Edit</NavLink>
                                             </li>
                                             <li>
                                                 <button

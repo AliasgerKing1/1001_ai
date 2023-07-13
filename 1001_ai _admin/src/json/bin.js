@@ -110,7 +110,6 @@ let role_prop_num = [
         rights: "Contact"
     },
 ]
-
 export { roles_list, role_prop_num }
 //CIO = chief innovation officer
 

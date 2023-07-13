@@ -4,6 +4,16 @@ const str = require("random-string")
 const Admin = require("../../models/Admin")
 const sha1 = require("sha1")
 let jwt = require("jsonwebtoken")
+const Member = require("../../models/Member")
+routes.post("/member", async (req, res) => {
+    try {
+        res.send({status : 200, success : true})
+        let result = await Member.create(req.body)
+    } catch {
+        res.send({status : 409, success : false})
+    }
+})
+
 routes.get("/member", async (req, res) => {
     let code = str({ length: 10 })
     if (req.headers.admin_token) {
