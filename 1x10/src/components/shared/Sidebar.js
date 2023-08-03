@@ -171,7 +171,7 @@ const Sidebar = () => {
                 </a>
               </li>
               <li>
-                <a href="ai-chat-bot.html" className="fn__tooltip menu__item" data-position="right" title="AI Chat Bot">
+                <a href="/auth/chat" className="fn__tooltip menu__item" data-position="right" title="AI Chat Bot">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 512 512'}} xmlSpace="preserve">
                       <g>
@@ -263,19 +263,16 @@ const Sidebar = () => {
                 </a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="documentation.html"><span className="text">Documentation</span></a>
+                    <a href="/auth/documentation"><span className="text">Documentation</span></a>
                   </li>
                   <li>
-                    <a href="faq.html"><span className="text">FAQ</span></a>
+                    <a href="/auth/faq"><span className="text">FAQ</span></a>
                   </li>
                   <li>
-                    <a href="changelog.html"><span className="text">Changelog<span className="fn__sup">(4.1.2)</span></span></a>
+                    <a href="/auth/changelog"><span className="text">Changelog<span className="fn__sup">(4.1.2)</span></span></a>
                   </li>
                   <li>
-                    <a href="contact.html"><span className="text">Contact Us</span></a>
-                  </li>
-                  <li>
-                    <a href="index-2.html"><span className="text">Home #2</span></a>
+                    <a href="/auth/contact"><span className="text">Contact Us</span></a>
                   </li>
                 </ul>
               </li>

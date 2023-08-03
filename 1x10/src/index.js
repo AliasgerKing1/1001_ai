@@ -7,10 +7,12 @@ import {BrowserRouter} from "react-router-dom"
 import {Provider, } from "react-redux"
 import {configureStore, combineReducers} from "@reduxjs/toolkit"
 import DetailsPageReducer from "./Redux/DetialPageReducer"
+import SignInUserReducer from "./Redux/SignInUserReducer"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let rootReducer = combineReducers({
-DetailsPageReducer
+DetailsPageReducer,
+SignInUserReducer
 })
 let store = configureStore({
   reducer : rootReducer

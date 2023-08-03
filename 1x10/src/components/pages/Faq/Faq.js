@@ -1,11 +1,10 @@
 import React from 'react'
 import Header from '../../shared/Header';
 import Sidebar from '../../shared/Sidebar';
-import HomeContent from '../../shared/MainContent/HomeContent';
+import FaqContent from '../../shared/MainContent/FaqContent';
 import Footer from '../../shared/Footer';
 
-const Home = () => {
-
+const Faq = () => {
   return (
     <>
 <div>
@@ -15,12 +14,12 @@ const Home = () => {
   </div>
   {/* !Moving Submenu */}
   {/* Preloader */}
-  {/* <div className="techwave_fn_preloader enabled">
+  <div className="techwave_fn_preloader">
     <svg>
       <circle className="first_circle" cx="50%" cy="50%" r={110} />
       <circle className="second_circle" cx="50%" cy="50%" r={110} />
     </svg>
-  </div> */}
+  </div>
   {/* !Preloader */}
   {/* MAIN WRAPPER */}
   <div className="techwave_fn_wrapper">
@@ -29,7 +28,7 @@ const Home = () => {
       <div className="techwave_fn_searchbar">
         <div className="search__bar">
           <input className="search__input" type="text" placeholder="Search here..." />
-          <img src="/assets/svg/search.svg" alt className="fn__svg search__icon" />
+          <img src="svg/search.svg" alt className="fn__svg search__icon" />
           <a className="search__closer" href="#"><img src="/assets/svg/close.svg" alt className="fn__svg" /></a>
         </div>
         <div className="search__results">
@@ -47,18 +46,18 @@ const Home = () => {
       </div>
       {/* !Searchbar */}
       {/* HEADER */}
-      <Header />
+<Header />
       {/* !HEADER */}
       {/* LEFT PANEL */}
-      <Sidebar />
+<Sidebar />
       {/* !LEFT PANEL */}
       {/* CONTENT */}
       <div className="techwave_fn_content">
         {/* PAGE (all pages go inside this div) */}
-        <HomeContent />
+<FaqContent />
         {/* !PAGE (all pages go inside this div) */}
         {/* FOOTER (inside the content) */}
-        <Footer />
+<Footer />
         {/* !FOOTER (inside the content) */}
       </div>
       {/* !CONTENT */}
@@ -71,4 +70,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Faq

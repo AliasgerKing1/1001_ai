@@ -1,11 +1,10 @@
 import React from 'react'
 import Header from '../../shared/Header';
 import Sidebar from '../../shared/Sidebar';
-import HomeContent from '../../shared/MainContent/HomeContent';
+import ChatBotContent from '../../shared/MainContent/ChatBotContent';
 import Footer from '../../shared/Footer';
 
-const Home = () => {
-
+const ChatBot = () => {
   return (
     <>
 <div>
@@ -15,15 +14,36 @@ const Home = () => {
   </div>
   {/* !Moving Submenu */}
   {/* Preloader */}
-  {/* <div className="techwave_fn_preloader enabled">
+  {/* <div className="techwave_fn_preloader">
     <svg>
       <circle className="first_circle" cx="50%" cy="50%" r={110} />
       <circle className="second_circle" cx="50%" cy="50%" r={110} />
     </svg>
   </div> */}
   {/* !Preloader */}
+  <div className="techwave_fn_font">
+    <a className="font__closer_link fn__icon_button" href="#"><img src="/assets/svg/close.svg" alt className="fn__svg" /></a>
+    <div className="font__closer" />
+    <div className="font__dialog">
+      <h3 className="title">Font Options</h3>
+      <label htmlFor="font_size">Font Size</label>
+      <select id="font_size">
+        <option value={10}>10 px</option>
+        <option value={12}>12 px</option>
+        <option value={14}>14 px</option>
+        <option value={16} selected>16 px</option>
+        <option value={18}>18 px</option>
+        <option value={20}>20 px</option>
+        <option value={22}>22 px</option>
+        <option value={24}>24 px</option>
+        <option value={26}>26 px</option>
+        <option value={28}>28 px</option>
+      </select>
+      <a href="#" className="apply techwave_fn_button"><span>Apply</span></a>
+    </div>
+  </div>
   {/* MAIN WRAPPER */}
-  <div className="techwave_fn_wrapper">
+  <div className="techwave_fn_wrapper fn__has_sidebar">
     <div className="techwave_fn_wrap">
       {/* Searchbar */}
       <div className="techwave_fn_searchbar">
@@ -46,19 +66,18 @@ const Home = () => {
         </div>
       </div>
       {/* !Searchbar */}
-      {/* HEADER */}
-      <Header />
+<Header />
       {/* !HEADER */}
       {/* LEFT PANEL */}
-      <Sidebar />
+<Sidebar />
       {/* !LEFT PANEL */}
       {/* CONTENT */}
       <div className="techwave_fn_content">
         {/* PAGE (all pages go inside this div) */}
-        <HomeContent />
+<ChatBotContent />
         {/* !PAGE (all pages go inside this div) */}
         {/* FOOTER (inside the content) */}
-        <Footer />
+<Footer />
         {/* !FOOTER (inside the content) */}
       </div>
       {/* !CONTENT */}
@@ -71,4 +90,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default ChatBot

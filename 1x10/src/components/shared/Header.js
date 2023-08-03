@@ -1,7 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import {fetchUser} from "../../Services/AuthService"
+import {SignInUserRed} from "../../Redux/SignInUserReducer"
 import {NavLink} from "react-router-dom"
 const Header = () => {
   let [lightMode, setLightMode] = useState(false)
+  let dispatch = useDispatch()
+  let fetchUserFun = async () => {
+    let token = localStorage.getItem("token")
+    let result = await fetchUser(token);
+    dispatch(SignInUserRed(result.data[0]))
+
+}
+useEffect(()=> {
+    fetchUserFun();
+}, [])
+
+let state = useSelector(state => state.SignInUserReducer)
   return (
     <>
             <header className="techwave_fn_header">
@@ -198,32 +213,32 @@ const Header = () => {
                     <img src="/assets/img/user/user.jpg" alt />
                   </div>
                   <div className="user_info">
-                    <h2 className="user_name">Caden Smith<span>Free</span></h2>
-                    <p><a href="mailto:cadmail@gmail.com" className="user_email">cadmail@gmail.com</a></p>
+                    <h2 className="user_name">{state.name}<span>Free</span></h2>
+                    <p><a href={`mailto:${state.email}`} className="user_email">{state.email}</a></p>
                   </div>
                 </div>
                 <div className="user_nav">
                   <ul>
                     <li>
-                      <a href="user-profile.html">
+                      <a href="/auth/user/1/profile">
                         <span className="icon"><img src="/assets/svg/person.svg" alt className="fn__svg" /></span>
                         <span className="text">Profile</span>
                       </a>
                     </li>
                     <li>
-                      <a href="user-settings.html">
+                      <a href="/auth/user/1/setting">
                         <span className="icon"><img src="/assets/svg/setting.svg" alt className="fn__svg" /></span>
                         <span className="text">Settings</span>
                       </a>
                     </li>
                     <li>
-                      <a href="user-billing.html">
+                      <a href="/auth/bill">
                         <span className="icon"><img src="/assets/svg/billing.svg" alt className="fn__svg" /></span>
                         <span className="text">Billing</span>
                       </a>
                     </li>
                     <li>
-                    <a href="user-settings.html">
+                    <a href="/auth/personal">
                         <span className="icon"><img src="/assets/svg/my-generation.svg" alt className="fn__svg" /></span>
                         <span className="text">My Generation</span>
                       </a>

@@ -58,7 +58,7 @@ const HomeContent = () => {
                     </li>
                     <li>
                       <div className="item">
-                        <a href="ai-chat-bot.html">
+                        <a href="/auth/chat">
                           <span className="icon">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 512 512'}} xmlSpace="preserve">
                               <g>
