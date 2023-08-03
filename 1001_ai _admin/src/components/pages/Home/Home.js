@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 
@@ -19,13 +19,25 @@ import {getCode} from "../../../services/PassowrdService"
 import {codeRed} from "../../../Redux/PasswordcodeReducer"
 import { useDispatch, useSelector } from 'react-redux';
 import { webLeftRedFun } from "../../../Redux/WebsiteLeftReducer"
+import { getAdmin } from '../../../services/AdminService'
+import {AdminRed} from "../../../Redux/AdminReducer"
 
 // import { getImage } from '../../../services/GenerationService'
 const Home = () => {
   let dispatch = useDispatch()
   let state = useSelector(state=> state.copyAlertReducer)
   let state2 = useSelector(state => state.WebsiteLeftReducer)
-
+  let state3 = useSelector(state => state.AdminReducer)
+  let getAdminFun = async () => {
+    let admin_token = localStorage.getItem("admin_token");
+    let result = await getAdmin(admin_token)
+    dispatch(AdminRed(result.data[0]))
+  }
+useEffect(()=> {
+  if(state3.length == 0) {
+    getAdminFun()
+  }
+}, [])
   let getWebsiteLeftFun = async () => {
     let result = await getWebsiteleft()
     dispatch(webLeftRedFun(result.data))

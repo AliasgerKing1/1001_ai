@@ -12,10 +12,14 @@ import { Provider } from "react-redux"
 import copyAlertReducer from "./Redux/copyAlertReducer"
 import PasswordCodeReducer from "./Redux/PasswordcodeReducer"
 import WebsiteLeftReducer from "./Redux/WebsiteLeftReducer"
+import rolesAlertReducer from "./Redux/RolesAlertReducer.js"
+import AdminReducer from "./Redux/AdminReducer"
 let rootReducer = combineReducers({
   copyAlertReducer,
   PasswordCodeReducer,
-  WebsiteLeftReducer
+  WebsiteLeftReducer,
+  rolesAlertReducer,
+  AdminReducer
 })
 let store = configureStore({
   reducer: rootReducer

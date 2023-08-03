@@ -22,20 +22,20 @@ const Sidebar = () => {
               {/* ============================= */}
               <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
-                <span className="hide-menu">Home</span>
+                <span className="hide-menu">Dashboard</span>
               </li>
               {/* =================== */}
               {/* Dashboard */}
               {/* =================== */}
               <li className="sidebar-item">
-                <a className="sidebar-link" href="index.html" aria-expanded="false">
+                <NavLink className="sidebar-link" to="/auth/home" aria-expanded="false">
                   <span>
                     <i className="ti ti-aperture" />
                   </span>
-                  <span className="hide-menu">Modern</span>
-                </a>
+                  <span className="hide-menu">Main Dashboard</span>
+                </NavLink>
               </li>
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link" href="index2.html" aria-expanded="false">
                   <span>
                     <i className="ti ti-shopping-cart" />
@@ -74,13 +74,21 @@ const Sidebar = () => {
                   </span>
                   <span className="hide-menu">Music</span>
                 </a>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* Apps */}
               {/* ============================= */}
               <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">Apps</span>
+              </li>
+              <li className="sidebar-item">
+                <NavLink className="sidebar-link" to="/auth/crm/table" aria-expanded="false">
+                  <span>
+                  <i class="ti ti-user-check"></i>
+                  </span>
+                  <span className="hide-menu">Assign Roles</span>
+                </NavLink>
               </li>
               <li className="sidebar-item">
                 <a className="sidebar-link" href="app-calendar.html" aria-expanded="false">
@@ -115,36 +123,28 @@ const Sidebar = () => {
                 </a>
               </li>
               <li className="sidebar-item">
-                <a className="sidebar-link" href="app-contact.html" aria-expanded="false">
-                  <span>
-                    <i className="ti ti-phone" />
-                  </span>
-                  <span className="hide-menu">Contact Table</span>
-                </a>
-              </li>
-              <li className="sidebar-item">
-                <a className="sidebar-link" href="app-contact2.html" aria-expanded="false">
+                <NavLink className="sidebar-link" to="/auth/data/list" aria-expanded="false">
                   <span>
                     <i className="ti ti-list-details" />
                   </span>
-                  <span className="hide-menu">Contact List</span>
-                </a>
+                  <span className="hide-menu">Website List</span>
+                </NavLink>
               </li>
               <li className="sidebar-item">
-                <a className="sidebar-link" href="app-invoice.html" aria-expanded="false">
+                <NavLink className="sidebar-link" to="/auth/crm/roles" aria-expanded="false">
                   <span>
                     <i className="ti ti-file-text" />
                   </span>
-                  <span className="hide-menu">Invoice</span>
-                </a>
+                  <span className="hide-menu">Roles Table</span>
+                </NavLink>
               </li>
               <li className="sidebar-item">
-                <a className="sidebar-link" href="page-user-profile.html" aria-expanded="false">
+                <NavLink className="sidebar-link" to="/auth/crm/add/member" aria-expanded="false">
                   <span>
                     <i className="ti ti-user-circle" />
                   </span>
-                  <span className="hide-menu">User Profile</span>
-                </a>
+                  <span className="hide-menu">Add Member</span>
+                </NavLink>
               </li>
               <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
@@ -172,7 +172,7 @@ const Sidebar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-basket" />
@@ -213,13 +213,13 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* PAGES */}
               {/* ============================= */}
               <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
-                <span className="hide-menu">PAGES</span>
+                <span className="hide-menu">Extra pages</span>
               </li>
               <li className="sidebar-item">
                 <a className="sidebar-link" href="page-pricing.html" aria-expanded="false">
@@ -242,7 +242,7 @@ const Sidebar = () => {
                   <span>
                     <i className="ti ti-user-circle" />
                   </span>
-                  <span className="hide-menu">Account Setting</span>
+                  <span className="hide-menu">Account Security</span>
                 </a>
               </li>
               <li className="sidebar-item">
@@ -250,10 +250,10 @@ const Sidebar = () => {
                   <span>
                     <i className="ti ti-app-window" />
                   </span>
-                  <span className="hide-menu">Landing Page</span>
+                  <span className="hide-menu">landing Page</span>
                 </a>
               </li>
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-layout" />
@@ -286,18 +286,18 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* UI */}
               {/* ============================= */}
-              <li className="nav-small-cap">
+              {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">UI</span>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* UI Elements */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-layout-grid" />
@@ -466,18 +466,18 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* Forms */}
               {/* ============================= */}
-              <li className="nav-small-cap">
+              {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">Forms</span>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Form Elements */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-file-text" />
@@ -550,11 +550,11 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Form Input */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link" href="form-basic.html" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-archive" />
@@ -609,40 +609,40 @@ const Sidebar = () => {
                   </span>
                   <span className="hide-menu">Form Detail</span>
                 </a>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Form Wizard */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link" href="form-wizard.html" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-files" />
                   </span>
                   <span className="hide-menu">Form Wizard</span>
                 </a>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Quill Editor */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link" href="form-editor-quill.html" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-edit" />
                   </span>
                   <span className="hide-menu">Quill Editor</span>
                 </a>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* Tables */}
               {/* ============================= */}
-              <li className="nav-small-cap">
+              {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">Tables</span>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Bootstrap Table */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-layout-sidebar" />
@@ -683,11 +683,11 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Datatable */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-air-conditioning-disabled" />
@@ -720,18 +720,18 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* Charts */}
               {/* ============================= */}
-              <li className="nav-small-cap">
+              {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">Charts</span>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Apex Chart */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span className="d-flex">
                     <i className="ti ti-chart-pie" />
@@ -788,29 +788,29 @@ const Sidebar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* Icons */}
               {/* ============================= */}
-              <li className="nav-small-cap">
+              {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">Icons</span>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* Tabler Icon */}
               {/* =================== */}
-              <li className="sidebar-item">
+              {/* <li className="sidebar-item">
                 <a className="sidebar-link sidebar-link" href="icon-tabler.html" aria-expanded="false">
                   <span className="rounded-3">
                     <i className="ti ti-archive" />
                   </span>
                   <span className="hide-menu">Tabler Icon</span>
                 </a>
-              </li>
+              </li> */}
               {/* =================== */}
               {/* AUTH */}
               {/* =================== */}
-              <li className="nav-small-cap">
+              {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">AUTH</span>
               </li>
@@ -933,11 +933,11 @@ const Sidebar = () => {
                   </span>
                   <span className="hide-menu">Maintenance</span>
                 </a>
-              </li>
+              </li> */}
               {/* ============================= */}
               {/* OTHER */}
               {/* ============================= */}
-              <li className="nav-small-cap">
+               {/* <li className="nav-small-cap">
                 <i className="ti ti-dots nav-small-cap-icon fs-4" />
                 <span className="hide-menu">OTHER</span>
               </li>
@@ -1053,8 +1053,8 @@ const Sidebar = () => {
                   </span>
                   <span className="hide-menu">External Link</span>
                 </a>
-              </li>
-            </ul>
+              </li> */}
+            </ul> 
             <div className="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
               <div className="d-flex">
                 <div className="unlimited-access-title">

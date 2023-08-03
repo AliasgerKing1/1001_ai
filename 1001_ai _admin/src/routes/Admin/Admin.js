@@ -3,6 +3,7 @@ import Home from "../../components/pages/Home/Home"
 import CrmRoleTable from "../../components/pages/CrmRoleTable/CrmRolTable"
 import DataList from "../../components/pages/dataList/DataList"
 import AddMember from "../../components/pages/AddMember/AddMember"
+import LockScreen from "../../components/pages/LockScreen/LockScreen"
 let adminRoutes = [
     {
         path: "home",
@@ -23,6 +24,10 @@ let adminRoutes = [
     {
         path: "crm/add/member",
         element: <AddMember />
+    },
+    {
+        path: "lock/screen",
+        element: <LockScreen />
     },
 ]
 

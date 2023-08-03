@@ -17,7 +17,7 @@ const SignIn = () => {
         validationSchema : SigninSchema,
         onSubmit : async () => {
     let result = await loginAdmin(values)
-    console.log(result.data)
+    // console.log(result.data)
    if(result.data.errType == 1) {
                 setShowAlert(true)
                 setMsg("This Username or password is incorrect !")
@@ -28,6 +28,7 @@ const SignIn = () => {
                    } else {
                     setShowAlert(false)
                     localStorage.setItem("admin_token", result.data.token)
+                    localStorage.setItem("lock_screen_token", result.data.lock_token)
                    navigate("/auth/home")
                    }
          

@@ -2,7 +2,7 @@
 const routes = require("express").Router();
 const str = require("random-string")
 const Admin = require("../../models/Admin")
-const sha1 = require("sha1")
+// const sha1 = require("sha1")
 let jwt = require("jsonwebtoken")
 const Member = require("../../models/Member")
 routes.post("/member", async (req, res) => {

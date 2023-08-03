@@ -59,7 +59,7 @@ const ListedChart = () => {
                     <p className="fs-3 mb-0">Tier 2-4 Available</p>
                   </div>
                 </div>
-                <h6 className="mb-0 fw-semibold">+$80</h6>
+                <h6 className="mb-0 fw-semibold">$80</h6>
               </div>
               <div className="d-flex align-items-center justify-content-between mb-7 pb-8">
                 <div className="d-flex">

@@ -5,10 +5,15 @@ const Admin = mongoose.Schema({
     name: String,
     username: String,
     email: String,
-    phone: Number,
+    screen_pass: String,
+    otp : {
+        type : Number,
+        default : null
+    },
     role: String,
     M_delete: String,
-    password: String
+    password: String,
+    phone: Number,
 
 })
 module.exports = mongoose.model("admin", Admin);
