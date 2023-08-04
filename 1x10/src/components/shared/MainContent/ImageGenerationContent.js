@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const ImageGenerationContent = () => {
+  let [alchemy, setAlchemy] = useState(false)
   return (
     <>
               <div className="techwave_fn_page">
@@ -651,7 +652,7 @@ const ImageGenerationContent = () => {
                               <span className="text">ArtShaper v3</span>
                             </li>
                             <li>
-                              <span className="text">512 x 512px</span>
+                              <span className="text" >512 x 512px</span>
                             </li>
                             <li>
                               <span className="text">March 15,  2023</span>
@@ -935,7 +936,7 @@ const ImageGenerationContent = () => {
                 </div>
               </div>
             </div>
-            <div className="generation__sidebar">
+            <div className="generation__sidebar" style={{overflowY : 'auto'}}>
               <div className="sidebar_model">
                 <div className="fn__select_model">
                   <a className="model_open">
@@ -965,7 +966,32 @@ const ImageGenerationContent = () => {
                 </div>
               </div>
               <div className="sidebar_details">
-                <div className="number_of_images">
+              <div className="prompt_magic_switcher">
+                  <h4 className="title"><label htmlFor="prompt_switcher" style={{marginRight : '5px'}}>Alchemy</label>
+                  <img src="/assets/svg/chemical.svg" alt className="fn__svg" />
+                  <span className="fn__tooltip" title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
+                  <label className="fn__toggle">
+                    <span className="t_in">
+                      <input type="checkbox" id="prompt_switcher" onClick={()=>setAlchemy(!alchemy)} />
+                      <span className="t_slider" />
+                      <span className="t_content" />
+                    </span>
+                  </label>
+                </div>
+                <div style={{marginBottom : '20px'}}>
+                <div className="contrast_switcher" style={{display : alchemy === false ? "none" : 'block'}}>
+                  <h4 className="title"><label htmlFor="contrast_switcher">High Resolution</label>
+                  <span className="fn__tooltip" title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
+                  <label className="fn__toggle">
+                    <span className="t_in">
+                      <input type="checkbox" id="contrast_switcher" />
+                      <span className="t_slider" />
+                      <span className="t_content" />
+                    </span>
+                  </label>
+                </div>
+                </div>
+                <div className="number_of_images" >
                   <h4 className="title">Number of Images</h4>
                   <div className="fn__quantity">
                     <a href="#" className="decrease" />

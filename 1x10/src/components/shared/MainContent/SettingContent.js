@@ -1,6 +1,20 @@
-import React from 'react'
-
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import {fetchUser} from "../../../Services/AuthService"
+import {SignInUserRed} from "../../../Redux/SignInUserReducer"
 const SettingContent = () => {
+  let dispatch = useDispatch()
+  let fetchUserFun = async () => {
+    let token = localStorage.getItem("token")
+    let result = await fetchUser(token);
+    dispatch(SignInUserRed(result.data[0]))
+
+}
+useEffect(()=> {
+    fetchUserFun();
+}, [])
+
+let state = useSelector(state => state.SignInUserReducer)
   return (
     <>
               <div className="techwave_fn_page">
@@ -43,26 +57,26 @@ const SettingContent = () => {
                       <div className="item">
                         <label className="input_label" htmlFor="name">Name</label>
                         <div className="input_item">
-                          <input className="input" type="text" id="name" defaultValue="Caden Smith" />
+                          <input className="input" type="text" id="name" placeholder='Name' defaultValue={state.name} />
                         </div>
                       </div>
                       <div className="item">
                         <label className="input_label" htmlFor="username">Username</label>
                         <div className="input_item">
                           <span className="email">@</span>
-                          <input className="input" type="text" id="username" defaultValue="caddeomyth" />
+                          <input className="input" type="text" id="username" placeholder='Username' defaultValue={state.username} />
                         </div>
                       </div>
                       <div className="item">
                         <label className="input_label" htmlFor="email">Email Address</label>
                         <div className="input_item">
-                          <input className="input" type="text" id="email" defaultValue="cadensmith@gmail.com" />
+                          <input className="input" type="text" placeholder='Email' id="email" defaultValue={state.email} />
                         </div>
                       </div>
                       <div className="item">
                         <label className="input_label" htmlFor="password">Password</label>
                         <div className="input_item">
-                          <input className="input" type="password" id="password" defaultValue="lqbjSA34a!bh1" />
+                          <input className="input" type="password" id="password" defaultValue="" placeholder='Password' />
                         </div>
                       </div>
                       <div className="item">

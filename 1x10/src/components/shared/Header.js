@@ -214,22 +214,22 @@ let state = useSelector(state => state.SignInUserReducer)
                   </div>
                   <div className="user_info">
                     <h2 className="user_name">{state.name}<span>Free</span></h2>
-                    <p><a href={`mailto:${state.email}`} className="user_email">{state.email}</a></p>
+                    <p><NavLink to="/auth/user/1/profile" className="user_email">{state.username}</NavLink></p>
                   </div>
                 </div>
                 <div className="user_nav">
                   <ul>
                     <li>
-                      <a href="/auth/user/1/profile">
+                      <NavLink to="/auth/user/1/profile">
                         <span className="icon"><img src="/assets/svg/person.svg" alt className="fn__svg" /></span>
                         <span className="text">Profile</span>
-                      </a>
+                      </NavLink>
                     </li>
                     <li>
-                      <a href="/auth/user/1/setting">
+                      <NavLink to="/auth/user/1/setting">
                         <span className="icon"><img src="/assets/svg/setting.svg" alt className="fn__svg" /></span>
                         <span className="text">Settings</span>
-                      </a>
+                      </NavLink>
                     </li>
                     <li>
                       <a href="/auth/bill">
