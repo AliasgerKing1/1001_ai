@@ -1,7 +1,111 @@
 import React, {useState} from 'react'
-
+import {generateImage} from "../../../Services/ImageGenerationService"
 const ImageGenerationContent = () => {
   let [alchemy, setAlchemy] = useState(false)
+  let [highRes, setHighRes] = useState(false)
+let [model, setModel] = useState(5)
+let [modelDetails, setModelDetails] = useState({
+  title : "IceCold",
+  avtar : "/assets/img/models/5.jpg"
+})
+
+let switchcaseFun = (modelNum) => {
+  console.log("hiii")
+  switch (modelNum) {
+    case 0:
+      setModelDetails({
+        title : "ArtShaper v3",
+        avtar : "/assets/img/user/user.jpg"
+      })
+      break;
+    case 1:
+      setModelDetails({
+        title : "ArtShaper v2",
+        avtar : "/assets/img/models/1.jpg"
+      })
+      break;
+    case 2:
+      setModelDetails({
+        title : "GameVisuals",
+        avtar : "/assets/img/models/2.jpg"
+      })
+      break;
+    case 3:
+      setModelDetails({
+        title : "VintageCar",
+        avtar : "/assets/img/models/3.jpg"
+      })
+      break;
+    case 4:
+      setModelDetails({
+        title : "ArtDeco",
+        avtar : "/assets/img/models/4.jpg"
+      })
+      break;
+    case 5:
+      setModelDetails({
+        title : "IceCold",
+        avtar : "/assets/img/models/5.jpg"
+      })
+      break;
+    case 6:
+      setModelDetails({
+        title : "Water Effect",
+        avtar : "/assets/img/models/6.jpg"
+      })
+      break;
+    case 7:
+      setModelDetails({
+        title : "Stable Diffusion v2",
+        avtar : "/assets/img/models/7.jpg"
+      })
+      break;
+    case 8:
+      setModelDetails({
+        title : "Stable Diffusion v1",
+        avtar : "/assets/img/models/8.jpg"
+      })
+      break;
+    case 9:
+      setModelDetails({
+        title : "Others",
+        avtar : "/assets/img/models/9.jpg"
+      })
+      break;
+  
+    default:
+      break;
+  }
+}
+function formatDate(timestamp) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(timestamp).toLocaleDateString('en-IN', options);
+}
+
+let generateImageFun = () => {
+  // let date = new Date()
+  // const formattedDate = formatDate(date);
+  // let token = localStorage.getItem("token")
+  // let data = {
+  //   image : "/assets/img/gallery/8.jpg",
+  //   prompt :  "Realistic painting, photorealistic masterpiece detailing, professional photography, natural lighting, volumetric lighting maximalist photoillustration: 8k resolution concept art intricately detailed, complex, elegant, expansive",
+  //   negative_prompt : "TECH-AI is an AI-powered content production suite that empowers creators with a powerful, customisable, and user-friendly platform for bringing their ideas to life.With a focus on granular control at every step of content creation, we put creators at the centre of the creative process by offering granular control at every stage of generation, ensuring that AI enhances, rather than replaces, human creative potentialOur custom back-end delivers advancements in model fine tuning, prompt adherence, training and inference speed, and multi-image prompting functionality. We also address common issues around image degradation and have implemented a custom upscaling, with much more on the way!",
+  //   created : formattedDate,
+  //   resolution : "678 x 1024px",
+  //   sampler : "Tech-AI-Frenify",
+  //   base_model : "Frenify v2.0",
+  //   magic_prompt : false,
+  //   magic_prompt_strength : 0.5,
+  //   high_contrast : true,
+  //   model : "other",
+  //   alchemy : true,
+  // seed : "877743523",
+  //   high_resolution : false,
+  //   likes : 752,
+  //   _id : "",
+  // }
+  // generateImage(token, data)
+}
   return (
     <>
               <div className="techwave_fn_page">
@@ -37,7 +141,7 @@ const ImageGenerationContent = () => {
                       </span>
                       Negative Prompt
                     </label>
-                    <a id="generate_it" href="#" className="techwave_fn_button"><span>Generate</span></a>
+                    <a id="generate_it" href="#" className="techwave_fn_button" onClick={generateImageFun}><span>Generate</span></a>
                   </div>
                 </div>
               </div>
@@ -940,10 +1044,10 @@ const ImageGenerationContent = () => {
               <div className="sidebar_model">
                 <div className="fn__select_model">
                   <a className="model_open">
-                    <img className="user_img" src="/assets/img/user/user.jpg" alt />
+                    <img className="user_img" src={modelDetails.avtar} alt />
                     <div className="author">
                       <h4 className="subtitle">Model</h4>
-                      <h3 className="title">ArtShaper v3</h3>
+                      <h3 className="title">{modelDetails.title}</h3>
                     </div>
                     <span className="fn__icon_button">
                       <img src="/assets/svg/arrow.svg" alt className="fn__svg" />
@@ -951,16 +1055,16 @@ const ImageGenerationContent = () => {
                   </a>
                   <div className="all_models">
                     <ul>
-                      <li><a className="selected" href="#">ArtShaper v3</a></li>
-                      <li><a href="#">ArtShaper v2</a></li>
-                      <li><a href="#">GameVisuals</a></li>
-                      <li><a href="#">VintageCar</a></li>
-                      <li><a href="#">ArtDeco</a></li>
-                      <li><a href="#">IceCold</a></li>
-                      <li><a href="#">Water Effect</a></li>
-                      <li><a href="#">Stable Diffusion v2</a></li>
-                      <li><a href="#">Stable Diffusion v1</a></li>
-                      <li><a href="#">Other</a></li>
+                      <li><a className={model == 0 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(0)}>ArtShaper v3</a></li>
+                      <li><a className={model == 1 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(1)}>ArtShaper v2</a></li>
+                      <li><a className={model == 2 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(2)} >GameVisuals</a></li>
+                      <li><a className={model == 3 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(3)} >VintageCar</a></li>
+                      <li><a className={model == 4 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(4)} >ArtDeco</a></li>
+                      <li><a className={model == 5 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(5)} >IceCold</a></li>
+                      <li><a className={model == 6 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(6)} >Water Effect</a></li>
+                      <li><a className={model == 7 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(7)} >Stable Diffusion v2</a></li>
+                      <li><a className={model == 8 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(8)} >Stable Diffusion v1</a></li>
+                      <li><a className={model == 9 ? "selected" : ""} style={{cursor : 'pointer'}} onClick={()=>switchcaseFun(9)} >Other</a></li>
                     </ul>
                   </div>
                 </div>
@@ -978,18 +1082,19 @@ const ImageGenerationContent = () => {
                     </span>
                   </label>
                 </div>
-                <div style={{marginBottom : '20px'}}>
-                <div className="contrast_switcher" style={{display : alchemy === false ? "none" : 'block'}}>
+                <div style={{marginBottom : '20px', borderBottom : "1px solid #312e37"}}>
+                <div className="contrast_switcher" style={{display : alchemy === false ? "none" : ''}}>
                   <h4 className="title"><label htmlFor="contrast_switcher">High Resolution</label>
                   <span className="fn__tooltip" title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <label className="fn__toggle">
                     <span className="t_in">
-                      <input type="checkbox" id="contrast_switcher" />
+                      <input type="checkbox" id="contrast_switcher" onClick={()=>setHighRes(!highRes)} />
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
                   </label>
                 </div>
+                <p style={{color : "#7e7a86", fontSize : "13px", display : alchemy === true && highRes == true ? "" : 'none'}} className='text'>1050px x 1050px resolution</p>
                 </div>
                 <div className="number_of_images" >
                   <h4 className="title">Number of Images</h4>
@@ -1002,7 +1107,7 @@ const ImageGenerationContent = () => {
                 <div className="img_sizes">
                   <h4 className="title">Image Dimensions</h4>
                   <div className="img_size_select">
-                    <select>
+                    <select style={{cursor : "pointer"}}>
                       <option value="512_512" selected>512 x 512px</option>
                       <option value="768_768">768 x 768px</option>
                       <option value="512_1024">512 x 1024px</option>

@@ -16,7 +16,7 @@ const UserBillingContent = () => {
                 <div className="billing__plan">
                   <div className="plan"><span>Your Plan</span></div>
                   <h2 className="title">Personal Plan — $15.00 Per Month</h2>
-                  <p className="desc">You will given 4565 tokens every month</p>
+                  <p className="desc">You will given 4500 tokens every month</p>
                 </div>
                 <div className="billing__activation">
                   <div className="activation_status">

@@ -8,11 +8,13 @@ import {Provider, } from "react-redux"
 import {configureStore, combineReducers} from "@reduxjs/toolkit"
 import DetailsPageReducer from "./Redux/DetialPageReducer"
 import SignInUserReducer from "./Redux/SignInUserReducer"
+import DetailsReducer from "./Redux/DetailsReducer"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let rootReducer = combineReducers({
 DetailsPageReducer,
-SignInUserReducer
+SignInUserReducer,
+DetailsReducer
 })
 let store = configureStore({
   reducer : rootReducer

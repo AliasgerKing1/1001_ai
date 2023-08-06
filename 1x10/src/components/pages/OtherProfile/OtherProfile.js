@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from '../../shared/Header';
 import Sidebar from '../../shared/Sidebar';
-import PersonalFeedContent from '../../shared/MainContent/PersonalFeedContent';
+import ProfileContent from '../../shared/MainContent/ProfileContent';
 import Footer from '../../shared/Footer';
-import ImageDetails from "../../shared/ImageDetails"
-const PersonalFeed = () => {
+
+const OtherProfile = () => {
   return (
     <>
 <div>
@@ -21,30 +21,6 @@ const PersonalFeed = () => {
     </svg>
   </div> */}
   {/* !Preloader */}
-  {/* Report */}
-  <div className="techwave_fn_report">
-    <a href="#" className="fn__closer fn__icon_button">
-      <img src="svg/close.svg" alt className="fn__svg" />
-    </a>
-    <div className="report__closer" />
-    <div className="report__content">
-      <h3 className="title">Report Item</h3>
-      <h3 className="subtitle">What is the main reason for your report?</h3>
-      <input className="reason_field" type="text" placeholder="Type here..." />
-      <div className="btns">
-        <a href="#" className="report techwave_fn_button">
-          <span>Report</span>
-        </a>
-        <a href="#" className="cancel techwave_fn_button">
-          <span>Cancel</span>
-        </a>
-      </div>
-    </div>
-  </div>
-  {/* !Report */}
-  {/* Image Lightbox */}
-<ImageDetails />
-  {/* !Image Lightbox */}
   {/* MAIN WRAPPER */}
   <div className="techwave_fn_wrapper">
     <div className="techwave_fn_wrap">
@@ -53,7 +29,7 @@ const PersonalFeed = () => {
         <div className="search__bar">
           <input className="search__input" type="text" placeholder="Search here..." />
           <img src="svg/search.svg" alt className="fn__svg search__icon" />
-          <a className="search__closer" href="#"><img src="svg/close.svg" alt className="fn__svg" /></a>
+          <a className="search__closer" href="#"><img src="/assets/svg/close.svg" alt className="fn__svg" /></a>
         </div>
         <div className="search__results">
           {/* Results will come here (via ajax after the integration you made after purchase as it doesn't work in HTML) */}
@@ -78,10 +54,10 @@ const PersonalFeed = () => {
       {/* CONTENT */}
       <div className="techwave_fn_content">
         {/* PAGE (all pages go inside this div) */}
-<PersonalFeedContent />
+<ProfileContent />
         {/* !PAGE (all pages go inside this div) */}
         {/* FOOTER (inside the content) */}
-{/* <Footer /> */}
+<Footer />
         {/* !FOOTER (inside the content) */}
       </div>
       {/* !CONTENT */}
@@ -95,4 +71,4 @@ const PersonalFeed = () => {
   )
 }
 
-export default PersonalFeed
+export default OtherProfile

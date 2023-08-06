@@ -17,6 +17,23 @@ useEffect(()=> {
 }, [])
 
 let state = useSelector(state => state.SignInUserReducer)
+
+const [timeUntilReset, setTimeUntilReset] = useState(86400); // 24 hours in seconds
+
+useEffect(() => {
+  const timerInterval = setInterval(() => {
+    setTimeUntilReset(prevTime => (prevTime > 0 ? prevTime - 1 : 86400)); // Decrease time until reset or reset after 24 hours
+  }, 1000); // Update every second
+
+  return () => clearInterval(timerInterval);
+}, []);
+
+const formatTime = seconds => {
+  const hours = Math.floor(seconds / 3600);
+  return `${hours} hours`;
+};
+
+
   return (
     <>
             <header className="techwave_fn_header">
@@ -24,13 +41,13 @@ let state = useSelector(state => state.SignInUserReducer)
         <div className="header__left">
           <div className="fn__token_info">
             <span className="token_summary">
-              <span className="count" style={{cursor : "pointer"}}>120</span>
+              <span className="count" style={{cursor : "pointer"}}>{state.daily_tokens}</span>
               <span className="text" style={{cursor : "pointer"}}>Tokens<br />Remain</span>
             </span>
             <a href="/auth/pricing" className="token_upgrade techwave_fn_button"><span>Upgrade</span></a>
             <div className="token__popup">
-              Resets in <span>19 hours.</span><br />
-              Daily limit is <span>200 tokens</span>
+              Resets in <span>{timeUntilReset > 0 ? `${formatTime(timeUntilReset)} left until reset` : 'Resetting...'}.</span><br />
+              Daily limit is <span>150 tokens</span>
             </div>
           </div>
         </div>
@@ -214,31 +231,31 @@ let state = useSelector(state => state.SignInUserReducer)
                   </div>
                   <div className="user_info">
                     <h2 className="user_name">{state.name}<span>Free</span></h2>
-                    <p><NavLink to="/auth/user/1/profile" className="user_email">{state.username}</NavLink></p>
+                    <p><NavLink to={`/auth/user/profile/${state._id}`} className="user_email">{state.username}</NavLink></p>
                   </div>
                 </div>
                 <div className="user_nav">
                   <ul>
                     <li>
-                      <NavLink to="/auth/user/1/profile">
+                      <NavLink to={`/auth/user/profile/${state._id}`}>
                         <span className="icon"><img src="/assets/svg/person.svg" alt className="fn__svg" /></span>
                         <span className="text">Profile</span>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/auth/user/1/setting">
+                      <NavLink to={`/auth/user/setting/${state._id}`}>
                         <span className="icon"><img src="/assets/svg/setting.svg" alt className="fn__svg" /></span>
                         <span className="text">Settings</span>
                       </NavLink>
                     </li>
                     <li>
-                      <a href="/auth/bill">
+                      <a href={`/auth/${state._id}/bill`}>
                         <span className="icon"><img src="/assets/svg/billing.svg" alt className="fn__svg" /></span>
                         <span className="text">Billing</span>
                       </a>
                     </li>
                     <li>
-                    <a href="/auth/personal">
+                    <a href={`/auth/personal/${state._id}`}>
                         <span className="icon"><img src="/assets/svg/my-generation.svg" alt className="fn__svg" /></span>
                         <span className="text">My Generation</span>
                       </a>

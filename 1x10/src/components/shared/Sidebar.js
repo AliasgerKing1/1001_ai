@@ -1,8 +1,22 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-
+import {useDispatch, useSelector} from "react-redux"
+import {fetchUser} from "../../Services/AuthService"
+import {SignInUserRed} from "../../Redux/SignInUserReducer"
 const Sidebar = () => {
   const navigate = useNavigate();
+  let dispatch = useDispatch()
+  let fetchUserFun = async () => {
+    let token = localStorage.getItem("token")
+    let result = await fetchUser(token);
+    dispatch(SignInUserRed(result.data[0]))
+
+}
+useEffect(()=> {
+    fetchUserFun();
+}, [])
+
+let state = useSelector(state => state.SignInUserReducer)
   let logOut = () => {
     localStorage.clear();
     navigate("/signin")
@@ -100,7 +114,7 @@ const Sidebar = () => {
                 </a>
               </li>
               <li>
-                <a href="/auth/personal" className="fn__tooltip menu__item" data-position="right" title="Personal Feed">
+                <a href={`/auth/personal/${state._id}`} className="fn__tooltip menu__item" data-position="right" title="Personal Feed">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 320 352.3" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 320 352.3'}} xmlSpace="preserve">
                       <g>
@@ -206,7 +220,7 @@ const Sidebar = () => {
             <h2 className="group__title">Support</h2>
             <ul className="group__list">
               <li>
-                <a href="pricing.html" className="fn__tooltip menu__item" data-position="right" title="Pricing">
+                <a href="/auth/pricing" className="fn__tooltip menu__item" data-position="right" title="Pricing">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 233.7 408.8" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 233.7 408.8'}} xmlSpace="preserve">
                       <g>

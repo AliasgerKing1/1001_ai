@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit"
 let initialState = 
 {
     page : false,
-    id : ""
+    id : 1
 }
 
 let DetailsReducer = createSlice({

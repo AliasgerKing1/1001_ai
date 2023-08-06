@@ -12,6 +12,7 @@ import ChangeLog from "../../components/pages/ChangeLog/ChangeLog"
 import UserBilling from "../../components/pages/UserBilling/UserBilling"
 import Setting from "../../components/pages/Setting/Setting"
 import Profile from "../../components/pages/Profile/Profile"
+import OtherProfile from "../../components/pages/OtherProfile/OtherProfile"
 
 let userRoutes = [
     {
@@ -27,7 +28,7 @@ let userRoutes = [
         element: <CommunityFeed />
     },
     {
-        path: "personal",
+        path: "personal/:id",
         element: <PersonalFeed />
     },
     {
@@ -59,16 +60,20 @@ let userRoutes = [
         element: <ChangeLog />
     },
     {
-        path: "bill",
+        path: ":id/bill",
         element: <UserBilling />
     },
     {
-        path: "user/:id/setting",
+        path: "user/setting/:id",
         element: <Setting />
     },
     {
-        path: "user/:id/profile",
+        path: "user/profile/:id",
         element: <Profile />
+    },
+    {
+        path: "user/profile/open/:id",
+        element: <OtherProfile />
     },
 ]
 

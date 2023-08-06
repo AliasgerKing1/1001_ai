@@ -7,7 +7,8 @@ let initialValues = {
   name : "",
   email : "",
   username:  "",
-  password : ""
+  password : "",
+  userefcode : "",
 }
 const SignUp = () => {
   let [showAlert, setShowAlert] = useState(false);
@@ -34,24 +35,29 @@ const SignUp = () => {
       <div className="form__content">
         <div className="form__title">Sign Up</div>
         <div className="form__name mb-4">
-          <label htmlFor="name" style={{textAlign : "left"}}>Name</label>
+          <label htmlFor="name" style={{textAlign : "left"}}>Name <span style={{color : "#dc3545"}}>*</span></label>
           <input type="text" className={`input ${touched.name && errors.name ? "is-invalid" : ""}`} id="name" name="name" onChange={handleChange} onBlur={handleBlur} placeholder="Full Name" value={values.name} />
           <div>{touched.name && errors.name ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.name}</small>) : null}</div>
         </div>
         <div className="form__username mb-4">
-          <label htmlFor="username" style={{textAlign : "left"}}>Username</label>
+          <label htmlFor="username" style={{textAlign : "left"}}>Username <span style={{color : "#dc3545"}
+          }>*</span></label>
           <input type="text" className={`input ${touched.username && errors.username ? "is-invalid" : ""}`} id="username" name="username" onChange={handleChange} onBlur={handleBlur} placeholder="Username" />
           <div>{touched.username && errors.username ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.username}</small>) : null}</div>
         </div>
         <div className="form__email mb-4">
-          <label htmlFor="email" style={{textAlign : "left"}}>Email</label>
+          <label htmlFor="email" style={{textAlign : "left"}}>Email <span style={{color : "#dc3545"}}>*</span></label>
           <input type="text" className={`input ${touched.email && errors.email ? "is-invalid" : ""}`} id="email" name="email" onChange={handleChange} onBlur={handleBlur} placeholder="yourmail@example.com" />
           <div>{touched.email && errors.email ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.email}</small>) : null}</div>
         </div>
         <div className="form__pass mb-4">
-          <label htmlFor="user_password" style={{textAlign : "left"}}>Password</label>
+          <label htmlFor="user_password" style={{textAlign : "left"}}>Password <span style={{color : "#dc3545"}}>*</span></label>
           <input type="password" className={`input ${touched.password && errors.password ? "is-invalid" : ""}`} id="user_password" name="password" onChange={handleChange} onBlur={handleBlur} autoComplete="current-password" placeholder='********' spellCheck="false" />
           <div>{touched.password && errors.password ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.password}</small>) : null}</div>
+        </div>
+        <div className="form__pass mb-4">
+          <label htmlFor="user_referal_code" style={{textAlign : "left"}}>Referal Code</label>
+          <input type="text" className="input" id="user_referal_code" name="userefcode" onChange={handleChange} onBlur={handleBlur} placeholder='*r*h**4*' spellCheck="false" />
         </div>
         <div className="form__submit">
           <label className="fn__submit">

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {fetchUser} from "../../../Services/AuthService"
 import {SignInUserRed} from "../../../Redux/SignInUserReducer"
-import {useSelector} from "react-redux"
 const ProfileContent = () => {
     let dispatch = useDispatch()
     let [copied, setCopied] = useState(false)
