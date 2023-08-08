@@ -106,7 +106,7 @@ const Landing = () => {
     <span className="r" />
   </div>
   <div className="text">
-    <h3 className="big fn__animated_text ready stop"><span style={{animationDelay: '0s'}}>T</span><span style={{animationDelay: '0.04s'}}>e</span><span style={{animationDelay: '0.08s'}}>m</span><span style={{animationDelay: '0.12s'}}>p</span><span style={{animationDelay: '0.16s'}}>l</span><span style={{animationDelay: '0.2s'}}>a</span><span style={{animationDelay: '0.24s'}}>t</span><span style={{animationDelay: '0.28s'}}>e</span><span style={{animationDelay: '0.32s'}}> </span><span style={{animationDelay: '0.36s'}}>D</span><span style={{animationDelay: '0.4s'}}>e</span><span style={{animationDelay: '0.44s'}}>m</span><span style={{animationDelay: '0.48s'}}>o</span><span style={{animationDelay: '0.52s'}}>s</span></h3>
+    <h3 className="big fn__animated_text"><span style={{animationDelay: '0s'}}>T</span><span style={{animationDelay: '0.04s'}}>e</span><span style={{animationDelay: '0.08s'}}>m</span><span style={{animationDelay: '0.12s'}}>p</span><span style={{animationDelay: '0.16s'}}>l</span><span style={{animationDelay: '0.2s'}}>a</span><span style={{animationDelay: '0.24s'}}>t</span><span style={{animationDelay: '0.28s'}}>e</span><span style={{animationDelay: '0.32s'}}> </span><span style={{animationDelay: '0.36s'}}>D</span><span style={{animationDelay: '0.4s'}}>e</span><span style={{animationDelay: '0.44s'}}>m</span><span style={{animationDelay: '0.48s'}}>o</span><span style={{animationDelay: '0.52s'}}>s</span></h3>
     <p>It is designed to create a dynamic and immersive user interface that generates images based on user inputs and engages in meaningful conversations.</p>
   </div>
 </div>
