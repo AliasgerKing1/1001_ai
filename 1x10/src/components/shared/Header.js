@@ -221,7 +221,7 @@ const formatTime = seconds => {
             {/* !Site Skin (bar item) */}
             {/* User (bar item) */}
             <div className="bar__item bar__item_user">
-              <a style={{cursor : "pointer"}} className="user_opener fn__tooltip" title="User Profile">
+              <a style={{cursor : "pointer"}} className="user_opener fn__tooltip" title="My Profile">
                 <img src="/assets/img/user/user.jpg" alt />
               </a>
               <div className="item_popup" data-position="right">

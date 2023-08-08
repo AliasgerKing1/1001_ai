@@ -24,7 +24,7 @@ const Pricing = () => {
   {/* Report */}
   <div className="techwave_fn_report">
     <a href="#" className="fn__closer fn__icon_button">
-      <img src="svg/close.svg" alt className="fn__svg" />
+      <img src="/assets/svg/close.svg" alt className="fn__svg" />
     </a>
     <div className="report__closer" />
     <div className="report__content">
@@ -51,7 +51,7 @@ const Pricing = () => {
           <div className="lightbox__tlbar_left">
             <div className="item item__share fn__icon_options medium_size">
               <a href="#" className="item__btn fn__icon_button">
-                <img src="svg/share.svg" alt className="fn__svg" />
+                <img src="/assets/svg/share.svg" alt className="fn__svg" />
               </a>
               <div className="fn__icon_popup">
                 <ul>
@@ -66,7 +66,7 @@ const Pricing = () => {
             </div>
             <div className="item item__download fn__icon_options medium_size">
               <a href="#" className="item__btn fn__icon_button">
-                <img src="svg/download.svg" alt className="fn__svg" />
+                <img src="/assets/svg/download.svg" alt className="fn__svg" />
               </a>
               <div className="fn__icon_popup">
                 <ul>
@@ -92,17 +92,17 @@ const Pricing = () => {
           </div>
           <div className="lightbox__tlbar_center">
             <a href="#" className="img_nav nav_prev">
-              <img src="svg/arrow.svg" alt className="fn__svg" />
+              <img src="/assets/svg/arrow.svg" alt className="fn__svg" />
             </a>
             <a href="#" className="img_nav nav_next">
-              <img src="svg/arrow.svg" alt className="fn__svg" />
+              <img src="/assets/svg/arrow.svg" alt className="fn__svg" />
             </a>
           </div>
           <div className="lightbox__tlbar_right">
             <a href="#" className="fn__like" data-id={2}>
               <span className="count">343</span>
-              <img src="svg/like.svg" alt className="fn__svg empty__like" />
-              <img src="svg/like-full.svg" alt className="fn__svg full__like" />
+              <img src="/assets/svg/like.svg" alt className="fn__svg empty__like" />
+              <img src="/assets/svg/like-full.svg" alt className="fn__svg full__like" />
             </a>
           </div>
         </div>
@@ -120,7 +120,7 @@ const Pricing = () => {
             <span className="text">Follow</span>
           </a>
           <a href="#" className="fn__closer fn__icon_button">
-            <img src="svg/close.svg" alt className="fn__svg" />
+            <img src="/assets/svg/close.svg" alt className="fn__svg" />
           </a>
         </div>
         <div className="item__details">
@@ -133,7 +133,7 @@ const Pricing = () => {
               <h3 className="model_title">ArtShaper v3</h3>
             </div>
             <a href="image-generation.html" className="fn__icon_button">
-              <img src="svg/arrow.svg" alt className="fn__svg" />
+              <img src="/assets/svg/arrow.svg" alt className="fn__svg" />
             </a>
           </div>
           <div className="fn__prompt_details">
@@ -261,8 +261,8 @@ const Pricing = () => {
       <div className="techwave_fn_searchbar">
         <div className="search__bar">
           <input className="search__input" type="text" placeholder="Search here..." />
-          <img src="svg/search.svg" alt className="fn__svg search__icon" />
-          <a className="search__closer" href="#"><img src="svg/close.svg" alt className="fn__svg" /></a>
+          <img src="/assets/svg/search.svg" alt className="fn__svg search__icon" />
+          <a className="search__closer" href="#"><img src="/assets/svg/close.svg" alt className="fn__svg" /></a>
         </div>
         <div className="search__results">
           {/* Results will come here (via ajax after the integration you made after purchase as it doesn't work in HTML) */}

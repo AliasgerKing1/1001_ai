@@ -6,7 +6,7 @@ import Layouts from "../Layouts/Layouts"
 import userRoutes from "./User/User"
 import SignIn from "../components/pages/SignIn/SignIn"
 import SignUp from "../components/pages/SignUp/SignUp"
-// import Landing from "../components/pages/Landing/Landing"
+import Landing from "../components/pages/Landing/Landing"
 
 
 const isTokenPresent = () => {
@@ -19,10 +19,10 @@ const isTokenPresent = () => {
   };
 const Router = () => {
     const router = useRoutes([
-        // {
-        //     path: "/",
-        //     element: <Landing />
-        // },
+        {
+            path: "/",
+            element: <Landing />
+        },
         {
             path: "/signin",
             element: isTokenPresent() ? (

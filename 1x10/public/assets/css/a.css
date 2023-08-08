@@ -1,3 +1,34 @@
 .cursor {
     cursor: pointer;
 }
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.scrolling-text-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .scrolling-text {
+    display: flex;
+    animation: marqueeAnimation 20s linear infinite;
+  }
+  
+  .item {
+    margin-right: 20px;
+  }
+  
+  @keyframes marqueeAnimation {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  

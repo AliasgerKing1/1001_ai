@@ -108,7 +108,7 @@ let copyRef = () => {
                     <p className="info"><span>My Referal Code</span> - <span id='refCode'>{state.refcode}</span></p>
                   </div>
                   <div className="plan_right">
-                    <a style={{cursor : "pointer", background : copied == false ? "" : "#AB0CDF", color : copied == false ? "" : "#FFF"}} className="token_upgrade techwave_fn_button" onClick={copyRef}><span>{copied == false ? "Copy" : "Copied"}</span></a>
+                    <a style={{cursor : "pointer"}} className="token_upgrade techwave_fn_button" onClick={copyRef}><span>{copied == false ? "Copy" : "Copied"}</span></a>
                   </div>
                 </div>
                 <div className="user__interests">

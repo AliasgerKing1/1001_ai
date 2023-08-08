@@ -52,8 +52,8 @@ const PersonalFeed = () => {
       <div className="techwave_fn_searchbar">
         <div className="search__bar">
           <input className="search__input" type="text" placeholder="Search here..." />
-          <img src="svg/search.svg" alt className="fn__svg search__icon" />
-          <a className="search__closer" href="#"><img src="svg/close.svg" alt className="fn__svg" /></a>
+          <img src="/assets/svg/search.svg" alt className="fn__svg search__icon" />
+          <a className="search__closer" href="#"><img src="/assets/svg/close.svg" alt className="fn__svg" /></a>
         </div>
         <div className="search__results">
           {/* Results will come here (via ajax after the integration you made after purchase as it doesn't work in HTML) */}

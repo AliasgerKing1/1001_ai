@@ -28,7 +28,7 @@ const OtherProfile = () => {
       <div className="techwave_fn_searchbar">
         <div className="search__bar">
           <input className="search__input" type="text" placeholder="Search here..." />
-          <img src="svg/search.svg" alt className="fn__svg search__icon" />
+          <img src="/assets/svg/search.svg" alt className="fn__svg search__icon" />
           <a className="search__closer" href="#"><img src="/assets/svg/close.svg" alt className="fn__svg" /></a>
         </div>
         <div className="search__results">

@@ -12,15 +12,24 @@ let initialValues = {
 }
 const SignUp = () => {
   let [showAlert, setShowAlert] = useState(false);
+  let [showLoader, setShowLoader] = useState(false);
+
   let [msg, setMsg] = useState("");
   let navigate = useNavigate();
   let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
     initialValues : initialValues,
     validationSchema : SignupSchema,
     onSubmit : async () => {
-      let result = await adduser(values);
-      if(result.data.status == 200) {
-        navigate("/signin")
+      try {
+        setShowLoader(true)
+        let result = await adduser(values);
+        if(result.data.status == 200) {
+          navigate("/signin")
+        }
+        setShowLoader(false)
+      } catch(error) {
+        console.log(error)
+        setShowLoader(false)
       }
 
     }
@@ -29,6 +38,16 @@ const SignUp = () => {
     <>
 {/* Sign Up */}
 <div className="techwave_fn_sign">
+    {/* Preloader */}
+{showLoader ? (   
+    <div className="techwave_fn_preloader enabled wait_for_full_preloading_animation">
+    <svg>
+      <circle className="first_circle" cx="50%" cy="50%" r={110} />
+      <circle className="second_circle" cx="50%" cy="50%" r={110} />
+    </svg>
+  </div>
+  ) : null}
+  {/* !Preloader */}
   <div className="sign__content">
     <h1 className="logo">Designed by Frenify</h1>
     <form className="signup" onSubmit={handleSubmit}>

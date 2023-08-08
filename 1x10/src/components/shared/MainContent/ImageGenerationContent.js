@@ -1,8 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {NavLink} from "react-router-dom"
 import {generateImage} from "../../../Services/ImageGenerationService"
+import { useSelector} from "react-redux"
+
 const ImageGenerationContent = () => {
+  let state = useSelector(state => state.SignInUserReducer)
   let [alchemy, setAlchemy] = useState(false)
   let [highRes, setHighRes] = useState(false)
+  let [promptText, setPromptText] = useState("Copy Prompt")
+  let [prompt, setPrompt] = useState("")
+  let [negPrompt, setNegPrompt] = useState("")
+  let [numberOfImg, setNumberOfImg] = useState(4)
 let [model, setModel] = useState(5)
 let [modelDetails, setModelDetails] = useState({
   title : "IceCold",
@@ -77,6 +85,7 @@ let switchcaseFun = (modelNum) => {
       break;
   }
 }
+
 function formatDate(timestamp) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return new Date(timestamp).toLocaleDateString('en-IN', options);
@@ -88,8 +97,8 @@ let generateImageFun = () => {
   // let token = localStorage.getItem("token")
   // let data = {
   //   image : "/assets/img/gallery/8.jpg",
-  //   prompt :  "Realistic painting, photorealistic masterpiece detailing, professional photography, natural lighting, volumetric lighting maximalist photoillustration: 8k resolution concept art intricately detailed, complex, elegant, expansive",
-  //   negative_prompt : "TECH-AI is an AI-powered content production suite that empowers creators with a powerful, customisable, and user-friendly platform for bringing their ideas to life.With a focus on granular control at every step of content creation, we put creators at the centre of the creative process by offering granular control at every stage of generation, ensuring that AI enhances, rather than replaces, human creative potentialOur custom back-end delivers advancements in model fine tuning, prompt adherence, training and inference speed, and multi-image prompting functionality. We also address common issues around image degradation and have implemented a custom upscaling, with much more on the way!",
+  //   prompt :  prompt,
+  //   negative_prompt : negPrompt,
   //   created : formattedDate,
   //   resolution : "678 x 1024px",
   //   sampler : "Tech-AI-Frenify",
@@ -106,6 +115,51 @@ let generateImageFun = () => {
   // }
   // generateImage(token, data)
 }
+
+let sendPrompt = (event) => {
+setPrompt(event.target.value)
+}
+let sendNegativePrompt = (event) => {
+  setNegPrompt(event.target.value)
+}
+
+let sendNumberOfImages = (event) => {
+  let e = event.target.value;
+  if (!isNaN(e)) {
+    // Numeric value
+    if (e > 12) {
+      setNumberOfImg(12);
+    } else {
+      setNumberOfImg(parseInt(e)); // Convert e to integer and update the state
+    }
+  }
+};
+
+const handleIncrement = () => {
+  console.log(numberOfImg)
+  if (numberOfImg < 12) {
+    sendNumberOfImages(numberOfImg + 1);
+  }
+};
+
+const handleDecrement = () => {
+  if (numberOfImg > 1) {
+    sendNumberOfImages(numberOfImg - 1);
+  }
+};
+
+let copyPrompt = ()  => {
+  let promptText = document.getElementById("prompt_id").innerHTML
+  setPromptText("Prompt Copied")
+  setTimeout(()=> {
+    setPromptText("Copy Prompt")
+  }, 3000)
+  navigator.clipboard.writeText(promptText)
+}
+// useEffect(() => {
+//   console.log(numberOfImg); // Log the updated value inside useEffect
+// }, [numberOfImg]); // Make sure to include numberOfImg in the dependency array
+
   return (
     <>
               <div className="techwave_fn_page">
@@ -125,11 +179,11 @@ let generateImageFun = () => {
                 </div>
                 <div className="header_bottom">
                   <div className="include_area">
-                    <textarea id="fn__include_textarea" rows={1} defaultValue={""} placeholder=' Prompt...' />
+                    <textarea id="fn__include_textarea" rows={1} defaultValue={""} placeholder=' Prompt...' value={prompt} onChange={(e)=> sendPrompt(e)} />
                     <textarea className="fn__hidden_textarea" rows={1} tabIndex={-1} defaultValue={""} />
                   </div>
                   <div className="exclude_area">
-                    <textarea id="fn__exclude_textarea" rows={1} defaultValue={""}placeholder='Negative Prompt...' />
+                    <textarea id="fn__exclude_textarea" rows={1} defaultValue={""}placeholder='Negative Prompt...' value={negPrompt} onChange={(e)=> sendNegativePrompt(e)} />
                     <textarea className="fn__hidden_textarea" rows={1} tabIndex={-1} defaultValue={""} />
                   </div>
                   <div className="generate_section">
@@ -150,7 +204,7 @@ let generateImageFun = () => {
                 <div className="fn__generation_item">
                   <div className="item_header">
                     <div className="title_holder">
-                      <h2 className="prompt_title">Frozen Glacial Mystical spiral Lighthouse, a minimalist lighthouse landscape with a mystical , Watercolor Clipart, comic, strybk, full Illustration, 4k, sharp focus, watercolor, smooth soft skin, symmetrical, soft lighting, detailed face, concept art, muted colors</h2>
+                      <h2 className="prompt_title" id="prompt_id">Frozen Glacial Mystical spiral Lighthouse, a minimalist lighthouse landscape with a mystical , Watercolor Clipart, comic, strybk, full Illustration, 4k, sharp focus, watercolor, smooth soft skin, symmetrical, soft lighting, detailed face, concept art, muted colors</h2>
                       <p className="negative_prompt_title">Negative prompt: Text, watermarks, off centre, blur, low res, out of frame, cut off, ugly</p>
                     </div>
                     <div className="item_options">
@@ -173,13 +227,13 @@ let generateImageFun = () => {
                         </div>
                       </div>
                       <div className="fn__icon_options medium_size align_right">
-                        <a href="#" className="fn__icon_button">
+                        <a className="fn__icon_button cursor">
                           <span className="dots" />
                         </a>
                         <div className="fn__icon_popup">
                           <ul>
                             <li>
-                              <a href="#">Copy Prompt</a>
+                              <a className='cursor' onClick={copyPrompt}>{promptText}</a>
                             </li>
                             <li>
                               <a href="#">Reuse Prompt</a>
@@ -1036,11 +1090,12 @@ let generateImageFun = () => {
                   </div>
                 </div>
                 <div className="generation_more">
-                  <a href="pricing.html" className="techwave_fn_button medium"><span>Previous Generations</span></a>
+                  <NavLink to={`/auth/user/profile/${state._id}`} className="techwave_fn_button medium"><span>Previous Generations</span></NavLink>
                 </div>
               </div>
             </div>
-            <div className="generation__sidebar" style={{overflowY : 'auto'}}>
+            <div className="generation__sidebar" style={{overflowY : 'auto', scrollbarWidth: "thin",
+scrollbarColor: "#999 #fff"}}>
               <div className="sidebar_model">
                 <div className="fn__select_model">
                   <a className="model_open">
@@ -1082,7 +1137,7 @@ let generateImageFun = () => {
                     </span>
                   </label>
                 </div>
-                <div style={{marginBottom : '20px', borderBottom : "1px solid #312e37"}}>
+                <div style={{marginBottom : '20px'}}>
                 <div className="contrast_switcher" style={{display : alchemy === false ? "none" : ''}}>
                   <h4 className="title"><label htmlFor="contrast_switcher">High Resolution</label>
                   <span className="fn__tooltip" title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
@@ -1099,9 +1154,9 @@ let generateImageFun = () => {
                 <div className="number_of_images" >
                   <h4 className="title">Number of Images</h4>
                   <div className="fn__quantity">
-                    <a href="#" className="decrease" />
-                    <input type="number" defaultValue={4} max={10} min={1} />
-                    <a href="#" className="increase" />
+                    <a className="decrease cursor" onClick={handleDecrement} />
+                    <input type="number" defaultValue={4} max={12} min={1} value={numberOfImg} onChange={(e)=> sendNumberOfImages(e)} />
+                    <a  className="increase cursor" onClick={handleIncrement} />
                   </div>
                 </div>
                 <div className="img_sizes">
@@ -1116,6 +1171,22 @@ let generateImageFun = () => {
                     </select>
                   </div>
                 </div>
+                <h4 className="title">Width</h4>
+                <div className="fn__range mb-1">
+                    <div className="range_in">
+                      <input type="range" min={1} max={4096} defaultValue={512} />
+                      <div className="slider" />
+                    </div>
+                    <div className="value">512</div>
+                  </div>
+                  <h4 className="title">Height</h4>
+                <div className="fn__range mb-2">
+                    <div className="range_in">
+                      <input type="range" min={1} max={4096} defaultValue={512} />
+                      <div className="slider" />
+                    </div>
+                    <div className="value">512</div>
+                  </div>
                 <div className="guidance_scale">
                   <h4 className="title">Guided Scale<span className="fn__tooltip" title="how much ai can think by there own for images."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <div className="fn__range">

@@ -4,6 +4,7 @@ import {fetchUser} from "../../../Services/AuthService"
 import {SignInUserRed} from "../../../Redux/SignInUserReducer"
 const SettingContent = () => {
   let dispatch = useDispatch()
+  let [approvedCheckBox, setApprovedCheckBox ] = useState(false)
   let fetchUserFun = async () => {
     let token = localStorage.getItem("token")
     let result = await fetchUser(token);
@@ -81,14 +82,14 @@ let state = useSelector(state => state.SignInUserReducer)
                       </div>
                       <div className="item">
                         <label className="fn__checkbox">
-                          <input type="checkbox" />I approve all changes
+                          <input type="checkbox" onClick={()=>setApprovedCheckBox(!approvedCheckBox)} />I approve all changes
                           <span className="checkmark" />
                           <img src="/assets/svg/check.svg" alt className="fn__svg" />
                         </label>
                       </div>
                       <div className="item">
                         <label className="fn__submit">
-                          <input type="submit" value="Save Changes" />
+                          <input type="submit" value="Save Changes" style={{opacity : approvedCheckBox ? '100%' : '50%', pointerEvents : approvedCheckBox ? 'all' : 'none'}} />
                         </label>
                       </div>
                     </div>
