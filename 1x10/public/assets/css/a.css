@@ -32,3 +32,16 @@
     }
   }
   
+  .clr-light {
+    color: #fff;
+  }
+  
+  .decor-none {
+text-decoration: none;
+  }
+
+  .fn__svg2 {
+    fill: currentcolor;
+width: 40px;
+height: 40px;
+  }

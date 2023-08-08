@@ -9,7 +9,6 @@ routes.post("/", async (req,res) => {
     req.body.refcode = refCode;
     req.body.password = sha1(req.body.password)
     let result = await User.create(req.body);
-
     let referal = req.body.userefcode
     if(referal.length !== 0) {
         let refcodeof = await User.find({refcode : referal})

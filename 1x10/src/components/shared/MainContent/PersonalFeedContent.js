@@ -171,7 +171,7 @@ const downloadSelectedImages = () => {
                                 </div>
                                 <a href="#" className="fn__like no_border" data-id={45}>
                                   <span className="count">{x.likes}</span>
-                                  <img src="/assets/svg/like.svg" alt className="fn__svg empty__like light_mode" />
+                                  <img src="/assets/svg/like.svg" alt className="fn__svg empty__like" />
                                   <img src="/assets/svg/like-full.svg" alt className="fn__svg full__like" />
                                 </a>
                               </div>

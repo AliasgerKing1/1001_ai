@@ -5,6 +5,7 @@ const User = mongoose.Schema({
     password: String,
     username: String,
     email: String,
+    join_date: String,
     refcode: {
         type : String,
         default : ""

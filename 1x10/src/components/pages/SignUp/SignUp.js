@@ -1,18 +1,21 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink, useNavigate} from "react-router-dom"
 import {useFormik} from "formik"
 import SignupSchema from "../../../Schemas/SignUpSchema"
 import { adduser } from '../../../Services/AuthService'
+
 let initialValues = {
   name : "",
   email : "",
   username:  "",
   password : "",
   userefcode : "",
+  join_date : ""
 }
 const SignUp = () => {
   let [showAlert, setShowAlert] = useState(false);
   let [showLoader, setShowLoader] = useState(false);
+  const [activeStep, setActiveStep] = useState(1); // Active step state
 
   let [msg, setMsg] = useState("");
   let navigate = useNavigate();
@@ -34,6 +37,16 @@ const SignUp = () => {
 
     }
 })
+
+let handleNextStep = () => {
+  setActiveStep(activeStep + 1)
+}
+
+useEffect(()=> {
+  if(activeStep > 2) {
+    setActiveStep(2)
+  }
+}, [activeStep])
   return (
     <>
 {/* Sign Up */}
@@ -53,16 +66,11 @@ const SignUp = () => {
     <form className="signup" onSubmit={handleSubmit}>
       <div className="form__content">
         <div className="form__title">Sign Up</div>
-        <div className="form__name mb-4">
+        {activeStep === 1 && (<>
+          <div className="form__name mb-4">
           <label htmlFor="name" style={{textAlign : "left"}}>Name <span style={{color : "#dc3545"}}>*</span></label>
           <input type="text" className={`input ${touched.name && errors.name ? "is-invalid" : ""}`} id="name" name="name" onChange={handleChange} onBlur={handleBlur} placeholder="Full Name" value={values.name} />
           <div>{touched.name && errors.name ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.name}</small>) : null}</div>
-        </div>
-        <div className="form__username mb-4">
-          <label htmlFor="username" style={{textAlign : "left"}}>Username <span style={{color : "#dc3545"}
-          }>*</span></label>
-          <input type="text" className={`input ${touched.username && errors.username ? "is-invalid" : ""}`} id="username" name="username" onChange={handleChange} onBlur={handleBlur} placeholder="Username" />
-          <div>{touched.username && errors.username ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.username}</small>) : null}</div>
         </div>
         <div className="form__email mb-4">
           <label htmlFor="email" style={{textAlign : "left"}}>Email <span style={{color : "#dc3545"}}>*</span></label>
@@ -74,13 +82,22 @@ const SignUp = () => {
           <input type="password" className={`input ${touched.password && errors.password ? "is-invalid" : ""}`} id="user_password" name="password" onChange={handleChange} onBlur={handleBlur} autoComplete="current-password" placeholder='********' spellCheck="false" />
           <div>{touched.password && errors.password ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.password}</small>) : null}</div>
         </div>
+        </>)}
+        {activeStep === 2 && (<>
+          <div className="form__username mb-4">
+          <label htmlFor="username" style={{textAlign : "left"}}>Username <span style={{color : "#dc3545"}
+          }>*</span></label>
+          <input type="text" className={`input ${touched.username && errors.username ? "is-invalid" : ""}`} id="username" name="username" onChange={handleChange} onBlur={handleBlur} placeholder="Username" />
+          <div>{touched.username && errors.username ? (<small style={{textAlign : "left", color : "#dc3545"}}>{errors.username}</small>) : null}</div>
+        </div>
         <div className="form__pass mb-4">
           <label htmlFor="user_referal_code" style={{textAlign : "left"}}>Referal Code</label>
           <input type="text" className="input" id="user_referal_code" name="userefcode" onChange={handleChange} onBlur={handleBlur} placeholder='*r*h**4*' spellCheck="false" />
         </div>
+        </>)}
         <div className="form__submit">
           <label className="fn__submit">
-            <input type="submit" name="submit" value="Create Account" />
+            <input type="submit" name="submit" value={ activeStep === 1 ? "Next Step" : "Create Account"} onClick={handleNextStep}/>
           </label>
         </div>
         <div className="form__alternative">
@@ -89,7 +106,9 @@ const SignUp = () => {
             <div className="text">Or</div>
             <div className="line" />
           </div>
-          <a href="#" className="techwave_fn_button"><span>Sign up with Google</span></a>
+
+          
+          {activeStep === 2 ? (<a className="techwave_fn_button cursor" onClick={()=>setActiveStep(1)}><span>Previous Step</span></a>) : (          <a href="#" className="techwave_fn_button"><span>Sign up with Google</span></a>)}
         </div>
       </div>
     </form>
