@@ -5,15 +5,15 @@ import {SignInUserRed} from "../../../Redux/SignInUserReducer"
 const SettingContent = () => {
   let dispatch = useDispatch()
   let [approvedCheckBox, setApprovedCheckBox ] = useState(false)
-  let fetchUserFun = async () => {
-    let token = localStorage.getItem("token")
-    let result = await fetchUser(token);
-    dispatch(SignInUserRed(result.data[0]))
+//   let fetchUserFun = async () => {
+//     let token = localStorage.getItem("token")
+//     let result = await fetchUser(token);
+//     dispatch(SignInUserRed(result.data[0]))
 
-}
-useEffect(()=> {
-    fetchUserFun();
-}, [])
+// }
+// useEffect(()=> {
+//     fetchUserFun();
+// }, [])
 
 let state = useSelector(state => state.SignInUserReducer)
   return (

@@ -1,25 +1,25 @@
 import React, {useEffect, useState} from 'react'
-import { useNavigate, a } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux"
 import {fetchUser} from "../../Services/AuthService"
 import {SignInUserRed} from "../../Redux/SignInUserReducer"
 const Sidebar = () => {
   const navigate = useNavigate();
-  let dispatch = useDispatch()
+  // let dispatch = useDispatch()
   let [sideBarSelected, setSideBarSelected] = useState(0)
-  let fetchUserFun = async () => {
-    let token = localStorage.getItem("token")
-    let result = await fetchUser(token);
-    dispatch(SignInUserRed(result.data[0]))
+//   let fetchUserFun = async () => {
+//     let token = localStorage.getItem("token")
+//     let result = await fetchUser(token);
+//     dispatch(SignInUserRed(result.data[0]))
 
-}
+// }
 
+// // useEffect(()=> {
+// // console.log(sideBarSelected)
+// // }, [sideBarSelected])
 // useEffect(()=> {
-// console.log(sideBarSelected)
-// }, [sideBarSelected])
-useEffect(()=> {
-    fetchUserFun();
-}, [])
+//     fetchUserFun();
+// }, [])
 
 let state = useSelector(state => state.SignInUserReducer)
   let logOut = () => {
@@ -33,7 +33,7 @@ let state = useSelector(state => state.SignInUserReducer)
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
-          <a href="/auth/home" className="fn_logo">
+          <NavLink to="/auth/home" className="fn_logo">
             <span className="full_logo">
               <img src="/assets/img/logo-desktop-full.png" alt className="desktop_logo" />
               <img src="/assets/img/logo-retina-full.png" alt className="retina_logo" />
@@ -42,33 +42,33 @@ let state = useSelector(state => state.SignInUserReducer)
               <img src="/assets/img/logo-desktop-mini.png" alt className="desktop_logo" />
               <img src="/assets/img/logo-retina-mini.png" alt className="retina_logo" />
             </span>
-          </a>
-          <a href="#" className="fn__closer fn__icon_button desktop_closer">
+          </NavLink>
+          <NavLink to="#" className="fn__closer fn__icon_button desktop_closer">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 145.1 225.1" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 145.1 225.1'}} xmlSpace="preserve">
               <path d="M104.4,112.2c-10.6-9.1-21-18-31.5-27C51.1,66.5,29.3,47.8,7.4,29.1c-4.6-3.9-7.2-8.6-6.5-14.7c0.7-6.2,4-10.7,9.8-13.1
 	c6-2.5,11.6-1.4,16.5,2.7c8.1,6.8,16.2,13.8,24.2,20.7c28.9,24.7,57.7,49.5,86.6,74.1c5.4,4.6,8.5,10.1,6.4,17.1
 	c-1,3.3-3.1,6.7-5.7,9C101.5,157.1,64,189,26.6,221c-7.1,6-17,5.2-22.8-1.7c-5.9-7.1-4.9-16.7,2.5-23c31.7-27.2,63.4-54.3,95.1-81.5
 	C102.4,114.1,103.2,113.3,104.4,112.2z" />
             </svg>
-          </a>
-          <a href="#" className="fn__closer fn__icon_button mobile_closer">
+          </NavLink>
+          <NavLink to="#" className="fn__closer fn__icon_button mobile_closer">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 145.1 225.1" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 145.1 225.1'}} xmlSpace="preserve">
               <path d="M104.4,112.2c-10.6-9.1-21-18-31.5-27C51.1,66.5,29.3,47.8,7.4,29.1c-4.6-3.9-7.2-8.6-6.5-14.7c0.7-6.2,4-10.7,9.8-13.1
 				   c6-2.5,11.6-1.4,16.5,2.7c8.1,6.8,16.2,13.8,24.2,20.7c28.9,24.7,57.7,49.5,86.6,74.1c5.4,4.6,8.5,10.1,6.4,17.1
 				   c-1,3.3-3.1,6.7-5.7,9C101.5,157.1,64,189,26.6,221c-7.1,6-17,5.2-22.8-1.7c-5.9-7.1-4.9-16.7,2.5-23c31.7-27.2,63.4-54.3,95.1-81.5
 				   C102.4,114.1,103.2,113.3,104.4,112.2z" />
             </svg>
-          </a>
+          </NavLink>
         </div>
         {/* !logo (left panel) */}
         {/* content (left panel) */}
         <div className="leftpanel_content">
-          {/* #1 navigation group */}
-          <div className="nav_group">
+          {/* #1 NavLinkigation group */}
+          <div className="NavLink_group">
             <h2 className="group__title">Start Here</h2>
             <ul className="group__list">
               <li onClick={()=> setSideBarSelected(0)}>
-                <a href="/auth/home" className={`fn__tooltip menu__item ${sideBarSelected === 0 ? "active" : "" }`} data-position="right" title="Home">
+                <NavLink to="/auth/home" className={`fn__tooltip menu__item ${sideBarSelected === 0 ? "active" : "" }`} data-position="right" title="Home">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 377 375.3" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 377 375.3'}} xmlSpace="preserve">
                       <g>
@@ -85,10 +85,10 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Home</span>
-                </a>
+                </NavLink>
               </li>
               <li onClick={()=> setSideBarSelected(1)}>
-                <a href="/auth/community" className={`fn__tooltip menu__item ${sideBarSelected === 1 ? "active" : "" }`} data-position="right" title="Community Feed">
+                <NavLink to="/auth/community" className={`fn__tooltip menu__item ${sideBarSelected === 1 ? "active" : "" }`} data-position="right" title="Community Feed">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 284.7 275.6" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 284.7 275.6'}} xmlSpace="preserve">
                       <g>
@@ -116,10 +116,10 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Community Feed</span>
-                </a>
+                </NavLink>
               </li>
               <li onClick={()=> setSideBarSelected(2)}>
-                <a href={`/auth/personal/${state._id}`} className={`fn__tooltip menu__item ${sideBarSelected === 2 ? "active" : "" }`} data-position="right" title="Personal Feed">
+                <NavLink to={`/auth/personal/${state._id}`} className={`fn__tooltip menu__item ${sideBarSelected === 2 ? "active" : "" }`} data-position="right" title="Personal Feed">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 320 352.3" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 320 352.3'}} xmlSpace="preserve">
                       <g>
@@ -134,10 +134,10 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Personal Feed<span className="count">48</span></span>
-                </a>
+                </NavLink>
               </li>
               <li onClick={()=> setSideBarSelected(3)}>
-                <a href="/auth/models" className={`fn__tooltip menu__item ${sideBarSelected === 3 ? "active" : "" }`} data-position="right" title="Finetuned Models">
+                <NavLink to="/auth/models" className={`fn__tooltip menu__item ${sideBarSelected === 3 ? "active" : "" }`} data-position="right" title="Finetuned Models">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 288.2 319.1" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 288.2 319.1'}} xmlSpace="preserve">
                       <g>
@@ -156,17 +156,17 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Finetuned Models</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
-          {/* !#1 navigation group */}
-          {/* #2 navigation group */}
-          <div className="nav_group">
+          {/* !#1 NavLinkigation group */}
+          {/* #2 NavLinkigation group */}
+          <div className="NavLink_group">
             <h2 className="group__title">User Tools</h2>
             <ul className="group__list">
               <li onClick={()=> setSideBarSelected(4)}>
-                <a href="/auth/image/generation" className={`fn__tooltip menu__item ${sideBarSelected === 4 ? "active" : "" }`} data-position="right" title="Image Generation">
+                <NavLink to="/auth/image/generation" className={`fn__tooltip menu__item ${sideBarSelected === 4 ? "active" : "" }`} data-position="right" title="Image Generation">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 276.1 239.6" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 276.1 239.6'}} xmlSpace="preserve">
                       <g>
@@ -187,10 +187,10 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Image Generation</span>
-                </a>
+                </NavLink>
               </li>
               <li onClick={()=> setSideBarSelected(5)}>
-                <a href="/auth/chat" className={`fn__tooltip menu__item ${sideBarSelected === 5 ? "active" : "" }`} data-position="right" title="AI Chat Bot">
+                <NavLink to="/auth/chat" className={`fn__tooltip menu__item ${sideBarSelected === 5 ? "active" : "" }`} data-position="right" title="AI Chat Bot">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 512 512'}} xmlSpace="preserve">
                       <g>
@@ -215,17 +215,17 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">AI Chat Bot</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
-          {/* !#2 navigation group */}
-          {/* #3 navigation group */}
-          <div className="nav_group">
+          {/* !#2 NavLinkigation group */}
+          {/* #3 NavLinkigation group */}
+          <div className="NavLink_group">
             <h2 className="group__title">Support</h2>
             <ul className="group__list">
               <li onClick={()=> setSideBarSelected(6)}>
-                <a href="/auth/pricing" className={`fn__tooltip menu__item ${sideBarSelected === 6 ? "active" : "" }`} data-position="right" title="Pricing">
+                <NavLink to="/auth/pricing" className={`fn__tooltip menu__item ${sideBarSelected === 6 ? "active" : "" }`} data-position="right" title="Pricing">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 233.7 408.8" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 233.7 408.8'}} xmlSpace="preserve">
                       <g>
@@ -246,10 +246,10 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Pricing</span>
-                </a>
+                </NavLink>
               </li>
               <li className="menu-item-has-children" onClick={()=> setSideBarSelected(7)}>
-                <a href="video-generation.html" className={`fn__tooltip menu__item ${sideBarSelected === 7 ? "active" : "" }`} title="FAQ & Help" data-position="right">
+                <NavLink to="video-generation.html" className={`fn__tooltip menu__item ${sideBarSelected === 7 ? "active" : "" }`} title="FAQ & Help" data-position="right">
                   <span className="icon">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 408.9 408.9" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 408.9 408.9'}} xmlSpace="preserve">
                       <g>
@@ -279,24 +279,24 @@ let state = useSelector(state => state.SignInUserReducer)
 	C102.4,114.1,103.2,113.3,104.4,112.2z" />
                     </svg>
                   </span>
-                </a>
+                </NavLink>
                 <ul className="sub-menu">
                   <li>
-                    <a href="/auth/documentation"><span className="text">Documentation</span></a>
+                    <NavLink to="/auth/documentation"><span className="text">Documentation</span></NavLink>
                   </li>
                   <li>
-                     <a href="/auth/faq"><span className="text">FAQ</span></a>
+                     <NavLink to="/auth/faq"><span className="text">FAQ</span></NavLink>
                   </li>
                   <li>
-                    <a href="/auth/changelog"><span className="text">Changelog<span className="fn__sup">(4.1.2)</span></span></a>
+                    <NavLink to="/auth/changelog"><span className="text">Changelog<span className="fn__sup">(4.1.2)</span></span></NavLink>
                   </li>
                   <li>
-                    <a href="/auth/contact"><span className="text">Contact Us</span></a>
+                    <NavLink to="/auth/contact"><span className="text">Contact Us</span></NavLink>
                   </li>
                 </ul>
               </li>
               <li onClick={()=> setSideBarSelected(8)}>
-                <a style={{cursor : "pointer"}} className={`fn__tooltip menu__item ${sideBarSelected === 8 ? "active" : "" }`} data-position="right" title="Log Out" onClick={logOut}>
+                <NavLink style={{cursor : "pointer"}} className={`fn__tooltip menu__item ${sideBarSelected === 8 ? "active" : "" }`} data-position="right" title="Log Out" onClick={logOut}>
                   <span className="icon">
                     {/*?xml version="1.0" encoding="utf-8"?*/}
                     {/* Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  */}
@@ -316,7 +316,7 @@ let state = useSelector(state => state.SignInUserReducer)
                     </svg>
                   </span>
                   <span className="text">Log Out</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

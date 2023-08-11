@@ -1,10 +1,25 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { useNavigate, NavLink } from 'react-router-dom'
+import {useDispatch, useSelector} from "react-redux"
+import {fetchUser} from "../../../Services/AuthService"
+import {SignInUserRed} from "../../../Redux/SignInUserReducer"
 import Header from '../../shared/Header';
 import Sidebar from '../../shared/Sidebar';
 import HomeContent from '../../shared/MainContent/HomeContent';
 import Footer from '../../shared/Footer';
 
 const Home = () => {
+  const navigate = useNavigate();
+  let dispatch = useDispatch()
+  let fetchUserFun = async () => {
+    let token = localStorage.getItem("token")
+    let result = await fetchUser(token);
+    dispatch(SignInUserRed(result.data[0]))
+
+}
+useEffect(()=> {
+    fetchUserFun();
+}, [])
 
   return (
     <>

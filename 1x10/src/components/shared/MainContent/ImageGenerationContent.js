@@ -1,13 +1,25 @@
-import React, {useState, useEffect} from 'react'
-import {NavLink} from "react-router-dom"
+import React, {useEffect, useState} from 'react'
+import { useNavigate, NavLink } from 'react-router-dom'
+import {useDispatch, useSelector} from "react-redux"
+import {fetchUser} from "../../../Services/AuthService"
+import {SignInUserRed} from "../../../Redux/SignInUserReducer"
 import {generateImage} from "../../../Services/ImageGenerationService"
-import { useSelector} from "react-redux"
 
 const ImageGenerationContent = () => {
+  const navigate = useNavigate();
+  let dispatch = useDispatch()
   let state = useSelector(state => state.SignInUserReducer)
   let [alchemy, setAlchemy] = useState(false)
   let [highRes, setHighRes] = useState(false)
+  let [highContrast, setHighContrast] = useState(false)
+  let [promptMagic, setPromptMagic] = useState(true)
   let [promptText, setPromptText] = useState("Copy Prompt")
+  let [guidance_scale, setGuidance_scale] = useState(7)
+  let [dimensions_delimeter, setDimensions_delimeter] = useState(false)
+  let [width, setWidth] = useState(512)
+  let [height, setHeight] = useState(512)
+  let [promptStrength, setPromptStrength] = useState(5)
+  let [dimensions, setDimensions] = useState({x : 512, y : 512})
   let [prompt, setPrompt] = useState("")
   let [negPrompt, setNegPrompt] = useState("")
   let [numberOfImg, setNumberOfImg] = useState(4)
@@ -16,9 +28,18 @@ let [modelDetails, setModelDetails] = useState({
   title : "IceCold",
   avtar : "/assets/img/models/5.jpg"
 })
+let fetchUserFun = async () => {
+  let token = localStorage.getItem("token")
+  let result = await fetchUser(token);
+  dispatch(SignInUserRed(result.data[0]))
+
+}
+useEffect(()=> {
+  fetchUserFun();
+}, [])
 
 let switchcaseFun = (modelNum) => {
-  console.log("hiii")
+  setModel(modelNum)
   switch (modelNum) {
     case 0:
       setModelDetails({
@@ -86,34 +107,47 @@ let switchcaseFun = (modelNum) => {
   }
 }
 
+useEffect(()=>{
+  if(dimensions_delimeter === false) {
+    setDimensions({x : width, y : height})
+  }
+}, [dimensions_delimeter,width, height])
 function formatDate(timestamp) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return new Date(timestamp).toLocaleDateString('en-IN', options);
 }
 
+
+let dimensionsFun = (event) => {
+  let e = event.target.value;
+  let [x, y] = e.split('_');
+  setDimensions({ x: parseInt(x), y: parseInt(y) }); // Parse string values to integers
+  setDimensions_delimeter(true);
+};
+
 let generateImageFun = () => {
-  // let date = new Date()
-  // const formattedDate = formatDate(date);
-  // let token = localStorage.getItem("token")
-  // let data = {
-  //   image : "/assets/img/gallery/8.jpg",
-  //   prompt :  prompt,
-  //   negative_prompt : negPrompt,
-  //   created : formattedDate,
-  //   resolution : "678 x 1024px",
-  //   sampler : "Tech-AI-Frenify",
-  //   base_model : "Frenify v2.0",
-  //   magic_prompt : false,
-  //   magic_prompt_strength : 0.5,
-  //   high_contrast : true,
-  //   model : "other",
-  //   alchemy : true,
-  // seed : "877743523",
-  //   high_resolution : false,
-  //   likes : 752,
-  //   _id : "",
-  // }
-  // generateImage(token, data)
+  let date = new Date()
+  const formattedDate = formatDate(date);
+  let token = localStorage.getItem("token")
+  let data = {
+    // image : "/assets/img/gallery/8.jpg",
+    prompt :  prompt,
+    negative_prompt : negPrompt,
+    created : formattedDate,
+    resolution : `${dimensions.x} x ${dimensions.y}px`,
+    sampler : "Tech-AI-Frenify",
+    base_model : "Frenify v2.0",
+    magic_prompt : promptMagic,
+    magic_prompt_strength : promptStrength,
+    high_contrast : highContrast,
+    model : model,
+    alchemy : alchemy,
+  seed : "877743523",
+    high_resolution : highRes,
+    likes : [],
+    _id : "",
+  }
+  generateImage(token, data)
 }
 
 let sendPrompt = (event) => {
@@ -156,10 +190,6 @@ let copyPrompt = ()  => {
   }, 3000)
   navigator.clipboard.writeText(promptText)
 }
-// useEffect(() => {
-//   console.log(numberOfImg); // Log the updated value inside useEffect
-// }, [numberOfImg]); // Make sure to include numberOfImg in the dependency array
-
   return (
     <>
               <div className="techwave_fn_page">
@@ -195,7 +225,7 @@ let copyPrompt = ()  => {
                       </span>
                       Negative Prompt
                     </label>
-                    <a id="generate_it" href="#" className="techwave_fn_button" onClick={generateImageFun}><span>Generate</span></a>
+                    <a id="generate_it" className="techwave_fn_button cursor" onClick={generateImageFun}><span>Generate</span></a>
                   </div>
                 </div>
               </div>
@@ -1162,7 +1192,7 @@ scrollbarColor: "#999 #fff"}}>
                 <div className="img_sizes">
                   <h4 className="title">Image Dimensions</h4>
                   <div className="img_size_select">
-                    <select style={{cursor : "pointer"}}>
+                    <select style={{cursor : "pointer"}} onChange={(e)=>dimensionsFun(e)}>
                       <option value="512_512" selected>512 x 512px</option>
                       <option value="768_768">768 x 768px</option>
                       <option value="512_1024">512 x 1024px</option>
@@ -1174,24 +1204,40 @@ scrollbarColor: "#999 #fff"}}>
                 <h4 className="title">Width</h4>
                 <div className="fn__range mb-1">
                     <div className="range_in">
-                      <input type="range" min={1} max={4096} defaultValue={512} />
+                      <input type="range" min={1} max={4096} defaultValue={512}     value={
+              dimensions_delimeter
+                ? dimensions.x
+                : width
+            }
+            onChange={(e) =>
+              setWidth(parseInt(e.target.value))
+            } // Parse string value to an integer
+          />
                       <div className="slider" />
                     </div>
-                    <div className="value">512</div>
+                    <div className="value">{dimensions.x}</div> {/* Display the correct value */}
                   </div>
                   <h4 className="title">Height</h4>
                 <div className="fn__range mb-2">
                     <div className="range_in">
-                      <input type="range" min={1} max={4096} defaultValue={512} />
+                      <input type="range" min={1} max={4096} defaultValue={512} value={
+              dimensions_delimeter
+                ? dimensions.y
+                : height
+            }
+            onChange={(e) =>
+              setHeight(parseInt(e.target.value))
+            } // Parse string value to an integer
+          />
                       <div className="slider" />
                     </div>
-                    <div className="value">512</div>
+                    <div className="value">{dimensions.y}</div> {/* Display the correct value */}
                   </div>
                 <div className="guidance_scale">
                   <h4 className="title">Guided Scale<span className="fn__tooltip" title="how much ai can think by there own for images."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <div className="fn__range">
                     <div className="range_in">
-                      <input type="range" min={1} max={40} defaultValue={7} />
+                      <input type="range" min={1} max={40} defaultValue={7} onChange={(e)=>setGuidance_scale(e.target.value) }/>
                       <div className="slider" />
                     </div>
                     <div className="value">7</div>
@@ -1201,17 +1247,26 @@ scrollbarColor: "#999 #fff"}}>
                   <h4 className="title"><label htmlFor="prompt_switcher">Prompt Magic</label><span className="fn__tooltip" title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <label className="fn__toggle">
                     <span className="t_in">
-                      <input type="checkbox" defaultChecked id="prompt_switcher" />
+                      <input type="checkbox" defaultChecked id="prompt_switcher" onChange={()=>setPromptMagic(!promptMagic)} />
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
                   </label>
                 </div>
+                <h4 className="title">Prompt Magic Strength</h4>
+                <div className="fn__range">
+                    <div className="range_in">
+                      <input type="range" min={1} max={10} defaultValue={5} onChange={(e) => setPromptStrength(e.target.value)} // Parse string value to an integer 
+                      />
+                      <div className="slider" />
+                    </div>
+                    <div className="value">{promptStrength / 10}</div> {/* Display the correct value */}
+                  </div>
                 <div className="contrast_switcher">
                   <h4 className="title"><label htmlFor="contrast_switcher">High Contrast</label><span className="fn__tooltip" title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <label className="fn__toggle">
                     <span className="t_in">
-                      <input type="checkbox" id="contrast_switcher" />
+                      <input type="checkbox" id="contrast_switcher" onChange={()=>setHighContrast(!highContrast)} />
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>

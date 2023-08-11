@@ -3,6 +3,24 @@ const User = require("../../models/User")
 const jwt = require("jsonwebtoken")
 const { ObjectId } = require('mongodb');
 routes.post("/", async (req,res)=> {
+let dataToSend = req.body
+  
+  fetch('http://127.0.0.1:5000/send-data', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dataToSend)
+  })
+    .then(response => response.json())
+    .then(data => {
+    //   console.log('Response from server:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  
+    return
     if(req.headers.token) {
         let token = req.headers.token;
         req.body._id = new ObjectId()

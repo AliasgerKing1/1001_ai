@@ -10,9 +10,14 @@ const PersonalFeed = () => {
   let state = useSelector(state => state.SignInUserReducer)
   let [emptyfeed, setEmptyFeed] = useState(false)
 
-  // useEffect(()=> {
-  //   console.log(state)
-  // }, [])
+  useEffect(()=> {
+    if(state.my_gen_images.length > 0) {
+      setEmptyFeed(false)
+    }
+    else {
+      setEmptyFeed(true)
+    }
+  }, [])
   return (
     <>
 <div>

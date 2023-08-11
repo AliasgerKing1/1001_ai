@@ -1,7 +1,7 @@
 import { useRoutes, Navigate } from "react-router-dom"
 
 import React from 'react'
-// import Error404 from "../components/pages/Error404/Error404"
+import Error404 from "../components/pages/Error404/Error404"
 import Layouts from "../Layouts/Layouts"
 import userRoutes from "./User/User"
 import SignIn from "../components/pages/SignIn/SignIn"
@@ -44,10 +44,10 @@ const Router = () => {
             element: <Layouts />,
             children: userRoutes
         },
-        // {
-        //     path: "*",
-        //     element: <Error404 />
-        // }
+        {
+            path: "*",
+            element: <Error404 />
+        }
     ])
     return (router)
 }

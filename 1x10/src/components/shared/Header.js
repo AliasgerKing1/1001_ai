@@ -6,15 +6,6 @@ import {NavLink} from "react-router-dom"
 const Header = () => {
   let [lightMode, setLightMode] = useState(false)
   let dispatch = useDispatch()
-  let fetchUserFun = async () => {
-    let token = localStorage.getItem("token")
-    let result = await fetchUser(token);
-    dispatch(SignInUserRed(result.data[0]))
-
-}
-useEffect(()=> {
-    fetchUserFun();
-}, [])
 
 let state = useSelector(state => state.SignInUserReducer)
 
@@ -44,7 +35,7 @@ const formatTime = seconds => {
               <span className="count" style={{cursor : "pointer"}}>{state.daily_tokens}</span>
               <span className="text" style={{cursor : "pointer"}}>Tokens<br />Remain</span>
             </span>
-            <a href="/auth/pricing" className="token_upgrade techwave_fn_button"><span>Upgrade</span></a>
+            <NavLink to="/auth/pricing" className="token_upgrade techwave_fn_button"><span>Upgrade</span></NavLink>
             <div className="token__popup">
               Resets in <span>{timeUntilReset > 0 ? `${formatTime(timeUntilReset)} left until reset` : 'Resetting...'}.</span><br />
               Daily limit is <span>150 tokens</span>
@@ -57,7 +48,7 @@ const formatTime = seconds => {
           <div className="fn__nav_bar">
             {/* Search (bar item) */}
             <div className="bar__item bar__item_search">
-              <a href="#" className="item_opener fn__tooltip" title="Search">
+              <NavLink to="#" className="item_opener fn__tooltip" title="Search">
                 <svg version={1.0} xmlns="http://www.w3.org/2000/svg" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" className={`fn__svg ${ lightMode ==true ? "dark_mode" : "light_mode"}`}>
                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
                     <path d="M1935 4683 c-775 -100 -1378 -689 -1491 -1455 -22 -154 -15 -419 15
@@ -71,7 +62,7 @@ const formatTime = seconds => {
 197 1327 237 283 583 449 962 461 23 0 89 -4 145 -10z" />
                   </g>
                 </svg>
-              </a>
+              </NavLink>
               <div className="item_popup" data-position="right">
                 <input type="text" placeholder="Search" />
               </div>
@@ -79,7 +70,7 @@ const formatTime = seconds => {
             {/* !Search (bar item) */}
             {/* Notification (bar item) */}
             <div className="bar__item bar__item_notification has_notification">
-              <a href="#" className="item_opener fn__tooltip" title="Notifications">
+              <NavLink to="#" className="item_opener fn__tooltip" title="Notifications">
                 {/*?xml version="1.0" encoding="utf-8"?*/}
                 {/* Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  */}
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 302.3 335.7" className={`fn__svg ${ lightMode ==true ? "dark_mode" : "light_mode"}`} style={{enableBackground: 'new 0 0 302.3 335.7'}} xmlSpace="preserve">
@@ -95,24 +86,24 @@ const formatTime = seconds => {
 		C166.7,311.4,181.3,300.8,184.5,288z" />
                   </g>
                 </svg>
-              </a>
+              </NavLink>
               <div className="item_popup" data-position="right">
                 <div className="ntfc_header">
                   <h2 className="ntfc_title">Notifications</h2>
-                  <a href="notifications.html">View All</a>
+                  <NavLink to="notifications.html">View All</NavLink>
                 </div>
                 <div className="ntfc_list">
                   <ul>
                     <li>
-                      <p><a href="notification-single.html">Version 4.1.2 has been launched</a></p>
+                      <p><NavLink to="notification-single.html">Version 4.1.2 has been launched</NavLink></p>
                       <span>34 Min Ago</span>
                     </li>
                     <li>
-                      <p><a href="notification-single.html">Video Generation has been released</a></p>
+                      <p><NavLink to="notification-single.html">Video Generation has been released</NavLink></p>
                       <span>12 Apr</span>
                     </li>
                     <li>
-                      <p><a href="notification-single.html">Terms has been updated</a></p>
+                      <p><NavLink to="notification-single.html">Terms has been updated</NavLink></p>
                       <span>12 Apr</span>
                     </li>
                   </ul>
@@ -122,7 +113,7 @@ const formatTime = seconds => {
             {/* !Notification (bar item) */}
             {/* Full Screen (bar item) */}
             <div className="bar__item bar__item_fullscreen">
-              <a href="#" className="item_opener fn__tooltip" title="Full Screen">
+              <NavLink to="#" className="item_opener fn__tooltip" title="Full Screen">
                 <svg version="1.1" id="Layer_1" className="fn__svg f_screen light_mode" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.4 383.4" style={{enableBackground: 'new 0 0 383.4 383.4'}} xmlSpace="preserve">
                   <g>
                     <path d="M383.4,109.4c-9,0-17.9,0-27.2,0c0-27.2,0-54.2,0-81.7c-27.4,0-54.5,0-81.9,0c0-9.4,0-18.3,0-27.6c1.5,0,2.9,0,4.4,0
@@ -145,12 +136,12 @@ const formatTime = seconds => {
                   <path d="M81.8,383.3c0-27.3,0-54.2,0-81.6c-27.4,0-54.5,0-81.8,0c0-9.3,0-18.1,0-27.5c1.3,0,2.6,0,3.9,0c29.9,0,59.9,0,89.8,0
 	c10.2,0,15.5,5.3,15.5,15.4c0,30.1,0,60.1,0,90.2c0,1.1,0,2.2,0,3.6C100.1,383.3,91.2,383.3,81.8,383.3z" />
                 </svg>
-              </a>
+              </NavLink>
             </div>
             {/* !Full Screen (bar item) */}
             {/* Language (bar item) */}
             <div className="bar__item bar__item_language">
-              <a href="#" className="item_opener fn__tooltip" title="Language">
+              <NavLink to="#" className="item_opener fn__tooltip" title="Language">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 272 320.2" className="fn__svg s_screen light_mode" style={{enableBackground: 'new 0 0 272 320.2'}} xmlSpace="preserve">
                   <path d="M102.6,183.4c6,3.7,11.9,7.2,17.7,10.8c5.6,3.5,8.3,8.7,7.7,15.2c-0.7,6.8-4.5,11.5-11.1,13.7c-4.4,1.5-8.7,1-12.7-1.3
 	c-6.7-3.9-13.3-8-19.3-11.6c-10.1,10.4-20.1,21-30.4,31.4c-3.7,3.7-7.8,7.1-11.8,10.4c-7.2,5.9-16.7,5.1-22.5-1.5
@@ -167,17 +158,17 @@ const formatTime = seconds => {
 	c-0.2-1.1-1.7-2.6-2.6-2.6C208.5,255.9,190,256,171.1,256z M178.4,223.6c14.7,0,28.9,0,43.6,0c-3-13-5.6-25.6-8.8-38.2
 	c-1.5-6-7.4-9.7-13.3-9.6c-6,0.1-11.3,4.1-13,10c-1.1,3.7-1.8,7.5-2.7,11.3C182.3,205.9,180.3,214.6,178.4,223.6z" />
                 </svg>
-              </a>
+              </NavLink>
               <div className="item_popup" data-position="right">
                 <ul>
                   <li>
                     <span className="active">English</span>
                   </li>
                   <li>
-                    <a href="#">Spanish</a>
+                    <NavLink to="#">Spanish</NavLink>
                   </li>
                   <li>
-                    <a href="#">French</a>
+                    <NavLink to="#">French</NavLink>
                   </li>
                 </ul>
               </div>
@@ -185,7 +176,7 @@ const formatTime = seconds => {
             {/* !Language (bar item) */}
             {/* Site Skin (bar item) */}
             <div className="bar__item bar__item_skin">
-              <a href="#" className="item_opener fn__tooltip" title="Dark/Light" id='switcher'>
+              <NavLink to="#" className="item_opener fn__tooltip" title="Dark/Light" id='switcher'>
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 319.2 319.2" className="fn__svg light_mode" style={{enableBackground: 'new 0 0 319.2 319.2'}} xmlSpace="preserve">
                   <path d="M63.8,159.4c0.1-52.9,43.3-95.8,96.2-95.6c52.7,0.2,95.5,43.2,95.4,96c-0.1,52.9-43.3,95.8-96.2,95.6
 	C106.5,255.2,63.7,212.2,63.8,159.4z M223.4,159.6c0-35.3-28.3-63.7-63.6-63.8c-35.4-0.1-64,28.4-63.9,63.8
@@ -216,7 +207,7 @@ const formatTime = seconds => {
 	c-46.3,19.2-89.6,15.1-126-20.4C63.4,115.3,57.9,72.1,75.8,25.4C40.8,42.8,11.8,84.8,18.2,135.8c6.1,49,45,89,95.4,95.2
 	C162.1,237.1,205.8,210.5,225.8,171.1z" />
                 </svg>
-              </a>
+              </NavLink>
             </div>
             {/* !Site Skin (bar item) */}
             {/* User (bar item) */}
@@ -249,16 +240,16 @@ const formatTime = seconds => {
                       </NavLink>
                     </li>
                     <li>
-                      <a href={`/auth/${state._id}/bill`}>
+                      <NavLink to={`/auth/${state._id}/bill`}>
                         <span className="icon"><img src="/assets/svg/billing.svg" alt className="fn__svg" /></span>
                         <span className="text">Billing</span>
-                      </a>
+                      </NavLink>
                     </li>
                     <li>
-                    <a href={`/auth/personal/${state._id}`}>
+                    <NavLink to={`/auth/personal/${state._id}`}>
                         <span className="icon"><img src="/assets/svg/my-generation.svg" alt className="fn__svg" /></span>
                         <span className="text">My Generation</span>
-                      </a>
+                      </NavLink>
 
                     </li>
                   </ul>

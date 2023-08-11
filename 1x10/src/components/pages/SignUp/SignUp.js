@@ -4,13 +4,19 @@ import {useFormik} from "formik"
 import SignupSchema from "../../../Schemas/SignUpSchema"
 import { adduser } from '../../../Services/AuthService'
 
+function formatDate(timestamp) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(timestamp).toLocaleDateString('en-IN', options);
+}
+let date = new Date()
+const formattedDate = formatDate(date);
 let initialValues = {
   name : "",
   email : "",
   username:  "",
   password : "",
   userefcode : "",
-  join_date : ""
+  join_date : formattedDate
 }
 const SignUp = () => {
   let [showAlert, setShowAlert] = useState(false);
@@ -95,11 +101,16 @@ useEffect(()=> {
           <input type="text" className="input" id="user_referal_code" name="userefcode" onChange={handleChange} onBlur={handleBlur} placeholder='*r*h**4*' spellCheck="false" />
         </div>
         </>)}
-        <div className="form__submit">
+        {activeStep === 1 ? ( <div className="form__submit">
           <label className="fn__submit">
-            <input type="submit" name="submit" value={ activeStep === 1 ? "Next Step" : "Create Account"} onClick={handleNextStep}/>
+            <input type='button' value="Next Step" onClick={handleNextStep}/>
           </label>
-        </div>
+        </div>) : ( <div className="form__submit">
+          <label className="fn__submit">
+            <input type="submit" name="submit" value="Create Account" onClick={handleNextStep}/>
+          </label>
+        </div>)}
+       
         <div className="form__alternative">
           <div className="fn__lined_text">
             <div className="line" />

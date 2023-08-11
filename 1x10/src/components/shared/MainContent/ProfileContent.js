@@ -6,15 +6,15 @@ import {useSelector} from "react-redux"
 const ProfileContent = () => {
     let dispatch = useDispatch()
     let [copied, setCopied] = useState(false)
-    let fetchUserFun = async () => {
-      let token = localStorage.getItem("token")
-      let result = await fetchUser(token);
-      dispatch(SignInUserRed(result.data[0]))
+  //   let fetchUserFun = async () => {
+  //     let token = localStorage.getItem("token")
+  //     let result = await fetchUser(token);
+  //     dispatch(SignInUserRed(result.data[0]))
   
-  }
-  useEffect(()=> {
-      fetchUserFun();
-  }, [])
+  // }
+  // useEffect(()=> {
+  //     fetchUserFun();
+  // }, [])
   
 let state = useSelector(state => state.SignInUserReducer)
 
