@@ -1,0 +1,82 @@
+.pro-pic {
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  page-break-inside: avoid;
+  vertical-align: middle;
+  border-style: none;
+}
+.pro-name {
+  cursor: default;
+}
+table tbody tr td a {
+  cursor: pointer;
+}
+.submit-btn2 {
+  -webkit-clip-path: polygon(100% 0, 100% 65%, 89% 100%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% 65%, 89% 100%, 0 100%, 0 0);
+  background: #45f882;
+  color: #0f161b !important;
+  font-family: "Barlow", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  padding: 7px 15px;
+}
+.submit-btn2:hover {
+  background: #ffbe18;
+}
+.btn-secondary2 {
+  background-color: #ffbe18 !important;
+  color: #fff !important;
+}
+.btn-secondary2:hover {
+  background-color: #45f882 !important;
+  color: #ffbe18 !important;
+}
+.btn-primary2 {
+  background-color: #45f882 !important;
+  color: #fff !important;
+}
+.btn-primary2:hover {
+  background-color: #ffbe18 !important;
+  color: #45f882 !important;
+}
+
+.modal-header {
+  background-color: #0f161b !important;
+  border-bottom: 1px solid #45f882;
+}
+.modal-body {
+  background-color: #0f161b !important;
+}
+.modal-footer {
+  background-color: #0f161b !important;
+  border-top: 1px solid #45f882;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .pro-name {
+    font-size: 1rem;
+  }
+  .pro-pic {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  .follow {
+    font-size: 0rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pro-name {
+    font-size: 0.8rem;
+  }
+  .pro-pic {
+    max-width: 30px !important;
+    max-height: 30px !important;
+  }
+}

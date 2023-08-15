@@ -2,6 +2,7 @@ import { useRoutes, Navigate } from "react-router-dom"
 
 import React from 'react'
 import Error404 from "../components/pages/Error404/Error404"
+import Error500 from "../components/pages/Error500/Error500"
 import Layouts from "../Layouts/Layouts"
 import userRoutes from "./User/User"
 import SignIn from "../components/pages/SignIn/SignIn"
@@ -21,7 +22,11 @@ const Router = () => {
     const router = useRoutes([
         {
             path: "/",
-            element: <Landing />
+            element: isTokenPresent() ? (
+              <Navigate to="/auth/home" replace />
+            ) : (
+              <Landing />
+            )
         },
         {
             path: "/signin",
@@ -39,6 +44,10 @@ const Router = () => {
               <SignUp />
             )
           },
+          {
+            path: "/error500",
+            element: <Error500 />
+        },
         {
             path: "auth",
             element: <Layouts />,
