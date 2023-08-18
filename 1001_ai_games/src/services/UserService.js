@@ -1,9 +1,9 @@
 /*eslint-disable */
 import axios from "axios"
 
-const apiUrl = "http://localhost:4000/api/user";
+const apiUrl = "http://localhost:4003/api/user";
 // const apiUrl = "https://sabka-app.onrender.com/api/user";
-const apiOtpUrl = "http://localhost:4000/api/otp";
+const apiOtpUrl = "http://localhost:4003/api/otp";
 // const apiOtpUrl = "https://sabka-app.onrender.com/api/otp";
 
 let addUser = async (data) => {
@@ -13,7 +13,7 @@ let addUser = async (data) => {
 // const header = token;
 
 let getUser = async () => {
-    return await axios.get("http://localhost:4000/api/user/?limit=8&page=0");
+    return await axios.get("http://localhost:4003/api/user/?limit=8&page=0");
 }
 
 // let getUser = async () => {
@@ -61,7 +61,7 @@ let Logout = () => {
   }
   let DoLogin = (obj) => {
     return axios.post(
-        'http://localhost:4000/api/user/loginauth',
+        'http://localhost:4003/api/user/loginauth',
         // 'https://sabka-app.onrender.com/api/user/loginauth',
         obj
       );

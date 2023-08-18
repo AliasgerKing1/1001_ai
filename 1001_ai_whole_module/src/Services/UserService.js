@@ -8,5 +8,8 @@ let SignupUser = async(data) => {
 let SigninUser = async(data) => {
     return await axios.post(`${apiUrl}loginauth`, data)
 }
+let getUser = async(token) => {
+    return await axios.get(apiUrl, {headers : {token}})
+}
 
-export {SignupUser, SigninUser}
+export {SignupUser, SigninUser, getUser}

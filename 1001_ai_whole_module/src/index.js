@@ -7,8 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 import {Provider} from'react-redux'
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import SignupToastReducer from './Redux/SignupToastReducer'
+import UserReducer from './Redux/UserReducer'
+import OffHeaderItemsReducer from './Redux/OffHeaderItemsReducer'
 let rootReducer = combineReducers({
-  SignupToastReducer
+  SignupToastReducer,
+  UserReducer,
+  OffHeaderItemsReducer
 })
 
 let store = configureStore({

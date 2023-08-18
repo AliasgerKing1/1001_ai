@@ -39,14 +39,14 @@ routes.post("/loginauth",  async(req,res) => {
     res.send({status : 403, success : false, errType : 1});
 })
 
-// routes.get("/", async (req,res)=> {
-//     if(req.headers.token) {
-//         let token = req.headers.token;
-//         let obj = jwt.decode(token, "Aliasger web")
-//         let result = await User.find({_id : obj._id})
-//         res.send(result)
-//     }
-// })
+routes.get("/", async (req,res)=> {
+    if(req.headers.token) {
+        let token = req.headers.token;
+        let obj = jwt.decode(token, "Aliasger web")
+        let result = await User.find({_id : obj._id})
+        res.send(result)
+    }
+})
 
 
 module.exports = routes;

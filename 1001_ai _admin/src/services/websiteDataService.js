@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let apiUrl = "http://localhost:4000/api/website/"
+let apiUrl = "http://localhost:4002/api/website/"
 let getWebsiteleft = async () => {
 return await axios.get(`${apiUrl}left`)
 }

@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use(routes);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4002;
 app.listen(port, ()=> {
     console.log("Server Running");
 })

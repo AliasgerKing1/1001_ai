@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 import HomeCard from '../../shared/HomeCard'
+import { getFeatureList } from '../../../Services/FeatureListService'
+import {getUser} from '../../../Services/UserService'
+import { useDispatch, useSelector } from 'react-redux'
+import {UserDataRed} from '../../../Redux/UserReducer'
 const Home = () => {
+  let dispatch = useDispatch()
+  let state = useSelector(state=>state.UserReducer)
+let [featureList, setFeatureList] = useState()
+  let getFeaturesListFun = async () => {
+    const result = await getFeatureList();
+    setFeatureList(result.data)
+  }
+  let userDataFun = async () => {
+    let token = localStorage.getItem('token');
+    let result = await getUser(token)
+    dispatch(UserDataRed(result.data[0]))
+  }
+  useEffect(()=>{
+    getFeaturesListFun()
+    if(state.length === undefined) {
+      userDataFun()
+    }
+  }, [])
+
+  let offHeaderItems = () => {
+    // dispatch(LanguageRed(false))
+    // dispatch(CartRed(false))
+    // dispatch(NotificationsRed(false))
+    // dispatch(ProfileRed(false))
+  }
   return (
     <>
 <div>
@@ -12,13 +41,10 @@ const Home = () => {
     {/*  Main wrapper */}
     <div className="body-wrapper">
       <Header />
-      <div className="container-fluid">
+      <div className="container-fluid" onClick={offHeaderItems}>
         {/*  Row 1 */}
         <div className="row">
-          <HomeCard />
-          <HomeCard />
-          <HomeCard />
-          <HomeCard />
+          {featureList?.map((feature, index)=> (<HomeCard key={index} data={feature} /> ) )}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let apiUrl = "http://localhost:4000/api/otp/"
+let apiUrl = "http://localhost:4002/api/otp/"
 let genOtp = async (admin_token) => {
     return await axios.get(apiUrl, {headers : {admin_token}})
 }

@@ -1,6 +1,6 @@
 import axois from "axios";
 
-let apiurl = "http://localhost:4000/api/roles/"
+let apiurl = "http://localhost:4002/api/roles/"
 let postRoles = async (data) => {
 return await axois.post(apiurl, data)
 }
