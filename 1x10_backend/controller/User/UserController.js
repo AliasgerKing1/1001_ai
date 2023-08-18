@@ -26,7 +26,7 @@ routes.post("/loginauth",  async(req,res) => {
     let username = req.body.username;
     let password = sha1(req.body.password);
     let result = await User.find({username : username});
-    if(username.length > 0) {
+    if(result.length > 0) {
         if(result[0].password == password) {
             let obj = {
                 _id : result[0]._id,

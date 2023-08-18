@@ -23,6 +23,7 @@ import Snake from '../../components/pages/games/Snake/Snake';
 import NumberGame from '../../components/pages/games/2048/2048';
 import CandyCrush from '../../components/pages/games/CandyCrush/CandyCrush';
 import BlackJack from '../../components/pages/games/BlackJack/BlackJack';
+import GamesList from '../../components/pages/GamesList/GamesList';
 let useRoutes = [
   {
     path : "home",
@@ -107,6 +108,10 @@ let useRoutes = [
   {
     path : "game/blackjack",
     element: <BlackJack/>
+  },
+  {
+    path : "games/list",
+    element: <GamesList/>
   },
   {
     path : "*",
