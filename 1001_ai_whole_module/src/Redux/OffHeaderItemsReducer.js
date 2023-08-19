@@ -2,7 +2,6 @@ import {createSlice} from '@reduxjs/toolkit'
 
 let initialState = {
     language : false,
-    cart : false,
     notifications : false,
     profile : false
 }
@@ -13,9 +12,6 @@ let HeaderItemOffReducer = createSlice({
     reducers : {
         LanguageRed :(state, action) => {
             state.language = action.payload
-        },
-        CartRed :(state, action) => {
-            state.cart = action.payload
         },
         NotificationsRed :(state, action) => {
             state.notifications = action.payload
@@ -28,4 +24,4 @@ let HeaderItemOffReducer = createSlice({
 
 export default HeaderItemOffReducer.reducer
 
-export const {LanguageRed, CartRed, NotificationsRed, ProfileRed} = HeaderItemOffReducer.actions
+export const {LanguageRed, NotificationsRed, ProfileRed} = HeaderItemOffReducer.actions

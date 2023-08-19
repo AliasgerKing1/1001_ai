@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import {NavLink, useNavigate} from "react-router-dom" 
-import {useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
+import { LanguageRed, NotificationsRed, ProfileRed } from '../../Redux/OffHeaderItemsReducer';
 
 const Header = () => {
   let navigate = useNavigate()
-  let [showProfile, setShowProfile] = useState(false)
-  let [showNotifications, setShowNotifications] = useState(false)
-  let [showLanguages, setShowLanguages] = useState(false)
+  let dispatch = useDispatch()
   let [showSearch, setShowSearch] = useState(false)
+
+  let state = useSelector(state => state.UserReducer)
+  let state2 = useSelector(state => state.OffHeaderItemsReducer)
 
   let logOut = () => {
     localStorage.clear()
+    dispatch(LanguageRed(false))
+    dispatch(NotificationsRed(false))
+    dispatch(ProfileRed(false))
   }
-  let state = useSelector(state => state.UserReducer)
+  let lockScreen = () => {
+    localStorage.removeItem("whole_lock_screen_token")
+    navigate("/auth/lock/screen")
+      }
   return (
     <>
             {/*  Header Start */}
@@ -190,11 +198,11 @@ const Header = () => {
               </a>
               <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                 <li className="nav-item dropdown">
-                  <a className={`nav-link nav-icon-hover cursor ${showLanguages ? 
-                        "show" : ""}`} onClick={()=>{setShowLanguages(!showLanguages)}} id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a className={`nav-link nav-icon-hover cursor ${state2?.language ? 
+                        "show" : ""}`} onClick={()=>{dispatch(LanguageRed(!state2?.language))}} id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-flag-en.svg" alt className="rounded-circle object-fit-cover round-20" />
                   </a>
-                  <div className={`dropdown-menu dropdown-menu-end  ${showLanguages ? 
+                  <div className={`dropdown-menu dropdown-menu-end  ${state2?.language ? 
                         "show" : ""}`} aria-labelledby="drop2">
                     <div className="message-body" data-simplebar="init">
 
@@ -232,12 +240,12 @@ const Header = () => {
                   </a>
                 </li>
                 <li className="nav-item dropdown">
-                  <a className={`nav-link nav-icon-hover cursor ${showNotifications ? 
-                        "show" : ""}`} id="drop2" aria-expanded="false" onClick={()=>{setShowNotifications(!showNotifications)}}>
+                  <a className={`nav-link nav-icon-hover cursor ${state2?.notifications ? 
+                        "show" : ""}`} id="drop2" aria-expanded="false" onClick={()=>{dispatch(NotificationsRed(!state2?.notifications))}}>
                     <i className="ti ti-bell-ringing" />
                     <div className="notification bg-primary rounded-circle" />
                   </a>
-                  <div className={`dropdown-menu content-dd dropdown-menu-end ${showNotifications ? 
+                  <div className={`dropdown-menu content-dd dropdown-menu-end ${state2?.notifications ? 
                         "show" : ""}`} aria-labelledby="drop2" data-bs-popper="static">
                     <div className="d-flex align-items-center justify-content-between py-3 px-7">
                       <h5 className="mb-0 fs-5 fw-semibold">Notifications</h5>
@@ -315,15 +323,15 @@ const Header = () => {
                   </div>
                 </li>
                 <li className="nav-item dropdown">
-                  <a className={`nav-link pe-0 ${showProfile ? 
+                  <a className={`nav-link pe-0 ${state2?.profile ? 
                         "show" : ""}`} id="drop1" aria-expanded="false">
                     <div className="d-flex align-items-center">
                       <div className="user-profile-img">
-                        <img src="/assets/dist/images/profile/user-1.jpg" className="rounded-circle cursor" width={35} height={35} alt onClick={()=>{setShowProfile(!showProfile)}}/>
+                        <img src="/assets/dist/images/profile/user-1.jpg" className="rounded-circle cursor" width={35} height={35} alt onClick={()=>{dispatch(ProfileRed(!state2?.profile))}}/>
                       </div>
                     </div>
                   </a>
-                  <div className={`dropdown-menu content-dd dropdown-menu-end ${showProfile ? 
+                  <div className={`dropdown-menu content-dd dropdown-menu-end ${state2?.profile ? 
                         "show" : ""}`} data-bs-popper="static" aria-labelledby="drop1">
                     <div className="profile-dropdown position-relative" data-simplebar="init" style={{ maxHeight: '500px', overflowY: 'auto' }}>
                     <div className="simplebar-wrapper" style={{margin: 0}}>
@@ -382,9 +390,9 @@ const Header = () => {
                         <div className="upgrade-plan bg-light-primary position-relative overflow-hidden rounded-4 p-4 mb-9">
                           <div className="row">
                             <div className="col-6">
-                            <h5 className="fs-4 mb-3 w-50 fw-semibold text-dark">Upgrade To Premium</h5>
-                                    <button className="btn btn-primary text-white">Premium</button>
-                                    {/* onClick={lockScreen} */}
+                            <h5 className="fs-4 mb-3 w-50 fw-semibold text-dark">Lock the Screen</h5>
+                                    <button className="btn btn-primary text-white" onClick={lockScreen}>Sleep</button>
+                                    
                             </div>
                             <div className="col-6">
                               <div className="m-n4">

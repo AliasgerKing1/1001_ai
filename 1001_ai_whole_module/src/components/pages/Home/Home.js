@@ -6,6 +6,7 @@ import { getFeatureList } from '../../../Services/FeatureListService'
 import {getUser} from '../../../Services/UserService'
 import { useDispatch, useSelector } from 'react-redux'
 import {UserDataRed} from '../../../Redux/UserReducer'
+import { LanguageRed, NotificationsRed, ProfileRed } from '../../../Redux/OffHeaderItemsReducer'
 const Home = () => {
   let dispatch = useDispatch()
   let state = useSelector(state=>state.UserReducer)
@@ -15,7 +16,7 @@ let [featureList, setFeatureList] = useState()
     setFeatureList(result.data)
   }
   let userDataFun = async () => {
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('whole_token');
     let result = await getUser(token)
     dispatch(UserDataRed(result.data[0]))
   }
@@ -27,10 +28,9 @@ let [featureList, setFeatureList] = useState()
   }, [])
 
   let offHeaderItems = () => {
-    // dispatch(LanguageRed(false))
-    // dispatch(CartRed(false))
-    // dispatch(NotificationsRed(false))
-    // dispatch(ProfileRed(false))
+    dispatch(LanguageRed(false))
+    dispatch(NotificationsRed(false))
+    dispatch(ProfileRed(false))
   }
   return (
     <>

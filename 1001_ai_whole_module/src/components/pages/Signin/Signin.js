@@ -30,7 +30,8 @@ const Signin = () => {
         dispatch(signupToastMsgRed('Invalid Username/Password'))
       } else {
         dispatch(signupToastStatusRed(false))
-        localStorage.setItem('token', result.data.token)
+        localStorage.setItem('whole_token', result.data.token)
+        localStorage.setItem('whole_lock_screen_token', result.data.lock_token)
         navigate('/auth/home')
       }
     }

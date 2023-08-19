@@ -9,8 +9,8 @@ routes.post("/", async (req,res) => {
     try {
         delete req.body.confpass
         req.body.password = sha1(req.body.password)
-    
         let result = await User.create(req.body);
+        res.send({status : 200, success : true})
     }
     catch (error) {
         console.log(error)
@@ -31,8 +31,13 @@ routes.post("/loginauth",  async(req,res) => {
                 username : result[0].username,
                 email : result[0].email
             }
+            let obj2 = {
+                _id : result[0]._id,
+                username : result[0].username,
+            }
             let token = jwt.sign(obj, "Aliasger web")
-            res.send({status : 200, success : true, token : token});
+            let lock_token = str()
+            res.send({status : 200, success : true, token : token, lock_token : lock_token});
         } else 
         res.send({status : 403, success : false, errType : 2});
     } else 

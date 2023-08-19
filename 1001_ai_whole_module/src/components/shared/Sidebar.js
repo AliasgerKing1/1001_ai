@@ -1,10 +1,20 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { LanguageRed, NotificationsRed, ProfileRed } from '../../Redux/OffHeaderItemsReducer'
 
 const Sidebar = () => {
+  let dispatch = useDispatch()
+let state = useSelector(state => state.UserReducer)
+
+let offHeaderItems = () => {
+  dispatch(LanguageRed(false))
+  dispatch(NotificationsRed(false))
+  dispatch(ProfileRed(false))
+}
   return (
     <>
           {/* Sidebar Start */}
-    <aside className="left-sidebar">
+    <aside className="left-sidebar" onClick={offHeaderItems}>
       {/* Sidebar scroll*/}
       <div>
         <div className="brand-logo d-flex align-items-center justify-content-between">
@@ -1503,14 +1513,14 @@ const Sidebar = () => {
               </a>
             </li>
           </ul>
-          <div className="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
+          <div className="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded" style={{display : state.plan === 'free' ? '' : 'none'}}>
             <div className="d-flex">
               <div className="unlimited-access-title">
                 <h6 className="fw-semibold fs-4 mb-6 text-dark w-85">Unlimited Access</h6>
-                <button className="btn btn-primary fs-2 fw-semibold lh-sm">Signup</button>
+                <button className="btn btn-primary fs-2 fw-semibold lh-sm">Premium</button>
               </div>
               <div className="unlimited-access-img">
-                <img src="../../dist/images/backgrounds/rocket.png" alt className="img-fluid" />
+                <img src="/assets/dist/images/backgrounds/rocket.png" alt className="img-fluid" />
               </div>
             </div>
           </div>
@@ -1518,7 +1528,7 @@ const Sidebar = () => {
         <div className="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
           <div className="hstack gap-3">
             <div className="john-img">
-              <img src="../../dist/images/profile/user-1.jpg" className="rounded-circle" width={40} height={40} alt />
+              <img src="/assets/dist/images/profile/user-1.jpg" className="rounded-circle" width={40} height={40} alt />
             </div>
             <div className="john-title">
               <h6 className="mb-0 fs-4 fw-semibold">Mathew</h6>
