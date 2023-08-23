@@ -39,8 +39,8 @@ const userRole = state.plan || 'free'; // Default role is 'other' if state.plan 
 // Assuming featureList is an array of user data
 const roleFixedIndices = {
   entrepreneur: Array(featureListLen).fill().map((_, index) => index),
-  professional: [0, 2],
-  starter: [1],
+  professional: [0, 2, 3],
+  starter: [1, 2],
   free: [0],
 };
 
