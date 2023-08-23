@@ -11,9 +11,12 @@ const Home = () => {
   let dispatch = useDispatch()
   let state = useSelector(state=>state.UserReducer)
 let [featureList, setFeatureList] = useState()
+let [featureListLen, setFeatureListLen] = useState()
+const userRole = state.plan || 'free'; // Default role is 'other' if state.plan is undefined
   let getFeaturesListFun = async () => {
     const result = await getFeatureList();
     setFeatureList(result.data)
+    setFeatureListLen(result.data.length)
   }
   let userDataFun = async () => {
     let token = localStorage.getItem('whole_token');
@@ -32,6 +35,25 @@ let [featureList, setFeatureList] = useState()
     dispatch(NotificationsRed(false))
     dispatch(ProfileRed(false))
   }
+ 
+// Assuming featureList is an array of user data
+const roleFixedIndices = {
+  entrepreneur: Array(featureListLen).fill().map((_, index) => index),
+  professional: [0, 2],
+  starter: [1],
+  free: [0],
+};
+
+const allIndices = Array.from({ length: featureListLen }, (_, index) => index);
+
+// Check if the userRole is defined in roleFixedIndices, otherwise, use 'other' as the default role
+const filteredFeatures =
+roleFixedIndices[userRole] || roleFixedIndices['free'];
+
+const indicesNotInUserRole = allIndices.filter(
+  (index) => !filteredFeatures.includes(index)
+);
+
   return (
     <>
 <div>
@@ -44,7 +66,7 @@ let [featureList, setFeatureList] = useState()
       <div className="container-fluid" onClick={offHeaderItems}>
         {/*  Row 1 */}
         <div className="row">
-          {featureList?.map((feature, index)=> (<HomeCard key={index} data={feature} /> ) )}
+        {featureList?.map((feature, index) => <HomeCard key={index} data={feature} locked={indicesNotInUserRole.includes(index) ? true : false}  />)}
         </div>
       </div>
     </div>

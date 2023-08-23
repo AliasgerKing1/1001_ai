@@ -10,7 +10,7 @@ let state = useSelector(state => state?.UserReducer)
 <div className="col-lg-4 col-md-6">
   {/* Card */}
   <div className="card">
-    <div className="card-img-overlay" style={{display : state.plan === 'free' ? '' : 'none'}}>
+    <div className="card-img-overlay" style={{display : props?.locked ? '' : 'none'}}>
       {/* SVG Lock Icon */}
       <img src='/assets/dist/images/overlay/lock.svg' alt='not work' />
     </div>
