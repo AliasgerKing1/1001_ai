@@ -1,12 +1,6 @@
 # Requires "requests" to be installed (see python-requests.org)
 # import requests
 # from random_strings import random_string
-
-
-
-
-
-
 # name = random_string(100)
 
 # response = requests.post(

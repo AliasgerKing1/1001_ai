@@ -8,10 +8,24 @@
 //     }
 // }
 
-import React from 'react'
-import {} from ''
+
+import {useRoutes} from 'react-router-dom'
+import Layouts from '../Layouts/Layouts'
+import AuthRoutes from './Auth/AuthRoutes'
+import Root from '../Components/pages/Root/Root'
 const Router = () => {
- const router = useRoutes
+ const router = useRoutes([
+{
+path : '/',
+element : <Root />
+},
+{
+path : '/auth',
+element : <Layouts />,
+children : AuthRoutes
+}
+ ])
+ return (router)
 }
 
 export default Router
