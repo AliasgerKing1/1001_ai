@@ -20,54 +20,54 @@ const Root = () => {
         try {
           if(toType !== null) {
             let inputImageType = event.target.files[0].type;
-          let onlyType = inputImageType.split('/')[1]
-          onlyType = onlyType.toUpperCase();
-          if(onlyType == 'JPG' || onlyType == 'PNG' || onlyType == 'SVG') {
-            if(toType !== onlyType) {
-              setAlert(false)
-              // setSuccessAlertState(true)
-              // setTimeout(() =>{
-              //   setSuccessAlertState(false)
-              // } , 5000)
-              // setSuccessMsg('Image Upload SuccessFully')
-              setImage(event.target.files[0])
-              //send request
-            }
-            else {
+            let onlyType = inputImageType.split('/')[1]
+            onlyType = onlyType.toUpperCase();
+            if(onlyType == 'JPG' || onlyType == 'JPEG' || onlyType == 'PNG' || onlyType == 'SVG+XML') {
+              if(toType !== onlyType) {
+                setAlert(false)
+                // setSuccessAlertState(true)
+                // setTimeout(() =>{
+                //   setSuccessAlertState(false)
+                // } , 5000)
+                // setSuccessMsg('Image Upload SuccessFully')
+                setImage(event.target.files[0])
+                //send request
+              }
+              else {
+                setAlert(true)
+                setSuccessAlertState(false)
+                setMsg('Select diffrent image format to convert')
+                setTimeout(() => {
+                  setAlert(false);
+                }, 5000);            
+                //send error
+              }
+            } else {
               setAlert(true)
               setSuccessAlertState(false)
-              setMsg('Select diffrent image format to convert')
+              setMsg('Invalid Image Format')
               setTimeout(() => {
                 setAlert(false);
-              }, 5000);            
-              //send error
+              }, 5000);          
+    
             }
-          } else {
+            } else {
+              setAlert(true)
+              setSuccessAlertState(false)
+              setMsg('Select Image Format')
+              setTimeout(() => {
+                setAlert(false);
+              }, 5000);        
+            }
+          } catch (error) {
+            console.log(error)
             setAlert(true)
-            setSuccessAlertState(false)
-            setMsg('Invalid Image Format')
-            setTimeout(() => {
-              setAlert(false);
-            }, 5000);          
-  
+              setSuccessAlertState(false)
+              setMsg('Internal server error')
+              setTimeout(() => {
+                setAlert(false);
+              }, 5000);   
           }
-          } else {
-            setAlert(true)
-            setSuccessAlertState(false)
-            setMsg('Select Image Format')
-            setTimeout(() => {
-              setAlert(false);
-            }, 5000);        
-          }
-        } catch (error) {
-          console.log(error)
-          setAlert(true)
-            setSuccessAlertState(false)
-            setMsg('Internal server error')
-            setTimeout(() => {
-              setAlert(false);
-            }, 5000);   
-        }
       }
 
       let submitImage = async (e) => {
