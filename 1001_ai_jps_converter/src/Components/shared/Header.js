@@ -53,7 +53,7 @@ const Header = () => {
               {/* Style Switcher */}
               <li className="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
                 <a className="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                  <i className="ti ti-md" />
+                  <i className="ti ti-md ti-sun" />
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end dropdown-styles">
                   <li>

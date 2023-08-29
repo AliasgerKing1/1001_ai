@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
       type: type.trim(),
       image: `http://localhost:4006/images/${new_name}`
     };
-    await Images.create(obj);
+    // await Images.create(obj);
 
     if(type == 'JPG') {
 // Define the Python API endpoint URL
@@ -60,6 +60,10 @@ axios.post(pythonApiUrl, obj)
     res.status(500).json({ success: false, message: 'Internal server error.' });
   }
   } )
+
+  routes.delete('/', async (req,res) => {
+    await Images.deleteMany({})
+  })
 module.exports = routes;
 
 // http://127.0.0.1:5000

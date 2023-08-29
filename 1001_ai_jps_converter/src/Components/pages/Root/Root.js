@@ -2,7 +2,9 @@
 import React, { useState } from 'react'
 import ErrorAlert from '../../shared/Alerts/ErrorAlert'
 import SuccessAlert from '../../shared/Alerts/SuccessAlert'
-import { addImage } from '../../../Services/ImageService'
+import { DeleteAllImage, addImage } from '../../../Services/ImageService'
+import Footer from '../../shared/Footer'
+import Header2 from '../../shared/Header2'
 const Root = () => {
     let [toType, setToType] = useState(null)
     let [alert, setAlert] = useState(false)
@@ -79,6 +81,9 @@ const Root = () => {
         console.log(result.data)
       }
 
+      let deleteBtn = async () =>{
+        await DeleteAllImage()
+      }
   return (
     <>
 <div>
@@ -88,6 +93,7 @@ const Root = () => {
     <div className="layout-container">
       {/* Layout container */}
       <div className="layout-page">
+        <Header2 />
         {/* Content wrapper */}
         <div className="content-wrapper">
           {/* Content */}
@@ -129,24 +135,10 @@ const Root = () => {
               {/* /Basic  */}
             </div>
           </div>
+
           {/* / Content */}
           {/* Footer */}
-          <footer className="content-footer footer bg-footer-theme">
-            <div className="container-xxl">
-              <div className="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
-                <div>
-                  © 
-                  , made with ❤️ by <a href="#" className="fw-medium">1001_ai</a>
-                </div>
-                <div className="d-none d-lg-inline-block">
-                  <a href="#" className="footer-link me-4" target="_blank">License</a>
-                  <a href="#" target="_blank" className="footer-link me-4">More Themes</a>
-                  <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/" target="_blank" className="footer-link me-4">Documentation</a>
-                  <a href="h#" target="_blank" className="footer-link d-none d-sm-inline-block">Support</a>
-                </div>
-              </div>
-            </div>
-          </footer>
+          <Footer />
           {/* / Footer */}
           <div className="content-backdrop fade" />
         </div>

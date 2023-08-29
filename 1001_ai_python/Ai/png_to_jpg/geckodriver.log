@@ -821,3 +821,241 @@ JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch res
 [Parent 8728, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
 [Parent 8728, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
 [Parent 8728, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+1693307141681	geckodriver	INFO	Listening on 127.0.0.1:52776
+1693307143852	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "52777" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileRlqF7C"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693307145084	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693307145479	Marionette	INFO	Listening on port 52785
+Read port: 52785
+WebDriver BiDi listening on ws://127.0.0.1:52777
+1693307147545	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:52777/devtools/browser/65eb6835-26b1-4e1d-9924-5477873bb9ba
+JavaScript warning: https://secure-ds.serving-sys.com/BurstingCachedScripts//Ad_2_241_3_0/ebStdBannerEx.js, line 148: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Failed to connect WebRenderBridgeChild. isParent=false
+[GFX1-]: Failed to connect WebRenderBridgeChild. isParent=false
+[GFX1-]: Failed to connect WebRenderBridgeChild. isParent=false
+[GFX1-]: Failed to connect WebRenderBridgeChild. isParent=false
+1693307182647	Marionette	INFO	Stopped listening on port 52785
+Dynamically enable window occlusion 1
+console.warn: services.settings: blocklists/gfx sync interrupted by shutdown
+console.warn: services.settings: main/normandy-recipes-capabilities sync interrupted by shutdown
+console.warn: services.settings: main/sites-classification sync interrupted by shutdown
+console.warn: services.settings: main/anti-tracking-url-decoration sync interrupted by shutdown
+console.warn: services.settings: main/public-suffix-list sync interrupted by shutdown
+console.warn: services.settings: main/search-default-override-allowlist sync interrupted by shutdown
+console.warn: services.settings: main/hijack-blocklists sync interrupted by shutdown
+console.warn: services.settings: main/url-classifier-skip-urls sync interrupted by shutdown
+console.warn: services.settings: main/pioneer-study-addons-v1 sync interrupted by shutdown
+console.warn: services.settings: main/top-sites sync interrupted by shutdown
+console.warn: services.settings: main/doh-providers sync interrupted by shutdown
+console.warn: services.settings: main/doh-config sync interrupted by shutdown
+console.warn: services.settings: main/devtools-devices sync interrupted by shutdown
+console.warn: services.settings: main/websites-with-shared-credential-backends sync interrupted by shutdown
+console.warn: services.settings: main/language-dictionaries sync interrupted by shutdown
+console.warn: services.settings: main/password-recipes sync interrupted by shutdown
+console.warn: services.settings: main/password-rules sync interrupted by shutdown
+console.warn: services.settings: main/fxmonitor-breaches sync interrupted by shutdown
+console.warn: services.settings: main/search-config sync interrupted by shutdown
+console.warn: services.settings: main/cookie-banner-rules-list sync interrupted by shutdown
+console.warn: services.settings: main/search-telemetry-v2 sync interrupted by shutdown
+console.warn: services.settings: main/devtools-compatibility-browsers sync interrupted by shutdown
+console.warn: services.settings: main/addons-manager-settings sync interrupted by shutdown
+console.warn: services.settings: security-state/cert-revocations sync interrupted by shutdown
+console.warn: services.settings: security-state/intermediates sync interrupted by shutdown
+console.warn: services.settings: security-state/onecrl sync interrupted by shutdown
+1693307183545	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693307253597	geckodriver	INFO	Listening on 127.0.0.1:51594
+1693307255615	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "51595" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilewsE5fA"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693307256419	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693307256582	Marionette	INFO	Listening on port 51604
+WebDriver BiDi listening on ws://127.0.0.1:51595
+Read port: 51604
+1693307257135	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:51595/devtools/browser/63d325e5-6173-4454-81c3-303840c660d6
+console.error: (new TypeError("can't access property \"get\", linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+JavaScript warning: https://secure-ds.serving-sys.com/BurstingCachedScripts//Ad_2_241_3_0/ebStdBannerEx.js, line 148: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1693307293918	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 4513 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://botsafeguard.net/v2/1.5.4/enforcement.cd12da708fe6cbe6e068918c38de2ad9.js, line 1: TypeError: can't access property "stack", t.error is undefined
+JavaScript error: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: uncaught exception: undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 5444, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+[Parent 5444, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+1693307415453	Marionette	INFO	Stopped listening on port 51604
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+1693307444177	geckodriver	INFO	Listening on 127.0.0.1:57289
+1693307446234	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57290" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilem5uFQ8"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693307447165	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693307447349	Marionette	INFO	Listening on port 57298
+WebDriver BiDi listening on ws://127.0.0.1:57290
+Read port: 57298
+1693307447831	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57290/devtools/browser/31ee959f-3bfc-4f98-932f-79e53616ac37
+JavaScript warning: https://secure-ds.serving-sys.com/BurstingCachedScripts//Ad_2_241_3_0/ebStdBannerEx.js, line 148: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 3187 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://botsafeguard.net/v2/1.5.4/enforcement.cd12da708fe6cbe6e068918c38de2ad9.js, line 1: TypeError: can't access property "stack", t.error is undefined
+JavaScript error: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: uncaught exception: undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 7456, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+1693307606896	geckodriver	INFO	Listening on 127.0.0.1:50468
+1693307608957	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "50469" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile9L1quW"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693307609985	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693307610169	Marionette	INFO	Listening on port 50477
+WebDriver BiDi listening on ws://127.0.0.1:50469
+Read port: 50477
+1693307610654	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50469/devtools/browser/b706bc9a-3f9c-47ad-ac18-4e49db033c5f
+JavaScript warning: https://secure-ds.serving-sys.com/BurstingCachedScripts//Ad_2_241_3_0/ebStdBannerEx.js, line 148: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1693307631697	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+[Parent 11932, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 4638 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://www.emailnator.com/js/app.js?ver=MfLJevaWBm35, line 1: TypeError: can't access property "data", e.response is undefined
+JavaScript warning: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 11932, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+[Parent 11932, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+1693307725724	Marionette	INFO	Stopped listening on port 50477
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+1693307749624	geckodriver	INFO	Listening on 127.0.0.1:53762
+1693307751704	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53763" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileGA7Nex"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693307752588	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693307752776	Marionette	INFO	Listening on port 53780
+WebDriver BiDi listening on ws://127.0.0.1:53763
+Read port: 53780
+1693307753565	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53763/devtools/browser/a849ecc4-def7-4101-8251-66e2c36e6631
+1693307802655	addons.xpi	ERROR	System addon update list error Error: Failed downloading XML, status: 0, channelStatus: 2152398850, errorCode: 5, reason: timeout
+1693307840451	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1693307860245	Marionette	INFO	Stopped listening on port 53780
+Dynamically enable window occlusion 1
+1693307860834	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1693307860851	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693307860863	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1693307861036	Marionette	WARN	No reply from parent process
+1693307861040	RemoteAgent	WARN	No reply from parent process
+[Parent 8688, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 8688, IPC I/O Parent] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:599
+1693311946540	geckodriver	INFO	Listening on 127.0.0.1:57437
+1693311948637	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57438" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileK5arvD"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693311949926	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693311950146	Marionette	INFO	Listening on port 57446
+WebDriver BiDi listening on ws://127.0.0.1:57438
+Read port: 57446
+1693311950745	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57438/devtools/browser/2b4177d3-13f1-47c5-8357-e694b38824b1
+console.error: (new TypeError("can't access property \"get\", linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 6371 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1693312089816	Marionette	INFO	Stopped listening on port 57446
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 3420, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+1693312142831	geckodriver	INFO	Listening on 127.0.0.1:57333
+1693312144924	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57334" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileAXhZFb"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693312146494	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693312146792	Marionette	INFO	Listening on port 57342
+WebDriver BiDi listening on ws://127.0.0.1:57334
+Read port: 57342
+1693312147345	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57334/devtools/browser/3968a65d-d446-4d63-bf70-1aca0d0f9929
+console.error: (new TypeError("can't access property \"get\", linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+1693312196520	addons.xpi	ERROR	System addon update list error Error: Failed downloading XML, status: 0, channelStatus: 2152398850, errorCode: 5, reason: timeout
+1693312197746	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1693312225498	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 212 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://botsafeguard.net/v2/1.5.4/enforcement.cd12da708fe6cbe6e068918c38de2ad9.js, line 1: TypeError: can't access property "stack", t.error is undefined
+JavaScript error: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: uncaught exception: undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://removal.ai/wp-content/cache/wpo-minify/1690333009/assets/wpo-minify-footer-remove-main.min.js, line 15: unreachable code after return statement
+1693312389653	Marionette	INFO	Stopped listening on port 57342
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+1693312426451	geckodriver	INFO	Listening on 127.0.0.1:53402
+1693312428479	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53403" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilehALjjj"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693312429302	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693312429485	Marionette	INFO	Listening on port 53411
+WebDriver BiDi listening on ws://127.0.0.1:53403
+Read port: 53411
+1693312430066	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53403/devtools/browser/de21d44c-ec8a-4bdd-b90e-f04609699e44
+console.error: (new TypeError("can't access property \"get\", linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+1693312479346	addons.xpi	ERROR	System addon update list error Error: Failed downloading XML, status: 0, channelStatus: 2152398850, errorCode: 5, reason: timeout
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693312515913	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 2160 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://www.emailnator.com/js/app.js?ver=MfLJevaWBm35, line 1: TypeError: can't access property "data", e.response is undefined
+JavaScript warning: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://botsafeguard.net/v2/1.5.4/enforcement.cd12da708fe6cbe6e068918c38de2ad9.js, line 1: TypeError: can't access property "stack", t.error is undefined
+JavaScript error: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: uncaught exception: undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 8916, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+JavaScript warning: https://removal.ai/wp-content/cache/wpo-minify/1690333009/assets/wpo-minify-footer-remove-main.min.js, line 15: unreachable code after return statement
+1693312584850	Marionette	INFO	Stopped listening on port 53411
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+1693312707424	geckodriver	INFO	Listening on 127.0.0.1:51263
+1693312709466	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "51264" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilemj37S9"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693312710455	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693312710671	Marionette	INFO	Listening on port 51272
+WebDriver BiDi listening on ws://127.0.0.1:51264
+Read port: 51272
+1693312711332	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:51264/devtools/browser/531f180c-b3ab-4c87-9b03-43f3792197ba
+console.error: (new TypeError("can't access property \"get\", linkMap is undefined", "resource://gre/modules/NewTabUtils.sys.mjs", 2003))
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693312760486	addons.xpi	ERROR	System addon update list error Error: Failed downloading XML, status: 0, channelStatus: 2152398850, errorCode: 5, reason: timeout
+1693312791664	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/F8SkcvzQj7M3-2pXT2CJHOka8GJR2_XQE30kFDFsEbE.js line 2 > eval line 2424 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://botsafeguard.net/v2/1.5.4/enforcement.cd12da708fe6cbe6e068918c38de2ad9.js, line 1: TypeError: can't access property "stack", t.error is undefined
+JavaScript error: https://botsafeguard.net/cdn/fc/js/6af2c0d87b9879cbf3365be1a208293f84d37b1e/standard/botsafev2_api.js?onload=loadChallenge, line 2: uncaught exception: undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693312962380	Marionette	INFO	Stopped listening on port 51272
+Dynamically enable window occlusion 1
+[Parent 9844, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+[Parent 9844, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.

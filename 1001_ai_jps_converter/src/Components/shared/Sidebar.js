@@ -3,7 +3,7 @@ import React from 'react'
 const Sidebar = () => {
   return (
     <>
-      <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme" style={{touchAction: 'none', userSelect: 'none'}}>
 <div className="app-brand demo ">
   <a href="index.html" className="app-brand-link">
     <span className="app-brand-logo demo">
@@ -148,7 +148,7 @@ const Sidebar = () => {
   </li>
   {/* Apps & Pages */}
   <li className="menu-header small text-uppercase">
-    <span className="menu-header-text">Apps &amp; Pages</span>
+    <span className="menu-header-text" style={{float: 'left', fontWeight : '600'}}>Apps &amp; Pages</span>
   </li>
   <li className="menu-item">
     <a href="app-email.html" className="menu-link">

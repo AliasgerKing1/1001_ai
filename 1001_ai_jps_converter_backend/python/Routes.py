@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
-from Shared.SharingImageData import set_image_details, get_image_details
-import cv2
 import os
+import cv2
 
 image_blueprint = Blueprint('image', __name__)
 
@@ -10,39 +9,28 @@ def upload_image():
     try:
         # Access the data sent from Node.js
         data_from_node = request.json  # Assuming data is sent as JSON
-        input_image = data_from_node['image']  # Assuming the 'image' variable contains the path to the PNG image
+        input_image = data_from_node['image']  # Assuming the 'image' variable contains the path to the image
         output_folder = './jpg'  # Replace with the path where you want to save the JPG image
-        
-        # Check if there is an image path in the 'image' variable
-        if input_image and isinstance(input_image, str) and input_image.lower().endswith('.png'):
-            # Convert the provided PNG image to JPG
-            convert_to_jpg(input_image, output_folder)
-        else:
-            # Handle the case where no valid image path is provided
-            return jsonify({'status': '400', 'message': 'No valid image path provided'})
 
-        # Return a response
-        return jsonify({'status': '200', 'message': 'Data received and processed successfully'})
+        # Construct the output path for the JPG image
+        split_url_by_slash = input_image.split('/')
+        split_image_name_by_dot = split_url_by_slash[4].split('.')
+        image_name = split_image_name_by_dot[0]
+        ext = split_image_name_by_dot[1]
+        jpg_output_path = os.path.join(output_folder, f'{image_name}.jpg')
+        if ext == 'png':
+            # If it's a PNG image, use OpenCV to load and save it as JPG
+            input_imagePath = fr'C:\Users\Aliasger B\1001_ai\1001_ai_jps_converter_backend\assets\images\{image_name}.{ext}'
+
+            if input_imagePath and isinstance(input_imagePath, str) and input_imagePath.lower().endswith('.png'):
+                image = cv2.imread(input_imagePath)
+                if image is not None:
+                    cv2.imwrite(jpg_output_path, image)
+                else:
+                    return jsonify({'status': '500', 'message': 'Failed to load PNG image'})
+
+        elif ext == 'svg':
+                return jsonify({'status': '500', 'message': 'Failed to load SVG image'})
+
     except Exception as e:
         return jsonify({'status': '500', 'message': 'Error processing data: ' + str(e)})
-
-@image_blueprint.route('/download', methods=['GET'])
-def download_image():
-    try:
-        image = get_image_details()
-
-        # Return a response
-        return jsonify({'status': '200', 'message': 'Image converted and saved successfully'})
-    except Exception as e:
-        return jsonify({'status': '500', 'message': 'Error processing data: ' + str(e)})
-
-# Define a function to convert an image to JPG
-def convert_to_jpg(input_image, output_folder):
-    # Here, you can use OpenCV or any other library to convert the image to JPG
-    # Example:
-    img = cv2.imread(input_image)
-    jpg_file = os.path.splitext(os.path.basename(input_image))[0] + '.jpg'
-    jpg_path = os.path.join(output_folder, jpg_file)
-    cv2.imwrite(jpg_path, img)
-
-    # You should implement the actual conversion logic based on your requirements
