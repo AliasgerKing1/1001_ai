@@ -1,19 +1,62 @@
 /* eslint-disable */
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import ErrorAlert from '../../shared/Alerts/ErrorAlert'
 import SuccessAlert from '../../shared/Alerts/SuccessAlert'
-import { DeleteAllImage, addImage } from '../../../Services/ImageService'
+import { addImage } from '../../../Services/ImageService'
+import {UserDataRed} from '../../../Redux/UserReducer'
 import Footer from '../../shared/Footer'
 import Header from '../../shared/Header'
 import Sidebar from '../../shared/Sidebar'
+import { getUser } from '../../../Services/UserSerivice'
+import { conversion_option,conversion_option_starter, conversion_option_professional, conversion_option_entrepreneur } from '../../../json/bin'
 const Home = () => {
+  let dispatch = useDispatch()
+
+  let state = useSelector(state => state.userReducer)
   let [toType, setToType] = useState(null)
+  let [selectedOption, setSelectedOption] = useState('');
+  let [selectOptionToggle, setSelectOptionToggle] = useState(false);
   let [alert, setAlert] = useState(false)
   let [successAlertState, setSuccessAlertState] = useState(false)
+  let [planFormat, setPlanFormat] = useState(0)
   let [msg, setMsg] = useState('')
   let [successMsg, setSuccessMsg] = useState('')
   let [image, setImage] = useState()
+
+  let getUserDataFun = async () => {
+    let token = localStorage.getItem('token')
+    let result = await getUser(token);
+    dispatch(UserDataRed(result.data[0]))
+
+  }
+  useEffect(() => {
+    if(state.length == 0) {
+      getUserDataFun();
+    }
+  }, [])
+
+  useEffect(() => {
+    switch (state.plan) {
+      case "free":
+        setPlanFormat(0);
+        break;
+      case "starter":
+        setPlanFormat(1);
+        break;
+      case "professional":
+        setPlanFormat(2);
+        break;
+      case "entrepreneur":
+        setPlanFormat(3);
+        break;
+      default:
+        setPlanFormat(-1); // Handle unexpected values here
+        break;
+    }    
+  }, [state.plan]);
+  
   const handleDivClick = () => {
       const fileInput = document.getElementById('fileInput');
       if (fileInput) {
@@ -76,12 +119,33 @@ const Home = () => {
 
     let submitImage = async (e) => {
       e.preventDefault();
+
+      // Now you can access the selected option using 'selectedOption'
+    if (selectedOption === 'Select Image Format for Conversion') {
+      setAlert(true)
+      setSuccessAlertState(false)
+      setMsg('Select format to convert')
+      setTimeout(() => {
+        setAlert(false);
+      }, 5000);            
+    } else {
+      // User has selected an option, do something with 'selectedOption'
+      console.log('Selected Option:', selectedOption);
+  
+      // The rest of your submitImage function...
+    }
       const formData = new FormData()
       formData.append('type', toType)
       formData.append('image', image)
-      let result = await addImage(formData);
-      console.log(result.data)
+      // let result = await addImage(formData);
+      // console.log(result.data)
     }
+
+    const handleSelectMouseDown = (e) => {
+      e.preventDefault(); // Prevent the default behavior of the select
+      setSelectOptionToggle(!selectOptionToggle);
+    };
+  
   return (
     <>
     <div>
@@ -108,12 +172,62 @@ const Home = () => {
     <div className="card-body">
     <div className="col-md-6">
     <div className="mb-3">
-  <select className="form-select pointer" id="exampleFormControlSelect1" aria-label="Default select example" onChange={(e)=>setToType(e.target.value)}>
-    <option value={null}>Select Image Format for Conversion</option>
-    <option value={'JPG'}>JPG</option>
-    <option value={'PNG'}>PNG</option>
-    <option value={'SVG'}>SVG</option>
+  <select className="form-select pointer" id="exampleFormControlSelect1" aria-label="Default select example" onMouseDown={handleSelectMouseDown}>
+    <option>Select Image Format for Conversion</option>
   </select>
+  {selectOptionToggle &&   <ul className="dropdown-menu dropdown-menu-end show">
+                  <li>
+                    <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption('Select Image Format for Conversion')}>
+                    Select Image Format for Conversion
+                    </a>
+                  </li>
+                    {planFormat === 0 &&
+      conversion_option.map((format, index) => (
+        <div key={index}>
+                  <li>
+                    <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+        {format}
+        </a>
+      </li>
+        </div>
+      ))}
+                  {planFormat === 1 &&
+      conversion_option_starter.map((format, index) => (
+        <div key={index}>
+        <li>
+        <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+        {format}
+        </a>
+                  </li>
+        </div>
+      ))}
+                  {planFormat === 2 &&
+      conversion_option_professional.map((format, index) => (
+        <div key={index}>
+        <li>
+        <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+ {format}
+ {index === conversion_option_entrepreneur.length - 1 && (
+                 <span class="badge rounded-pill bg-warning text-white badge-notifications ms-3 p-1 ps-2 pe-2">New</span>
+                 )}
+ </a>
+                  </li>
+        </div>
+      ))}
+                  {planFormat === 3 &&
+      conversion_option_entrepreneur.map((format, index) => (
+        <div key={index}>
+        <li>
+        <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+          {format}
+          {index === conversion_option_entrepreneur.length - 1 && (
+                 <span class="badge rounded-pill bg-warning text-white badge-notifications ms-3 p-1 ps-2 pe-2">New</span>
+      )}
+      </a>
+                  </li>
+      </div>
+      ))}
+                </ul>}
 </div>
 
         </div>
@@ -136,6 +250,7 @@ const Home = () => {
           </div>
 
           {/* / Content */}
+
           {/* Footer */}
           <Footer />
           {/* / Footer */}

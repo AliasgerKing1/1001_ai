@@ -1,8 +1,53 @@
 import React, { useState } from 'react'
-import {NavLink} from 'react-router-dom'
-import Header2 from '../../shared/Header2'
+import {NavLink, useNavigate} from "react-router-dom"
+import {useFormik} from "formik"
+import SigninSchema from "../../../Schemas/SigninSchema"
+import { loginUser } from '../../../Services/UserSerivice'
+import ErrorAlert from '../../shared/Alerts/ErrorAlert'
+
+let initialValues = {
+  username:  "",
+  password : "",
+}
+
 const Signin = () => {
   let [eye, setEye] = useState(false)
+  let [showAlert, setShowAlert] = useState(false);
+  let [showLoader, setShowLoader] = useState(false);
+  let [msg, setMsg] = useState("");
+
+  let navigate = useNavigate();
+
+  let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
+    initialValues : initialValues,
+    validationSchema : SigninSchema,
+    onSubmit : async () => {
+      try {
+        setShowLoader(true)
+        let result = await loginUser(values);
+        if(result.data.status === 200) {
+          setShowAlert(false)
+          localStorage.setItem('token', result.data.token)
+          navigate('/auth/home')
+        }
+        if(result.data.errType == 1) {
+          setShowAlert(true)
+          setMsg("Username or Password is incorrect")
+        }
+        if(result.data.errType == 2) {
+          setShowAlert(true)
+          setMsg("Username or Password is incorrect")
+        }
+        setShowLoader(false)
+      } catch(error) {
+        setShowAlert(true)
+        setMsg("Internal Server Error")
+        console.log(error)
+        setShowLoader(false)
+      }
+
+    }
+})
 
 
   return (
@@ -33,22 +78,24 @@ const Signin = () => {
           {/* /Logo */}
           <h4 className="mb-1 pt-2">Welcome to Vuexy! 👋</h4>
           <p className="mb-4">Please sign-in to your account and start the adventure</p>
-          <form id="formAuthentication" className="mb-3" action="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template/index.html" method="POST">
+          <form id="formAuthentication" className="mb-3" onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email or Username</label>
-              <input type="text" className="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
+              <label htmlFor="username" className="form-label fl">Email or Username</label>
+              <input type="text" className={`form-control ${touched.username && errors.username ? "is-invalid" : ""}`} id="username" name="username" placeholder="Enter your email or username" autofocus onChange={handleChange} onBlur={handleBlur} value={values.username} />
+              <div>{touched.username && errors.username ? (<small className='text-danger'>{errors.username}</small>) : null}</div>
             </div>
             <div className="mb-3 form-password-toggle">
               <div className="d-flex justify-content-between">
-                <label className="form-label" htmlFor="password">Password</label>
+                <label className="form-label fl" htmlFor="password">Password</label>
                 <a href="auth-forgot-password-basic.html">
                   <small>Forgot Password?</small>
                 </a>
               </div>
               <div className="input-group input-group-merge">
-                <input type={eye ? 'text' : "password"} id="password" className="form-control" name="password" placeholder="············" aria-describedby="password" />
+                <input type={eye ? 'text' : "password"} id="password" className={`form-control ${touched.password && errors.password ? "is-invalid" : ""}`} name="password" placeholder="············" aria-describedby="password" onChange={handleChange} onBlur={handleBlur} value={values.password} />
                 <span className="input-group-text cursor-pointer" onClick={()=>setEye(!eye)}><i className={`ti ${ eye ? "ti-eye": "ti-eye-off"}`} /></span>
               </div>
+              <div>{touched.password && errors.password ? (<small className='text-danger'>{errors.password}</small>) : null}</div>
             </div>
             <div className="mb-3">
               <div className="form-check">
@@ -59,8 +106,9 @@ const Signin = () => {
               </div>
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button className="btn btn-primary d-grid w-100" type='submit'>Sign in</button>
             </div>
+            {showAlert ? (<ErrorAlert msg={msg} />) : null}
           </form>
           <p className="text-center">
             <span>New on our platform?</span>

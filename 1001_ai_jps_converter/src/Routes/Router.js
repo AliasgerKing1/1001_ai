@@ -1,33 +1,39 @@
 
-// let isTokenPresent = () => {
-//     const token = localStorage.getItem('whole_token');
-//     if(token) {
-//         return true
-//     } else {
-//         return false
-//     }
-// }
 
 
-import {useRoutes} from 'react-router-dom'
+import {useRoutes, Navigate} from 'react-router-dom'
 import Layouts from '../Layouts/Layouts'
 import AuthRoutes from './Auth/AuthRoutes'
 import Root from '../Components/pages/Root/Root'
 import Signup from '../Components/pages/Signup/Signup'
 import Signin from '../Components/pages/Signin/Signin'
 const Router = () => {
- const router = useRoutes([
+    let isTokenPresent = () => {
+        const token = localStorage.getItem('token');
+        if(token) {
+            return true
+        } else {
+            return false
+        }
+    }
+    const router = useRoutes([
 {
 path : '/',
-element : <Root />
+element : isTokenPresent() ? (
+    <Navigate to="/auth/home" replace />
+) : (<Root />)
 },
 {
-path : '/signup',
-element : <Signup />
+    path : '/signin',
+    element : isTokenPresent() ? (
+        <Navigate to="/auth/home" replace />
+    ) : (<Signin />)
 },
 {
-path : '/signin',
-element : <Signin />
+    path : '/signup',
+    element : isTokenPresent() ? (
+        <Navigate to="/auth/home" replace />
+    ) : (<Signup />)
 },
 {
 path : '/auth',

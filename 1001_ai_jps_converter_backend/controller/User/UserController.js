@@ -7,7 +7,7 @@ const str = require("random-string")
 routes.post("/", async (req,res) => {
 
     try {
-        delete req.body.confpass
+        delete req.body.conf_password
         req.body.password = sha1(req.body.password)
         let result = await User.create(req.body);
         res.send({status : 200, success : true})
@@ -23,17 +23,12 @@ routes.post("/loginauth",  async(req,res) => {
     let username = req.body.username;
     let password = sha1(req.body.password);
     let result = await User.find({username : username});
-    console.log(result.length)
     if(result.length > 0) {
         if(result[0]?.password == password) {
             let obj = {
                 _id : result[0]._id,
                 username : result[0].username,
                 email : result[0].email
-            }
-            let obj2 = {
-                _id : result[0]._id,
-                username : result[0].username,
             }
             let token = jwt.sign(obj, "Aliasger web")
             let lock_token = str()

@@ -9,10 +9,6 @@ const User = mongoose.Schema({
         type : String,
         default : 'free'
     },
-    screen_pass : {
-        type : String,
-        default : ''
-    },
     email: String,
 
 })

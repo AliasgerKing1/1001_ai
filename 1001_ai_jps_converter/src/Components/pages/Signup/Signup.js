@@ -1,8 +1,58 @@
 import React, { useState } from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from "react-router-dom"
+import {useFormik} from "formik"
+import SignupSchema from "../../../Schemas/SignUpSchema"
+import { addUser } from '../../../Services/UserSerivice'
+import ErrorAlert from '../../shared/Alerts/ErrorAlert'
+
+function formatDate(timestamp) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(timestamp).toLocaleDateString('en-IN', options);
+}
+let date = new Date()
+const formattedDate = formatDate(date);
+let initialValues = {
+  email : "",
+  username:  "",
+  password : "",
+  conf_password : "",
+  join_date : formattedDate
+}
 
 const Signup = () => {
     let [eye, setEye] = useState(false)
+    let [showAlert, setShowAlert] = useState(false);
+    let [showLoader, setShowLoader] = useState(false);
+    let [msg, setMsg] = useState("");
+
+    let navigate = useNavigate();
+
+    let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
+      initialValues : initialValues,
+      validationSchema : SignupSchema,
+      onSubmit : async () => {
+        try {
+          setShowLoader(true)
+          let result = await addUser(values);
+          if(result.data.status == 200) {
+            navigate("/signin")
+            setShowAlert(false)
+          } else {
+            setShowAlert(true)
+            setMsg("Internal Server Error")
+          }
+          setShowLoader(false)
+        } catch(error) {
+          setShowAlert(true)
+          setMsg("Internal Server Error")
+          console.log(error)
+          setShowLoader(false)
+        }
+  
+      }
+  })
+  
+    
   return (
     <>
   {/* Content */}
@@ -31,27 +81,31 @@ const Signup = () => {
             {/* /Logo */}
             <h4 className="mb-1 pt-2">Adventure starts here 🚀</h4>
             <p className="mb-4">Make your Image conversion task easy!</p>
-            <form id="formAuthentication" className="mb-3" action="https://demos.pixinvent.com/vuexy-html-admin-template/html/vertical-menu-template/index.html" method="POST">
+            <form id="formAuthentication" className="mb-3" onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">Username</label>
-                <input type="text" className="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
+                <label htmlFor="username" className="form-label fl">Username</label>
+                <input type="text" className={`form-control ${touched.username && errors.username ? "is-invalid" : ""}`}  id="username" name="username" placeholder="Enter your username" autofocus onChange={handleChange} onBlur={handleBlur} value={values.username} />
+                <div>{touched.username && errors.username ? (<small className='text-danger'>{errors.username}</small>) : null}</div>
               </div>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email</label>
-                <input type="text" className="form-control" id="email" name="email" placeholder="Enter your email" />
+                <label htmlFor="email" className="form-label fl">Email</label>
+                <input type="text" className={`form-control ${touched.email && errors.email ? "is-invalid" : ""}`} id="email" name="email" placeholder="Enter your email" onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                <div>{touched.email && errors.email ? (<small className='text-danger'>{errors.email}</small>) : null}</div>
               </div>
               <div className="mb-3 form-password-toggle">
-                <label className="form-label" htmlFor="password">Password</label>
+                <label className="form-label fl" htmlFor="password">Password</label>
                 <div className="input-group input-group-merge">
-                  <input type={eye ? 'text' : "password"} id="password" className="form-control" name="password" placeholder="············" aria-describedby="password" />
+                  <input type={eye ? 'text' : "password"} id="password" className={`form-control ${touched.password && errors.password ? "is-invalid" : ""}`} name="password" placeholder="············" aria-describedby="password" onChange={handleChange} onBlur={handleBlur} value={values.password} />
                   <span className="input-group-text cursor-pointer"  onClick={()=>setEye(!eye)}><i className={`ti ${ eye ? "ti-eye": "ti-eye-off"}`} /></span>
                 </div>
+                <div>{touched.password && errors.password ? (<small className='text-danger'>{errors.password}</small>) : null}</div>
               </div>
               <div className="mb-3 form-password-toggle">
-                <label className="form-label" htmlFor="conf-password">Confirm Password</label>
+                <label className="form-label fl" htmlFor="conf-password">Confirm Password</label>
                 <div className="input-group input-group-merge">
-                  <input type={eye ? 'text' : "password"} id="conf-password" className="form-control" name="conf-password" placeholder="············" aria-describedby="conf-password" />
+                  <input type={eye ? 'text' : "password"} id="conf-password" className={`form-control ${touched.conf_password && errors.conf_password ? "is-invalid" : ""}`} name="conf_password" placeholder="············" aria-describedby="conf-password" onChange={handleChange} onBlur={handleBlur} value={values.conf_password} />
                 </div>
+                <div>{touched.conf_password && errors.conf_password ? (<small className='text-danger'>{errors.conf_password}</small>) : null}</div>
               </div>
   <div className="mb-3 fv-plugins-icon-container">
   <div className="form-check">
@@ -66,6 +120,7 @@ const Signup = () => {
               <button className="btn btn-primary d-grid w-100">
                 Sign up
               </button>
+              {showAlert ? (<ErrorAlert msg={msg} />) : null}
             </form>
             <p className="text-center">
               <span>Already have an account?</span>
