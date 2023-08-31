@@ -1,7 +1,13 @@
+import Calender from '../../Components/pages/Calender/Calender'
 import Home from '../../Components/pages/Home/Home'
 import AccountSettings from '../../Components/pages/Settings/AccountSettings'
 import BillingPlanSettings from '../../Components/pages/Settings/BillingPlanSettings'
+import ConnectionsSettings from '../../Components/pages/Settings/ConnectionsSettings'
+import NotificationsSettings from '../../Components/pages/Settings/NotificationsSettings'
 import SecuritySettings from '../../Components/pages/Settings/SecuritySettings'
+import ProfileUser from "../../Components/pages/Profile/ProfileUser"
+import ProfileTeam from '../../Components/pages/Profile/ProfileTeam'
+import ProfileProjects from '../../Components/pages/Profile/ProfileProjects'
 const authRoutes = [
     {
         path : 'home',
@@ -19,6 +25,34 @@ const authRoutes = [
         path : 'settings/billplans',
         element : <BillingPlanSettings />
     },
+    {
+        path : 'settings/notifications',
+        element : <NotificationsSettings />
+    },
+    {
+        path : 'settings/connections',
+        element : <ConnectionsSettings />
+    },
+    {
+        path : 'calender',
+        element : <Calender />
+    },
+    {
+        path : 'profile/user',
+        element : <ProfileUser />
+    },
+    {
+        path : 'profile/team',
+        element : <ProfileTeam />
+    },
+    {
+        path : 'profile/projects',
+        element : <ProfileProjects />
+    },
+    // {
+    //     path : 'profile/connections',
+    //     element : <ConnectionsSettings />
+    // },
 ]
 
 export default authRoutes

@@ -3,6 +3,7 @@ import Footer from '../../shared/Footer'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 import SettingNav from '../../shared/SettingNav'
+import {apiKeyList} from '../../../json/bin'
 
 const SecuritySettings = () => {
   return (
@@ -58,16 +59,16 @@ const SecuritySettings = () => {
                         </div>
                       </div>
                       <div className="col-12 mb-4">
-                        <h6 className=' text-a-l'>Password Requirements:</h6>
-                        <ul className="ps-3 mb-0 text-a-l">
-                          <li className="mb-1 text-a-l">Minimum 8 characters long - the more, the better</li>
-                          <li className="mb-1 text-a-l">At least one lowercase character</li>
-                          <li>At least one number, symbol, or whitespace character</li>
+                        <h6 className=' text-a-l fw-600'>Password Requirements:</h6>
+                        <ul className="ps-3 mb-0">
+                          <li className="mb-1 text-a-l fw-500">Minimum 8 characters long - the more, the better</li>
+                          <li className="mb-1 text-a-l fw-500">At least one lowercase character</li>
+                          <li className=' text-a-l fw-500'>At least one number, symbol, or whitespace character</li>
                         </ul>
                       </div>
                       <div>
-                        <button type="submit" className="btn btn-primary me-2 fl">Save changes</button>
-                        <button type="reset" className="btn btn-label-secondary fl">Cancel</button>
+                        <button type="submit" className="btn btn-primary me-2 fl fw-600">Save changes</button>
+                        <button type="reset" className="btn btn-label-secondary fl fw-600">Cancel</button>
                       </div>
                     </div>
                   </form>
@@ -76,13 +77,13 @@ const SecuritySettings = () => {
               {/*/ Change Password */}
               {/* Two-steps verification */}
               <div className="card mb-4">
-                <h5 className="card-header text-a-l">Two-steps verification</h5>
+                <h5 className="card-header text-a-l fw-bold">Two-steps verification</h5>
                 <div className="card-body">
-                  <h5 className="mb-3 text-a-l">Two factor authentication is not enabled yet.</h5>
-                  <p className="w-75 text-a-l">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.
+                  <h5 className="mb-3 text-a-l fw-600">Two factor authentication is not enabled yet.</h5>
+                  <p className="w-75 text-a-l fw-500">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.
                     <a href="javascript:void(0);">Learn more.</a>
                   </p>
-                  <button className="btn btn-primary mt-2 fl" data-bs-toggle="modal" data-bs-target="#enableOTP">Enable two-factor authentication</button>
+                  <button className="btn btn-primary mt-2 fl fw-600" data-bs-toggle="modal" data-bs-target="#enableOTP">Enable two-factor authentication</button>
                 </div>
               </div>
               {/* Modal */}
@@ -93,21 +94,21 @@ const SecuritySettings = () => {
                     <div className="modal-body">
                       <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                       <div className="text-center mb-4">
-                        <h3 className="mb-2">Enable One Time Password</h3>
-                        <p>Verify Your Mobile Number for SMS</p>
+                        <h3 className="mb-2 fw-600">Enable One Time Password</h3>
+                        <p className='fw-500'>Verify Your Mobile Number for SMS</p>
                       </div>
-                      <p>Enter your mobile phone number with country code and we will send you a verification code.</p>
+                      <p className='text-a-l fw-500'>Enter your mobile phone number with country code and we will send you a verification code.</p>
                       <form id="enableOTPForm" className="row g-3" onsubmit="return false">
                         <div className="col-12">
-                          <label className="form-label fl" htmlFor="modalEnableOTPPhone">Phone Number</label>
+                          <label className="form-label fl fw-500" htmlFor="modalEnableOTPPhone">Phone Number</label>
                           <div className="input-group">
-                            <span className="input-group-text">IND (+91)</span>
+                            <span className="input-group-text fw-600">IND (+91)</span>
                             <input type="text" id="modalEnableOTPPhone" name="modalEnableOTPPhone" className="form-control phone-number-otp-mask" placeholder="653 745 0111" />
                           </div>
                         </div>
                         <div className="col-12">
-                          <button type="submit" className="btn btn-primary me-sm-3 me-1">Submit</button>
-                          <button type="reset" className="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                          <button type="submit" className="btn btn-primary me-sm-3 me-1 fw-600">Submit</button>
+                          <button type="button" className="btn btn-label-secondary fw-600" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
                         </div>
                       </form>
                     </div>
@@ -119,15 +120,15 @@ const SecuritySettings = () => {
               {/*/ Two-steps verification */}
               {/* Create an API key */}
               <div className="card mb-4">
-                <h5 className="card-header text-a-l">Create an API key</h5>
+                <h5 className="card-header text-a-l fw-bold">Create an API key</h5>
                 <div className="row">
                   <div className="col-md-5 order-md-0 order-1">
                     <div className="card-body">
                       <form id="formAccountSettingsApiKey" method="POST" onsubmit="return false">
                         <div className="row">
                           <div className="mb-3 col-12">
-                            <label htmlFor="apiAccess" className="form-label fl">Choose the Api key type you want to create</label>
-                            <select id="apiAccess" className="select2 form-select">
+                            <label htmlFor="apiAccess" className="form-label fl fw-600">Choose the Api key type you want to create</label>
+                            <select id="apiAccess" className="select2 form-select fw-600">
                               <option value>Choose Key Type</option>
                               <option value="full">Full Control</option>
                               <option value="modify">Modify</option>
@@ -138,11 +139,11 @@ const SecuritySettings = () => {
                             </select>
                           </div>
                           <div className="mb-3 col-12">
-                            <label htmlFor="apiKey" className="form-label fl">Name the API key</label>
-                            <input type="text" className="form-control" id="apiKey" name="apiKey" placeholder="Server Key 1" />
+                            <label htmlFor="apiKey" className="form-label fl fw-600">Name the API key</label>
+                            <input type="text" className="form-control fw-600" id="apiKey" name="apiKey" placeholder="Server Key 1" />
                           </div>
                           <div className="col-12">
-                            <button type="submit" className="btn btn-primary me-2 d-grid w-100">Create Key</button>
+                            <button type="submit" className="btn btn-primary me-2 d-grid w-100 fw-600">Create Key</button>
                           </div>
                         </div>
                       </form>
@@ -158,71 +159,74 @@ const SecuritySettings = () => {
               {/*/ Create an API key */}
               {/* API Key List & Access */}
               <div className="card mb-4">
-                <h5 className="card-header text-a-l">API Key List &amp; Access</h5>
+                <h5 className="card-header text-a-l fw-bold">API Key List &amp; Access</h5>
                 <div className="card-body">
-                  <p className='text-a-l'>An API key is a simple encrypted string that identifies an application without any principal. They are useful for accessing public data anonymously, and are used to associate API requests with your project for quota and billing.</p>
+                  <p className='text-a-l fw-600'>An API key is a simple encrypted string that identifies an application without any principal. They are useful for accessing public data anonymously, and are used to associate API requests with your project for quota and billing.</p>
                   <div className="row">
                 <div className="col-md-12">
+                {apiKeyList?.map((keyDetails, index) => (
   <div className="bg-lighter rounded p-3 mb-3 position-relative">
+  <div className="dropdown api-key-actions">
+    <a className="btn dropdown-toggle text-muted hide-arrow p-0 fr" data-bs-toggle="dropdown"><i className="ti ti-dots-vertical ti-sm" /></a>
+    <div className="dropdown-menu dropdown-menu-end">
+      <a href="javascript:;" className="dropdown-item fw-600"><i className="ti ti-pencil me-2" />Edit</a>
+      <a href="javascript:;" className="dropdown-item fw-600"><i className="ti ti-trash me-2" />Delete</a>
+    </div>
+  </div>
+  <div className="d-flex align-items-center mb-3">
+    <h4 className="mb-0 me-3 fw-600">{keyDetails && keyDetails?.keyName}</h4>
+    <span className="badge bg-label-primary fw-600">{keyDetails && keyDetails?.keyType}</span>
+  </div>
+  <div className="d-flex align-items-center mb-3">
+    <p className="me-2 mb-0 fw-medium fw-600">{keyDetails && keyDetails?.key}</p>
+    <span className="text-muted cursor-pointer"><i className="ti ti-copy ti-sm" /></span>
+  </div>
+  <div className="d-flex align-items-center">
+  <span className="text-muted fw-500">Created on {keyDetails && keyDetails?.createdOnDate}</span>
+</div>
+</div>
+))}
+
+  {/* <div className="bg-lighter rounded p-3 position-relative mb-3">
     <div className="dropdown api-key-actions">
       <a className="btn dropdown-toggle text-muted hide-arrow p-0 fr" data-bs-toggle="dropdown"><i className="ti ti-dots-vertical ti-sm" /></a>
       <div className="dropdown-menu dropdown-menu-end">
-        <a href="javascript:;" className="dropdown-item"><i className="ti ti-pencil me-2" />Edit</a>
-        <a href="javascript:;" className="dropdown-item"><i className="ti ti-trash me-2" />Delete</a>
+        <a href="javascript:;" className="dropdown-item fw-600"><i className="ti ti-pencil me-2" />Edit</a>
+        <a href="javascript:;" className="dropdown-item fw-600"><i className="ti ti-trash me-2" />Delete</a>
       </div>
     </div>
     <div className="d-flex align-items-center mb-3">
-      <h4 className="mb-0 me-3">Server Key 1</h4>
-      <span className="badge bg-label-primary">Full Access</span>
+      <h4 className="mb-0 me-3 fw-600">Server Key 2</h4>
+      <span className="badge bg-label-primary fw-600">Read Only</span>
     </div>
     <div className="d-flex align-items-center mb-3">
-      <p className="me-2 mb-0 fw-medium">23eaf7f0-f4f7-495e-8b86-fad3261282ac</p>
+      <p className="me-2 mb-0 fw-medium fw-600">bb98e571-a2e2-4de8-90a9-2e231b5e99</p>
       <span className="text-muted cursor-pointer"><i className="ti ti-copy ti-sm" /></span>
     </div>
     <div className="d-flex align-items-center">
-    <span className="text-muted">Created on 28 Apr 2021, 18:20 GTM+4:10</span>
-  </div>
-  </div>
-  <div className="bg-lighter rounded p-3 position-relative mb-3">
-    <div className="dropdown api-key-actions">
-      <a className="btn dropdown-toggle text-muted hide-arrow p-0 fr" data-bs-toggle="dropdown"><i className="ti ti-dots-vertical ti-sm" /></a>
-      <div className="dropdown-menu dropdown-menu-end">
-        <a href="javascript:;" className="dropdown-item"><i className="ti ti-pencil me-2" />Edit</a>
-        <a href="javascript:;" className="dropdown-item"><i className="ti ti-trash me-2" />Delete</a>
-      </div>
-    </div>
-    <div className="d-flex align-items-center mb-3">
-      <h4 className="mb-0 me-3">Server Key 2</h4>
-      <span className="badge bg-label-primary">Read Only</span>
-    </div>
-    <div className="d-flex align-items-center mb-3">
-      <p className="me-2 mb-0 fw-medium">bb98e571-a2e2-4de8-90a9-2e231b5e99</p>
-      <span className="text-muted cursor-pointer"><i className="ti ti-copy ti-sm" /></span>
-    </div>
-    <div className="d-flex align-items-center">
-    <span className="text-muted">Created on 12 Feb 2021, 10:30 GTM+2:30</span>
+    <span className="text-muted fw-500">Created on 12 Feb 2021, 10:30 GTM+2:30</span>
   </div>
   </div>
   <div className="bg-lighter rounded p-3 position-relative">
     <div className="dropdown api-key-actions">
       <a className="btn dropdown-toggle text-muted hide-arrow p-0 fr" data-bs-toggle="dropdown"><i className="ti ti-dots-vertical ti-sm" /></a>
       <div className="dropdown-menu dropdown-menu-end">
-        <a href="javascript:;" className="dropdown-item"><i className="ti ti-pencil me-2" />Edit</a>
-        <a href="javascript:;" className="dropdown-item"><i className="ti ti-trash me-2" />Delete</a>
+        <a href="javascript:;" className="dropdown-item fw-600"><i className="ti ti-pencil me-2" />Edit</a>
+        <a href="javascript:;" className="dropdown-item fw-600"><i className="ti ti-trash me-2" />Delete</a>
       </div>
     </div>
     <div className="d-flex align-items-center mb-3">
-      <h4 className="mb-0 me-3">Server Key 3</h4>
-      <span className="badge bg-label-primary">Full Access</span>
+      <h4 className="mb-0 me-3 fw-600">Server Key 3</h4>
+      <span className="badge bg-label-primary fw-600">Full Access</span>
     </div>
     <div className="d-flex align-items-center mb-3">
-      <p className="me-2 mb-0 fw-medium">2e915e59-3105-47f2-8838-6e46bf83b711</p>
+      <p className="me-2 mb-0 fw-medium fw-600">2e915e59-3105-47f2-8838-6e46bf83b711</p>
       <span className="text-muted cursor-pointer"><i className="ti ti-copy ti-sm" /></span>
     </div>
     <div className="d-flex align-items-center">
-    <span className="text-muted">Created on 28 Dec 2020, 12:21 GTM+4:10</span>
+    <span className="text-muted fw-500">Created on 28 Dec 2020, 12:21 GTM+4:10</span>
   </div>
-  </div>
+  </div> */}
 </div>
 
                   </div>
@@ -231,7 +235,7 @@ const SecuritySettings = () => {
               {/*/ API Key List & Access */}
               {/* Recent Devices */}
               <div className="card mb-4">
-                <h5 className="card-header">Recent Devices</h5>
+                <h5 className="card-header text-a-l fw-bold">Recent Devices</h5>
                 <div className="table-responsive">
                   <table className="table border-top">
                     <thead className="table-light">
@@ -244,37 +248,37 @@ const SecuritySettings = () => {
                     </thead>
                     <tbody className="table-border-bottom-0">
                       <tr>
-                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-windows text-info me-2 ti-sm" /> <span className="fw-medium">Chrome on Windows</span></td>
+                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-windows text-info me-2 ti-sm" /> <span className="fw-medium fw-600">Chrome on Windows</span></td>
                         <td className="text-truncate text-a-l fw-600">HP Spectre 360</td>
                         <td className="text-truncate text-a-l fw-600">Switzerland</td>
                         <td className="text-truncate text-a-l fw-600">10, July 2021 20:07</td>
                       </tr>
                       <tr>
-                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-device-mobile text-danger me-2 ti-sm" /> <span className="fw-medium">Chrome on iPhone</span></td>
+                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-device-mobile text-danger me-2 ti-sm" /> <span className="fw-medium fw-600">Chrome on iPhone</span></td>
                         <td className="text-truncate text-a-l fw-600">iPhone 12x</td>
                         <td className="text-truncate text-a-l fw-600">Australia</td>
                         <td className="text-truncate text-a-l fw-600">13, July 2021 10:10</td>
                       </tr>
                       <tr>
-                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-android text-success me-2 ti-sm" /> <span className="fw-medium">Chrome on Android</span></td>
+                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-android text-success me-2 ti-sm" /> <span className="fw-medium fw-600">Chrome on Android</span></td>
                         <td className="text-truncate text-a-l fw-600">Oneplus 9 Pro</td>
                         <td className="text-truncate text-a-l fw-600">Dubai</td>
                         <td className="text-truncate text-a-l fw-600">14, July 2021 15:15</td>
                       </tr>
                       <tr>
-                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-apple me-2 ti-sm" /> <span className="fw-medium">Chrome on MacOS</span></td>
+                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-apple me-2 ti-sm" /> <span className="fw-medium fw-600">Chrome on MacOS</span></td>
                         <td className="text-truncate text-a-l fw-600">Apple iMac</td>
                         <td className="text-truncate text-a-l fw-600">India</td>
                         <td className="text-truncate text-a-l fw-600">16, July 2021 16:17</td>
                       </tr>
                       <tr>
-                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-windows text-info me-2 ti-sm" /> <span className="fw-medium">Chrome on Windows</span></td>
+                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-windows text-info me-2 ti-sm" /> <span className="fw-medium fw-600">Chrome on Windows</span></td>
                         <td className="text-truncate text-a-l fw-600">HP Spectre 360</td>
                         <td className="text-truncate text-a-l fw-600">Switzerland</td>
                         <td className="text-truncate text-a-l fw-600">20, July 2021 21:01</td>
                       </tr>
                       <tr>
-                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-android text-success me-2 ti-sm" /> <span className="fw-medium">Chrome on Android</span></td>
+                        <td className="text-truncate text-a-l fw-600"><i className="ti ti-brand-android text-success me-2 ti-sm" /> <span className="fw-medium fw-600">Chrome on Android</span></td>
                         <td className="text-truncate text-a-l fw-600">Oneplus 9 Pro</td>
                         <td className="text-truncate text-a-l fw-600">Dubai</td>
                         <td className="text-truncate text-a-l fw-600">21, July 2021 12:22</td>

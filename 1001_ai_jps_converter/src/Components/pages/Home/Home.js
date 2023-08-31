@@ -11,19 +11,23 @@ import Header from '../../shared/Header'
 import Sidebar from '../../shared/Sidebar'
 import { getUser } from '../../../Services/UserSerivice'
 import { conversion_option,conversion_option_starter, conversion_option_professional, conversion_option_entrepreneur } from '../../../json/bin'
+import {selectToggleRed} from '../../../Redux/SelectToggleReducer'
+
 const Home = () => {
   let dispatch = useDispatch()
 
   let state = useSelector(state => state.userReducer)
+  let state2 = useSelector(state => state.selectToggleReducer)
   let [toType, setToType] = useState(null)
   let [selectedOption, setSelectedOption] = useState('');
-  let [selectOptionToggle, setSelectOptionToggle] = useState(false);
   let [alert, setAlert] = useState(false)
   let [successAlertState, setSuccessAlertState] = useState(false)
   let [planFormat, setPlanFormat] = useState(0)
   let [msg, setMsg] = useState('')
   let [successMsg, setSuccessMsg] = useState('')
   let [image, setImage] = useState()
+  let [activeOption, setActiveOption] = useState(null);
+
 
   let getUserDataFun = async () => {
     let token = localStorage.getItem('token')
@@ -130,22 +134,34 @@ const Home = () => {
       }, 5000);            
     } else {
       // User has selected an option, do something with 'selectedOption'
-      console.log('Selected Option:', selectedOption);
+      // console.log('Selected Option:', selectedOption);
   
       // The rest of your submitImage function...
     }
       const formData = new FormData()
       formData.append('type', toType)
       formData.append('image', image)
-      // let result = await addImage(formData);
-      // console.log(result.data)
+     if(image == undefined) {
+      setAlert(true)
+      setSuccessAlertState(false)
+      setMsg('Select Image to convert')
+      setTimeout(() => {
+        setAlert(false);
+      }, 5000);           
+     }
+
+     if(alert === true) {
+      let result = await addImage(formData);
+      console.log(result.data)
+     }
     }
 
     const handleSelectMouseDown = (e) => {
       e.preventDefault(); // Prevent the default behavior of the select
-      setSelectOptionToggle(!selectOptionToggle);
+      setActiveOption(selectedOption); // Set the active option when the dropdown is clicked
+      dispatch(selectToggleRed(!state2)); // Close the sidebar
     };
-  
+    
   return (
     <>
     <div>
@@ -161,7 +177,7 @@ const Home = () => {
         <div className="content-wrapper">
           {/* Content */}
           <div className="container-xxl flex-grow-1 container-p-y">
-            <h4 className="py-3 mb-4">
+            <h4 className="py-3 mb-4" onClick={()=>dispatch(selectToggleRed(false))}>
               <span className="text-muted fw-light"></span> Image Converter
             </h4>
             <div className="row">
@@ -173,9 +189,9 @@ const Home = () => {
     <div className="col-md-6">
     <div className="mb-3">
   <select className="form-select pointer" id="exampleFormControlSelect1" aria-label="Default select example" onMouseDown={handleSelectMouseDown}>
-    <option>Select Image Format for Conversion</option>
+    <option>{activeOption ? activeOption : "Select Image Format for Conversion"}</option>
   </select>
-  {selectOptionToggle &&   <ul className="dropdown-menu dropdown-menu-end show">
+  {state2 &&   <ul className="dropdown-menu dropdown-menu-end show">
                   <li>
                     <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption('Select Image Format for Conversion')}>
                     Select Image Format for Conversion
@@ -185,7 +201,12 @@ const Home = () => {
       conversion_option.map((format, index) => (
         <div key={index}>
                   <li>
-                    <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+                    <a className={`dropdown-item cursor-pointer ${
+            format === activeOption ? "active" : ""
+          }`} onClick={() => {
+                      setSelectedOption(format)
+                      setActiveOption(format); // Set the active option when a list item is clicked
+                      }}>
         {format}
         </a>
       </li>
@@ -195,7 +216,12 @@ const Home = () => {
       conversion_option_starter.map((format, index) => (
         <div key={index}>
         <li>
-        <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+        <a className={`dropdown-item cursor-pointer ${
+            format === activeOption ? "active" : ""
+          }`} onClick={() => {
+          setSelectedOption(format)
+          setActiveOption(format); // Set the active option when a list item is clicked
+          }}>
         {format}
         </a>
                   </li>
@@ -205,7 +231,12 @@ const Home = () => {
       conversion_option_professional.map((format, index) => (
         <div key={index}>
         <li>
-        <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+        <a className={`dropdown-item cursor-pointer ${
+            format === activeOption ? "active" : ""
+          }`} onClick={() => {
+          setSelectedOption(format)
+          setActiveOption(format); // Set the active option when a list item is clicked
+          }}>
  {format}
  {index === conversion_option_entrepreneur.length - 1 && (
                  <span class="badge rounded-pill bg-warning text-white badge-notifications ms-3 p-1 ps-2 pe-2">New</span>
@@ -218,7 +249,12 @@ const Home = () => {
       conversion_option_entrepreneur.map((format, index) => (
         <div key={index}>
         <li>
-        <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption(format)}>
+        <a className={`dropdown-item cursor-pointer ${
+            format === activeOption ? "active" : ""
+          }`} onClick={() => {
+          setSelectedOption(format)
+          setActiveOption(format); // Set the active option when a list item is clicked
+          }}>
           {format}
           {index === conversion_option_entrepreneur.length - 1 && (
                  <span class="badge rounded-pill bg-warning text-white badge-notifications ms-3 p-1 ps-2 pe-2">New</span>

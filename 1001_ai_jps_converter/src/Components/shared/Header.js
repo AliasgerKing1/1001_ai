@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import {selectToggleRed} from '../../Redux/SelectToggleReducer'
 import {useNavigate, NavLink} from 'react-router-dom'
 const Header = () => {
   let navigate = useNavigate()
+  let dispatch = useDispatch()
 
   let state = useSelector(state => state.userReducer)
 
@@ -31,7 +33,7 @@ const Header = () => {
   }
   return (
     <>
-              <nav className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+              <nav className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar" onClick={()=>dispatch(selectToggleRed(false))}>
           <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
             <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
               <i className="ti ti-menu-2 ti-sm" />
@@ -120,18 +122,18 @@ const Header = () => {
                         <span className="dropdown-shortcuts-icon rounded-circle mb-2">
                           <i className="ti ti-calendar fs-4" />
                         </span>
-                        <a href="app-calendar.html" className="stretched-link">Calendar</a>
+                        <NavLink to="/auth/calender" className="stretched-link">Calendar</NavLink>
                         <small className="text-muted mb-0">Appointments</small>
                       </div>
                       <div className="dropdown-shortcuts-item col">
                         <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                          <i className="ti ti-file-invoice fs-4" />
+                          <i className="ti ti-settings fs-4" />
                         </span>
-                        <a href="app-invoice-list.html" className="stretched-link">Invoice App</a>
-                        <small className="text-muted mb-0">Manage Accounts</small>
+                        <NavLink to="/auth/settings/account" className="stretched-link">Setting</NavLink>
+                        <small className="text-muted mb-0">Account Settings</small>
                       </div>
                     </div>
-                    <div className="row row-bordered overflow-visible g-0">
+                    {/* <div className="row row-bordered overflow-visible g-0">
                       <div className="dropdown-shortcuts-item col">
                         <span className="dropdown-shortcuts-icon rounded-circle mb-2">
                           <i className="ti ti-users fs-4" />
@@ -146,8 +148,8 @@ const Header = () => {
                         <a href="app-access-roles.html" className="stretched-link">Role Management</a>
                         <small className="text-muted mb-0">Permission</small>
                       </div>
-                    </div>
-                    <div className="row row-bordered overflow-visible g-0">
+                    </div> */}
+                    {/* <div className="row row-bordered overflow-visible g-0">
                       <div className="dropdown-shortcuts-item col">
                         <span className="dropdown-shortcuts-icon rounded-circle mb-2">
                           <i className="ti ti-chart-bar fs-4" />
@@ -157,13 +159,13 @@ const Header = () => {
                       </div>
                       <div className="dropdown-shortcuts-item col">
                         <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                          <i className="ti ti-settings fs-4" />
+                          <i className="ti ti-file-invoice fs-4" />
                         </span>
-                        <NavLink to="/auth/settings/account" className="stretched-link">Setting</NavLink>
-                        <small className="text-muted mb-0">Account Settings</small>
+                        <a href="app-invoice-list.html" className="stretched-link">Invoice App</a>
+                        <small className="text-muted mb-0">Manage Accounts</small>
                       </div>
-                    </div>
-                    <div className="row row-bordered overflow-visible g-0">
+                    </div> */}
+                    {/* <div className="row row-bordered overflow-visible g-0">
                       <div className="dropdown-shortcuts-item col">
                         <span className="dropdown-shortcuts-icon rounded-circle mb-2">
                           <i className="ti ti-help fs-4" />
@@ -178,7 +180,7 @@ const Header = () => {
                         <a href="modal-examples.html" className="stretched-link">Modals</a>
                         <small className="text-muted mb-0">Useful Popups</small>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </li>

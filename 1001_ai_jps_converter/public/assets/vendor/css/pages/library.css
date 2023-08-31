@@ -32,3 +32,9 @@ text-align: left !important;
 .d-inline-b {
 display: inline-block !important;
   }
+
+  .user-profile-header-banner img {
+    width: 100%;
+    object-fit: cover;
+    height: 250px;
+  }

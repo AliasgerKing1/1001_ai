@@ -7,9 +7,11 @@ import {BrowserRouter} from 'react-router-dom'
 import {Provider} from'react-redux'
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import userReducer from './Redux/UserReducer'
+import selectToggleReducer from './Redux/SelectToggleReducer'
 
 let rootReducer = combineReducers({
   userReducer,
+  selectToggleReducer
 })
 
 let store = configureStore({
