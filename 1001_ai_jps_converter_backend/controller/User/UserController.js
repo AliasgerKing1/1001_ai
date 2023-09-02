@@ -49,4 +49,15 @@ routes.get("/", async (req,res)=> {
 })
 
 
+routes.put('/', async (req,res) => {
+    if(req.headers.token) {
+        let token = req.headers.token;
+        let obj = jwt.decode(token, "Aliasger web")
+       await User.updateMany({_id : obj._id}, req.body)
+       // Fetch the updated documents
+let result = await User.find({ _id: obj._id });
+
+        res.send({status : 200, success : true, updatedData : result})
+    }
+})
 module.exports = routes;

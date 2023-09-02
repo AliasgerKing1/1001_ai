@@ -399,10 +399,10 @@ const Header = () => {
                     <div className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="pages-profile-user.html">
+                    <NavLink className="dropdown-item" to="/auth/profile/user">
                       <i className="ti ti-user-check me-2 ti-sm" />
                       <span className="align-middle">My Profile</span>
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink className="dropdown-item" to="/auth/settings/account">
@@ -411,13 +411,13 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="pages-account-settings-billing.html">
+                    <NavLink className="dropdown-item" to="/auth/settings/billplans">
                       <span className="d-flex align-items-center align-middle">
                         <i className="flex-shrink-0 ti ti-credit-card me-2 ti-sm" />
                         <span className="flex-grow-1 align-middle">Billing</span>
                         <span className="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
                       </span>
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
                     <div className="dropdown-divider" />
@@ -429,10 +429,10 @@ const Header = () => {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="pages-pricing.html">
+                    <NavLink className="dropdown-item" to="/auth/pricing">
                       <i className="ti ti-currency-dollar me-2 ti-sm" />
                       <span className="align-middle">Pricing</span>
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
                     <div className="dropdown-divider" />

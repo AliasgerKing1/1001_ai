@@ -8,8 +8,11 @@ let addUser = async (data) => {
 let getUser = async (token) => {
     return await axios.get(apiUrl, {headers : {token}});
 }
+let updateUser = async (token, data) => {
+    return await axios.put(apiUrl, data, {headers : {token}});
+}
 let loginUser = async (data) => {
     return await axios.post(`${apiUrl}loginauth`, data);
 }
 
-export {addUser, loginUser, getUser}
+export {addUser, loginUser, getUser, updateUser}

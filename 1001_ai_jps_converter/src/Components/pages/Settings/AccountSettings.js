@@ -1,13 +1,58 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {useNavigate} from "react-router-dom";
+import {useFormik} from "formik";
 import Footer from '../../shared/Footer'
 import Sidebar from '../../shared/Sidebar'
 import Header from '../../shared/Header'
 import SettingNav from '../../shared/SettingNav'
+import {updateUser} from '../../../Services/UserSerivice'
+import {UserDataRed} from '../../../Redux/UserReducer'
 
-import { useSelector } from 'react-redux'
+import UpdateDetailsSchema from "../../../Schemas/UpdateDetailsSchema"
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const AccountSettings = () => {
+  let dispatch = useDispatch()
+  let [showAlert, setShowAlert] = useState(false);
+  let [showLoader, setShowLoader] = useState(false);
+  let [msg, setMsg] = useState("");
+  
   let state = useSelector(state => state.userReducer)
+  
+  let navigate = useNavigate();
+  let initialValues = {
+  f_name : state && state.f_name ? state.f_name : "",
+  l_name : state && state.l_name ? state.l_name : ""
+  }
+
+  let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
+    initialValues : initialValues,
+    validationSchema : UpdateDetailsSchema,
+    onSubmit : async () => {
+
+      try {
+        let token = localStorage.getItem('token')
+        setShowLoader(true)
+        let result = await updateUser(token, values);
+        if(result.data.status == 200) {
+          dispatch(UserDataRed(result?.data?.updatedData[0]))
+          navigate("/auth/profile/user")
+          setShowAlert(false)
+        } else {
+          setShowAlert(true)
+          setMsg("Internal Server Error")
+        }
+        setShowLoader(false)
+      } catch(error) {
+        setShowAlert(true)
+        setMsg("Internal Server Error")
+        console.log(error)
+        setShowLoader(false)
+      }
+
+    }
+})
   return (
     <>
 {/* Layout wrapper */}
@@ -54,15 +99,17 @@ const AccountSettings = () => {
                 </div>
                 <hr className="my-0" />
                 <div className="card-body">
-                  <form id="formAccountSettings" method="POST" onsubmit="return false">
+                  <form id="formAccountSettings" onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="mb-3 col-md-6">
                         <label htmlFor="firstName" className="form-label fl fw-600">First Name</label>
-                        <input className="form-control fw-600" type="text" id="firstName" name="firstName" placeholder="John" autofocus />
+                        <input className={`form-control fw-600 ${touched.f_name && errors.f_name ? "is-invalid" : ""}`} type="text" id="firstName" name="f_name" placeholder="John" autofocus onChange={handleChange} onBlur={handleBlur} value={values.f_name} />
+                        <div>{touched.f_name && errors.f_name ? (<small className='text-danger'>{errors.f_name}</small>) : null}</div>
                       </div>
                       <div className="mb-3 col-md-6">
                         <label htmlFor="lastName" className="form-label fl fw-600">Last Name</label>
-                        <input className="form-control fw-600" type="text" name="lastName" id="lastName" placeholder="Doe" />
+                        <input className={`form-control fw-600 ${touched.l_name && errors.l_name ? "is-invalid" : ""}`} type="text" name="l_name" id="lastName" placeholder="Doe" onChange={handleChange} onBlur={handleBlur} value={values.l_name} />
+                        <div>{touched.l_name && errors.l_name ? (<small className='text-danger'>{errors.l_name}</small>) : null}</div>
                       </div>
                       <div className="mb-3 col-md-6">
                         <label htmlFor="email" className="form-label fl fw-600">E-mail</label>
@@ -128,7 +175,7 @@ const AccountSettings = () => {
                       <p className="mb-0 fw-600">Once you delete your account, there is no going back. Please be certain.</p>
                     </div>
                   </div>
-                  <form id="formAccountDeactivation" onsubmit="return false">
+                  <form id="formAccountDeactivation" onSubmit="return false">
                     <div className="form-check mb-4">
                       <input className="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
                       <label className="form-check-label fl fw-600" htmlFor="accountActivation">I confirm my account deactivation</label>

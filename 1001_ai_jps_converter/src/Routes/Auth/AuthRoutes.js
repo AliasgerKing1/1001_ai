@@ -8,6 +8,8 @@ import SecuritySettings from '../../Components/pages/Settings/SecuritySettings'
 import ProfileUser from "../../Components/pages/Profile/ProfileUser"
 import ProfileTeam from '../../Components/pages/Profile/ProfileTeam'
 import ProfileProjects from '../../Components/pages/Profile/ProfileProjects'
+import ProfileConnections from '../../Components/pages/Profile/ProfileConnections'
+import Pricing from '../../Components/pages/Pricing/Pricing'
 const authRoutes = [
     {
         path : 'home',
@@ -49,10 +51,14 @@ const authRoutes = [
         path : 'profile/projects',
         element : <ProfileProjects />
     },
-    // {
-    //     path : 'profile/connections',
-    //     element : <ConnectionsSettings />
-    // },
+    {
+        path : 'profile/connections',
+        element : <ProfileConnections />
+    },
+    {
+        path : 'pricing',
+        element : <Pricing />
+    },
 ]
 
 export default authRoutes

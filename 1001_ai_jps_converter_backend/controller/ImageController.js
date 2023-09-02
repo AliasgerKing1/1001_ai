@@ -31,15 +31,26 @@ const storage = multer.diskStorage({
       image: `http://localhost:4006/images/${new_name}`
     };
     // await Images.create(obj);
-
+let pythonApiUrl = ''
     if(type == 'JPG') {
 // Define the Python API endpoint URL
-const pythonApiUrl = 'http://127.0.0.1:5000/image/upload'; // Update the URL as needed
+pythonApiUrl = 'http://127.0.0.1:5000/image/upload'; // Update the URL as needed
+    } else if (type == 'PNG') {
+      // Define the Python API endpoint URL
+      pythonApiUrl = 'http://127.0.0.1:5000/image/upload/png'; // Update the URL as needed
+    } else {
+      console.log('svg')
+    }
 
+    
 // Define the data you want to send to the Python API
 
 // Make the POST request to the Python API
-axios.post(pythonApiUrl, obj)
+  axios.post(pythonApiUrl, obj, {
+  headers: {
+    'Content-Type': 'application/json' // Set the content type to JSON
+  }
+    })
   .then((response) => {
     // Handle the API response here
     let pythonResult =  response.data;
@@ -49,11 +60,6 @@ axios.post(pythonApiUrl, obj)
     console.error('Error:', error);
   });
 
-    } else if (type == 'PNG') {
-
-    } else {
-      console.log('svg')
-    }
     res.status(200).send({ success: true, obj :  obj});
   } catch (error) {
     console.error(error);

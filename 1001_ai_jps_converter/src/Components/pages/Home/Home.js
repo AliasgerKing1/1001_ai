@@ -141,6 +141,7 @@ const Home = () => {
       const formData = new FormData()
       formData.append('type', toType)
       formData.append('image', image)
+
      if(image == undefined) {
       setAlert(true)
       setSuccessAlertState(false)
@@ -149,11 +150,9 @@ const Home = () => {
         setAlert(false);
       }, 5000);           
      }
-
-     if(alert === true) {
       let result = await addImage(formData);
       console.log(result.data)
-     }
+
     }
 
     const handleSelectMouseDown = (e) => {
@@ -205,7 +204,9 @@ const Home = () => {
             format === activeOption ? "active" : ""
           }`} onClick={() => {
                       setSelectedOption(format)
+                      setToType(format)
                       setActiveOption(format); // Set the active option when a list item is clicked
+                      dispatch(selectToggleRed(false))
                       }}>
         {format}
         </a>
@@ -220,7 +221,9 @@ const Home = () => {
             format === activeOption ? "active" : ""
           }`} onClick={() => {
           setSelectedOption(format)
+          setToType(format)
           setActiveOption(format); // Set the active option when a list item is clicked
+          dispatch(selectToggleRed(false))
           }}>
         {format}
         </a>
@@ -235,7 +238,9 @@ const Home = () => {
             format === activeOption ? "active" : ""
           }`} onClick={() => {
           setSelectedOption(format)
+          setToType(format)
           setActiveOption(format); // Set the active option when a list item is clicked
+          dispatch(selectToggleRed(false))
           }}>
  {format}
  {index === conversion_option_entrepreneur.length - 1 && (
@@ -253,7 +258,9 @@ const Home = () => {
             format === activeOption ? "active" : ""
           }`} onClick={() => {
           setSelectedOption(format)
+          setToType(format)
           setActiveOption(format); // Set the active option when a list item is clicked
+          dispatch(selectToggleRed(false))
           }}>
           {format}
           {index === conversion_option_entrepreneur.length - 1 && (
