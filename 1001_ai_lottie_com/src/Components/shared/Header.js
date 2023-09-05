@@ -1,6 +1,37 @@
-import React from 'react'
-
+import React, { useState, useEffect } from 'react'
+// import {useSelector, useDispatch} from 'react-redux'
+// import {selectToggleRed} from '../../Redux/SelectToggleReducer'
+import {useNavigate, NavLink} from 'react-router-dom'
 const Header = () => {
+  
+  let navigate = useNavigate()
+  // let dispatch = useDispatch()
+
+  // let state = useSelector(state => state.userReducer)
+
+  let [searchInp, setSearchInp] = useState(false)
+  let [searchQuery, setSearchQuery] = useState("")
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      // Check if Ctrl key is pressed and the '/' key (keyCode 191) is pressed
+      if (event.ctrlKey && event.keyCode === 191) {
+        setSearchInp(!searchInp);
+      }
+    };
+
+    // Add the event listener when the component mounts
+    window.addEventListener('keydown', handleKeyPress);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [searchInp]);
+
+  let logOut = () => {
+    localStorage.clear()
+    navigate('/signin')
+  }
   return (
     <>
             <nav className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
@@ -13,7 +44,7 @@ const Header = () => {
           {/* Search */}
           <div className="navbar-nav align-items-center">
             <div className="nav-item navbar-search-wrapper mb-0">
-              <a className="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+              <a className="nav-item nav-link search-toggler d-flex align-items-center px-0 cursor-pointer" onClick={()=>setSearchInp(!searchInp)}>
                 <i className="ti ti-search ti-md me-2" />
                 <span className="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
               </a>
@@ -408,7 +439,7 @@ const Header = () => {
                   <div className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="auth-login-cover.html" target="_blank">
+                  <a className="dropdown-item cursor-pointer" onClick={logOut}>
                     <i className="ti ti-logout me-2 ti-sm" />
                     <span className="align-middle">Log Out</span>
                   </a>
@@ -419,9 +450,12 @@ const Header = () => {
           </ul>
         </div>
         {/* Search Small Screens */}
-        <div className="navbar-search-wrapper search-input-wrapper  d-none">
-          <input type="text" className="form-control search-input container-xxl border-0" placeholder="Search..." aria-label="Search..." />
-          <i className="ti ti-x ti-sm search-toggler cursor-pointer" />
+        <div className={`navbar-search-wrapper search-input-wrapper ${searchInp ? "" : "d-none"}`}>
+          <input type="text" className="form-control search-input container-xxl border-0" placeholder="Search..." aria-label="Search..." name='search' value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)}/>
+          <i className="ti ti-x ti-sm search-toggler cursor-pointer" onClick={()=>{
+              setSearchQuery("")
+              setSearchInp(false)
+            }} />
         </div>
       </nav>
     </>

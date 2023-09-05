@@ -1,5 +1,5 @@
 // import Calender from '../../Components/pages/Calender/Calender'
-// import Home from '../../Components/pages/Home/Home'
+import Home from '../../Components/pages/Home/Home'
 // import AccountSettings from '../../Components/pages/Settings/AccountSettings'
 // import BillingPlanSettings from '../../Components/pages/Settings/BillingPlanSettings'
 // import ConnectionsSettings from '../../Components/pages/Settings/ConnectionsSettings'
@@ -11,10 +11,10 @@
 // import ProfileConnections from '../../Components/pages/Profile/ProfileConnections'
 // import Pricing from '../../Components/pages/Pricing/Pricing'
 const authRoutes = [
-    // {
-    //     path : 'home',
-    //     element : <Home />
-    // },
+    {
+        path : 'home',
+        element : <Home />
+    },
     // {
     //     path : 'settings/account',
     //     element : <AccountSettings />

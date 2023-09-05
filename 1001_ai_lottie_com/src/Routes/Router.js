@@ -1,6 +1,6 @@
 import {useRoutes, Navigate} from 'react-router-dom'
-// import Layouts from '../Layouts/Layouts'
-// import AuthRoutes from './Auth/AuthRoutes'
+import Layouts from '../Layouts/Layouts'
+import AuthRoutes from './Auth/AuthRoutes'
 import Landing from '../Components/pages/Landing/Landing'
 // import Signup from '../Components/pages/Signup/Signup'
 // import Signin from '../Components/pages/Signin/Signin'
@@ -17,7 +17,7 @@ const Router = () => {
         {
             path : '/',
             element : <Landing />
-        }
+        },
 // {
 // path : '/',
 // element : isTokenPresent() ? (
@@ -36,11 +36,11 @@ const Router = () => {
 //         <Navigate to="/auth/home" replace />
 //     ) : (<Signup />)
 // },
-// {
-// path : '/auth',
-// element : <Layouts />,
-// children : AuthRoutes
-// }
+{
+path : '/auth',
+element : <Layouts />,
+children : AuthRoutes
+}
  ])
  return (router)
 }

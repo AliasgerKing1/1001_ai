@@ -4586,3 +4586,1004 @@ observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
 Shutting down due to socket process crash.
 A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
 A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1693915586527	geckodriver	INFO	Listening on 127.0.0.1:53573
+1693915588594	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53574" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile1LQMN8"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693915591225	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693915591738	Marionette	INFO	Listening on port 53583
+Read port: 53583
+WebDriver BiDi listening on ws://127.0.0.1:53574
+1693915592353	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:53574/devtools/browser/547f7567-8b8b-4f3d-96d7-115d0d8fd340
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+console.error: (new TypeError("can't access property \"treeChildren\", parent is null", "resource://devtools/client/inspector/shared/style-change-tracker.js", 67))
+TypeError: can't access property "treeChildren", parent is null: canMutationImpactCurrentStyles@resource://devtools/client/inspector/shared/style-change-tracker.js:67:24
+onMutations@resource://devtools/client/inspector/shared/style-change-tracker.js:84:41
+_emit@resource://devtools/shared/event-emitter.js:242:32
+emit@resource://devtools/shared/event-emitter.js:186:18
+emit@resource://devtools/shared/event-emitter.js:330:18
+getMutations@resource://devtools/client/fronts/walker.js:309:10
+
+console.error: (new TypeError("can't access property \"on\", nodeFront.walkerFront is null", "resource://devtools/client/inspector/markup/markup.js", 1012))
+TypeError: can't access property "on", nodeFront.walkerFront is null: _onNewSelection@resource://devtools/client/inspector/markup/markup.js:1012:7
+_emit@resource://devtools/shared/event-emitter.js:242:32
+emit@resource://devtools/shared/event-emitter.js:186:18
+emit@resource://devtools/shared/event-emitter.js:330:18
+setNodeFront@resource://devtools/client/framework/selection.js:203:10
+onDetached@resource://devtools/client/inspector/inspector.js:1670:20
+_emit@resource://devtools/shared/event-emitter.js:242:32
+emit@resource://devtools/shared/event-emitter.js:186:18
+emit@resource://devtools/shared/event-emitter.js:330:18
+_onMutations@resource://devtools/client/framework/selection.js:104:12
+_emit@resource://devtools/shared/event-emitter.js:242:32
+emit@resource://devtools/shared/event-emitter.js:186:18
+emit@resource://devtools/shared/event-emitter.js:330:18
+getMutations@resource://devtools/client/fronts/walker.js:309:10
+
+console.error: (new Error("Can not send request 'getUniqueSelector' because front 'domnode' is already destroyed.", "resource://devtools/shared/protocol/Front/FrontClassWithSpec.js", 28))
+console.error: (new TypeError("can't access property \"getFront\", container.node.targetFront is null", "resource://devtools/client/inspector/markup/markup.js", 2396))
+console.error: (new TypeError("can't access property \"getFront\", container.node.targetFront is null", "resource://devtools/client/inspector/markup/markup.js", 2396))
+console.error: (new TypeError("can't access property \"treeChildren\", parent is null", "resource://devtools/client/inspector/shared/style-change-tracker.js", 67))
+TypeError: can't access property "treeChildren", parent is null: canMutationImpactCurrentStyles@resource://devtools/client/inspector/shared/style-change-tracker.js:67:24
+onMutations@resource://devtools/client/inspector/shared/style-change-tracker.js:84:41
+_emit@resource://devtools/shared/event-emitter.js:242:32
+emit@resource://devtools/shared/event-emitter.js:186:18
+emit@resource://devtools/shared/event-emitter.js:330:18
+getMutations@resource://devtools/client/fronts/walker.js:309:10
+
+console.error: (new TypeError("can't access property \"treeChildren\", parent is null", "resource://devtools/client/inspector/shared/style-change-tracker.js", 67))
+TypeError: can't access property "treeChildren", parent is null: canMutationImpactCurrentStyles@resource://devtools/client/inspector/shared/style-change-tracker.js:67:24
+onMutations@resource://devtools/client/inspector/shared/style-change-tracker.js:84:41
+_emit@resource://devtools/shared/event-emitter.js:242:32
+emit@resource://devtools/shared/event-emitter.js:186:18
+emit@resource://devtools/shared/event-emitter.js:330:18
+getMutations@resource://devtools/client/fronts/walker.js:309:10
+
+console.warn: "Async method failed in safeAsyncMethod" (new Error("Connection closed, pending request to server0.conn0.windowGlobal6442450946/customhighlighter63, type show failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\nshow@resource://devtools/client/fronts/highlighters.js:31:18\nexports.safeAsyncMethod/<@resource://devtools/shared/async-utils.js:61:25\nshowHighlighterTypeForNode@resource://devtools/client/inspector/shared/highlighters-overlay.js:591:23\n", "resource://devtools/shared/protocol/Front.js", 106))
+console.warn: "Async method failed in safeAsyncMethod" (new Error("Connection closed, pending request to server0.conn0.windowGlobal6442450946/customhighlighter63, type hide failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\nhide@resource://devtools/client/fronts/highlighters.js:36:18\nexports.safeAsyncMethod/<@resource://devtools/shared/async-utils.js:61:25\nhideHighlighterType@resource://devtools/client/inspector/shared/highlighters-overlay.js:650:23\nexports.safeAsyncMethod/<@resource://devtools/shared/async-utils.js:61:25\n_beforeShowHighlighterTypeForNode@resource://devtools/client/inspector/shared/highlighters-overlay.js:370:22\nshowHighlighterTypeForNode@resource://devtools/client/inspector/shared/highlighters-overlay.js:553:26\nexports.safeAsyncMethod/<@resource://devtools/shared/async-utils.js:61:25\nonPickerHovered@resource://devtools/client/inspector/inspector.js:1954:23\n_emit@resource://devtools/shared/event-emitter.js:242:32\nemit@resource://devtools/shared/event-emitter.js:186:18\nemit@resource://devtools/shared/event-emitter.js:330:18\n#onHovered@resource://devtools/client/inspector/node-picker.js:271:10\n_emit@resource://devtools/shared/event-emitter.js:242:32\nemit@resource://devtools/shared/event-emitter.js:186:18\nemit@resource://devtools/shared/event-emitter.js:330:18\nonPacket@resource://devtools/shared/protocol/Front.js:349:13\nonPacket@resource://devtools/client/devtools-client.js:488:13\nsend/<@resource://devtools/shared/transport/local-transport.js:67:25\nexports.makeInfallible/<@resource://devtools/shared/ThreadSafeDevToolsUtils.js:103:22\nexports.makeInfallible/<@resource://devtools/shared/ThreadSafeDevToolsUtils.js:103:22\n", "resource://devtools/shared/protocol/Front.js", 106))
+console.warn: "Async method failed in safeAsyncMethod" (new Error("Connection closed, pending request to server0.conn0.windowGlobal6442450946/customhighlighter63, type show failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\nshow@resource://devtools/client/fronts/highlighters.js:31:18\nexports.safeAsyncMethod/<@resource://devtools/shared/async-utils.js:61:25\nshowHighlighterTypeForNode@resource://devtools/client/inspector/shared/highlighters-overlay.js:591:23\n", "resource://devtools/shared/protocol/Front.js", 106))
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.error: "Unable to find target with innerWindowId:6442450946"
+console.warn: "Async method failed in safeAsyncMethod" (new Error("Can not send request 'hide' because front 'customhighlighter' is already destroyed.", "resource://devtools/shared/protocol/Front/FrontClassWithSpec.js", 28))
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693915750400	Marionette	INFO	Stopped listening on port 53583
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693915751212	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1693915772047	geckodriver	INFO	Listening on 127.0.0.1:53693
+1693915774048	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53694" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileLhY6L1"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693915776162	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693915776996	Marionette	INFO	Listening on port 53706
+WebDriver BiDi listening on ws://127.0.0.1:53694
+Read port: 53706
+Read port: 53706
+Read port: 53706
+Read port: 53706
+1693915781378	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53694/devtools/browser/4f64db34-bd38-4633-a279-a2b323570835
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://devtools/client/framework/toolbox.js, line 1999: TypeError: can't access property "togglePicker", currentPanel is undefined
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693915913803	geckodriver	INFO	Listening on 127.0.0.1:53805
+1693915914981	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53806" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileLVFdU4"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693915916674	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693915917054	Marionette	INFO	Listening on port 53819
+Read port: 53819
+WebDriver BiDi listening on ws://127.0.0.1:53806
+1693915918621	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:53806/devtools/browser/c588b124-fc42-4f90-ac47-47f1c7cc4dfc
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693916155681	Marionette	INFO	Stopped listening on port 53819
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693916155811	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693916169734	geckodriver	INFO	Listening on 127.0.0.1:53909
+1693916171765	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53910" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilefjAcDq"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693916173351	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693916173642	Marionette	INFO	Listening on port 53920
+WebDriver BiDi listening on ws://127.0.0.1:53910
+Read port: 53920
+1693916174537	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53910/devtools/browser/9140b503-7b96-4af3-ac0f-b775b3423419
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693916276927	geckodriver	INFO	Listening on 127.0.0.1:54000
+1693916278929	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54001" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile3WREXg"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693916280486	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693916280756	Marionette	INFO	Listening on port 54011
+WebDriver BiDi listening on ws://127.0.0.1:54001
+Read port: 54011
+1693916281697	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54001/devtools/browser/4eb24399-68cc-4a52-9a0c-aca04ca594da
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693916337377	Marionette	INFO	Stopped listening on port 54011
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693916337561	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693916351419	geckodriver	INFO	Listening on 127.0.0.1:54093
+1693916353424	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54094" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileA8iP7j"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693916354376	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693916354621	Marionette	INFO	Listening on port 54106
+WebDriver BiDi listening on ws://127.0.0.1:54094
+Read port: 54106
+1693916355823	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:54094/devtools/browser/33db67dd-6919-4123-9d76-a4ab28b7610e
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693916457826	geckodriver	INFO	Listening on 127.0.0.1:54204
+1693916459821	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54205" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilem8x5Ds"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693916461404	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693916461721	Marionette	INFO	Listening on port 54217
+WebDriver BiDi listening on ws://127.0.0.1:54205
+Read port: 54217
+1693916462974	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54205/devtools/browser/aeff85e3-c867-46c2-a293-dd5dec68a7ea
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693916796494	Marionette	INFO	Stopped listening on port 54217
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693916796688	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+1693916814887	geckodriver	INFO	Listening on 127.0.0.1:54348
+1693916816875	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54349" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile6OZT2A"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693916818587	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693916818861	Marionette	INFO	Listening on port 54359
+WebDriver BiDi listening on ws://127.0.0.1:54349
+Read port: 54359
+1693916819785	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54349/devtools/browser/47d830e0-364c-4146-b1d0-d34b7fa98536
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693916881363	Marionette	INFO	Stopped listening on port 54359
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1693916881511	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+[Parent 13640, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+1693916907523	geckodriver	INFO	Listening on 127.0.0.1:54438
+1693916909566	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54439" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileKyDPA6"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693916911134	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693916911428	Marionette	INFO	Listening on port 54449
+Read port: 54449
+WebDriver BiDi listening on ws://127.0.0.1:54439
+1693916911892	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54439/devtools/browser/870d61eb-d5a1-4b1c-b1b6-e71c9bd3bf31
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917017674	geckodriver	INFO	Listening on 127.0.0.1:54540
+1693917019671	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54541" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile0T9T0O"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917021190	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917021509	Marionette	INFO	Listening on port 54551
+WebDriver BiDi listening on ws://127.0.0.1:54541
+Read port: 54551
+1693917022304	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:54541/devtools/browser/7f52bf88-56db-422f-93ab-c65aef43d81d
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693917255431	Marionette	INFO	Stopped listening on port 54551
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693917255629	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917270797	geckodriver	INFO	Listening on 127.0.0.1:54659
+1693917272799	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54660" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile2uBnkc"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917274231	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917274516	Marionette	INFO	Listening on port 54670
+WebDriver BiDi listening on ws://127.0.0.1:54660
+Read port: 54670
+1693917275332	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54660/devtools/browser/2ec151eb-c523-486b-8d92-0ada0b958340
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917347661	geckodriver	INFO	Listening on 127.0.0.1:54760
+1693917349691	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54761" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile5zMzbB"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917351371	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917351664	Marionette	INFO	Listening on port 54772
+WebDriver BiDi listening on ws://127.0.0.1:54761
+Read port: 54772
+1693917352673	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54761/devtools/browser/068ae438-0274-450e-a0c7-311df3719486
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917423723	Marionette	INFO	Stopped listening on port 54772
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693917423872	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693917441222	geckodriver	INFO	Listening on 127.0.0.1:54867
+1693917443260	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54868" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileBcXzQ6"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917444869	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917445123	Marionette	INFO	Listening on port 54878
+Read port: 54878
+WebDriver BiDi listening on ws://127.0.0.1:54868
+1693917445539	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54868/devtools/browser/46ba72b9-4262-46d3-8890-dd54fbbf49cd
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693917571288	Marionette	INFO	Stopped listening on port 54878
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917587413	geckodriver	INFO	Listening on 127.0.0.1:54991
+1693917589432	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54992" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofiler26reg"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917590933	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917591210	Marionette	INFO	Listening on port 55002
+WebDriver BiDi listening on ws://127.0.0.1:54992
+Read port: 55002
+1693917592005	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54992/devtools/browser/176bf896-15fa-4b2c-8ff8-6f0559948666
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693917662226	Marionette	INFO	Stopped listening on port 55002
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917716403	geckodriver	INFO	Listening on 127.0.0.1:55090
+1693917718405	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55091" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilePpKDHW"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917719930	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917720223	Marionette	INFO	Listening on port 55101
+WebDriver BiDi listening on ws://127.0.0.1:55091
+Read port: 55101
+1693917721109	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55091/devtools/browser/3ebd2fdd-3884-428e-b259-7c8b5ad9abdf
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917796161	Marionette	INFO	Stopped listening on port 55101
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1693917796280	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693917809497	geckodriver	INFO	Listening on 127.0.0.1:55185
+1693917811519	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55186" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileKBKYlQ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917813131	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917813418	Marionette	INFO	Listening on port 55196
+WebDriver BiDi listening on ws://127.0.0.1:55186
+Read port: 55196
+1693917814387	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:55186/devtools/browser/69e4716f-7960-4c98-b2ef-f95d34a31fa9
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693917890067	geckodriver	INFO	Listening on 127.0.0.1:55286
+1693917892070	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55287" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileAsiSiL"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693917893510	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693917893792	Marionette	INFO	Listening on port 55298
+WebDriver BiDi listening on ws://127.0.0.1:55287
+Read port: 55298
+1693917894512	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55287/devtools/browser/c8c48562-0e0a-41e4-81d8-74695166486b
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693918010395	Marionette	INFO	Stopped listening on port 55298
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693918010576	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+[Parent 11668, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+[Parent 11668, IPC I/O Parent] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:599
+1693918053360	geckodriver	INFO	Listening on 127.0.0.1:55410
+1693918055360	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55411" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile6l2aut"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918056959	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918057224	Marionette	INFO	Listening on port 55421
+WebDriver BiDi listening on ws://127.0.0.1:55411
+Read port: 55421
+1693918058282	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55411/devtools/browser/a396e79b-3e6f-4859-98f5-3c4f399eceb4
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693918130644	geckodriver	INFO	Listening on 127.0.0.1:55497
+1693918132650	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55498" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilenlBgTO"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918134137	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918134410	Marionette	INFO	Listening on port 55510
+Read port: 55510
+WebDriver BiDi listening on ws://127.0.0.1:55498
+1693918134924	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55498/devtools/browser/8445d96b-19e9-4ca5-a60d-229cb3ba8981
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693918206630	Marionette	INFO	Stopped listening on port 55510
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693918206939	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+1693918220068	geckodriver	INFO	Listening on 127.0.0.1:55555
+1693918222073	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55556" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile0cLwgd"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918223494	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918223854	Marionette	INFO	Listening on port 55566
+Read port: 55566
+WebDriver BiDi listening on ws://127.0.0.1:55556
+1693918224314	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55556/devtools/browser/9620f7a9-42c6-4572-9085-ad841ac6c5fe
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693918328147	geckodriver	INFO	Listening on 127.0.0.1:55657
+1693918330144	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55658" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilevcGV6a"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918331081	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918331336	Marionette	INFO	Listening on port 55675
+Read port: 55675
+WebDriver BiDi listening on ws://127.0.0.1:55658
+1693918331659	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55658/devtools/browser/0fbb2dc0-da22-4949-a184-8ecdb4ff3d7b
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693918394437	geckodriver	INFO	Listening on 127.0.0.1:55753
+1693918396440	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55754" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilegnNx9A"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918398018	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918398313	Marionette	INFO	Listening on port 55765
+WebDriver BiDi listening on ws://127.0.0.1:55754
+Read port: 55765
+1693918398710	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55754/devtools/browser/935e8473-589f-4b37-bcc0-8d27932cc741
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+1693918486742	geckodriver	INFO	Listening on 127.0.0.1:55868
+1693918488741	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55869" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileHjMDiq"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918489693	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918490328	Marionette	INFO	Listening on port 55881
+Read port: 55881
+WebDriver BiDi listening on ws://127.0.0.1:55869
+1693918490908	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:55869/devtools/browser/5ddef00d-f485-43fa-bb3b-be6ee87f8cb0
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693918581243	Marionette	INFO	Stopped listening on port 55881
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693918581471	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693918596649	geckodriver	INFO	Listening on 127.0.0.1:55979
+1693918598655	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55980" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileaZNysa"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918600218	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918600481	Marionette	INFO	Listening on port 55991
+WebDriver BiDi listening on ws://127.0.0.1:55980
+Read port: 55991
+1693918601434	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55980/devtools/browser/462e8add-0e06-40a9-b0f9-61aa4f293d5f
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693918653705	Marionette	INFO	Stopped listening on port 55991
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1693918653877	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693918666732	geckodriver	INFO	Listening on 127.0.0.1:56066
+1693918668741	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56067" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileUMkaDy"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918670175	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918670429	Marionette	INFO	Listening on port 56077
+WebDriver BiDi listening on ws://127.0.0.1:56067
+Read port: 56077
+1693918671192	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56067/devtools/browser/e22818c8-e0e7-4bfe-9f5c-f443bcbbbbba
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693918730787	geckodriver	INFO	Listening on 127.0.0.1:56150
+1693918732791	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56151" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileOI2R6r"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918734218	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918734502	Marionette	INFO	Listening on port 56164
+WebDriver BiDi listening on ws://127.0.0.1:56151
+Read port: 56164
+1693918735273	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56151/devtools/browser/30332451-160d-4bf7-8b4d-19936a9fea8c
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693918798067	Marionette	INFO	Stopped listening on port 56164
+Dynamically enable window oc1693918810702	geckodriver	INFO	Listening on 127.0.0.1:56258
+1693918812711	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56259" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileM4FN37"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918814292	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918814563	Marionette	INFO	Listening on port 56269
+WebDriver BiDi listening on ws://127.0.0.1:56259
+Read port: 56269
+1693918814943	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56259/devtools/browser/ab45755d-6960-482a-bf7a-5450d41eb4e8
+[Parent 4680, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+1693918966445	Marionette	INFO	Stopped listening on port 56269
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693918966597	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693918981287	geckodriver	INFO	Listening on 127.0.0.1:56373
+1693918983296	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56374" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileqgKI61"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693918984758	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693918984991	Marionette	INFO	Listening on port 56384
+WebDriver BiDi listening on ws://127.0.0.1:56374
+Read port: 56384
+1693918985430	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56374/devtools/browser/bcbed8c4-27bf-45bc-a057-8dda783b9405
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693919034084	Marionette	INFO	Stopped listening on port 56384
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1693919034239	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693919047167	geckodriver	INFO	Listening on 127.0.0.1:56463
+1693919049178	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56464" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilePi9npZ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919050597	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919050886	Marionette	INFO	Listening on port 56473
+Read port: 56473
+WebDriver BiDi listening on ws://127.0.0.1:56464
+1693919051301	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56464/devtools/browser/74fbc7e4-5850-4a55-81e3-1d120bb8d85c
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693919105827	Marionette	INFO	Stopped listening on port 56473
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693919105974	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693919119056	geckodriver	INFO	Listening on 127.0.0.1:56561
+1693919121085	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56562" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile2IgvTp"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919122621	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919122906	Marionette	INFO	Listening on port 56572
+WebDriver BiDi listening on ws://127.0.0.1:56562
+Read port: 56572
+1693919123819	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56562/devtools/browser/a38a8303-2f43-45c9-8cf2-9af905c3648f
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("can't access property \"addBlocker\", lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+1693919357908	Marionette	INFO	Stopped listening on port 56572
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693919358551	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+1693919372790	geckodriver	INFO	Listening on 127.0.0.1:56715
+1693919374798	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56716" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileYns6fS"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919376284	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919376585	Marionette	INFO	Listening on port 56726
+Read port: 56726
+WebDriver BiDi listening on ws://127.0.0.1:56716
+Read port: 56726
+1693919378608	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56716/devtools/browser/94ed3706-19c7-4c86-a0f2-2b46d2483514
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693919426444	Marionette	INFO	Stopped listening on port 56726
+Dynamically enable window occlusion 1
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1693919426597	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693919439896	geckodriver	INFO	Listening on 127.0.0.1:56801
+1693919441900	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56802" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilekRjl9M"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919443338	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919443614	Marionette	INFO	Listening on port 56811
+Read port: 56811
+WebDriver BiDi listening on ws://127.0.0.1:56802
+1693919443951	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56802/devtools/browser/6a823d98-aea6-4093-b64e-b05f4dced71d
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693919487462	Marionette	INFO	Stopped listening on port 56811
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693919487690	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+1693919508991	geckodriver	INFO	Listening on 127.0.0.1:56884
+1693919510983	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "56885" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilePGS3xS"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919512545	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919512832	Marionette	INFO	Listening on port 56894
+WebDriver BiDi listening on ws://127.0.0.1:56885
+Read port: 56894
+1693919513574	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:56885/devtools/browser/b588bec9-0de8-43bb-bb8e-2664c7ad7779
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: resource://devtools/client/framework/toolbox.js, line 1999: TypeError: can't access property "togglePicker", currentPanel is undefined
+1693919647301	geckodriver	INFO	Listening on 127.0.0.1:57011
+1693919649302	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57012" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofile7TKPLt"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919650862	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919651120	Marionette	INFO	Listening on port 57022
+WebDriver BiDi listening on ws://127.0.0.1:57012
+Read port: 57022
+1693919651868	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57012/devtools/browser/2ea3c6e6-c54f-477d-b8ff-282f6d8680f0
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693919702784	Marionette	INFO	Stopped listening on port 57022
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693919702903	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693919716013	geckodriver	INFO	Listening on 127.0.0.1:57097
+1693919718023	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57098" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilewbWRNw"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919719456	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919719704	Marionette	INFO	Listening on port 57107
+Read port: 57107
+WebDriver BiDi listening on ws://127.0.0.1:57098
+1693919720063	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57098/devtools/browser/d1e7da1c-0f27-45ed-904e-0ff31d6d746a
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693919760176	Marionette	INFO	Stopped listening on port 57107
+Dynamically enable window occlusion 1
+1693919773922	geckodriver	INFO	Listening on 127.0.0.1:57173
+1693919775932	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57174" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileiJXvfb"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693919777414	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693919777659	Marionette	INFO	Listening on port 57183
+WebDriver BiDi listening on ws://127.0.0.1:57174
+Read port: 57183
+1693919778702	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57174/devtools/browser/ae8e8407-1939-42c5-b77e-902421178659
+[Parent 5320, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:793
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://devtools/client/framework/toolbox.js, line 1999: TypeError: can't access property "togglePicker", currentPanel is undefined
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693920841214	Marionette	INFO	Stopped listening on port 57183
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693920841746	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693920856492	geckodriver	INFO	Listening on 127.0.0.1:57353
+1693920858511	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57354" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilebBSixc"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693920860323	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693920860629	Marionette	INFO	Listening on port 57363
+WebDriver BiDi listening on ws://127.0.0.1:57354
+Read port: 57363
+1693920861455	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:57354/devtools/browser/df30b9a7-15de-448e-8d64-e3cac12c79a4
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693920902971	Marionette	INFO	Stopped listening on port 57363
+Dynamically enable window occlusion 1
+1693920915979	geckodriver	INFO	Listening on 127.0.0.1:57416
+1693920917985	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57417" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileUrCj4x"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693920919367	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693920919631	Marionette	INFO	Listening on port 57428
+Read port: 57428
+WebDriver BiDi listening on ws://127.0.0.1:57417
+1693920920004	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57417/devtools/browser/c0a0dd9c-160f-469b-9d00-5bf3af265904
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("can't access property \"addBlocker\", lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+JavaScript error: resource://devtools/client/framework/toolbox.js, line 1999: TypeError: can't access property "togglePicker", currentPanel is undefined
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:330:33
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:330:33
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+#onRequestHeader@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:709:29
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:585:28
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+#onRequestHeader@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:709:29
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:585:28
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:325:33
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:325:33
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:330:33
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+Handler function threw an exception: TypeError: can't access property "documentPrincipal", browsingContext.currentWindowGlobal is null
+Stack: isChannelFromSystemPrincipal@resource://devtools/shared/network-observer/NetworkUtils.sys.mjs:91:1
+_createResource@resource://devtools/server/actors/network-monitor/network-event-actor.js:186:40
+NetworkEventActor@resource://devtools/server/actors/network-monitor/network-event-actor.js:104:27
+onNetworkEvent@resource://devtools/server/actors/resources/network-events.js:284:19
+#createNetworkEvent@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:665:46
+@resource://devtools/shared/network-observer/NetworkObserver.sys.mjs:330:33
+makeInfallible/<@resource://devtools/shared/DevToolsInfaillibleUtils.sys.mjs:43:22
+Line: 91, column: 1
+console.error: (new TypeError("can't access property \"documentPrincipal\", browsingContext.currentWindowGlobal is null", "resource://devtools/shared/network-observer/NetworkUtils.sys.mjs", 91))
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693921224957	Marionette	INFO	Stopped listening on port 57428
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693921225136	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693921251555	geckodriver	INFO	Listening on 127.0.0.1:57618
+1693921253534	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57619" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilewnN12A"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693921254957	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693921255218	Marionette	INFO	Listening on port 57628
+Read port: 57628
+WebDriver BiDi listening on ws://127.0.0.1:57619
+1693921255620	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57619/devtools/browser/8913d25f-c715-41f9-bd9b-884bd5db9aee
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+1693921477710	Marionette	INFO	Stopped listening on port 57628
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693921477924	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693921495205	geckodriver	INFO	Listening on 127.0.0.1:57711
+1693921497211	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57712" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofilekIl9Kk"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693921498660	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693921498909	Marionette	INFO	Listening on port 57722
+WebDriver BiDi listening on ws://127.0.0.1:57712
+Read port: 57722
+1693921499764	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57712/devtools/browser/f5b26870-8cf4-40f9-9336-92db5f1bff89
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+console.warn: "Error while destroying front:" "cssProperties" (new Error("Connection closed, pending request to server0.conn0.windowGlobal6442450950/cssPropertiesActor8, type getCSSDatabase failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\ninitialize@resource://devtools/client/fronts/css-properties.js:60:28\nmanage@resource://devtools/shared/protocol/Front.js:146:19\ngetFront@resource://devtools/shared/protocol/types.js:562:18\ngetFront@resource://devtools/client/fronts/targets/target-mixin.js:257:15\n_getCssProperties@resource://devtools/client/inspector/inspector.js:563:45\n_onTargetAvailable@resource://devtools/client/inspector/inspector.js:281:12\n", "resource://devtools/shared/protocol/Front.js", 106))
+console.warn: "Error while destroying front:" "accessibility" (new Error("Connection closed, pending request to server0.conn0.windowGlobal6442450950/accessibilityActor12, type getWalker failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\ninitialize@resource://devtools/client/fronts/accessibility.js:519:46\nmanage@resource://devtools/shared/protocol/Front.js:146:19\ngetFront@resource://devtools/shared/protocol/types.js:562:18\ngetFront@resource://devtools/client/fronts/targets/target-mixin.js:257:15\n_getAccessibilityFront@resource://devtools/client/inspector/inspector.js:567:49\n_onTargetAvailable@resource://devtools/client/inspector/inspector.js:282:12\n", "resource://devtools/shared/protocol/Front.js", 106))
+console.error: "Exception when calling onAvailable handler" "Connection closed, pending request to server0.conn0.windowGlobal6442450950/cssPropertiesActor8, type getCSSDatabase failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\ninitialize@resource://devtools/client/fronts/css-properties.js:60:28\nmanage@resource://devtools/shared/protocol/Front.js:146:19\ngetFront@resource://devtools/shared/protocol/types.js:562:18\ngetFront@resource://devtools/client/fronts/targets/target-mixin.js:257:15\n_getCssProperties@resource://devtools/client/inspector/inspector.js:563:45\n_onTargetAvailable@resource://devtools/client/inspector/inspector.js:281:12\n" (new Error("Connection closed, pending request to server0.conn0.windowGlobal6442450950/cssPropertiesActor8, type getCSSDatabase failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:300:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:47:19\ninitialize@resource://devtools/client/fronts/css-properties.js:60:28\nmanage@resource://devtools/shared/protocol/Front.js:146:19\ngetFront@resource://devtools/shared/protocol/types.js:562:18\ngetFront@resource://devtools/client/fronts/targets/target-mixin.js:257:15\n_getCssProperties@resource://devtools/client/inspector/inspector.js:563:45\n_onTargetAvailable@resource://devtools/client/inspector/inspector.js:281:12\n", "resource://devtools/shared/protocol/Front.js", 106))
+console.error: (new TypeError("can't access property \"watchResources\", this.toolbox.resourceCommand is null", "resource://devtools/client/inspector/inspector.js", 222))
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693921686546	Marionette	INFO	Stopped listening on port 57722
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693921686742	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693921700187	geckodriver	INFO	Listening on 127.0.0.1:57827
+1693921702194	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57828" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileXTo2dD"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693921703615	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693921703848	Marionette	INFO	Listening on port 57839
+WebDriver BiDi listening on ws://127.0.0.1:57828
+Read port: 57839
+1693921704617	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:57828/devtools/browser/52be4d76-ee7b-488f-ba5a-2feeb1e4dfdf
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693921773369	Marionette	INFO	Stopped listening on port 57839
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693921773895	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+[Parent 5024, Main Thread] WARNING: pipe error: 232: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:599
+1693921794046	geckodriver	INFO	Listening on 127.0.0.1:57920
+1693921796078	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "57921" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileqdjBCq"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693921797595	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693921797883	Marionette	INFO	Listening on port 57931
+WebDriver BiDi listening on ws://127.0.0.1:57921
+Read port: 57931
+1693921798340	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:57921/devtools/browser/21c2e8d6-9230-4918-ba73-84cc6edb4d62
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1693921844906	Marionette	INFO	Stopped listening on port 57931
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693921845160	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+observe()@resource://gre/modules/AsyncShutdown.sys.mjs:575
+1693921857732	geckodriver	INFO	Listening on 127.0.0.1:58011
+1693921859735	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "58012" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileNcEFHz"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693921861165	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693921861396	Marionette	INFO	Listening on port 58021
+Read port: 58021
+WebDriver BiDi listening on ws://127.0.0.1:58012
+1693921861807	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.sys.mjs: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 757))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+DevTools listening on ws://127.0.0.1:58012/devtools/browser/30808ecf-9638-43cb-931c-03569421f7a4
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
+JavaScript error: resource://devtools/client/framework/toolbox.js, line 1999: TypeError: can't access property "togglePicker", currentPanel is undefined
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 575: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1693922152075	Marionette	INFO	Stopped listening on port 58021
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+!!! error running onStopped callback: TypeError: callback is not a function
+1693922152330	WebDriver BiDi	ERROR	Failed to stop protocol: [Exception... "Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: chrome://remote/content/marionette/cert.sys.mjs :: allowAllCerts.disable :: line 51"  data: no] Stack trace: allowAllCerts.disable()@cert.sys.mjs:51
+destroy()@Session.sys.mjs:205
+deleteSession()@WebDriverBiDi.sys.mjs:142
+stop()@WebDriverBiDi.sys.mjs:230
+1693922165817	geckodriver	INFO	Listening on 127.0.0.1:58138
+1693922167815	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "58139" ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\ALIASG~1\\AppData\\Local\\Temp\\rust_mozprofileVlSHH2"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1693922169515	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1693922169802	Marionette	INFO	Listening on port 58148
+Read port: 58148
+WebDriver BiDi listening on ws://127.0.0.1:58139
+1693922170312	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:58139/devtools/browser/18d60b37-27c7-4a76-8e9e-907f758a0def
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.lottiefiles.com."
+JavaScript error: https://app.lottiefiles.com/_next/static/chunks/9968-b9ef79102620aff0.js, line 2: Error: Request failed with status code 401
