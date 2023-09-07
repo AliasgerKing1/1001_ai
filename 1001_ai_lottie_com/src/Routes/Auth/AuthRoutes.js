@@ -1,4 +1,5 @@
 // import Calender from '../../Components/pages/Calender/Calender'
+import Editor from '../../Components/pages/Editor/Editor'
 import Home from '../../Components/pages/Home/Home'
 // import AccountSettings from '../../Components/pages/Settings/AccountSettings'
 // import BillingPlanSettings from '../../Components/pages/Settings/BillingPlanSettings'
@@ -14,6 +15,10 @@ const authRoutes = [
     {
         path : 'home',
         element : <Home />
+    },
+    {
+        path : 'editor',
+        element : <Editor />
     },
     // {
     //     path : 'settings/account',
