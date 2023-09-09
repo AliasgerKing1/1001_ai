@@ -7,6 +7,7 @@ const str = require("random-string")
 routes.post("/", async (req,res) => {
 
     try {
+        req.body.username = "1001_" + req.body.username;
         delete req.body.confpass
         req.body.password = sha1(req.body.password)
         let result = await User.create(req.body);
@@ -23,7 +24,6 @@ routes.post("/loginauth",  async(req,res) => {
     let username = req.body.username;
     let password = sha1(req.body.password);
     let result = await User.find({username : username});
-    console.log(result.length)
     if(result.length > 0) {
         if(result[0]?.password == password) {
             let obj = {

@@ -4,6 +4,7 @@ import {useFormik} from "formik"
 import SigninSchema from "../../../Schemas/SignInSchema"
 import { loginUser } from '../../../Services/AuthService'
 import ErrorAlert from "../../shared/ErrorAlert"
+import { checkUser } from '../../../Services/WholeModuleService'
 let initialValues = {
   username:  "",
   password : ""
@@ -19,22 +20,50 @@ const SignIn = () => {
     onSubmit : async () => {
       try {
         setShowLoader(true)
-        let result = await loginUser(values);
-        if(result.data.errType == 1) {
-          setShowAlert(true)
-          setMsg("Username / Password is incorrect")
-        }
-        else if(result.data.errType == 2) {
-          setShowAlert(true)
-          setMsg("Username / Password is incorrect")
-        }
-          else {
-          setShowAlert(false)
-          localStorage.setItem("token", result.data.token)
-            navigate("/auth/home")
-        }
+          let whole_result = await checkUser(values)
+          if(whole_result.data.status === 200) {
+            setShowAlert(false)
+            localStorage.setItem('token', whole_result.data.token)
+            navigate('/auth/home')
+          }
+          if(whole_result.data.errType == 1) {
+
+            let result = await loginUser(values);
+            if(result.data.status === 200) {
+              setShowAlert(false)
+              localStorage.setItem('token', result.data.token)
+              navigate('/auth/home')
+            }
+            if(result.data.errType == 1) {
+              setShowAlert(true)
+              setMsg("Username or Password is incorrect")
+              setTimeout(() => {
+                setShowAlert(false)
+              }, 3000);
+            }
+            if(result.data.errType == 2) {
+              setShowAlert(true)
+              setMsg("Username or Password is incorrect")
+              setTimeout(() => {
+                setShowAlert(false)
+              }, 3000);
+            }
+
+          }
+          if(whole_result.data.errType == 2) {
+            setShowAlert(true)
+            setMsg("Username or Password is incorrect")
+            setTimeout(() => {
+              setShowAlert(false)
+            }, 3000);
+          } else
         setShowLoader(false)
       } catch(error) {
+        setShowAlert(true)
+        setMsg("Internal Server Error")
+        setTimeout(() => {
+          setShowAlert(false)
+        }, 3000);
         console.log(error)
         setShowLoader(false)
       }

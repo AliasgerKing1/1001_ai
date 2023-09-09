@@ -32,19 +32,30 @@ let [msg, setMsg] = useState("");
     let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
         initialValues : initialValues,
         validationSchema : SigninSchema,
-        onSubmit : () => {
+        onSubmit : async () => {
+            try {
             setShowSpinner(true);
-    DoLogin(values).then(result=> {
+    let result = await DoLogin(values)
+    console.log(result.data)
         if (result.data.errType === 1) {
             setMsg("This email/username or password is incorrect !");
+            setTimeout(() => {
+                setShowAlert(false)
+              }, 3000);
             setShowAlert(true);
         }
         if (result.data.errType === 2) {
             setMsg("This Password is incorrect !");
+            setTimeout(() => {
+                setShowAlert(false)
+              }, 3000);
             setShowAlert(true);
         }
         if (result.data.errType === 3) {
             setMsg("Please verify your account first !");
+            setTimeout(() => {
+                setShowAlert(false)
+              }, 3000);
             setShowAlert(true);
         }
         if(result.data.status === 200) {
@@ -52,13 +63,18 @@ let [msg, setMsg] = useState("");
             navigate("/auth/home")
         }
         setShowSpinner(false);
-}).catch(error=> {
+}catch(error) {
+    setShowAlert(true)
+    setMsg("Internal Server Error")
+    setTimeout(() => {
+      setShowAlert(false)
+    }, 3000);
     console.log(error)
-setShowSpinner(false);
-})
+    setShowLoader(false)
+  }
 
-} 
-  
+}
+
     })
     useEffect(()=> {
     let check = 0;
@@ -123,7 +139,7 @@ getUrlLocationRedux(location.pathname)
                                 </div>
                                 <div className='row'>
                                 <div className='col-md-6'>
-                                <button type='submit' className="submit-btn">SignIn</button>
+                                <a className="submit-btn" style={{cursor : 'pointer'}}>SignIn</a>
                            { showAlert ? (<AlertDanger msg={msg}/>) : ""}
                                 </div>
                                 <div className='col-md-6'>
