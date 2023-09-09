@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 import {NavLink, useNavigate} from "react-router-dom"
 import { social,signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand } from '../../../Json/Design_system';

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {useRoutes, Navigate} from 'react-router-dom'
 import Layouts from '../Layouts/Layouts'
 import AuthRoutes from './Auth/AuthRoutes'
@@ -12,11 +11,7 @@ const Router = () => {
         }
     }
     const router = useRoutes([
-{
-path : '/auth',
-element : <Layouts />,
-children : AuthRoutes
-}
+
  ])
  return (router)
 }

@@ -1,6 +1,12 @@
-import Signin_basic from '../../InitDesigns/Apps/Signin/vuexy_basic_signin'
-import Signin_cover from '../../InitDesigns/Apps/Signin/vuexy_cover_signin'
+/* eslint-disable */
+import CreateApp from '../../Components/Pages/CreateApp'
+import Signin_basic from '../../InitDesigns/Apps/Signin/Vuexy_Basic_Signin'
+import Signin_cover from '../../InitDesigns/Apps/Signin/Vuexy_Cover_Signin'
 const authRoutes = [
+    {
+        path : 'create/app',
+        element : <CreateApp />
+    },
     {
         path : 'signin/basic',
         element : <Signin_basic />

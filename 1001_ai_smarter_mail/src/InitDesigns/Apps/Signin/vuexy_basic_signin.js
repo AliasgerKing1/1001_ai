@@ -1,7 +1,8 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import {NavLink, useNavigate} from "react-router-dom"
 import { social,signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand } from '../../../Json/Design_system';
-import {Input_Email_Username, Input_Password} from "../../../shared/Inputs/Inputs"
+import {Input_Email_Username, Input_Password} from "../../../Shared/Inputs/Inputs"
 const Vuexy_basic_signin = () => {
   let [rememberMe, setRememberMe] = useState(true)
   let [divider, setDivider] = useState(true)
