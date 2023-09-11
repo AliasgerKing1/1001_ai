@@ -4,18 +4,41 @@ import Header from '../../Shared/Header'
 import Footer from '../../Shared/Footer'
 import Sidebar from '../../Shared/Sidebar'
 import { useDispatch, useSelector } from "react-redux";
-import {theme_list, createAppStepSidebar} from '../../Json/Design_system'
+import {theme_list, createAppStepSidebar, project_category, memeber_list} from '../../Json/Design_system'
 
 import  {step_1} from '../../Redux/CreateAppReducer'
 const CreateApp = () => {
   let dispatch = useDispatch() // Corrected line
   let state = useSelector(state=> state.CreateAppReducer)
-  let [currentStep, setCurrentStep] = useState(1)
+  let [currentStep, setCurrentStep] = useState(2)
   let [themesSelected, setThemeSelected] = useState(1)
+  let [step_2_github_selected, setStep_2_github_selected] = useState(true)
+  let [addMemberDropdown, setAddMemberDropdown] = useState(false)
+  let [activeOption, setActiveOption] = useState(null);
+  let [selectedOption, setSelectedOption] = useState('');
+  let [step_2_data, setStep_2_data] = useState({
+    step_2 : {
+p_name : "",
+p_cateogry : "",
+p_member : {
+  name : "",
+  email : "",
+},
+p_description : "",
+p_git : true,
+    }
+});
 
+let [addMemberToProject, setAddMemberToProject] = useState([]);
   let themeFun = (themes) => {
     dispatch(step_1(themes.name))
   }
+  const handleSelectMouseDown = (e) => {
+    e.preventDefault(); // Prevent the default behavior of the select
+    setActiveOption(selectedOption); // Set the active option when the dropdown is clicked
+    setAddMemberDropdown(!addMemberDropdown)
+  };
+  
   return (
     <>
  {/* Layout wrapper */}
@@ -57,8 +80,9 @@ const CreateApp = () => {
   </div>
   <div className="bs-stepper-content">
     <form id="wizard-property-listing-form">
-      {/* Personal Details */}
-      <div id="personal-details" className="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
+            {/* Personal Details */}
+      {currentStep === 1 && (    
+          <div id="personal-details" className="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
         <div className="row g-5">
           {theme_list?.map((themes, index) => (
                       <div className="col-md-4" key={index}>
@@ -89,44 +113,56 @@ const CreateApp = () => {
                       </div>
           ))}
           <div className="col-12 d-flex justify-content-between mt-4">
-            <button className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
+            <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
               <span className="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
-            <button className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 6 ? true : false}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
-      </div>
+      </div>)}
       {/* Property Details */}
-      <div id="property-details" className="content fv-plugins-bootstrap5 fv-plugins-framework" style={{display : 'none'}}>
+      {currentStep === 2 && (    
+      <div id="property-details" className="content fv-plugins-bootstrap5 fv-plugins-framework">
         <div className="row g-3">
           <div className="col-12 pb-2">
             <div className="row">
               <div className="col-xl mb-xl-0 mb-2">
-                <div className="form-check custom-option custom-option-icon checked">
+                <div className={`form-check custom-option custom-option-icon ${step_2_github_selected === true ? "checked" : ""}`} onClick={()=>{
+                  setStep_2_github_selected(true);
+                  setStep_2_data(prevState => ({
+                    ...prevState,
+                    step_2: {
+                      ...prevState.step_2,
+                      p_git: true
+                    }
+                  }));
+              }}>
                   <label className="form-check-label custom-option-content" htmlFor="customRadioSell">
                     <span className="custom-option-body">
-                      <svg width={41} height={40} viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24.25 33.75V23.75H16.75V33.75H6.75002V18.0469C6.7491 17.8733 6.78481 17.7015 6.85482 17.5426C6.92482 17.3838 7.02754 17.2415 7.15627 17.125L19.6563 5.76562C19.8841 5.5559 20.1825 5.43948 20.4922 5.43948C20.8019 5.43948 21.1003 5.5559 21.3281 5.76562L33.8438 17.125C33.9696 17.2438 34.0703 17.3866 34.1401 17.5449C34.2098 17.7032 34.2472 17.8739 34.25 18.0469V33.75H24.25Z" fill="currentColor" opacity="0.2" />
-                        <path d="M33.25 33.75C33.25 34.3023 33.6977 34.75 34.25 34.75C34.8023 34.75 35.25 34.3023 35.25 33.75H33.25ZM34.25 18.0469H35.25C35.25 18.0415 35.25 18.0361 35.2499 18.0307L34.25 18.0469ZM33.8437 17.125L34.5304 16.398C34.5256 16.3934 34.5207 16.389 34.5158 16.3845L33.8437 17.125ZM21.3281 5.76562L20.6509 6.50143L20.656 6.50611L21.3281 5.76562ZM19.6562 5.76562L20.3288 6.5057L20.3335 6.50141L19.6562 5.76562ZM7.15625 17.125L7.82712 17.8666L7.82878 17.8651L7.15625 17.125ZM6.75 18.0469H7.75001L7.74999 18.0416L6.75 18.0469ZM5.75 33.75C5.75 34.3023 6.19772 34.75 6.75 34.75C7.30228 34.75 7.75 34.3023 7.75 33.75H5.75ZM3 32.75C2.44772 32.75 2 33.1977 2 33.75C2 34.3023 2.44772 34.75 3 34.75V32.75ZM38 34.75C38.5523 34.75 39 34.3023 39 33.75C39 33.1977 38.5523 32.75 38 32.75V34.75ZM23.25 33.75C23.25 34.3023 23.6977 34.75 24.25 34.75C24.8023 34.75 25.25 34.3023 25.25 33.75H23.25ZM15.75 33.75C15.75 34.3023 16.1977 34.75 16.75 34.75C17.3023 34.75 17.75 34.3023 17.75 33.75H15.75ZM35.25 33.75V18.0469H33.25V33.75H35.25ZM35.2499 18.0307C35.2449 17.7243 35.1787 17.422 35.0551 17.1416L33.225 17.9481C33.2409 17.9844 33.2495 18.0235 33.2501 18.0631L35.2499 18.0307ZM35.0551 17.1416C34.9316 16.8612 34.7531 16.6084 34.5304 16.398L33.1571 17.852C33.1859 17.8792 33.209 17.9119 33.225 17.9481L35.0551 17.1416ZM34.5158 16.3845L22.0002 5.02514L20.656 6.50611L33.1717 17.8655L34.5158 16.3845ZM22.0053 5.02984C21.5929 4.6502 21.0528 4.43948 20.4922 4.43948V6.43948C20.551 6.43948 20.6076 6.46159 20.6509 6.50141L22.0053 5.02984ZM20.4922 4.43948C19.9316 4.43948 19.3915 4.6502 18.979 5.02984L20.3335 6.50141C20.3767 6.46159 20.4334 6.43948 20.4922 6.43948V4.43948ZM18.9837 5.02556L6.48371 16.3849L7.82878 17.8651L20.3288 6.50569L18.9837 5.02556ZM6.48538 16.3834C6.25236 16.5942 6.06642 16.8518 5.93971 17.1393L7.76988 17.9459C7.78318 17.9157 7.80268 17.8887 7.82712 17.8666L6.48538 16.3834ZM5.93971 17.1393C5.813 17.4269 5.74836 17.7379 5.75001 18.0521L7.74999 18.0416C7.74981 18.0087 7.75659 17.976 7.76988 17.9459L5.93971 17.1393ZM5.75 18.0469V33.75H7.75V18.0469H5.75ZM3 34.75H38V32.75H3V34.75ZM25.25 33.75V25H23.25V33.75H25.25ZM25.25 25C25.25 24.4033 25.013 23.831 24.591 23.409L23.1768 24.8232C23.2237 24.8701 23.25 24.9337 23.25 25H25.25ZM24.591 23.409C24.169 22.987 23.5967 22.75 23 22.75V24.75C23.0663 24.75 23.1299 24.7763 23.1768 24.8232L24.591 23.409ZM23 22.75H18V24.75H23V22.75ZM18 22.75C17.4033 22.75 16.831 22.9871 16.409 23.409L17.8232 24.8232C17.8701 24.7763 17.9337 24.75 18 24.75V22.75ZM16.409 23.409C15.9871 23.831 15.75 24.4033 15.75 25H17.75C17.75 24.9337 17.7763 24.8701 17.8232 24.8232L16.409 23.409ZM15.75 25V33.75H17.75V25H15.75Z" fill="currentColor" />
-                      </svg>
-                      <span className="custom-option-title">Sale the property</span>
-                      <small>Post your property for sale.<br /> Unlimited free listing.</small>
+                      <img src="/assets/img/icons/brands/git.svg" />
+                      <span className="custom-option-title">Create git repository</span>
+                      <small>Create a github repository<br /> for this project.</small>
                     </span>
                     <input name="plPropertySaleRent" className="form-check-input" type="radio" defaultValue={1} id="customRadioSell" defaultChecked />
                   </label>
                 </div>
               </div>
               <div className="col-xl mb-xl-0 mb-2">
-                <div className="form-check custom-option custom-option-icon">
+                <div className={`form-check custom-option custom-option-icon ${step_2_github_selected === false ? "checked" : ""}`} onClick={()=>{
+                    setStep_2_github_selected(false);
+                    setStep_2_data(prevState => ({
+                      ...prevState,
+                      step_2: {
+                        ...prevState.step_2,
+                        p_git: false
+                      }
+                    }));
+}}>
                   <label className="form-check-label custom-option-content" htmlFor="customRadioRent">
                     <span className="custom-option-body">
-                      <svg width={41} height={40} viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.5 30C6.5 30.663 6.76339 31.2989 7.23223 31.7678C7.70107 32.2366 8.33696 32.5 9 32.5H34C34.3315 32.5 34.6495 32.3683 34.8839 32.1339C35.1183 31.8995 35.25 31.5815 35.25 31.25V13.75C35.25 13.4185 35.1183 13.1005 34.8839 12.8661C34.6495 12.6317 34.3315 12.5 34 12.5H9C8.33696 12.5 7.70107 12.2366 7.23223 11.7678C6.76339 11.2989 6.5 10.663 6.5 10V30Z" fill="currentColor" fillOpacity="0.2" />
-                        <path d="M6.5 10V30C6.5 30.663 6.76339 31.2989 7.23223 31.7678C7.70107 32.2366 8.33696 32.5 9 32.5H34C34.3315 32.5 34.6495 32.3683 34.8839 32.1339C35.1183 31.8995 35.25 31.5815 35.25 31.25V13.75C35.25 13.4185 35.1183 13.1005 34.8839 12.8661C34.6495 12.6317 34.3315 12.5 34 12.5H9C8.33696 12.5 7.70107 12.2366 7.23223 11.7678C6.76339 11.2989 6.5 10.663 6.5 10ZM6.5 10C6.5 9.33696 6.76339 8.70107 7.23223 8.23223C7.70107 7.76339 8.33696 7.5 9 7.5H30.25" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M28.375 24.375C29.4105 24.375 30.25 23.5355 30.25 22.5C30.25 21.4645 29.4105 20.625 28.375 20.625C27.3395 20.625 26.5 21.4645 26.5 22.5C26.5 23.5355 27.3395 24.375 28.375 24.375Z" fill="currentColor" />
-                      </svg>
-                      <span className="custom-option-title">Rent the property</span>
-                      <small>Post your property for rent.<br /> Unlimited free listing.</small>
+                    <img src="/assets/img/icons/brands/cross.svg" />
+                      <span className="custom-option-title">Don't create git repository</span>
+                      <small>Don't create a github repository<br /> for this project.</small>
                     </span>
                     <input name="plPropertySaleRent" className="form-check-input" type="radio" defaultValue={2} id="customRadioRent" />
                   </label>
@@ -134,77 +170,80 @@ const CreateApp = () => {
               </div>
             </div>
           </div>
+          <div className="col-sm-6">
+            <label className="form-label" htmlFor="p_name">Project Name</label>
+            <input type="text" id="p_name" name="p_name" className="form-control" placeholder="1001_ai" onChange={(e)=> {
+              setStep_2_data(prevState => ({
+                ...prevState,
+                step_2: {
+                  ...prevState.step_2,
+                  p_name: e.target.value
+                }
+              }));
+            }} />
+          </div>
           <div className="col-sm-6 fv-plugins-icon-container">
-            <label className="form-label" htmlFor="plPropertyType">Property Type</label>
-            <div className="position-relative"><select id="plPropertyType" name="plPropertyType" className="select2 form-select select2-hidden-accessible" data-allow-clear="true" data-select2-id="plPropertyType" tabIndex={-1} aria-hidden="true">
-                <option value data-select2-id={4}>Select Property Type</option>
-                <option value={10002}>Flat/ Apartment</option>
-                <option value={10001}>Residential House</option>
-                <option value={10017}>Villa</option>
-                <option value={10003}>Builder Floor Apartment</option>
-                <option value={10000}>Residential Land/ Plot</option>
-                <option value={10021}>Penthouse</option>
-                <option value={10022}>Studio Apartment</option>
-              </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id={3} style={{width: 'auto'}}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabIndex={0} aria-disabled="false" aria-labelledby="select2-plPropertyType-container"><span className="select2-selection__rendered" id="select2-plPropertyType-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Select property type</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation" /></span></span></span><span className="dropdown-wrapper" aria-hidden="true" /></span></div>
+            <label className="form-label" htmlFor="p_cateogry">Project Category</label>
+            <div className="position-relative">
+              <select id="p_cateogry" name="p_cateogry" className="select2 form-select select2-hidden-accessible" data-allow-clear="true" data-select2-id="p_cateogry" tabIndex={-1} aria-hidden="true" onChange={(e)=> {
+              setStep_2_data(prevState => ({
+                ...prevState,
+                step_2: {
+                  ...prevState.step_2,
+                  p_cateogry: e.target.value
+                }
+              }));
+            }}>
+                <option value data-select2-id={4}>Select Project Category</option>
+                {project_category?.sort().map((category, index) =>(
+                    <option value={category} key={index}>{category}</option>
+                ) )}
+              </select></div>
             <div className="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback" /></div>
-          <div className="col-sm-6 fv-plugins-icon-container">
-            <label className="form-label" htmlFor="plZipCode">Zip Code</label>
-            <input type="number" id="plZipCode" name="plZipCode" className="form-control" placeholder={99950} />
-            <div className="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback" /></div>
+            
           <div className="col-sm-6">
-            <label className="form-label" htmlFor="plCountry">Country</label>
-            <div className="position-relative"><select id="plCountry" name="plCountry" className="select2 form-select select2-hidden-accessible" data-allow-clear="true" data-select2-id="plCountry" tabIndex={-1} aria-hidden="true">
-                <option value data-select2-id={2}>Select</option>
-                <option value="Australia">Australia</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Belarus">Belarus</option>
-                <option value="Brazil">Brazil</option>
-                <option value="Canada">Canada</option>
-                <option value="China">China</option>
-                <option value="France">France</option>
-                <option value="Germany">Germany</option>
-                <option value="India">India</option>
-                <option value="Indonesia">Indonesia</option>
-                <option value="Israel">Israel</option>
-                <option value="Italy">Italy</option>
-                <option value="Japan">Japan</option>
-                <option value="Korea">Korea, Republic of</option>
-                <option value="Mexico">Mexico</option>
-                <option value="Philippines">Philippines</option>
-                <option value="Russia">Russian Federation</option>
-                <option value="South Africa">South Africa</option>
-                <option value="Thailand">Thailand</option>
-                <option value="Turkey">Turkey</option>
-                <option value="Ukraine">Ukraine</option>
-                <option value="United Arab Emirates">United Arab Emirates</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="United States">United States</option>
-              </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id={1} style={{width: 'auto'}}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabIndex={0} aria-disabled="false" aria-labelledby="select2-plCountry-container"><span className="select2-selection__rendered" id="select2-plCountry-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Select country</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation" /></span></span></span><span className="dropdown-wrapper" aria-hidden="true" /></span></div>
-          </div>
+            <a className="cursor-pointer text-primary fw-bold" data-bs-toggle="modal" data-bs-target="#shareProject">Add Member</a>
+            </div>
           <div className="col-sm-6">
-            <label className="form-label" htmlFor="plState">State</label>
-            <input type="text" id="plState" name="plState" className="form-control" placeholder="California" />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label" htmlFor="plCity">City</label>
-            <input type="text" id="plCity" name="plCity" className="form-control" placeholder="Los Angeles" />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label" htmlFor="plLandmark">Landmark</label>
-            <input type="text" id="plLandmark" name="plLandmark" className="form-control" placeholder="Nr. Hard Rock Cafe" />
+          <div className="d-flex align-items-center">
+  <ul className="list-unstyled d-flex align-items-center avatar-group mb-0">
+    {addMemberToProject?.slice(0, 3).map((memberSelected, index) => (
+       <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" className="avatar avatar-xl pull-up" aria-label={memberSelected?.name} data-bs-original-title={memberSelected?.name} key={index}>
+       <img className="rounded-circle" src={memberSelected?.image} alt="Avatar" />
+     </li>
+    ))}
+
+    {addMemberToProject.length > 3 ? ( 
+         <li className="avatar avatar-sm">
+      <span className="avatar-initial rounded-circle pull-up" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title={`${addMemberToProject.length - 3} more`}>+{addMemberToProject.length - 3}</span>
+    </li>) : null}
+  </ul>
+</div>
+
           </div>
           <div className="col-lg-12">
-            <label className="form-label" htmlFor="plAddress">Address</label>
-            <textarea id="plAddress" name="plAddress" className="form-control" rows={2} placeholder="12, Business Park" defaultValue={""} />
+            <label className="form-label" htmlFor="p_description">Project Description</label>
+            <textarea id="p_description" name="p_description" className="form-control" rows={2} placeholder="Saifee nagar, indore, India" defaultValue={""} onChange={(e)=> {
+              setStep_2_data(prevState => ({
+                ...prevState,
+                step_2: {
+                  ...prevState.step_2,
+                  p_description: e.target.value
+                }
+              }));
+            }} />
           </div>
           <div className="col-12 d-flex justify-content-between mt-4">
-            <button className="btn btn-label-secondary btn-prev waves-effect"> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" /> <span className="align-middle d-sm-inline-block d-none">Previous</span> </button>
-            <button className="btn btn-primary btn-next waves-effect waves-light"> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+            <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
+              <span className="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
-      </div>
+      </div>)}
       {/* Property Features */}
-      <div id="property-features" className="content fv-plugins-bootstrap5 fv-plugins-framework" style={{display : 'none'}}>
+      {currentStep === 3 && ( 
+      <div id="property-features" className="content fv-plugins-bootstrap5 fv-plugins-framework" >
         <div className="row g-3">
           <div className="col-sm-6">
             <label className="form-label d-block" htmlFor="plBedrooms">Bedrooms</label>
@@ -257,14 +296,17 @@ const CreateApp = () => {
               <label className="form-check-label" htmlFor="plAttachedBalconyRadioNo">No</label>
             </div>
           </div>
-          <div className="col-12 d-flex justify-content-between mt-4">
-            <button className="btn btn-label-secondary btn-prev waves-effect"> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" /> <span className="align-middle d-sm-inline-block d-none">Previous</span> </button>
-            <button className="btn btn-primary btn-next waves-effect waves-light"> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+                   <div className="col-12 d-flex justify-content-between mt-4">
+            <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
+              <span className="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
-      </div>
+      </div>)}
       {/* Property Area */}
-      <div id="property-area" className="content fv-plugins-bootstrap5 fv-plugins-framework" style={{display : 'none'}}>
+      {currentStep === 4 && ( 
+      <div id="property-area" className="content fv-plugins-bootstrap5 fv-plugins-framework" >
         <div className="row g-3">
           <div className="col-sm-6">
             <label className="form-label d-block" htmlFor="plTotalArea">Total Area</label>
@@ -335,13 +377,16 @@ const CreateApp = () => {
               <label className="form-check-label" htmlFor="plGatedColonyRadioNo">No</label>
             </div>
           </div>
-          <div className="col-12 d-flex justify-content-between mt-4">
-            <button className="btn btn-label-secondary btn-prev waves-effect"> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" /> <span className="align-middle d-sm-inline-block d-none">Previous</span> </button>
-            <button className="btn btn-primary btn-next waves-effect waves-light"> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+                   <div className="col-12 d-flex justify-content-between mt-4">
+            <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
+              <span className="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
-      </div>
+      </div>)}
       {/* Price Details */}
+      {currentStep === 5 && ( 
       <div id="price-details" className="content fv-plugins-bootstrap5 fv-plugins-framework" style={{display : 'none'}}>
         <div className="row g-3">
           <div className="col-sm-6">
@@ -422,7 +467,7 @@ const CreateApp = () => {
             <button className="btn btn-success btn-submit btn-next waves-effect waves-light"><span className="align-middle d-sm-inline-block d-none me-sm-1">Submit</span><i className="ti ti-check ti-xs" /></button>
           </div>
         </div>
-      </div>
+      </div>)}
     </form>
   </div>
 </div>
@@ -447,6 +492,102 @@ const CreateApp = () => {
 </div>
 
 {/* / Layout wrapper */}
+
+{/* Share Project Modal */}
+<div className="modal fade" id="shareProject" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog modal-lg modal-simple modal-enable-otp modal-dialog-centered">
+    <div className="modal-content p-3 p-md-5">
+      <div className="modal-body">
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+        <div className="text-center">
+          <h3 className="mb-2">Share Project</h3>
+          <p>Share project with a team member</p>
+        </div>
+      </div>
+      <div className="mb-4 pb-2">
+        <label htmlFor="select2Basic" className="form-label">Add Members</label>
+        <select id="select2Basic" className="form-select form-select-lg share-project-select cursor-pointer" data-allow-clear="true" onMouseDown={handleSelectMouseDown}>
+          <option data-name={activeOption ? activeOption : "Select Memeber"}>{activeOption ? activeOption : "Select Memeber"}</option>
+        </select>
+        {addMemberDropdown && 
+        <ul className="dropdown-menu dropdown-menu-end show" style={{width : '88%'}}>
+                <li>
+                  <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption('Select Memeber')}>Select Memeber</a>
+                </li>
+                {
+      memeber_list.map((member, index) => (
+        <div key={index}>
+                  <li>
+                    <a className={`dropdown-item cursor-pointer ${
+            member === activeOption ? "active" : ""
+          }`} onClick={() => {
+                      setActiveOption(member.name); // Set the active option when a list item is clicked
+                      setSelectedOption(member.name)
+                      setAddMemberDropdown(false);
+                      setAddMemberToProject([...addMemberToProject, member])
+                      setStep_2_data(prevState => ({
+                        ...prevState,
+                        step_2: {
+                          ...prevState.step_2,
+                          p_member: member
+                        }
+                      }));
+                      }}>
+        {member?.name}
+        </a>
+      </li>
+        </div>
+      ))}
+              </ul> }
+      </div>
+      <h4 className="mb-4 pb-2">{addMemberToProject.length} Members</h4>
+      <ul className="p-0 m-0">
+        {addMemberToProject?.map((memberSelected, index) => (
+           <li className="d-flex flex-wrap mb-3" key={index}>
+           <div className="avatar me-3">
+             <img src={memberSelected?.image} alt="avatar" className="rounded-circle" />
+           </div>
+           <div className="d-flex justify-content-between flex-grow-1">
+             <div className="me-2">
+               <p className="mb-0">{memberSelected?.name}</p>
+               <p className="mb-0 text-muted">{memberSelected?.email}</p>
+             </div>
+             <div className="dropdown">
+               <button type="button" className="btn dropdown-toggle p-2" data-bs-toggle="dropdown" aria-expanded="false"><span className="text-muted fw-normal me-2 d-none d-sm-inline-block">Can Edit</span></button>
+               <ul className="dropdown-menu dropdown-menu-end">
+                 <li>
+                   <a className="dropdown-item" href="javascript:void(0);">Owner</a>
+                 </li>
+                 <li>
+                   <a className="dropdown-item" href="javascript:void(0);">Can Edit</a>
+                 </li>
+                 <li>
+                   <a className="dropdown-item" href="javascript:void(0);">Can Comment</a>
+                 </li>
+                 <li>
+                   <a className="dropdown-item" href="javascript:void(0);">Can View</a>
+                 </li>
+               </ul>
+             </div>
+           </div>
+         </li>
+        ))}
+      </ul>
+      <div className="d-flex align-items-start mt-4 align-items-sm-center">
+        <i className="ti ti-users me-2" />
+        <div className="d-flex justify-content-between flex-grow-1 align-items-center flex-wrap gap-2">
+          <h6 className="mb-0">Public to {step_2_data?.step_2?.p_name} - 1001_ai</h6>
+          <button className="btn btn-primary">Copy Project Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/*/ Share Project Modal */}
+
+
+
+
 
     </>
   );

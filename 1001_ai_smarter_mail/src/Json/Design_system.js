@@ -69,23 +69,54 @@ let createAppStepSidebar = [
         state : 1
     },
     {
-        heading : "Select Theme",
-        subheading : "Select desire theme",
-        icon : 'ti-layout-grid',
+        heading : "Meta data",
+        subheading : "data about project",
+        icon : 'ti-file-description',
         state : 2
     },
     {
-        heading : "Select Theme",
-        subheading : "Select desire theme",
-        icon : 'ti-layout-grid',
+        heading : "Select Pages",
+        subheading : "Select pages",
+        icon : 'ti-files',
         state : 3
     },
     {
-        heading : "Select Theme",
-        subheading : "Select desire theme",
-        icon : 'ti-layout-grid',
+        heading : "Select Features",
+        subheading : "Additional features",
+        icon : 'ti-lifebuoy',
         state : 4
     },
 ]
 
-export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar}
+let project_category = [ 'Generative', 'Ecommerce', 'Gaming', 'Service', 'Admin Panel', 'Education', 'Social Media', 'Gifts',
+]
+
+let memeber_list = [
+    {
+        name : 'Aliasger',
+        email : "aliasgersub34@gmail.com",
+        image : '/assets/img/avatars/1.png'
+    },
+    {
+        name : 'Hussain',
+        email : "hussain24@gmail.com",
+        image : '/assets/img/avatars/10.png'
+    },
+    {
+        name : 'Burhanuddin',
+        email : "burhan.baroor@gmail.com",
+        image : '/assets/img/avatars/5.png'
+    },
+    {
+        name : 'Moiz',
+        email : "moizKt@gmail.com",
+        image : '/assets/img/avatars/4.png'
+    },
+    {
+        name : 'Ammar',
+        email : "mynetwork@gmail.com",
+        image : '/assets/img/avatars/2.png'
+    },
+]
+
+export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list}
