@@ -1,13 +1,25 @@
 /* eslint-disable */
-import React from "react";
+import React, { useState } from "react";
 import Header from '../../Shared/Header'
 import Footer from '../../Shared/Footer'
 import Sidebar from '../../Shared/Sidebar'
+import { useDispatch, useSelector } from "react-redux";
+import {theme_list, createAppStepSidebar} from '../../Json/Design_system'
+
+import  {step_1} from '../../Redux/CreateAppReducer'
 const CreateApp = () => {
+  let dispatch = useDispatch() // Corrected line
+  let state = useSelector(state=> state.CreateAppReducer)
+  let [currentStep, setCurrentStep] = useState(1)
+  let [themesSelected, setThemeSelected] = useState(1)
+
+  let themeFun = (themes) => {
+    dispatch(step_1(themes.name))
+  }
   return (
     <>
  {/* Layout wrapper */}
-<div className="layout-wrapper layout-content-navbar  ">
+<div className="layout-wrapper layout-content-navbar">
   <div className="layout-container">
     {/* Menu */}
 <Sidebar />
@@ -25,127 +37,62 @@ const CreateApp = () => {
       <span className="text-muted fw-light fw-600">Create /</span> Apps
     </h4>
     {/* Create App Wizard */}
-    <div id="wizard-property-listing" class="bs-stepper vertical linear" style={{
-        boxShadow: '0 .25rem 1.125rem rgba(75,70,92,.1)',
-
-
-  backgroundColor: '#fff',
-
-
-  display: '-ms-flexbox',
-  display: 'flex',
-
-
-  marginTop: '.5rem !important',
-
-
-  borderRadius: '.375rem',
-
-
-  boxSizing: 'border-box',
-    }}>
+    <div id="wizard-property-listing" class="bs-stepper vertical linear">
   <div className="bs-stepper-header" style={{borderRight: '1px solid #dbdade', borderBottom: 'none', minWidth: '18rem',   padding : '1.5rem', flexDirection: 'column',
   alignItems: 'stretch',
   margin: '0'
 }}>
-    <div className="step active" data-target="#personal-details">
-      <a className="step-trigger cursor-pointer" aria-selected="true">
-        <span className="active-create-app bs-stepper-circle"><i className="ti ti-layout-grid ti-sm" /></span>
-        <span className="bs-stepper-label">
-          <span className="bs-stepper-title fw-600">Select Theme</span>
-          <span className="bs-stepper-subtitle fw-600">Select desire theme</span>
-        </span>
-      </a>
-    </div>
-    <div className="line" />
-    <div className="step" data-target="#personal-details">
-      <a className="step-trigger " aria-selected="true">
-        <span className="bs-stepper-circle"><i className="ti ti-users ti-sm op-70" /></span>
-        <span className="bs-stepper-label op-70">
-          <span className="bs-stepper-title">Personal Details</span>
-          <span className="bs-stepper-subtitle">Your Name/Email</span>
-        </span>
-      </a>
-    </div>
-    <div className="line" />
-    <div className="step" data-target="#personal-details">
-      <a className="step-trigger " aria-selected="true">
-        <span className="bs-stepper-circle" style={{
-        }}><i className="ti ti-users ti-sm op-70"  /></span>
-        <span className="bs-stepper-label op-70">
-          <span className="bs-stepper-title">Select Theme</span>
-          <span className="bs-stepper-subtitle">Your Name/Email</span>
-        </span>
-      </a>
-    </div>
-    <div className="line" />
-    <div className="step" data-target="#personal-details">
-      <a className="step-trigger " aria-selected="true">
-        <span className="bs-stepper-circle" style={{
-        }}><i className="ti ti-users ti-sm op-70"  /></span>
-        <span className="bs-stepper-label op-70">
-          <span className="bs-stepper-title">Personal Details</span>
-          <span className="bs-stepper-subtitle">Your Name/Email</span>
-        </span>
-      </a>
-    </div>
-    <div className="line" />
-    <div className="step" data-target="#personal-details">
-      <a className="step-trigger " aria-selected="true">
-        <span className="bs-stepper-circle" style={{
-        }}><i className="ti ti-users ti-sm op-70"  /></span>
-        <span className="bs-stepper-label op-70">
-          <span className="bs-stepper-title">Personal Details</span>
-          <span className="bs-stepper-subtitle">Your Name/Email</span>
-        </span>
-      </a>
-    </div>
+  {createAppStepSidebar?.map((create_app_sidebar, index) => (
+        <div key={index} className={`step ${create_app_sidebar?.state === currentStep ? "active" : ""}`} data-target="#personal-details">
+          <a className="step-trigger cursor-pointer" aria-selected="true" onClick={()=>setCurrentStep(create_app_sidebar?.state)}>
+            <span className={`bs-stepper-circle ${currentStep === create_app_sidebar?.state ? "active-create-app" : ""}`}><i className={`ti ${create_app_sidebar?.icon} ti-sm ${currentStep === create_app_sidebar?.state ? "" : "op-70"}`} /></span>
+            <span className={`bs-stepper-label ${currentStep === create_app_sidebar?.state ? "" : "op-70"}`}>
+              <span className="bs-stepper-title fw-600">{create_app_sidebar?.heading}</span>
+              <span className="bs-stepper-subtitle fw-600">{create_app_sidebar?.subheading}</span>
+            </span>
+          </a>
+        </div>
+      ))}
+
   </div>
   <div className="bs-stepper-content">
     <form id="wizard-property-listing-form">
       {/* Personal Details */}
       <div id="personal-details" className="content active dstepper-block fv-plugins-bootstrap5 fv-plugins-framework">
         <div className="row g-5">
-          <div className="col-md-4">
-          <div class="image-container">
-          <a href="#">
-          <img class="card-img card-img-left" src="/assets/img/elements/9.jpg" alt="Card image" />
-          </a>
-          <div class="overlay"></div>
-          </div>
-          </div>
-          <div className="col-md-4">
-          <div class="image-container">
-          <a href="#">
-          <img class="card-img card-img-left" src="/assets/img/elements/10.jpg" alt="Card image" />
-          </a>
-          <div class="overlay"></div>
-
-          </div>
-          </div>
-          <div className="col-md-4">
-          <div class="image-container">
-          <a href="#">
-          <img class="card-img card-img-left" src="/assets/img/elements/8.jpg" alt="Card image" />
-          </a>
-          <div class="overlay"></div>
-
-          </div>
-          </div>
-          <div className="col-md-4">
-          <div class="image-container">
-          <a href="#">
-          <img class="card-img card-img-left" src="/assets/img/elements/12.jpg" alt="Card image" />
-          </a>
-          <div class="overlay"></div>
-
-          </div>
-          </div>
+          {theme_list?.map((themes, index) => (
+                      <div className="col-md-4" key={index}>
+                      <div class="image-container">
+                      <a href="#">
+                      <img class="card-img card-img-left" src={themes.src} alt="Card image" />
+                      </a>
+                      <div class="overlay cursor-pointer" onClick={()=>{
+                        themeFun(themes)
+                        setThemeSelected(index + 1)
+                      }
+                      }>
+                      <button type="button" className="btn btn-secondary waves-effect waves-light centered-button">
+                          Details
+                        </button>
+                      </div>
+                      {themesSelected === index + 1 ? (                     
+                         <div class="overlay2 cursor-pointer" onClick={()=>{
+                        themeFun(themes)
+                        setThemeSelected(index + 1)
+                      }
+                      }>
+                      <button type="button" className="btn btn-secondary waves-effect waves-light centered-button">
+                          Details
+                        </button>
+                      </div>) : null}
+                      </div>
+                      </div>
+          ))}
           <div className="col-12 d-flex justify-content-between mt-4">
-            <button className="btn btn-label-secondary btn-prev waves-effect" disabled> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
+            <button className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
               <span className="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
-            <button className="btn btn-primary btn-next waves-effect waves-light"> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+            <button className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 6 ? true : false}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
       </div>

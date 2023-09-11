@@ -134,4 +134,42 @@ transition: background-color .15s ease-out,color .15s ease-out;
   .image-container:hover .overlay {
     opacity: .8;
   }
+
+  .bs-stepper {
+    box-shadow: 0 .25rem 1.125rem rgba(75,70,92,.1);
+
+
+    background-color: #fff;
   
+  
+    display: -ms-flexbox;
+    display: flex;
+  
+  
+    margin-top: .5rem !important;
+  
+  
+    border-radius: .375rem;
+  
+  
+    box-sizing: border-box;
+      
+  }
+  
+.centered-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlay2 {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background-color:  #7367f0;
+  opacity: 0.8;
+  transition: opacity .3s ease-in-out;
+}

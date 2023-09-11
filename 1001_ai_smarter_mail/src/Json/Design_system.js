@@ -38,5 +38,54 @@ let brand = [
 
 ]
 
+let theme_list = [
+    {
+        id : 1,
+        src : "/assets/img/elements/8.jpg",
+        name : "Vuexy"
+    },
+    {
+        id : 2,
+        src : "/assets/img/elements/9.jpg",
+        name : "Modernize"
+    },
+    {
+        id : 3,
+        src : "/assets/img/elements/10.jpg",
+        name : "Porto"
+    },
+    {
+        id : 4,
+        src : "/assets/img/elements/12.jpg",
+        name : "epty"
+    },
+]
 
-export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand}
+let createAppStepSidebar = [
+    {
+        heading : "Select Theme",
+        subheading : "Select desire theme",
+        icon : 'ti-layout-grid',
+        state : 1
+    },
+    {
+        heading : "Select Theme",
+        subheading : "Select desire theme",
+        icon : 'ti-layout-grid',
+        state : 2
+    },
+    {
+        heading : "Select Theme",
+        subheading : "Select desire theme",
+        icon : 'ti-layout-grid',
+        state : 3
+    },
+    {
+        heading : "Select Theme",
+        subheading : "Select desire theme",
+        icon : 'ti-layout-grid',
+        state : 4
+    },
+]
+
+export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar}
