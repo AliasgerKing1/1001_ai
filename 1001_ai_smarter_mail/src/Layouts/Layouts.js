@@ -6,12 +6,12 @@ const Layouts = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userToken = localStorage.getItem("token");
+    const adminToken = localStorage.getItem("dev_system_token");
 
-    if (!userToken) {
+    if (!adminToken) {
       navigate("/signin");
     } 
-  }, [localStorage.getItem("token")]);
+  }, [localStorage.getItem("dev_system_token")]);
   return (
     <>
       <Outlet />

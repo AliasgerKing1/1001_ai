@@ -5,28 +5,25 @@ import Footer from '../../Shared/Footer'
 import Sidebar from '../../Shared/Sidebar'
 import { useDispatch, useSelector } from "react-redux";
 import {theme_list, createAppStepSidebar, project_category, memeber_list} from '../../Json/Design_system'
-
-import  {step_1} from '../../Redux/CreateAppReducer'
+import {addProject, updateProject} from '../../Services/ProjectService'
+import  {step_1, step_2} from '../../Redux/CreateAppReducer'
 const CreateApp = () => {
   let dispatch = useDispatch() // Corrected line
   let state = useSelector(state=> state.CreateAppReducer)
-  let [currentStep, setCurrentStep] = useState(2)
+  let [currentStep, setCurrentStep] = useState(1)
   let [themesSelected, setThemeSelected] = useState(1)
   let [step_2_github_selected, setStep_2_github_selected] = useState(true)
   let [addMemberDropdown, setAddMemberDropdown] = useState(false)
   let [activeOption, setActiveOption] = useState(null);
+  let [project_id, setProject_id] = useState('');
   let [selectedOption, setSelectedOption] = useState('');
   let [step_2_data, setStep_2_data] = useState({
-    step_2 : {
+p_link : "",
 p_name : "",
 p_cateogry : "",
-p_member : {
-  name : "",
-  email : "",
-},
+p_member : [],
 p_description : "",
 p_git : true,
-    }
 });
 
 let [addMemberToProject, setAddMemberToProject] = useState([]);
@@ -38,6 +35,36 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
     setActiveOption(selectedOption); // Set the active option when the dropdown is clicked
     setAddMemberDropdown(!addMemberDropdown)
   };
+
+  let submitStep_1 = async ()=> {
+    let p_id_status = localStorage.getItem('project_id_status');
+    if(p_id_status === true) {
+      console.log("already made")
+    } else {
+      let result = await addProject(state)
+      if(result.data.status === 200) {
+        setProject_id(result.data.p_id)
+        setCurrentStep(currentStep + 1);
+        localStorage.setItem('project_id_status', true)
+      }
+    }
+  }
+  let submitStep_2 = async ()=> {
+    setStep_2_data(prevState => ({
+      ...prevState,
+        p_member: addMemberToProject
+    }));
+    setStep_2_data(prevState => ({
+      ...prevState,
+        p_link: `http://localhost:3000/auth/${project_id}`
+    }));
+    dispatch(step_2(step_2_data))
+    console.log(state)
+    let result = await updateProject(project_id,state)
+    if(result.data.status === 200) {
+      setCurrentStep(currentStep + 1);
+    }
+  }
   
   return (
     <>
@@ -116,7 +143,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
             <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
               <span className="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
-            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={submitStep_1}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
       </div>)}
@@ -131,10 +158,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
                   setStep_2_github_selected(true);
                   setStep_2_data(prevState => ({
                     ...prevState,
-                    step_2: {
-                      ...prevState.step_2,
                       p_git: true
-                    }
                   }));
               }}>
                   <label className="form-check-label custom-option-content" htmlFor="customRadioSell">
@@ -152,10 +176,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
                     setStep_2_github_selected(false);
                     setStep_2_data(prevState => ({
                       ...prevState,
-                      step_2: {
-                        ...prevState.step_2,
                         p_git: false
-                      }
                     }));
 }}>
                   <label className="form-check-label custom-option-content" htmlFor="customRadioRent">
@@ -174,11 +195,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
             <label className="form-label" htmlFor="p_name">Project Name</label>
             <input type="text" id="p_name" name="p_name" className="form-control" placeholder="1001_ai" onChange={(e)=> {
               setStep_2_data(prevState => ({
-                ...prevState,
-                step_2: {
-                  ...prevState.step_2,
-                  p_name: e.target.value
-                }
+                ...prevState, p_name: e.target.value
               }));
             }} />
           </div>
@@ -188,10 +205,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
               <select id="p_cateogry" name="p_cateogry" className="select2 form-select select2-hidden-accessible" data-allow-clear="true" data-select2-id="p_cateogry" tabIndex={-1} aria-hidden="true" onChange={(e)=> {
               setStep_2_data(prevState => ({
                 ...prevState,
-                step_2: {
-                  ...prevState.step_2,
                   p_cateogry: e.target.value
-                }
               }));
             }}>
                 <option value data-select2-id={4}>Select Project Category</option>
@@ -226,10 +240,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
             <textarea id="p_description" name="p_description" className="form-control" rows={2} placeholder="Saifee nagar, indore, India" defaultValue={""} onChange={(e)=> {
               setStep_2_data(prevState => ({
                 ...prevState,
-                step_2: {
-                  ...prevState.step_2,
                   p_description: e.target.value
-                }
               }));
             }} />
           </div>
@@ -237,7 +248,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
             <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
               <span className="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
-            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={submitStep_2}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
       </div>)}

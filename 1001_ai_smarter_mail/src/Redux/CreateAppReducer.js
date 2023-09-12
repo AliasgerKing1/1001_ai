@@ -2,16 +2,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    theme_name : '',
+    theme_name : 'Vuexy',
     step_2 : {
-p_name : "",
-p_cateogry : "",
-p_member : {
-  name : "",
-  email : "",
-},
-p_description : "",
-p_git : true,
+      p_link : "",
+      p_name : "",
+      p_cateogry : "",
+      p_member : [],
+      p_description : "",
+      p_git : true,
     }
 };
 
@@ -28,7 +26,7 @@ const createAppReducer = createSlice({
   }
 });
 
-export const { step_1 } = createAppReducer.actions;
+export const { step_1, step_2 } = createAppReducer.actions;
 
 export default createAppReducer.reducer;
 
