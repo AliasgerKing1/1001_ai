@@ -10,13 +10,19 @@ import  {step_1, step_2} from '../../Redux/CreateAppReducer'
 const CreateApp = () => {
   let dispatch = useDispatch() // Corrected line
   let state = useSelector(state=> state.CreateAppReducer)
-  let [currentStep, setCurrentStep] = useState(1)
+  let [currentStep, setCurrentStep] = useState(2)
   let [themesSelected, setThemeSelected] = useState(1)
   let [step_2_github_selected, setStep_2_github_selected] = useState(true)
   let [addMemberDropdown, setAddMemberDropdown] = useState(false)
+  let [addCategoryDropdown, setAddCategoryDropdown] = useState(false)
   let [activeOption, setActiveOption] = useState(null);
+  let [activeOption2, setActiveOption2] = useState(null);
   let [project_id, setProject_id] = useState('');
   let [selectedOption, setSelectedOption] = useState('');
+  let [selectedOption2, setSelectedOption2] = useState('');
+  let [selectedTheme,setSelectedTheme] = useState('Vuexy')
+  let [memberList,setMemberList] = useState(memeber_list)
+
   let [step_2_data, setStep_2_data] = useState({
 p_link : "",
 p_name : "",
@@ -28,12 +34,18 @@ p_git : true,
 
 let [addMemberToProject, setAddMemberToProject] = useState([]);
   let themeFun = (themes) => {
+    setSelectedTheme(themes.name )
     dispatch(step_1(themes.name))
   }
   const handleSelectMouseDown = (e) => {
     e.preventDefault(); // Prevent the default behavior of the select
     setActiveOption(selectedOption); // Set the active option when the dropdown is clicked
     setAddMemberDropdown(!addMemberDropdown)
+  };
+  const handleSelectMouseDown2 = (e) => {
+    e.preventDefault(); // Prevent the default behavior of the select
+    setActiveOption2(selectedOption2); // Set the active option when the dropdown is clicked
+    setAddCategoryDropdown(!addCategoryDropdown)
   };
 
   let submitStep_1 = async ()=> {
@@ -44,28 +56,43 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
       let result = await addProject(state)
       if(result.data.status === 200) {
         setProject_id(result.data.p_id)
-        setCurrentStep(currentStep + 1);
         localStorage.setItem('project_id_status', true)
+        setCurrentStep(currentStep + 1);
       }
     }
   }
   let submitStep_2 = async ()=> {
     setStep_2_data(prevState => ({
       ...prevState,
-        p_member: addMemberToProject
+      p_member: addMemberToProject,
     }));
-    setStep_2_data(prevState => ({
-      ...prevState,
-        p_link: `http://localhost:3000/auth/${project_id}`
-    }));
-    dispatch(step_2(step_2_data))
-    console.log(state)
-    let result = await updateProject(project_id,state)
-    if(result.data.status === 200) {
-      setCurrentStep(currentStep + 1);
-    }
+// Wait for next render to ensure state has been updated
+  dispatch(step_2(step_2_data))
+  // console.log(state)
+  let bothStepData = {
+    theme_name : selectedTheme,
+    step_2 : step_2_data
   }
-  
+  // let result = await updateProject(project_id,bothStepData)
+  // if(result.data.status === 200) {
+  // }
+  setCurrentStep(currentStep + 1);
+  }
+  let checkSelectedMember = (name, email) => {
+  memberList = memberList.filter(member => !(member?.name === name && member?.email === email));
+  setMemberList(memberList)
+  }
+  let removeFromInvite = (name, email) => {
+    let memberToRemove = addMemberToProject.filter(member => member?.name === name && member?.email === email);
+    addMemberToProject = addMemberToProject.filter(member => !(member?.name === name && member?.email === email));
+    setAddMemberToProject(addMemberToProject)
+    setMemberList([...memberList, memberToRemove[0]])
+  }
+
+  let copyProjectLink = () => {
+    let link = `http://localhost:3000/auth/project/${project_id}`
+    navigator.clipboard.writeText(link)
+  }
   return (
     <>
  {/* Layout wrapper */}
@@ -202,17 +229,36 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
           <div className="col-sm-6 fv-plugins-icon-container">
             <label className="form-label" htmlFor="p_cateogry">Project Category</label>
             <div className="position-relative">
-              <select id="p_cateogry" name="p_cateogry" className="select2 form-select select2-hidden-accessible" data-allow-clear="true" data-select2-id="p_cateogry" tabIndex={-1} aria-hidden="true" onChange={(e)=> {
-              setStep_2_data(prevState => ({
-                ...prevState,
-                  p_cateogry: e.target.value
-              }));
-            }}>
-                <option value data-select2-id={4}>Select Project Category</option>
-                {project_category?.sort().map((category, index) =>(
-                    <option value={category} key={index}>{category}</option>
-                ) )}
-              </select></div>
+              <select id="p_cateogry" name="p_cateogry" className="select2 form-select select2-hidden-accessible cursor-pointer" data-allow-clear="true" onMouseDown={handleSelectMouseDown2} data-select2-id="p_cateogry" tabIndex={-1} aria-hidden="true">
+                    <option data-name={activeOption2 ? activeOption2 : "Select Project Category"}>{activeOption2 ? activeOption2 : "Select Project Category"}</option>
+              </select>
+              {addCategoryDropdown && (              
+              <ul className="dropdown-menu dropdown-menu-end show" style={{width : '100%'}}>
+                <li>
+                  <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption2('Select Memeber')}>Select Memeber</a>
+                </li>
+                {
+      project_category?.sort().map((category, index) =>(
+        <div key={index}>
+                  <li>
+                    <a className={`dropdown-item cursor-pointer ${
+            category === activeOption2 ? "active" : ""
+          }`} onClick={() => {
+                      setActiveOption2(category); // Set the active option when a list item is clicked
+                      setSelectedOption2(category)
+                      setAddCategoryDropdown(false);
+                      setStep_2_data(prevState => ({
+                        ...prevState,
+                          p_cateogry: category
+                      }));
+                      }}>
+        {category}
+        </a>
+      </li>
+        </div>
+      ))}
+              </ul>)}
+              </div>
             <div className="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback" /></div>
             
           <div className="col-sm-6">
@@ -257,61 +303,9 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
       <div id="property-features" className="content fv-plugins-bootstrap5 fv-plugins-framework" >
         <div className="row g-3">
           <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plBedrooms">Bedrooms</label>
-            <input type="number" id="plBedrooms" name="plBedrooms" className="form-control" placeholder={3} />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label" htmlFor="plFloorNo">Floor No</label>
-            <input type="number" id="plFloorNo" name="plFloorNo" className="form-control" placeholder={12} />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plBathrooms">Bathrooms</label>
-            <input type="number" id="plBathrooms" name="plBathrooms" className="form-control" placeholder={4} />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label" htmlFor="plFurnishedStatus">Furnished Status</label>
-            <select id="plFurnishedStatus" name="plFurnishedStatus" className="form-select">
-              <option selected disabled value>Select furnished status </option>
-              <option value={1}>Fully furnished</option>
-              <option value={2}>Furnished</option>
-              <option value={3}>Semi furnished</option>
-              <option value={4}>Unfurnished</option>
-            </select>
-          </div>
-          <div className="col-lg-12">
-            <label className="form-label" htmlFor="plFurnishingDetails">Furnishing Details</label>
-            <tags className="tagify  form-control" tabIndex={-1}>
-              <tag title="Fridge" contentEditable="false" spellCheck="false" tabIndex={-1} className="tagify__tag tagify--noAnim" value="Fridge"><x title className="tagify__tag__removeBtn" role="button" aria-label="remove tag" /><div><span className="tagify__tag-text">Fridge</span></div></tag><tag title="AC" contentEditable="false" spellCheck="false" tabIndex={-1} className="tagify__tag tagify--noAnim" value="AC"><x title className="tagify__tag__removeBtn" role="button" aria-label="remove tag" /><div><span className="tagify__tag-text">AC</span></div></tag><tag title="TV" contentEditable="false" spellCheck="false" tabIndex={-1} className="tagify__tag tagify--noAnim" value="TV"><x title className="tagify__tag__removeBtn" role="button" aria-label="remove tag" /><div><span className="tagify__tag-text">TV</span></div></tag><tag title="WiFi" contentEditable="false" spellCheck="false" tabIndex={-1} className="tagify__tag tagify--noAnim" value="WiFi"><x title className="tagify__tag__removeBtn" role="button" aria-label="remove tag" /><div><span className="tagify__tag-text">WiFi</span></div></tag><span contentEditable tabIndex={0} data-placeholder="select options" aria-placeholder="select options" className="tagify__input" role="textbox" aria-autocomplete="both" aria-multiline="false" />
-              ​
-            </tags><input id="plFurnishingDetails" name="plFurnishingDetails" className="form-control" placeholder="select options" defaultValue="Fridge, AC, TV, WiFi" tabIndex={-1} />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Is there any common area?</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plCommonAreaRadio" id="plCommonAreaRadioYes" defaultChecked />
-              <label className="form-check-label" htmlFor="plCommonAreaRadioYes">Yes</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plCommonAreaRadio" id="plCommonAreaRadioNo" />
-              <label className="form-check-label" htmlFor="plCommonAreaRadioNo">No</label>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Is there any attached balcony?</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plAttachedBalconyRadio" id="plAttachedBalconyRadioYes" defaultChecked />
-              <label className="form-check-label" htmlFor="plAttachedBalconyRadioYes">Yes</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plAttachedBalconyRadio" id="plAttachedBalconyRadioNo" />
-              <label className="form-check-label" htmlFor="plAttachedBalconyRadioNo">No</label>
-            </div>
-          </div>
-                   <div className="col-12 d-flex justify-content-between mt-4">
-            <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
-              <span className="align-middle d-sm-inline-block d-none">Previous</span>
-            </button>
-            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
+          <div>
+</div>
+
           </div>
         </div>
       </div>)}
@@ -526,25 +520,28 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
                   <a className="dropdown-item cursor-pointer" onClick={() => setSelectedOption('Select Memeber')}>Select Memeber</a>
                 </li>
                 {
-      memeber_list.map((member, index) => (
+      memberList.map((member, index) => (
         <div key={index}>
                   <li>
                     <a className={`dropdown-item cursor-pointer ${
             member === activeOption ? "active" : ""
           }`} onClick={() => {
-                      setActiveOption(member.name); // Set the active option when a list item is clicked
-                      setSelectedOption(member.name)
+                      setActiveOption(member?.name); // Set the active option when a list item is clicked
+                      setSelectedOption(member?.name)
                       setAddMemberDropdown(false);
                       setAddMemberToProject([...addMemberToProject, member])
+                      checkSelectedMember(member?.name, member?.email)
                       setStep_2_data(prevState => ({
                         ...prevState,
-                        step_2: {
-                          ...prevState.step_2,
-                          p_member: member
-                        }
+                        p_member: [...prevState.p_member, member]
                       }));
                       }}>
-        {member?.name}
+                        <div className="d-flex flex-wrap">
+                        <div className="avatar me-3">
+        <img alt="avatar" className="rounded-circle" src={member?.image} />
+        </div>
+        <span className="fw-bold pt-2">{member?.name}</span>
+        </div>
         </a>
       </li>
         </div>
@@ -560,8 +557,8 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
            </div>
            <div className="d-flex justify-content-between flex-grow-1">
              <div className="me-2">
-               <p className="mb-0">{memberSelected?.name}</p>
-               <p className="mb-0 text-muted">{memberSelected?.email}</p>
+               <p className="mb-0 fw-600">{memberSelected?.name}</p>
+               <p className="mb-0 text-muted fw-500">{memberSelected?.email}</p>
              </div>
              <div className="dropdown">
                <button type="button" className="btn dropdown-toggle p-2" data-bs-toggle="dropdown" aria-expanded="false"><span className="text-muted fw-normal me-2 d-none d-sm-inline-block">Can Edit</span></button>
@@ -578,6 +575,9 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
                  <li>
                    <a className="dropdown-item" href="javascript:void(0);">Can View</a>
                  </li>
+                 <li>
+                   <a className="dropdown-item text-danger cursor-pointer" onClick={()=>removeFromInvite(memberSelected?.name, memberSelected?.email)}>Remove</a>
+                 </li>
                </ul>
              </div>
            </div>
@@ -588,7 +588,7 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
         <i className="ti ti-users me-2" />
         <div className="d-flex justify-content-between flex-grow-1 align-items-center flex-wrap gap-2">
           <h6 className="mb-0">Public to {step_2_data?.step_2?.p_name} - 1001_ai</h6>
-          <button className="btn btn-primary">Copy Project Link</button>
+          <button className="btn btn-primary" onClick={copyProjectLink}>Copy Project Link</button>
         </div>
       </div>
     </div>

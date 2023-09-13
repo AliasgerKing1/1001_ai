@@ -8,8 +8,7 @@ routes.post("/", async (req, res)=> {
 })
 routes.put("/:id", async (req, res)=> {
     let id = req.params.id;
-    console.log(id)
-    console.log(req.body)
+    req.body.step_2.p_link = `http://localhost:3000/auth/project/${id}`
     await Projects.updateMany({_id : id} ,req.body);
     res.send({status : 200, success : true});
 })
