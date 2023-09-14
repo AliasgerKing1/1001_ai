@@ -1,16 +1,16 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from '../../Shared/Header'
 import Footer from '../../Shared/Footer'
 import Sidebar from '../../Shared/Sidebar'
 import { useDispatch, useSelector } from "react-redux";
 import {theme_list, createAppStepSidebar, project_category, memeber_list} from '../../Json/Design_system'
 import {addProject, updateProject} from '../../Services/ProjectService'
-import  {step_1, step_2} from '../../Redux/CreateAppReducer'
+import  {step_1, step_2, step_3} from '../../Redux/CreateAppReducer'
 const CreateApp = () => {
   let dispatch = useDispatch() // Corrected line
   let state = useSelector(state=> state.CreateAppReducer)
-  let [currentStep, setCurrentStep] = useState(2)
+  let [currentStep, setCurrentStep] = useState(4)
   let [themesSelected, setThemeSelected] = useState(1)
   let [step_2_github_selected, setStep_2_github_selected] = useState(true)
   let [addMemberDropdown, setAddMemberDropdown] = useState(false)
@@ -33,6 +33,7 @@ p_git : true,
 });
 
 let [addMemberToProject, setAddMemberToProject] = useState([]);
+let [addPages, setAddPages] = useState(['HOME', 'HELP', 'ABOUT'])
   let themeFun = (themes) => {
     setSelectedTheme(themes.name )
     dispatch(step_1(themes.name))
@@ -92,6 +93,35 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
   let copyProjectLink = () => {
     let link = `http://localhost:3000/auth/project/${project_id}`
     navigator.clipboard.writeText(link)
+  }
+
+  useEffect(() => {
+    window.addEventListener('message', handleTagEvent);
+    return () => {
+      window.removeEventListener('message', handleTagEvent);
+    };
+  }, []);
+
+  const handleTagEvent = (event) => {
+    if (event.data.event === 'tagAdded') {
+      // Ensure that the new tag is not already in the array
+    if (!addPages.includes(event.data.value)) {
+      setAddPages(prevAddPages => [...prevAddPages, event.data.value]);
+    }
+      // Handle the new tag value in your React component
+    } else if (event.data.event === 'tagRemoved') {
+      setAddPages(prevAddPages => {
+        const newAddPages = prevAddPages.filter(data => data !== event.data.value);
+        return newAddPages;
+      });
+      // Handle the removed tag value in your React component
+    }
+  }
+
+  let submitStep_3= async ()=> {
+// Wait for next render to ensure state has been updated
+  dispatch(step_3(addPages))
+  setCurrentStep(currentStep + 1);
   }
   return (
     <>
@@ -303,83 +333,132 @@ let [addMemberToProject, setAddMemberToProject] = useState([]);
       <div id="property-features" className="content fv-plugins-bootstrap5 fv-plugins-framework" >
         <div className="row g-3">
           <div className="col-sm-6">
-          <div>
-</div>
-
+          <div style={{ position: 'relative', width: '700px', height: '400px', overflow: 'hidden' }}>
+            <iframe src="https://1001-ai-development-system.vercel.app/" frameborder="0" style={{
+       position: 'absolute',
+       top: '0',
+       left: '0',
+       width: '700px',
+       height: '400px',
+       border: 'none',
+   }}></iframe>
+          </div>
+          </div>
+          <div className="col-12 d-flex justify-content-between mt-4">
+            <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
+              <span className="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={submitStep_3}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
-      </div>)}
+      </div>
+      )}
       {/* Property Area */}
       {currentStep === 4 && ( 
       <div id="property-area" className="content fv-plugins-bootstrap5 fv-plugins-framework" >
         <div className="row g-3">
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plTotalArea">Total Area</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plTotalArea" name="plTotalArea" placeholder={1000} aria-describedby="pl-total-area" />
-              <span className="input-group-text" id="pl-total-area">sq-ft</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plCarpetArea">Carpet Area</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plCarpetArea" name="plCarpetArea" placeholder={800} aria-describedby="pl-carpet-area" />
-              <span className="input-group-text" id="pl-carpet-area">sq-ft</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plPlotArea">Plot Area</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plPlotArea" name="plPlotArea" placeholder={800} aria-describedby="pl-plot-area" />
-              <span className="input-group-text" id="pl-plot-area">sq-yd</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plAvailableFrom">Available From</label>
-            <input type="text" id="plAvailableFrom" name="plAvailableFrom" className="form-control flatpickr flatpickr-input" placeholder="YYYY-MM-DD" readOnly="readonly" />
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Possession Status</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plPossessionStatus" id="plUnderConstruction" defaultChecked />
-              <label className="form-check-label" htmlFor="plUnderConstruction">Under Construction</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plPossessionStatus" id="plReadyToMoveRadio" />
-              <label className="form-check-label" htmlFor="plReadyToMoveRadio">Ready to Move</label>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Transaction Type</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plTransectionType" id="plNewProperty" defaultChecked />
-              <label className="form-check-label" htmlFor="plNewProperty">New Property</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plTransectionType" id="plResaleProperty" />
-              <label className="form-check-label" htmlFor="plResaleProperty">Resale</label>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Is Property Facing Main Road?</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plRoadFacingRadio" id="plRoadFacingRadioYes" defaultChecked />
-              <label className="form-check-label" htmlFor="plRoadFacingRadioYes">Yes</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plRoadFacingRadio" id="plRoadFacingRadioNo" />
-              <label className="form-check-label" htmlFor="plRoadFacingRadioNo">No</label>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Gated Colony?</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plGatedColonyRadio" id="plGatedColonyRadioYes" defaultChecked />
-              <label className="form-check-label" htmlFor="plGatedColonyRadioYes">Yes</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plGatedColonyRadio" id="plGatedColonyRadioNo" />
-              <label className="form-check-label" htmlFor="plGatedColonyRadioNo">No</label>
+          <div className="col-sm-12">
+            <div className="row">
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Redux</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-success">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Login Auth</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-warning">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Routing</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-danger">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Auth & Anti-Auth</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-secondary">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">File Upload</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-info">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Pages and Shared</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-dark">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">SEO Optimised</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Infinite Scroll</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-success">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Pagination</span>
+</label>
+        </div>
+            <div class="col-sm-3 p-4">
+            <label className="switch switch-square switch-warning">
+  <input type="checkbox" className="switch-input" />
+  <span className="switch-toggle-slider">
+    <span className="switch-on"><i className="ti ti-check" /></span>
+    <span className="switch-off"><i className="ti ti-x" /></span>
+  </span>
+  <span className="switch-label">Admin Dashboard</span>
+</label>
+        </div>
             </div>
           </div>
                    <div className="col-12 d-flex justify-content-between mt-4">

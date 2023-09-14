@@ -1,4 +1,5 @@
 /* eslint-disable */
+import Calender from '../../Components/Pages/Calender'
 import CreateApp from '../../Components/Pages/CreateApp'
 import Home from '../../Components/Pages/Home'
 import Signin_basic from '../../InitDesigns/Apps/Signin/Vuexy_Basic_Signin'
@@ -11,6 +12,10 @@ const authRoutes = [
     {
         path : 'home',
         element : <Home />
+    },
+    {
+        path : 'calender',
+        element : <Calender />
     },
     {
         path : 'signin/basic',
