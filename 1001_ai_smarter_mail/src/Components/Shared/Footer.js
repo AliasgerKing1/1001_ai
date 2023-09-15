@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="container-xxl">
               <div className="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
                 <div>
-                  © 
+                  © 2023
                   , made with ❤️ by <a href="#" className="fw-medium">1001_ai</a>
                 </div>
                 <div className="d-none d-lg-inline-block">

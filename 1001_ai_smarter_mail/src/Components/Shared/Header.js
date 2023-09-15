@@ -426,15 +426,15 @@ const Header = () => {
                     <div className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="pages-faq.html">
-                      <i className="ti ti-help me-2 ti-sm" />
-                      <span className="align-middle">FAQ</span>
-                    </a>
+                    <NavLink className="dropdown-item" to="/auth/support">
+                      <i className="ti ti-lifebuoy me-2 ti-sm" />
+                      <span className="align-middle">Support</span>
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/auth/pricing">
-                      <i className="ti ti-currency-dollar me-2 ti-sm" />
-                      <span className="align-middle">Pricing</span>
+                    <NavLink className="dropdown-item" to="/auth/documentation">
+                      <i className="ti ti-file-description me-2 ti-sm" />
+                      <span className="align-middle">Documentation</span>
                     </NavLink>
                   </li>
                   <li>

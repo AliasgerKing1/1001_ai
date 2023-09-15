@@ -79,9 +79,9 @@ const Sidebar = () => {
     <span className="menu-header-text fl fw-600">Apps</span>
   </li>
   <li className="menu-item">
-    <NavLink to="/auth/home" className="menu-link">
-      <i className="menu-icon tf-icons ti ti-color-swatch" />
-      <div data-i18n="Image_Conversion">Image Conversion</div>
+    <NavLink to="/auth/create/app" className="menu-link">
+      <i className="menu-icon tf-icons ti ti-apps" />
+      <div data-i18n="Create_App">Create App</div>
     </NavLink>
   </li>
 

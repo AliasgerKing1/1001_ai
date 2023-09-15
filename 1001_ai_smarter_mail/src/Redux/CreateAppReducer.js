@@ -11,7 +11,8 @@ const initialState = {
       p_description : "",
       p_git : true,
     },
-    step_3 : []
+    step_3 : [],
+    step_4 : {}
 };
 
 const createAppReducer = createSlice({
@@ -27,10 +28,13 @@ const createAppReducer = createSlice({
     step_3(state, action) {
       state.step_3 = action.payload;
     },
+    step_4(state, action) {
+      state.step_4 = action.payload;
+    },
   }
 });
 
-export const { step_1, step_2, step_3 } = createAppReducer.actions;
+export const { step_1, step_2, step_3, step_4 } = createAppReducer.actions;
 
 export default createAppReducer.reducer;
 

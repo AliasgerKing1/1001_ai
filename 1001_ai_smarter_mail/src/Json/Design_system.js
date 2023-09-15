@@ -119,4 +119,134 @@ let memeber_list = [
     },
 ]
 
-export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list}
+let selectFeatures = [
+    {
+        text : "Redux",
+        className : "switch-square",
+        id : 'redux'
+    },
+    {
+        text : "Login Auth",
+        className : "switch-square switch-success",
+        id : 'login_auth'
+    },
+    {
+        text : "Routing",
+        className : "switch-square switch-warning",
+        id : 'routing'
+    },
+    {
+        text : "Auth & Anti-Auth",
+        className : "switch-square switch-danger" ,
+        id : 'auth_antiauth'
+    },
+    {
+        text : "File Upload",
+        className : "switch-square switch-secondary",
+        id : 'file_uplaod'
+    },
+    {
+        text : "Pages and Shared",
+        className : "switch-square switch-info",
+        id : 'pages_shared'
+    },
+    {
+        text : "SEO Optimised",
+        className : "switch-square switch-dark",
+        id : 'seo_optimised'
+    },
+    {
+        text : "Infinite Scroll",
+        className : "switch-square",
+        id : 'infinite_scroll'
+    },
+    {
+        text : "Pagination",
+        className : "switch-square switch-success",
+        id : 'pagination'
+    },
+    {
+        text : "Admin Dashboard" ,
+        className : "switch-square switch-warning",
+        id : 'admin_dashboard'
+    },
+    {
+        text : "Restful API",
+        className : "switch-square switch-danger",
+        modal_toggle : "modal",
+        modal_target : "#restfulApi",
+        id : 'restful_api',
+    },
+]
+
+
+
+let selectRestfulAPI = [
+    {
+        text : "User",
+        className : "switch-square",
+        id : 'user'
+    },
+    {
+        text : "Admin",
+        className : "switch-square switch-success",
+        id : 'admin'
+    },
+    {
+        text : "Product" ,
+        className : "switch-square switch-warning",
+        id : 'product'
+    },
+    {
+        text : "Category",
+        className : "switch-square switch-danger",
+        id : 'category' 
+    },
+    {
+        text : "Client",
+        className : "switch-square switch-secondary",
+        id : 'client'
+    },
+    {
+        text : "Post",
+        className : "switch-square switch-info",
+        id : 'post'
+    },
+    {
+        text : "Cources",
+        className : "switch-square switch-dark",
+        id : 'cources'
+    },
+    {
+        text : "Faculties",
+        className : "switch-square",
+        id : 'faculties'
+    },
+    {
+        text : "Student",
+        className : "switch-square switch-success",
+        id : 'student'
+    },
+    {
+        text : "Videos",
+        className : "switch-square switch-warning",
+        id : 'video'
+    },
+    {
+        text : "Images",
+        className : "switch-square switch-danger",
+        id : 'image'
+    },
+    {
+        text : "Question",
+        className : "switch-square switch-secondary",
+        id : 'question'
+    },
+    {
+        text : "Feedback",
+        className : "switch-square switch-info",
+        id : 'feedback'
+    },
+]
+
+export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list, selectFeatures, selectRestfulAPI}

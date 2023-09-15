@@ -1,16 +1,20 @@
 /* eslint-disable */
 import React, { useState, useEffect } from "react";
-import Header from '../../Shared/Header'
-import Footer from '../../Shared/Footer'
-import Sidebar from '../../Shared/Sidebar'
+import {useNavigate} from 'react-router-dom'
+import Header from '../Shared/Header'
+import Footer from '../Shared/Footer'
+import Sidebar from '../Shared/Sidebar'
 import { useDispatch, useSelector } from "react-redux";
-import {theme_list, createAppStepSidebar, project_category, memeber_list} from '../../Json/Design_system'
+import {theme_list, createAppStepSidebar, project_category, memeber_list, selectFeatures, selectRestfulAPI} from '../../Json/Design_system'
 import {addProject, updateProject} from '../../Services/ProjectService'
-import  {step_1, step_2, step_3} from '../../Redux/CreateAppReducer'
+import  {step_1, step_2, step_3, step_4} from '../../Redux/CreateAppReducer'
+import Switch from "../Shared/Small_Components/Switch";
+import Switch2 from "../Shared/Small_Components/Switch2";
 const CreateApp = () => {
   let dispatch = useDispatch() // Corrected line
+  let navigate = useNavigate()
   let state = useSelector(state=> state.CreateAppReducer)
-  let [currentStep, setCurrentStep] = useState(4)
+  let [currentStep, setCurrentStep] = useState(1)
   let [themesSelected, setThemeSelected] = useState(1)
   let [step_2_github_selected, setStep_2_github_selected] = useState(true)
   let [addMemberDropdown, setAddMemberDropdown] = useState(false)
@@ -30,6 +34,34 @@ p_cateogry : "",
 p_member : [],
 p_description : "",
 p_git : true,
+});
+  let [step_4_data, setStep_4_data] = useState({
+redux : true,
+login_auth : true,
+routing : true,
+auth_antiauth : true,
+file_uplaod : true,
+pages_shared : true,
+seo_optimised : true,
+infinite_scroll : true,
+pagination : false,
+admin_dashboard : true,
+restful_api : {
+  user : true,
+  admin : true,
+  product : false,
+  category : false,
+  client : false,
+  post : false,
+  cources : false,
+  faculties : false,
+  student : false,
+  video : false,
+  image : false,
+  question : false,
+  feedback : false,
+},
+
 });
 
 let [addMemberToProject, setAddMemberToProject] = useState([]);
@@ -74,10 +106,10 @@ let [addPages, setAddPages] = useState(['HOME', 'HELP', 'ABOUT'])
     theme_name : selectedTheme,
     step_2 : step_2_data
   }
-  // let result = await updateProject(project_id,bothStepData)
-  // if(result.data.status === 200) {
-  // }
-  setCurrentStep(currentStep + 1);
+  let result = await updateProject(project_id,bothStepData)
+  if(result.data.status === 200) {
+    setCurrentStep(currentStep + 1);
+  }
   }
   let checkSelectedMember = (name, email) => {
   memberList = memberList.filter(member => !(member?.name === name && member?.email === email));
@@ -121,15 +153,40 @@ let [addPages, setAddPages] = useState(['HOME', 'HELP', 'ABOUT'])
   let submitStep_3= async ()=> {
 // Wait for next render to ensure state has been updated
   dispatch(step_3(addPages))
-  setCurrentStep(currentStep + 1);
+  let ThreeStepData = {
+    theme_name : selectedTheme,
+    step_2 : step_2_data,
+    step_3 : addPages
   }
+  let result = await updateProject(project_id,ThreeStepData)
+  if(result.data.status === 200) {
+    setCurrentStep(currentStep + 1);
+  }
+}
+  let submitStep_4= async ()=> {
+// Wait for next render to ensure state has been updated
+  dispatch(step_4(step_4_data))
+  let allStepData = {
+    theme_name : selectedTheme,
+    step_2 : step_2_data,
+    step_3 : addPages,
+    step_4 : step_4_data
+  }
+    // Now you can proceed with your form submission
+    let result = await updateProject(project_id, allStepData);
+    if (result.data.status === 200) {
+      navigate('/auth/home');
+    }
+  }
+
+
   return (
     <>
  {/* Layout wrapper */}
 <div className="layout-wrapper layout-content-navbar">
   <div className="layout-container">
     {/* Menu */}
-<Sidebar />
+    <Sidebar />
     {/* / Menu */}
     {/* Layout container */}
     <div className="layout-page">
@@ -359,196 +416,24 @@ let [addPages, setAddPages] = useState(['HOME', 'HELP', 'ABOUT'])
         <div className="row g-3">
           <div className="col-sm-12">
             <div className="row">
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Redux</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-success">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Login Auth</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-warning">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Routing</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-danger">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Auth & Anti-Auth</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-secondary">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">File Upload</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-info">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Pages and Shared</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-dark">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">SEO Optimised</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Infinite Scroll</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-success">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Pagination</span>
-</label>
-        </div>
-            <div class="col-sm-3 p-4">
-            <label className="switch switch-square switch-warning">
-  <input type="checkbox" className="switch-input" />
-  <span className="switch-toggle-slider">
-    <span className="switch-on"><i className="ti ti-check" /></span>
-    <span className="switch-off"><i className="ti ti-x" /></span>
-  </span>
-  <span className="switch-label">Admin Dashboard</span>
-</label>
-        </div>
+              {selectFeatures?.map((feature, index) => {
+             const toggleSwitch = () => {
+              setStep_4_data((prevState) => ({
+                ...prevState,
+                [feature.id]: !prevState[feature.id],
+              }));
+            };
+              return(
+                <>{feature.id === 'restful_api' ? ( <Switch2 text={feature?.text} className={feature.className} modal_toggle={feature?.modal_toggle ? (feature.modal_toggle) : "" } modal_target={feature?.modal_target ? (feature.modal_target) : ""}  key={index} ch={feature.id !== 'restful_api' ? step_4_data.hasOwnProperty(feature.id) ? step_4_data[feature.id] : null : null} onClick={()=>feature.id !== 'restful_api' ? toggleSwitch : null} />) : ( <Switch text={feature?.text} className={feature.className} key={index} ch={step_4_data.hasOwnProperty(feature.id) ? step_4_data[feature.id] : null} onClick={toggleSwitch} />)}
+</>
+              )})}
             </div>
           </div>
                    <div className="col-12 d-flex justify-content-between mt-4">
             <button type='button' className="btn btn-label-secondary btn-prev waves-effect" disabled={currentStep === 1 ? true : false} onClick={()=>setCurrentStep(currentStep - 1)}> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" />
               <span className="align-middle d-sm-inline-block d-none">Previous</span>
             </button>
-            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" disabled={currentStep === 4 ? true : false} onClick={()=>setCurrentStep(currentStep + 1)}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i className="ti ti-arrow-right ti-xs" /></button>
-          </div>
-        </div>
-      </div>)}
-      {/* Price Details */}
-      {currentStep === 5 && ( 
-      <div id="price-details" className="content fv-plugins-bootstrap5 fv-plugins-framework" style={{display : 'none'}}>
-        <div className="row g-3">
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plExpeactedPrice">Expected Price</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plExpeactedPrice" name="plExpeactedPrice" placeholder="25,000" aria-describedby="pl-expeacted-price" />
-              <span className="input-group-text" id="pl-expeacted-price">$</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plPriceSqft">Price per Sqft</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plPriceSqft" name="plPriceSqft" placeholder={500} aria-describedby="pl-price-sqft" />
-              <span className="input-group-text" id="pl-price-sqft">$</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plMaintenenceCharge">Maintenance Charge</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plMaintenenceCharge" name="plMaintenenceCharge" placeholder={50} aria-describedby="pl-mentenence-charge" />
-              <span className="input-group-text" id="pl-mentenence-charge">$</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label" htmlFor="plMaintenencePer">Maintenance</label>
-            <select id="plMaintenencePer" name="plMaintenencePer" className="form-select">
-              <option value={1} selected>Monthly</option>
-              <option value={2}>Quarterly</option>
-              <option value={3}>Yearly</option>
-              <option value={3}>One-time</option>
-              <option value={3}>Per sqft. Monthly</option>
-            </select>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plBookingAmount">Booking/Token Amount</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plBookingAmount" name="plBookingAmount" placeholder={250} aria-describedby="pl-booking-amount" />
-              <span className="input-group-text" id="pl-booking-amount">$</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label d-block" htmlFor="plOtherAmount">Other Amount</label>
-            <div className="input-group input-group-merge">
-              <input type="number" className="form-control" id="plOtherAmount" name="plOtherAmount" placeholder={500} aria-describedby="pl-other-amount" />
-              <span className="input-group-text" id="pl-other-amount">$</span>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Show Price as</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="radio" name="plShowPriceRadio" id="plNagotiablePrice" defaultChecked />
-              <label className="form-check-label" htmlFor="plNagotiablePrice">Negotiable</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="plShowPriceRadio" id="plCallForPrice" />
-              <label className="form-check-label" htmlFor="plCallForPrice">Call for Price</label>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <label className="form-label">Price includes</label>
-            <div className="form-check mb-2">
-              <input className="form-check-input" type="checkbox" name="plCarParking" id="plCarParking" />
-              <label className="form-check-label" htmlFor="plCarParking">Car Parking</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="plClubMembership" id="plClubMembership" />
-              <label className="form-check-label" htmlFor="plClubMembership">Club Membership</label>
-            </div>
-          </div>
-          <div className="col-md-12">
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" name="plOtherCharges" id="plOtherCharges" />
-              <label className="form-check-label" htmlFor="plOtherCharges">Stamp Duty &amp; Registration charges excluded.</label>
-            </div>
-          </div>
-          <div className="col-12 d-flex justify-content-between mt-4">
-            <button className="btn btn-label-secondary btn-prev waves-effect"> <i className="ti ti-arrow-left ti-xs me-sm-1 me-0" /> <span className="align-middle d-sm-inline-block d-none">Previous</span> </button>
-            <button className="btn btn-success btn-submit btn-next waves-effect waves-light"><span className="align-middle d-sm-inline-block d-none me-sm-1">Submit</span><i className="ti ti-check ti-xs" /></button>
+            <button type='button' className="btn btn-primary btn-next waves-effect waves-light" onClick={submitStep_4}> <span className="align-middle d-sm-inline-block d-none me-sm-1">Create</span> <i className="ti ti-arrow-right ti-xs" /></button>
           </div>
         </div>
       </div>)}
@@ -676,6 +561,36 @@ let [addPages, setAddPages] = useState(['HOME', 'HELP', 'ABOUT'])
 {/*/ Share Project Modal */}
 
 
+{/* Refer & Earn Modal */}
+<div className="modal fade" id="restfulApi" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog modal-lg modal-simple modal-refer-and-earn">
+    <div className="modal-content p-3 p-md-5">
+      <div className="modal-body">
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+        <div className="text-center mb-4">
+          <h3 className="mb-2">Select Restful API</h3>
+          <p className="text-muted text-center mb-5 w-75 m-auto">Please choose the CRUD (Create, Read, Update, Delete) operation for the respective entity.</p>
+        </div>
+              <div className="row">
+              {selectRestfulAPI?.map((feature, index) =>{
+               const toggleSwitch = () => {
+                setStep_4_data((prevState) => ({
+                  ...prevState,
+                  restful_api: {
+                    ...prevState.restful_api,
+                    [feature.id]: !prevState.restful_api[feature.id],
+                  },
+                }));
+              };
+                return (
+              <Switch text={feature?.text} className={feature.className} key={index} ch={step_4_data.restful_api.hasOwnProperty(feature.id) ? step_4_data.restful_api[feature.id] : null } onClick={toggleSwitch} />
+              )})}
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/*/ Refer & Earn Modal */}
 
 
 
