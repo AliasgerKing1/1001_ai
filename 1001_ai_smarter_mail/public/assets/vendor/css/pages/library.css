@@ -173,3 +173,19 @@ transition: background-color .15s ease-out,color .15s ease-out;
   opacity: 0.8;
   transition: opacity .3s ease-in-out;
 }
+
+.fs-1 {
+  font-size: .8375rem !important;
+}
+.fs-2 {
+  font-size: 1.1rem !important;
+}
+
+/* CSS for truncating text */
+.truncate-text {
+  max-width: 80px; /* Adjust the max-width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Calender from '../../Components/Pages/Calender'
 import CreateApp from '../../Components/Pages/CreateApp'
+import GUIEditor from '../../Components/Pages/GUIEditor'
 import Home from '../../Components/Pages/Home'
 import Signin_basic from '../../InitDesigns/Apps/Signin/Vuexy_Basic_Signin'
 import Signin_cover from '../../InitDesigns/Apps/Signin/Vuexy_Cover_Signin'
@@ -16,6 +17,10 @@ const authRoutes = [
     {
         path : 'calender',
         element : <Calender />
+    },
+    {
+        path : 'figma',
+        element : <GUIEditor />
     },
     {
         path : 'signin/basic',

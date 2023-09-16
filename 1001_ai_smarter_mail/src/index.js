@@ -7,9 +7,11 @@ import {BrowserRouter} from 'react-router-dom'
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
 import { Provider } from 'react-redux';
 import CreateAppReducer from './Redux/CreateAppReducer'
+import GUIEditorReducer from './Redux/GUIEditorReducer'
 
 let rootReducer = combineReducers({
-  CreateAppReducer
+  CreateAppReducer,
+  GUIEditorReducer
 })
 let store = configureStore ({
   reducer : rootReducer
