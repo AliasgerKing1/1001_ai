@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {step_1, step_3} from '../../../Redux/GUIEditorReducer'
+import {step_1, step_3, step_4, step_5, step_6 } from '../../../Redux/GUIEditorReducer'
 import {useNavigate, NavLink} from 'react-router-dom'
+import {shapeDropdown} from '../../../Json/Design_system'
 const Header = () => {
   let navigate = useNavigate()
   let dispatch = useDispatch()
@@ -43,26 +44,57 @@ const Header = () => {
     navigate('/signin')
   }
   let moveMouse = () => {
+        dispatch(step_6(false))
     setMove(!move)
     dispatch(step_1(!move))
     dispatch(step_3(false))
     setMouse(false)
     setFrame(false)
-    setShape(false)
+    setShape(prevState => ({
+      ...prevState, // Spread the previous state to retain the 'selected' property
+      state: false // Update the 'state' property
+    }));
+ dispatch(step_4(false))
     setText(false)
     setPen(false)
     setComment(false)
   }
   let moveFrame = () => {
+        dispatch(step_6(false))
     setFrame(!frame)
     dispatch(step_3(!frame))
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
-                                            setShape(false)
+                                            setShape(prevState => ({
+                                              ...prevState, // Spread the previous state to retain the 'selected' property
+                                              state: false // Update the 'state' property
+                                            }));
+                                         dispatch(step_4(false))
                                             setText(false)
                                             setPen(false)
                                             setComment(false)
+  }
+  let settingShape = () => {
+        dispatch(step_6(true))
+    setFrame(false)
+    setMove(false)
+    dispatch(step_1(false))
+    setMouse(false)
+    setShape(prevState => ({
+      ...prevState, // Spread the previous state to retain the 'selected' property
+      state: !prevState.state // Update the 'state' property
+    }));
+    setText(false)
+    setPen(false)
+    setComment(false)
+        dispatch(step_3(false))
+        dispatch(step_4(!shape.state))
+  }
+
+  let selectShapeFun = (id) => {
+    dispatch(step_5(id))
+    dispatch(step_6(true))
   }
   return (
     <>
@@ -88,11 +120,13 @@ const Header = () => {
             <ul className="navbar-nav flex-row align-items-center ms-auto">
                             {/* mouse */}
                             <li className="nav-item dropdown-style-switcher dropdown me-2 me-xl-0" onClick={()=>{
+                                  dispatch(step_6(false))
                               setMouse(!mouse)
                               setMove(false)
                               dispatch(step_1(false))
                               setFrame(false)
                               setShape(false)
+                              dispatch(step_4(false))
                               setText(false)
                               setPen(false)
                               setComment(false)
@@ -119,70 +153,30 @@ const Header = () => {
               </li>
               {/*/ Frame */}
                             {/* Rectangle */}
-                            <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
-                                            setFrame(false)
-                                            setMove(false)
-                                            dispatch(step_1(false))
-                                            setMouse(false)
-                                            setShape(prevState => ({
-                                              ...prevState, // Spread the previous state to retain the 'selected' property
-                                              state: !prevState.state // Update the 'state' property
-                                            }));
-                                            setText(false)
-                                            setPen(false)
-                                            setComment(false)
-                                                dispatch(step_3(false))
-                                          }
-                                          }>
-                <a className={`nav-link dropdown-toggle hide-arrow cursor-pointer ${shape.state ? "text-primary" : ""}`} data-bs-toggle="dropdown">
+                            <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={settingShape}>
+                <a className={`nav-link dropdown-toggle hide-arrow cursor-pointer ${state?.shape ? "text-primary" : ""}`} data-bs-toggle="dropdown">
                   <i className="ti ti-rectangle rounded-circle ti-md " />
                 </a>
-                <ul className={`dropdown-menu dropdown-menu-end ${shape.state ? "show" : ""}`}>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-rectangle rounded-circle ti-md " /> Rectangle</span>
-                    </a>
-                  </li>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-circle rounded-circle ti-md " /> Circle</span>
-                    </a>
-                  </li>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-square rounded-circle ti-md " /> Square</span>
-                    </a>
-                  </li>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-line rounded-circle ti-md " /> Line</span>
-                    </a>
-                  </li>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-star rounded-circle ti-md " /> Star</span>
-                    </a>
-                  </li>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-arrow-up-right-circle rounded-circle ti-md " /> Arrow</span>
-                    </a>
-                  </li>
-                  <li> 
-                    <a className="dropdown-item cursor-pointer">
-                      <span className="align-middle"><i className="ti ti-polygon rounded-circle ti-md " /> Polygon</span>
-                    </a>
-                  </li>
+                <ul className={`dropdown-menu dropdown-menu-end ${state?.shape ? "show" : ""}`}>
+                  {shapeDropdown?.map((shape, index) => (
+                                      <li onClick={()=>selectShapeFun(shape.id)} key={index}> 
+                                      <a className={`dropdown-item cursor-pointer ${state?.selectedShape === shape.id ? "active" : ""}`}>
+                                        <span className="align-middle"><i className={`ti ${shape.icon}  rounded-circle ti-md `} /> {shape.name}</span>
+                                      </a>
+                                    </li>
+                  ))}
                 </ul>
               </li>
               {/*/ Rectangle */}
               {/* Text */}
               <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
+                    dispatch(step_6(false))
                                             setFrame(false)
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
                                             setShape(false)
+                                            dispatch(step_4(false))
                                             setText(!text)
                                             setPen(false)
                                             setComment(false)
@@ -196,11 +190,13 @@ const Header = () => {
               {/*/ Text */}
               {/* Pen */}
               <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
+                    dispatch(step_6(false))
                                             setFrame(false)
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
                                             setShape(false)
+                                            dispatch(step_4(false))
                                             setText(false)
                                             setPen(!pen)
                                             setComment(false)
@@ -214,11 +210,13 @@ const Header = () => {
               {/*/ Pen */}
                             {/* Comment */}
                             <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
+                                  dispatch(step_6(false))
                                             setFrame(false)
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
                                             setShape(false)
+                                            dispatch(step_4(false))
                                             setText(false)
                                             setPen(false)
                                             setComment(!comment)

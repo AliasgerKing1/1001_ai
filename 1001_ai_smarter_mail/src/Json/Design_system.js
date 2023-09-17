@@ -249,4 +249,41 @@ let selectRestfulAPI = [
     },
 ]
 
-export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list, selectFeatures, selectRestfulAPI}
+let shapeDropdown = [
+    {
+        name : 'Rectangle',
+        icon : 'ti-rectangle',
+        id : 'rectangle'
+    },
+    {
+        name : 'Circle',
+        icon : 'ti-circle',
+        id : 'circle'
+    },
+    {
+        name : 'Square',
+        icon : 'ti-square',
+        id : 'square'
+    },
+    {
+        name : 'Line',
+        icon : 'ti-line',
+        id : 'line'
+    },
+    {
+        name : 'Star',
+        icon : 'ti-star',
+        id : 'star'
+    },
+    {
+        name : 'Arrow',
+        icon : 'ti-arrow-up-right-circle',
+        id : 'arrow'
+    },
+    {
+        name : 'Polygon',
+        icon : 'ti-polygon',
+        id : 'polygon'
+    },
+]
+export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list, selectFeatures, selectRestfulAPI, shapeDropdown}

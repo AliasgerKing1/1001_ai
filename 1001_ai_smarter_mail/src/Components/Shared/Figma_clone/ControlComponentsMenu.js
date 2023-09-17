@@ -1,8 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+
 const ControlComponentsMenu = () => {
   let dispatch = useDispatch()
+  let state = useSelector(state=> state.GUIEditorReducer)
+
   return (
     <>
 <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme" style={{touchAction: 'none', userSelect: 'none'}}>
@@ -27,12 +30,14 @@ const ControlComponentsMenu = () => {
 </div>
 <div className="menu-inner-shadow" />
 <ul className="menu-inner py-1">
-<li className="menu-item">
+  {state?.allFrames.map((frame, index)=> (
+<li className="menu-item" key={index}>
     <NavLink className="menu-link fs-1">
       <i className="menu-icon tf-icons ti ti-frame fs-2" />
-      <div data-i18n="Chat" className="truncate-text">My Profile</div>
+      <div data-i18n="Chat" className="truncate-text">{frame.name}</div>
     </NavLink>
   </li>
+  ))}
 <li className="menu-item ms-2">
     <NavLink className="menu-link fs-1">
       <i className="menu-icon tf-icons ti ti-layout-2 fs-2" />
