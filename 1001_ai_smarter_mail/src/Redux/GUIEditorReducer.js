@@ -8,7 +8,7 @@ const initialState = {
     allFrames : [],
     shape : false,
     drawShape : false,
-    selectedShape : "rectangle",
+    selectedShape : "",
     shapes : []
 };
 

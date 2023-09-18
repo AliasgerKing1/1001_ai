@@ -17,6 +17,7 @@ const Header = () => {
     state : false,
     selected : ""
   })
+  let [shapeSelected, setShapeSelected] = useState(false)
   let [text, setText] = useState(false)
   let [pen, setPen] = useState(false)
   let [comment, setComment] = useState(false)
@@ -45,6 +46,7 @@ const Header = () => {
   }
   let moveMouse = () => {
         dispatch(step_6(false))
+                
     setMove(!move)
     dispatch(step_1(!move))
     dispatch(step_3(false))
@@ -54,6 +56,7 @@ const Header = () => {
       ...prevState, // Spread the previous state to retain the 'selected' property
       state: false // Update the 'state' property
     }));
+    setShapeSelected(false)
  dispatch(step_4(false))
     setText(false)
     setPen(false)
@@ -61,6 +64,7 @@ const Header = () => {
   }
   let moveFrame = () => {
         dispatch(step_6(false))
+                
     setFrame(!frame)
     dispatch(step_3(!frame))
                                             setMove(false)
@@ -70,6 +74,7 @@ const Header = () => {
                                               ...prevState, // Spread the previous state to retain the 'selected' property
                                               state: false // Update the 'state' property
                                             }));
+                                            setShapeSelected(false)
                                          dispatch(step_4(false))
                                             setText(false)
                                             setPen(false)
@@ -77,7 +82,7 @@ const Header = () => {
   }
   let settingShape = () => {
         dispatch(step_6(true))
-    setFrame(false)
+        setFrame(false)
     setMove(false)
     dispatch(step_1(false))
     setMouse(false)
@@ -85,6 +90,7 @@ const Header = () => {
       ...prevState, // Spread the previous state to retain the 'selected' property
       state: !prevState.state // Update the 'state' property
     }));
+    setShapeSelected(true)
     setText(false)
     setPen(false)
     setComment(false)
@@ -121,11 +127,16 @@ const Header = () => {
                             {/* mouse */}
                             <li className="nav-item dropdown-style-switcher dropdown me-2 me-xl-0" onClick={()=>{
                                   dispatch(step_6(false))
+                                          
                               setMouse(!mouse)
                               setMove(false)
                               dispatch(step_1(false))
                               setFrame(false)
-                              setShape(false)
+                              setShape(prevState => ({
+                                ...prevState, // Spread the previous state to retain the 'selected' property
+                                state: !prevState.state // Update the 'state' property
+                              }))
+                              setShapeSelected(false)
                               dispatch(step_4(false))
                               setText(false)
                               setPen(false)
@@ -154,7 +165,7 @@ const Header = () => {
               {/*/ Frame */}
                             {/* Rectangle */}
                             <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={settingShape}>
-                <a className={`nav-link dropdown-toggle hide-arrow cursor-pointer ${state?.shape ? "text-primary" : ""}`} data-bs-toggle="dropdown">
+                <a className={`nav-link dropdown-toggle hide-arrow cursor-pointer ${shapeSelected ? "text-primary" : ""}`} data-bs-toggle="dropdown">
                   <i className="ti ti-rectangle rounded-circle ti-md " />
                 </a>
                 <ul className={`dropdown-menu dropdown-menu-end ${state?.shape ? "show" : ""}`}>
@@ -171,11 +182,16 @@ const Header = () => {
               {/* Text */}
               <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
                     dispatch(step_6(false))
+                            
                                             setFrame(false)
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
-                                            setShape(false)
+                                            setShape(prevState => ({
+                                              ...prevState, // Spread the previous state to retain the 'selected' property
+                                              state: !prevState.state // Update the 'state' property
+                                            }))
+                                            setShapeSelected(false)
                                             dispatch(step_4(false))
                                             setText(!text)
                                             setPen(false)
@@ -191,11 +207,16 @@ const Header = () => {
               {/* Pen */}
               <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
                     dispatch(step_6(false))
+                            
                                             setFrame(false)
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
-                                            setShape(false)
+                                            setShape(prevState => ({
+                                              ...prevState, // Spread the previous state to retain the 'selected' property
+                                              state: !prevState.state // Update the 'state' property
+                                            }))
+                                            setShapeSelected(false)
                                             dispatch(step_4(false))
                                             setText(false)
                                             setPen(!pen)
@@ -211,11 +232,16 @@ const Header = () => {
                             {/* Comment */}
                             <li className="nav-item dropdown-language dropdown me-2 me-xl-0" onClick={()=>{
                                   dispatch(step_6(false))
+                                          
                                             setFrame(false)
                                             setMove(false)
                                             dispatch(step_1(false))
                                             setMouse(false)
-                                            setShape(false)
+                                            setShape(prevState => ({
+                                              ...prevState, // Spread the previous state to retain the 'selected' property
+                                              state: !prevState.state // Update the 'state' property
+                                            }))
+                                            setShapeSelected(false)
                                             dispatch(step_4(false))
                                             setText(false)
                                             setPen(false)

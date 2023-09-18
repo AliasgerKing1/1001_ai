@@ -25,8 +25,11 @@ const GUIEditor = () => {
   const [startPoint3, setStartPoint3] = useState({ x: 0, y: 0 });
   const [currentEllipse, setCurrentEllipse] = useState(null);
 
+  const [spacePressed, setSpacePressed] = useState(false); // Track spacebar state
+
+
   const handleMouseDown = (e) => {
-    if (!drawing &&  state.selectedShape === 'rectangle') {
+    if (!drawing &&  state.selectedShape === 'rectangle'  && !spacePressed) {
       setDrawing(true);
       setStartPoint({ x: e.pageX, y: e.pageY });
     }
@@ -43,6 +46,7 @@ const GUIEditor = () => {
         height: Math.abs(startPoint.y - e.pageY),
       };
       setRectangles([...rectangles, rect]);
+      setFrames([...frames, rect]);
       // dispatch(Frames([...state.shapes, rect]))
       setDrawing(false);
       setCurrentRect(null);
@@ -63,7 +67,7 @@ const GUIEditor = () => {
 
 
   const handleMouseDown2 = (e) => {
-    if (!drawing2 && state.frame) {
+    if (!drawing2 && state.frame  && !spacePressed) {
       setDrawing2(true);
       setStartPoint2({ x: e.pageX, y: e.pageY });
     }
@@ -80,6 +84,7 @@ const GUIEditor = () => {
         height: Math.abs(startPoint2.y - e.pageY),
       };
       setFrames([...frames, fr]);
+      setRectangles([...rectangles, fr]);
       dispatch(Frames([...state.allFrames, fr]))
       setDrawing2(false);
       setCurrentFrame(null);
@@ -99,7 +104,7 @@ const GUIEditor = () => {
   };
   
   const handleMouseDown3 = (e) => {
-    if (!drawing2 && state.selectedShape === 'circle') {
+    if (!drawing2 && state.selectedShape === 'circle'  && !spacePressed) {
     setDrawing3(true);
     setStartPoint3({ x: e.pageX, y: e.pageY });
     }
@@ -133,6 +138,24 @@ const GUIEditor = () => {
       setCurrentEllipse(ellipse);
     }
   };
+
+  const handleSpacebarPress = (event) => {
+    if (event.code === 'Space') {
+      event.preventDefault();
+      setSpacePressed(true);
+      dispatch(step_1(true))
+    }
+  };
+  
+  const handleSpacebarRelease = (event) => {
+    if (event.code === 'Space') {
+      setSpacePressed(false);
+      dispatch(step_1(false))
+    }
+  };
+  
+
+
 
 window.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
@@ -184,6 +207,9 @@ window.addEventListener('keydown', (event) => {
     });
   }
   
+window.addEventListener('keydown', handleSpacebarPress);
+window.addEventListener('keyup', handleSpacebarRelease);
+
   return (
     <>
         {/* Layout wrapper */}
@@ -198,7 +224,7 @@ window.addEventListener('keydown', (event) => {
 <Header />
       {/* / Navbar */}
       {/* Content wrapper */}
-      {state?.frame ?  (      <div onMouseDown={handleMouseDown2} onMouseUp={handleMouseUp2} onMouseMove={handleMouseMove2} style={{ height: '1000vh', width: '1000vw', overflow : 'auto'}}>
+      {state?.frame && <div onMouseDown={handleMouseDown2} onMouseUp={handleMouseUp2} onMouseMove={handleMouseMove2} style={{ height: '1000vh', width: '1000vw', overflow : 'auto'}}>
       {frames.map((fr, i) => (
         <>
          <p style={{position: 'absolute', top: fr.y - 20, left: fr.x}}>{fr?.name}</p>
@@ -227,9 +253,9 @@ window.addEventListener('keydown', (event) => {
           }}
         />
       )}
-    </div>) : null}
+    </div>}
 
-      {state?.selectedShape === 'rectangle' ?  (      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} style={{ height: '1000vh', width: '1000vw', overflow : 'auto'}}>
+      {state?.selectedShape === 'rectangle' &&  <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} style={{ height: '1000vh', width: '1000vw', overflow : 'auto'}}>
       {rectangles.map((rect, i) => (
         <>
          <p style={{position: 'absolute', top: rect.y - 20, left: rect.x}}>{rect?.name}</p>
@@ -258,7 +284,7 @@ window.addEventListener('keydown', (event) => {
           }}
         />
       )}
-    </div>) : null}
+    </div>}
     {state.selectedShape === 'circle' &&     <div
       onMouseDown={handleMouseDown3}
       onMouseUp={handleMouseUp3}
