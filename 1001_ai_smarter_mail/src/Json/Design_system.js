@@ -286,4 +286,107 @@ let shapeDropdown = [
         id : 'polygon'
     },
 ]
-export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list, selectFeatures, selectRestfulAPI, shapeDropdown}
+
+let deviceList = [
+    {
+        cat_name : "Phone",
+        id : 1,
+        children : [
+            {
+                name : "Iphone 14",
+                size :"390 x 844"
+            },
+            {
+                name : "Iphone 14 Pro",
+                size :"393 x 852"
+            },
+            {
+                name : "Iphone 14 Plus",
+                size :"428 x 926"
+            },
+            {
+                name : "Iphone 14 Pro Max",
+                size :"430 x 932"
+            },
+            {
+                name : "Iphone 13 Pro Max",
+                size :"428 x 926"
+            },
+            {
+                name : "Iphone 13/ 13 Pro",
+                size :"390 x 844"
+            },
+            {
+                name : "Iphone 13 Mini",
+                size :"375 x 812"
+            },
+            {
+                name : "Iphone SE",
+                size :"320 x 568"
+            },
+            {
+                name : "Iphone 8 Plus",
+                size :"414 x 736"
+            },
+            {
+                name : "Android Small",
+                size :"360 x 640"
+            },
+            {
+                name : "Android Large",
+                size :"360 x 800"
+            },
+        ]
+    },
+    {
+        cat_name : "Tablet",
+        id : 2,
+        children : [
+            {
+                name : "Iphone 14",
+                size :"390 x 844"
+            },
+            {
+                name : "Iphone 14 Pro",
+                size :"393 x 852"
+            },
+            {
+                name : "Iphone 14 Plus",
+                size :"428 x 926"
+            },
+            {
+                name : "Iphone 14 Pro Max",
+                size :"430 x 932"
+            },
+            {
+                name : "Iphone 13 Pro Max",
+                size :"428 x 926"
+            },
+            {
+                name : "Iphone 13/ 13 Pro",
+                size :"390 x 844"
+            },
+            {
+                name : "Iphone 13 Mini",
+                size :"375 x 812"
+            },
+            {
+                name : "Iphone SE",
+                size :"320 x 568"
+            },
+            {
+                name : "Iphone 8 Plus",
+                size :"414 x 736"
+            },
+            {
+                name : "Android Small",
+                size :"360 x 640"
+            },
+            {
+                name : "Android Large",
+                size :"360 x 800"
+            },
+        ]
+    },
+]
+export {social, signinText, signupText, signupTextSuffix, main_signin_heading, sub_main_signin_heading, form, brand, theme_list, createAppStepSidebar, project_category, memeber_list, selectFeatures, selectRestfulAPI, shapeDropdown, deviceList}

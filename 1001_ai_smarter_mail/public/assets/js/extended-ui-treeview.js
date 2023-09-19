@@ -30,7 +30,11 @@ $(function () {
         }, {
           text: "Form Auto Layouts (horizontal)",
           type: "auto_layout"
-        }]
+        },
+      {
+        text : "Line1",
+        type : "line"
+      }]
       }, {
         text: "img",
         state: {
@@ -57,6 +61,10 @@ $(function () {
         }, {
           text: "Text",
           type: "text"
+        },
+        {
+          text : "Arrow",
+          type : "arrow"
         },
         {
             text: "polygon",
@@ -118,6 +126,14 @@ $(function () {
         icon: "ti ti-square text-secondary",
         text: "square"
       },
+        arrow: {
+        icon: "ti ti-arrow-up-right-circle text-success",
+        text: "arrow"
+      },
+      line: {
+        icon: "ti ti-line text-info",
+        text: "line"
+      },
     }
   });
 
@@ -135,7 +151,11 @@ $(function () {
         }, {
           text: "Form Auto Layouts (horizontal)",
           type: "auto_layout"
-        }]
+        },
+      {
+        text : "Line1",
+        type : "line"
+      }]
       }, {
         text: "img",
         state: {
@@ -162,6 +182,10 @@ $(function () {
         }, {
           text: "Text",
           type: "text"
+        },
+        {
+          text : "Arrow",
+          type : "arrow"
         },
         {
             text: "polygon",
@@ -223,6 +247,14 @@ $(function () {
         icon: "ti ti-square text-secondary",
         text: "square"
       },
+        arrow: {
+        icon: "ti ti-arrow-up-right-circle text-success",
+        text: "arrow"
+      },
+      line: {
+        icon: "ti ti-line text-info",
+        text: "line"
+      },
     }
   });
 
@@ -240,7 +272,11 @@ $(function () {
         }, {
           text: "Form Auto Layouts (horizontal)",
           type: "auto_layout"
-        }]
+        },
+      {
+        text : "Line1",
+        type : "line"
+      }]
       }, {
         text: "img",
         state: {
@@ -267,6 +303,10 @@ $(function () {
         }, {
           text: "Text",
           type: "text"
+        },
+        {
+          text : "Arrow",
+          type : "arrow"
         },
     {
         text: "polygon",
@@ -328,6 +368,14 @@ $(function () {
         icon: "ti ti-square text-secondary",
         text: "square"
       },
+        arrow: {
+        icon: "ti ti-arrow-up-right-circle text-success",
+        text: "arrow"
+      },
+      line: {
+        icon: "ti ti-line text-info",
+        text: "line"
+      },
     }
   });
 
@@ -344,7 +392,11 @@ $(function () {
         }, {
           text: "Form Auto Layouts (horizontal)",
           type: "auto_layout"
-        }]
+        },
+      {
+        text : "Line1",
+        type : "line"
+      }]
       }, {
         text: "img",
         state: {
@@ -371,6 +423,10 @@ $(function () {
         }, {
           text: "Text",
           type: "text"
+        },
+        {
+          text : "Arrow",
+          type : "arrow"
         },
         {
             text: "polygon",
@@ -432,6 +488,14 @@ $(function () {
         icon: "ti ti-square text-secondary",
         text: "square"
       },
+        arrow: {
+        icon: "ti ti-arrow-up-right-circle text-success",
+        text: "arrow"
+      },
+      line: {
+        icon: "ti ti-line text-info",
+        text: "line"
+      },
     }
   });
 
@@ -474,6 +538,14 @@ $(function () {
        square: {
         icon: "ti ti-square text-secondary",
         text: "square"
+      },
+        arrow: {
+        icon: "ti ti-arrow-up-right-circle text-success",
+        text: "arrow"
+      },
+      line: {
+        icon: "ti ti-line text-info",
+        text: "line"
       },
     }
   });

@@ -5,6 +5,7 @@ import Header from '../Shared/Figma_clone/Header'
 
 import {useSelector, useDispatch} from 'react-redux'
 import { Frames, step_1 } from '../../Redux/GUIEditorReducer';
+import { deviceList } from '../../Json/Design_system';
 
 const GUIEditor = () => {
   let dispatch = useDispatch();
@@ -26,6 +27,8 @@ const GUIEditor = () => {
   const [currentEllipse, setCurrentEllipse] = useState(null);
 
   const [spacePressed, setSpacePressed] = useState(false); // Track spacebar state
+
+  const [currentFrameCategory, setCurrentFrameCategory] = useState(0);
 
 
   const handleMouseDown = (e) => {
@@ -210,6 +213,7 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('keydown', handleSpacebarPress);
 window.addEventListener('keyup', handleSpacebarRelease);
 
+
   return (
     <>
         {/* Layout wrapper */}
@@ -340,6 +344,74 @@ window.addEventListener('keyup', handleSpacebarRelease);
       {/* Content wrapper */}
     </div>
     {/* / Layout page */}
+    <div className='row mt-5'>
+    <div className="col-xl-4 col-md-6 order-2 order-lg-1 mt-5">
+  <div className={`card ${state?.frame ? "" : "d-none"}`} style={{ position: 'fixed', right: '10px', width: '350px', overflow : 'auto', maxHeight : '550px' }}>
+    <div className="card-header d-flex justify-content-between">
+      <div className="card-title mb-0">
+        <h5 className="mb-0">Frame</h5>
+        <small className="text-muted">{deviceList?.length} Category</small>
+      </div>
+      <div className="dropdown">
+        <button className="btn p-0" type="button" id="sourceVisits" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i className="ti ti-dots-vertical ti-sm text-muted" />
+        </button>
+        <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sourceVisits">
+          <a className="dropdown-item" href="javascript:void(0);">Refresh</a>
+          <a className="dropdown-item" href="javascript:void(0);">Download</a>
+          <a className="dropdown-item" href="javascript:void(0);">View All</a>
+        </div>
+      </div>
+    </div>
+    <div className="card-body">
+      <ul className="menu-inner py-1 mb-0" style={{display : 'block'}}>
+        {deviceList?.map((category, index) => (
+          <>
+                <li className={`menu-item ${currentFrameCategory === category?.id ? "open" : ""}`} key={index} onClick={()=>setCurrentFrameCategory(currentFrameCategory === category?.id ? 0 :category?.id)}>
+                <a href="javascript:void(0);" className="menu-link text-dark">
+                  <div data-i18n="Dashboards" className='fw-bold'>{category?.cat_name}</div>
+                  {currentFrameCategory === category?.id ? (<i className='ti ti-chevron-down ps-2 fs-2'></i>) : (<i className='ti ti-chevron-right ps-2 fs-2'></i>)}
+                </a>
+                <ul className="menu-sub">
+                  {category?.children?.map((child, index) => (
+                                      <li className="menu-item" key={index}>
+                                      <a className="menu-link pt-2 text-dark cursor-pointer">
+                                        <i className="menu-icon tf-icons ti ti-point" />
+                                        <div data-i18n="Analytics">{child?.name}</div>
+                                        <div className='text-secondary ps-5 fs-1'>{child?.size}</div>
+                                      </a>
+                                    </li>
+                  ))}
+                </ul>
+              </li>
+            <div className="divider">
+  <div className="divider-text">end</div>
+</div>
+
+              </>
+        ))}
+        {/* <li className="mb-3 pb-1">
+          <div className="d-flex align-items-start">
+            <div className="badge bg-label-secondary p-2 me-3 rounded"><i className="ti ti-shadow ti-sm" /></div>
+            <div className="d-flex justify-content-between w-100 flex-wrap gap-2">
+              <div className="me-2">
+                <h6 className="mb-0">Direct Source</h6>
+                <small className="text-muted">Direct link click</small>
+              </div>
+              <div className="d-flex align-items-center">
+                <p className="mb-0">1.2k</p>
+                <div className="ms-3 badge bg-label-success">+4.2%</div>
+              </div>
+            </div>
+          </div>
+        </li> */}
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
   </div>
   {/* Overlay */}
   <div className="layout-overlay layout-menu-toggle" />

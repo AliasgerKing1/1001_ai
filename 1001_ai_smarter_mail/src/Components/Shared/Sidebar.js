@@ -27,6 +27,7 @@ const Sidebar = () => {
 </div>
 <div className="menu-inner-shadow" />
 <ul className="menu-inner py-1">
+{/* ps ps__rtl ps--active-y */}
 <li className="menu-item">
     <NavLink to="/auth/profile/user" className="menu-link">
       <i className="menu-icon tf-icons ti ti-user-check" />
