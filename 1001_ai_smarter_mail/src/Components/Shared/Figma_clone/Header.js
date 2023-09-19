@@ -1,16 +1,20 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import { getAdmin } from '../../../Services/AdminSerivice'
+import { useDispatch, useSelector } from 'react-redux'
+import {adminDataRed} from '../../../Redux/AdminReducer'
 import {step_1, step_3, step_4, step_5, step_6 } from '../../../Redux/GUIEditorReducer'
 import {useNavigate, NavLink} from 'react-router-dom'
 import {shapeDropdown} from '../../../Json/Design_system'
 const Header = () => {
   let navigate = useNavigate()
   let dispatch = useDispatch()
-
+  
   let state = useSelector(state=> state.GUIEditorReducer)
-
-  let [searchInp, setSearchInp] = useState(false)
-  let [mouse, setMouse] = useState(false)
+    let state2 = useSelector(state => state.adminReducer)
+    
+    let [searchInp, setSearchInp] = useState(false)
+    let [mouse, setMouse] = useState(false)
   let [move, setMove] = useState(false)
   let [frame, setFrame] = useState(false)
   let [shape, setShape] = useState({
@@ -23,6 +27,18 @@ const Header = () => {
   let [comment, setComment] = useState(false)
   let [searchQuery, setSearchQuery] = useState("")
   
+  let getAdminFun = async () => {
+    let token = localStorage.getItem('dev_system_token');
+    let result = await getAdmin(token);
+    dispatch(adminDataRed(result.data[0]))
+  }
+
+  useEffect(()=> {
+    if(state2.length < 1) {
+      getAdminFun()
+    }
+  }, [])
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       // Check if Ctrl key is pressed and the '/' key (keyCode 191) is pressed
@@ -531,7 +547,7 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a className="dropdown-item" href="pages-account-settings-account.html">
+                    <a className="dropdown-item cursor-pointer">
                       <div className="d-flex">
                         <div className="flex-shrink-0 me-3">
                           <div className="avatar avatar-online">
@@ -539,10 +555,8 @@ const Header = () => {
                           </div>
                         </div>
                         <div className="flex-grow-1">
-                          <span className="fw-medium d-block"><span className='text-primary'>@</span></span>
-                          <small className="text-muted"></small>
-                          {/* {state && state.username} */}
-                          {/* {state && state.plan} */}
+                          <span className="fw-medium d-block"><span className='text-primary'>@</span>{state2 && state2?.username}</span>
+                          <small className="text-muted">{state2 && state2?.plan}</small>
                         </div>
                       </div>
                     </a>

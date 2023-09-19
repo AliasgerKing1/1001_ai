@@ -8,10 +8,14 @@ import {configureStore, combineReducers} from "@reduxjs/toolkit";
 import { Provider } from 'react-redux';
 import CreateAppReducer from './Redux/CreateAppReducer'
 import GUIEditorReducer from './Redux/GUIEditorReducer'
+import userReducer from './Redux/UserReducer'
+import adminReducer from './Redux/AdminReducer'
 
 let rootReducer = combineReducers({
   CreateAppReducer,
-  GUIEditorReducer
+  GUIEditorReducer,
+  userReducer,
+  adminReducer
 })
 let store = configureStore ({
   reducer : rootReducer

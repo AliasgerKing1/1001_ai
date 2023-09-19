@@ -19,7 +19,7 @@ const authRoutes = [
         element : <Calender />
     },
     {
-        path : 'figma',
+        path : 'reactme',
         element : <GUIEditor />
     },
     {

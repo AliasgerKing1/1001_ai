@@ -343,48 +343,150 @@ let deviceList = [
         id : 2,
         children : [
             {
-                name : "Iphone 14",
-                size :"390 x 844"
+                name : "Surface Pro 8",
+                size :"1440 x 960"
             },
             {
-                name : "Iphone 14 Pro",
-                size :"393 x 852"
+                name : "Ipad Mini 8.3",
+                size :"744 x 1133"
             },
             {
-                name : "Iphone 14 Plus",
-                size :"428 x 926"
+                name : "Ipad Pro 11",
+                size :"834 x 1194"
             },
             {
-                name : "Iphone 14 Pro Max",
-                size :"430 x 932"
+                name : "Ipad Pro 12.9",
+                size :"1024 x 1366"
+            },
+        ]
+    },
+    {
+        cat_name : "Desktop",
+        id : 3,
+        children : [
+            {
+                name : "Macbook Air",
+                size :"1280 x 832"
             },
             {
-                name : "Iphone 13 Pro Max",
-                size :"428 x 926"
+                name : "Macbook Pro 14",
+                size :"1512 x 982"
             },
             {
-                name : "Iphone 13/ 13 Pro",
-                size :"390 x 844"
+                name : "Macbook Pro 16",
+                size :"1728 x 1117"
             },
             {
-                name : "Iphone 13 Mini",
-                size :"375 x 812"
+                name : "Desktop",
+                size :"1440 x 1024"
             },
             {
-                name : "Iphone SE",
-                size :"320 x 568"
+                name : "Normal Tv",
+                size :"1280 x 720"
+            },
+        ]
+    },
+    {
+        cat_name : "Presentation",
+        id : 4,
+        children : [
+            {
+                name : "Slide 16:9",
+                size :"1920 x 1080"
             },
             {
-                name : "Iphone 8 Plus",
-                size :"414 x 736"
+                name : "Slide 4:3",
+                size :"1024 x 768"
+            },
+        ]
+    },
+    {
+        cat_name : "Watch",
+        id : 5,
+        children : [
+            {
+                name : "Apple watch 40mm",
+                size :"162 x 197"
             },
             {
-                name : "Android Small",
-                size :"360 x 640"
+                name : "Apple watch 41mm",
+                size :"176 x 215"
             },
             {
-                name : "Android Large",
-                size :"360 x 800"
+                name : "Apple watch 44mm",
+                size :"184 x 224"
+            },
+            {
+                name : "Apple watch 45mm",
+                size :"198 x 242"
+            },
+        ]
+    },
+    {
+        cat_name : "Paper",
+        id : 6,
+        children : [
+            {
+                name : "A4",
+                size :"595 x 842"
+            },
+            {
+                name : "A5",
+                size :"420 x 595"
+            },
+            {
+                name : "A6",
+                size :"297 x 420"
+            },
+            {
+                name : "Letter",
+                size :"612 x 792"
+            },
+            {
+                name : "Tabloid",
+                size :"792 x 1224"
+            },
+        ]
+    },
+    {
+        cat_name : "Social Media",
+        id : 7,
+        children : [
+            {
+                name : "Twitter post",
+                size :"1200 x 675"
+            },
+            {
+                name : "Twitter header",
+                size :"1500 x 500"
+            },
+            {
+                name : "Facebook post",
+                size :"1200 x 630"
+            },
+            {
+                name : "Facebook cover",
+                size :"820 x 312"
+            },
+            {
+                name : "Instagram Post",
+                size :"1080 x 1080"
+            },
+            {
+                name : "Instagram Story",
+                size :"1080 x 1920"
+            },
+            {
+                name : "Dribble shot",
+                size :"400 x 300"
+            },
+            {
+                name : "Dribble shot HD",
+                size :"800 x 600"
+            },
+            {
+                name : "Linkedin cover",
+                size :"1584 x 396"
             },
         ]
     },

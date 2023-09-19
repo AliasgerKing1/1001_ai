@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -84,6 +85,12 @@ const Sidebar = () => {
       <i className="menu-icon tf-icons ti ti-apps" />
       <div data-i18n="Create_App">Create App</div>
     </NavLink>
+  </li>
+  <li className="menu-item">
+    <a href="/auth/reactme" className="menu-link">
+      <i className="menu-icon tf-icons ti ti-brand-react" />
+      <div data-i18n="Create_App">React Me</div>
+    </a>
   </li>
 
   <li className="menu-item">

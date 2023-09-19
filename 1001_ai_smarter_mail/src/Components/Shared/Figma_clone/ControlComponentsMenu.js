@@ -1,7 +1,7 @@
+/* eslint-disable */
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-
+import { useDispatch, useSelector } from 'react-redux'
 const ControlComponentsMenu = () => {
   let dispatch = useDispatch()
   let state = useSelector(state => state.GUIEditorReducer)
@@ -52,6 +52,12 @@ const ControlComponentsMenu = () => {
         <i className="jstree-icon jstree-themeicon ti ti-brand-html5 text-danger jstree-themeicon-custom" role="presentation" />page-one.html</a></li><li role="none" id="j4_13" className="jstree-node  jstree-leaf jstree-last">
         <i className="jstree-icon jstree-ocl" role="presentation" /><a className="jstree-anchor" href="#" tabIndex={-1} role="treeitem" aria-selected="false" aria-level={1} id="j4_13_anchor">
         <i className="jstree-icon jstree-themeicon ti ti-brand-html5 text-danger jstree-themeicon-custom" role="presentation" />page-two.html</a></li></ul></div>
+      </aside>
+    </>
+  )
+}
+
+export default ControlComponentsMenu
 
         {/* <ul className="menu-inner py-1">
   {state?.allFrames.map((frame, index)=> (
@@ -125,12 +131,6 @@ const ControlComponentsMenu = () => {
     </NavLink>
   </li>
 </ul> */}
-      </aside>
-    </>
-  )
-}
-
-export default ControlComponentsMenu
 
 
 {/* Dashboards */ }

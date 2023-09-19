@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 // import {selectToggleRed} from '../../Redux/SelectToggleReducer'
 import {useNavigate, NavLink} from 'react-router-dom'
 const Header = () => {
+  let state = useSelector(state => state.adminReducer)
   let navigate = useNavigate()
   let dispatch = useDispatch()
 
@@ -382,7 +384,7 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a className="dropdown-item" href="pages-account-settings-account.html">
+                    <a className="dropdown-item cursor-pointer">
                       <div className="d-flex">
                         <div className="flex-shrink-0 me-3">
                           <div className="avatar avatar-online">
@@ -390,10 +392,9 @@ const Header = () => {
                           </div>
                         </div>
                         <div className="flex-grow-1">
-                          <span className="fw-medium d-block"><span className='text-primary'>@</span></span>
-                          <small className="text-muted"></small>
-                          {/* {state && state.username} */}
-                          {/* {state && state.plan} */}
+                          <span className="fw-medium d-block"><span className='text-primary'>@</span>{state && state.username}</span>
+                          <small className="text-muted">{state && state.plan}</small>
+                          
                         </div>
                       </div>
                     </a>

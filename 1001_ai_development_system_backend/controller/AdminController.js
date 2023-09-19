@@ -28,8 +28,8 @@ routes.post("/loginauth", async (req, res)=> {
 routes.get('/', async (req,res) => {
   if(req.headers.token) {
     let token = req.headers.token;
-    let id = jwt.decode(token, "Aliasger web");
-    let result = await Admin.find({_id : id});
+    let obj = jwt.decode(token, "Aliasger web");
+    let result = await Admin.find({_id : obj.id});
     res.send(result)
   }
 })

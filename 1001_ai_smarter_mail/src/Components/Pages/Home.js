@@ -1,8 +1,25 @@
-import React from 'react'
+/* eslint-disable */
+import React, { useEffect } from 'react'
 import Header from '../Shared/Header'
 import Footer from '../Shared/Footer'
 import Sidebar from '../Shared/Sidebar'
+import { getAdmin } from '../../Services/AdminSerivice'
+import { useDispatch, useSelector } from 'react-redux'
+import {adminDataRed} from '../../Redux/AdminReducer'
 const Home = () => {
+  let state = useSelector(state => state.adminReducer)
+  let dispatch = useDispatch()
+  let getAdminFun = async () => {
+    let token = localStorage.getItem('dev_system_token');
+    let result = await getAdmin(token);
+    dispatch(adminDataRed(result.data[0]))
+  }
+
+  useEffect(()=> {
+    if(state.length < 1) {
+      getAdminFun()
+    }
+  }, [])
   return (
     <>
       {/* Layout wrapper */}

@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 
 import ControlComponentsMenu from '../Shared/Figma_clone/ControlComponentsMenu'
@@ -6,6 +8,8 @@ import Header from '../Shared/Figma_clone/Header'
 import {useSelector, useDispatch} from 'react-redux'
 import { Frames, step_1 } from '../../Redux/GUIEditorReducer';
 import { deviceList } from '../../Json/Design_system';
+
+// import { CompactPicker } from 'react-color'
 
 const GUIEditor = () => {
   let dispatch = useDispatch();
@@ -69,8 +73,49 @@ const GUIEditor = () => {
   };
 
 
+
+  // Calculate the frame size based on the dimensions of frames in the array
+  const calculateFrameSize = () => {
+    if (frames.length === 0) {
+      // Set an initial size if there are no frames
+      return { width: 100, height: 100 };
+    }
+
+    // Find the maximum width and height among all frames
+    const maxWidth = Math.max(...frames.map((fr) => fr.width));
+    const maxHeight = Math.max(...frames.map((fr) => fr.height));
+
+    return { width: maxWidth, height: maxHeight };
+  };
+
+  const [frameSize, setFrameSize] = useState(calculateFrameSize());
+
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (e.deltaY < 0) {
+        // Scroll up to make frames smaller
+        setFrameSize((prevSize) => ({
+          width: prevSize.width - 10, // Adjust the decrement as needed
+          height: prevSize.height - 10, // Adjust the decrement as needed
+        }));
+      } else {
+        // Scroll down to make frames larger
+        setFrameSize((prevSize) => ({
+          width: prevSize.width + 10, // Adjust the increment as needed
+          height: prevSize.height + 10, // Adjust the increment as needed
+        }));
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel);
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
   const handleMouseDown2 = (e) => {
-    if (!drawing2 && state.frame  && !spacePressed) {
+    if (!drawing2 && state.frame && !spacePressed) {
       setDrawing2(true);
       setStartPoint2({ x: e.pageX, y: e.pageY });
     }
@@ -88,7 +133,7 @@ const GUIEditor = () => {
       };
       setFrames([...frames, fr]);
       setRectangles([...rectangles, fr]);
-      dispatch(Frames([...state.allFrames, fr]))
+      dispatch(Frames([...state.allFrames, fr]));
       setDrawing2(false);
       setCurrentFrame(null);
     }
@@ -105,7 +150,7 @@ const GUIEditor = () => {
       setCurrentFrame(rect);
     }
   };
-  
+
   const handleMouseDown3 = (e) => {
     if (!drawing2 && state.selectedShape === 'circle'  && !spacePressed) {
     setDrawing3(true);
@@ -213,11 +258,31 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('keydown', handleSpacebarPress);
 window.addEventListener('keyup', handleSpacebarRelease);
 
-
+let createFixedFrame = (child) => {
+  let length = frames.length + 1;
+  // Calculate the center pixel
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  let splitedChild = child.size.split("x")
+  let width = splitedChild[0].trim()
+  let height = splitedChild[1].trim()
+  
+  const fr = {
+    id: length,
+    name: `Frame ${length}`,
+    x: Math.min(centerX),
+    y: Math.min(centerY),
+    width: Math.abs(width),
+    height: Math.abs(height),
+  };
+  setFrames([...frames, fr]);
+  
+}
   return (
     <>
         {/* Layout wrapper */}
 <div className="layout-wrapper layout-content-navbar" style={{cursor : state?.move ? 'pointer' : 'default'}}>
+{/* background : '#000' */}
   <div className="layout-container">
     {/* Menu */}
 <ControlComponentsMenu />
@@ -346,46 +411,100 @@ window.addEventListener('keyup', handleSpacebarRelease);
     {/* / Layout page */}
     <div className='row mt-5'>
     <div className="col-xl-4 col-md-6 order-2 order-lg-1 mt-5">
+    <div className="nav-align-top nav-tabs-shadow mb-4" style={{ position: 'fixed', right: '10px', overflow : 'auto', maxHeight : '550px', width : '300px' }}>
+  <ul className="nav nav-tabs" role="tablist">
+    <li className="nav-item" role="presentation">
+      <button type="button" className="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="true">Design</button>
+    </li>
+    <li className="nav-item" role="presentation">
+      <button type="button" className="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-profile" aria-controls="navs-top-profile" aria-selected="false" tabIndex={-1}>Prototype</button>
+    </li>
+
+  </ul>
+  <div className="tab-content">
+    <div className="tab-pane fade active show" id="navs-top-home" role="tabpanel">
+    {/* <CompactPicker /> */}
+    <div className='row'>
+      <div className='col-md-10'>
+    <toolcool-color-picker color="#7367f0"></toolcool-color-picker>
+      </div>
+      <div className='col-md-2'>
+      <i className="ti ti-eye rounded-circle ti-md" />
+      </div>
+    </div>
+    <div className="divider">
+  <div className="divider-text">Background Colour</div>
+</div>
+    <div className='row'>
+      <div className='col-md-10'>
+      <p>
+        Local variables
+      </p>
+      </div>
+      <div className='col-md-2'>
+      <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      </div>
+    </div>
+    </div>
+    <div className="tab-pane fade" id="navs-top-profile" role="tabpanel">
+      <p>
+        Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice cream. Gummies
+        halvah
+        tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream cheesecake fruitcake.
+      </p>
+      <p className="mb-0">
+        Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy
+        liquorice caramels.
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+
+    </div>
+    <div className='row mt-5'>
+    <div className="col-xl-4 col-md-6 order-2 order-lg-1 mt-5">
   <div className={`card ${state?.frame ? "" : "d-none"}`} style={{ position: 'fixed', right: '10px', width: '350px', overflow : 'auto', maxHeight : '550px' }}>
     <div className="card-header d-flex justify-content-between">
       <div className="card-title mb-0">
         <h5 className="mb-0">Frame</h5>
         <small className="text-muted">{deviceList?.length} Category</small>
       </div>
-      <div className="dropdown">
+      {/* <div className="dropdown">
         <button className="btn p-0" type="button" id="sourceVisits" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i className="ti ti-dots-vertical ti-sm text-muted" />
         </button>
         <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sourceVisits">
-          <a className="dropdown-item" href="javascript:void(0);">Refresh</a>
-          <a className="dropdown-item" href="javascript:void(0);">Download</a>
+        <a className="dropdown-item" href="javascript:void(0);">Refresh</a>
+        <a className="dropdown-item" href="javascript:void(0);">Download</a>
           <a className="dropdown-item" href="javascript:void(0);">View All</a>
         </div>
-      </div>
+      </div> */}
     </div>
     <div className="card-body">
       <ul className="menu-inner py-1 mb-0" style={{display : 'block'}}>
         {deviceList?.map((category, index) => (
           <>
                 <li className={`menu-item ${currentFrameCategory === category?.id ? "open" : ""}`} key={index} onClick={()=>setCurrentFrameCategory(currentFrameCategory === category?.id ? 0 :category?.id)}>
-                <a href="javascript:void(0);" className="menu-link text-dark">
-                  <div data-i18n="Dashboards" className='fw-bold'>{category?.cat_name}</div>
-                  {currentFrameCategory === category?.id ? (<i className='ti ti-chevron-down ps-2 fs-2'></i>) : (<i className='ti ti-chevron-right ps-2 fs-2'></i>)}
+                <a className="menu-link text-dark cursor-pointer">
+                  <div data-i18n={category?.cat_name} className='fw-bold fs-1'>{category?.cat_name}</div>
+                  {currentFrameCategory === category?.id ? (<i className='ti ti-chevron-down ps-2 fs-1'></i>) : (<i className='ti ti-chevron-right ps-2 fs-1'></i>)}
                 </a>
                 <ul className="menu-sub">
-                  {category?.children?.map((child, index) => (
+                  {category?.children?.map((child, index) =>  {
+                    return (
                                       <li className="menu-item" key={index}>
-                                      <a className="menu-link pt-2 text-dark cursor-pointer">
+                                      <a className="menu-link pt-2 text-dark cursor-pointer" onClick={()=>createFixedFrame(child)}>
                                         <i className="menu-icon tf-icons ti ti-point" />
-                                        <div data-i18n="Analytics">{child?.name}</div>
-                                        <div className='text-secondary ps-5 fs-1'>{child?.size}</div>
+                                        <div data-i18n={child?.name} className='fs-1'>{child?.name}</div>
+                                        <div className='text-secondary ps-5 fs-tiny'>{child?.size}</div>
                                       </a>
                                     </li>
-                  ))}
+                  )})}
                 </ul>
               </li>
             <div className="divider">
-  <div className="divider-text">end</div>
+  <div className="divider-text"> {category?.cat_name}</div>
 </div>
 
               </>
@@ -412,12 +531,40 @@ window.addEventListener('keyup', handleSpacebarRelease);
 </div>
 
     </div>
+    
   </div>
   {/* Overlay */}
   <div className="layout-overlay layout-menu-toggle" />
   {/* Drag Target Area To SlideIn Menu On Small Screens */}
   <div className="drag-target" />
 </div>
+
+<div className="modal fade" id="localVarModal" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel1">Local Variable</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+      </div>
+      <div className="modal-body">
+        <div className='row'>
+          <div className='col-md-8 offset-md-2 text-center'>
+      <i className="ti ti-box rounded-circle ti-xxxl cursor-pointer" />
+          <p className='fs-1'>One has the capability to establish variables for various elements, such as text, components, shapes, frames, colors, numerical values, styles, fonts, concepts, images, videos, and files.</p>
+          <button type='button' className='btn btn-outline-secondary waves-effect'> <i className="ti ti-plus rounded-circle ti-md cursor-pointer pe-2" />Create variable</button>
+          </div>
+        </div>
+     
+      </div>
+      {/* <div className="modal-footer">
+        <button type="button" className="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save changes</button>
+      </div> */}
+    </div>
+  </div>
+</div>
+
+
 {/* / Layout wrapper */}
     </>
   )
@@ -495,3 +642,6 @@ export default GUIEditor
 // }
 
 // export default GUIEditor
+
+
+// defualt bg - #f8f7fa
