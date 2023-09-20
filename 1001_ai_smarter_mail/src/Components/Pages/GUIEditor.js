@@ -1,18 +1,17 @@
 
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
-
 import ControlComponentsMenu from '../Shared/Figma_clone/ControlComponentsMenu'
 import Header from '../Shared/Figma_clone/Header'
-
 import {useSelector, useDispatch} from 'react-redux'
-import { Frames, step_1 } from '../../Redux/GUIEditorReducer';
 import { deviceList } from '../../Json/Design_system';
+import CreateComponents from '../Shared/Figma_clone/CreateComponents';
+import { Frames, step_1 } from '../../Redux/GUIEditorReducer';
 
 // import { CompactPicker } from 'react-color'
 
 const GUIEditor = () => {
-  let dispatch = useDispatch();
+    let dispatch = useDispatch();
   let state = useSelector(state=> state.GUIEditorReducer)
 
   const [rectangles, setRectangles] = useState([]);
@@ -32,9 +31,18 @@ const GUIEditor = () => {
 
   const [spacePressed, setSpacePressed] = useState(false); // Track spacebar state
 
+
   const [currentFrameCategory, setCurrentFrameCategory] = useState(0);
 
+  const [textEdit, setTextEdit] = useState(false)
+  const [textEditValue, setTextEditValue] = useState("Text value")
 
+  const [numberEdit, setNumberEdit] = useState(false)
+  const [numberEditValue, setNumberEditValue] = useState(0)
+
+  const [variables, setVariables] = useState([])
+
+  
   const handleMouseDown = (e) => {
     if (!drawing &&  state.selectedShape === 'rectangle'  && !spacePressed) {
       setDrawing(true);
@@ -276,8 +284,18 @@ let createFixedFrame = (child) => {
     height: Math.abs(height),
   };
   setFrames([...frames, fr]);
-  
 }
+
+const [number, setNumber] = useState('');
+
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value;
+    
+    // Check if the input is a number and if it's greater than 100
+    if (!isNaN(inputValue) && parseInt(inputValue) <= 100) {
+      setNumber(inputValue);
+    }
+  };
   return (
     <>
         {/* Layout wrapper */}
@@ -543,27 +561,364 @@ let createFixedFrame = (child) => {
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel1">Local Variable</h5>
+        <h5 className="modal-title" id="exampleModalLabel1">Local Variables</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
       </div>
       <div className="modal-body">
-        <div className='row'>
+{/* Basic Bootstrap Table */}
+{variables?.length !== 0 && (
+  <div className="card" style={{overflowY : 'auto', maxHeight : '415px'}}>
+  <div className="table-responsive text-nowrap">
+    <table className="table">
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+          <th className='cursor-pointer'><i className="ti ti-plus fw-600" /></th>
+        </tr>
+      </thead>
+      <tbody className="table-border-bottom-0">
+        {variables?.map((vars, index) => {
+          return (
+            <>
+            {vars === "colour" && (
+                          <tr key={index} onClick={()=>{
+                            setTextEdit(false)
+                            setNumberEdit(false)
+                          }}>
+                          <td className='cursor-default'><i className="ti ti-palette ti-md text-danger me-3" /> <span className="fw-medium">Color</span></td>
+                          <td className='cursor-default'><span className='fl pe-2'><toolcool-color-picker color="#7367f0"></toolcool-color-picker></span> #7367f0
+                </td>
+                          <td>
+                          <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#editColorVarModal"/>
+                          </td>
+                        </tr>
+            )}
+             {vars === "text" && (
+                    <tr>
+          <td className='cursor-default' onClick={()=>{
+            setTextEdit(false)
+            setNumberEdit(false)
+          }}><i className="ti ti-letter-t ti-sm text-warning me-3" /> <span className="fw-medium">Text</span></td>
+          <td className='pt-3'>
+            {textEdit === false ? (<p className='cursor-default' onClick={()=>setTextEdit(textEdit === false ? true : false)}>{textEditValue}</p>) : (  
+
+                <input type="text" className="form-control form-control-sm" id="defaultFormControlInput" placeholder="Text value" aria-describedby="defaultFormControlHelp"onChange={(e)=>setTextEditValue(e.target.value)} 
+                 value={textEditValue}/>        
+                 )}
+</td>
+          <td onClick={()=>{
+            setTextEdit(false)
+            setNumberEdit(false)
+          }}>
+          <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#editTextVarModal"/>
+          </td>
+        </tr>
+        )}
+          {vars === "number" && (
+                    <tr>
+                    <td className='cursor-default' onClick={()=>{
+                      setTextEdit(false)
+                      setNumberEdit(false)
+                    }}><i className="ti ti-square-rounded-number-0 ti-sm text-success me-3" /> <span className="fw-medium">Number</span></td>
+                    <td className='pt-3'>
+                      {numberEdit === false ? (<p className='cursor-default' onClick={()=>setNumberEdit(numberEdit === false ? true : false)}>{numberEditValue}</p>) : (  
+          
+                          <input type="number" className="form-control form-control-sm" id="defaultFormControlInput" placeholder="Number value" aria-describedby="defaultFormControlHelp"onChange={(e)=>{
+                              setNumberEditValue(e.target.value)
+                          }} 
+                           value={numberEditValue}/>        
+                           )}
+          </td>
+                    <td onClick={()=>{
+                      setTextEdit(false)
+                      setNumberEdit(false)
+                    }}>
+                    <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#editNumberVarModal"/>
+                    </td>
+                  </tr>
+          )} 
+          {vars === "image" && (
+                    <tr>
+                    <td className='cursor-default' onClick={()=>{
+                      setTextEdit(false)
+                      setNumberEdit(false)
+                    }}><i className="ti ti-photo ti-sm text-info me-3" /> <span className="fw-medium">Photo</span></td>
+                    <td className='pt-3'><p className='cursor-default truncate-text-wide'>hjuu7m6jvvvrv3v43hh65j56hbhvnghlil54j5v4g34g4.png</p>
+          </td>
+                    <td onClick={()=>{
+                      setTextEdit(false)
+                      setNumberEdit(false)
+                    }}>
+                    <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#editImageVarModal"/>
+                    </td>
+                  </tr>
+          )}
+            {vars === "video" && (
+                      <tr>
+                      <td className='cursor-default' onClick={()=>{
+                        setTextEdit(false)
+                        setNumberEdit(false)
+                      }}><i className="ti ti-video ti-sm text-primary me-3" /> <span className="fw-medium">Photo</span></td>
+                      <td className='pt-3'><p className='cursor-default truncate-text-wide'>kwqwk3k4r4fi3g9346j656j5lil54j5v4g34g4.mp4</p>
+            </td>
+                      <td onClick={()=>{
+                        setTextEdit(false)
+                        setNumberEdit(false)
+                      }}>
+                      <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#editVideoVarModal"/>
+                      </td>
+                    </tr>
+            )}
+          </>
+          )
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>
+)}
+{/*/ Basic Bootstrap Table */}
+
+{variables?.length === 0 && (
+          <div className='row'>
           <div className='col-md-8 offset-md-2 text-center'>
       <i className="ti ti-box rounded-circle ti-xxxl cursor-pointer" />
           <p className='fs-1'>One has the capability to establish variables for various elements, such as text, components, shapes, frames, colors, numerical values, styles, fonts, concepts, images, videos, and files.</p>
-          <button type='button' className='btn btn-outline-secondary waves-effect'> <i className="ti ti-plus rounded-circle ti-md cursor-pointer pe-2" />Create variable</button>
+           <div className="dropdown">
+           <button type='button' className='btn btn-outline-secondary waves-effect' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="ti ti-plus rounded-circle ti-md cursor-pointer pe-2" />Create variable</button>
+        <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sourceVisits">
+        <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "colour"])}>Colour</a>
+        <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "text"])}>Text</a>
+          <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "number"])}>Number</a>
+          <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "image"])}>Image</a>
+          <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "video"])}>Video</a>
+        </div>
+      </div>
           </div>
         </div>
-     
+)}
+        
       </div>
-      {/* <div className="modal-footer">
-        <button type="button" className="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div> */}
+      {variables?.length !== 0 && (
+      <div className="modal-footer">
+                  <div className="dropdown">
+                  <a type="button" className="text-dark cursor-pointer" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="ti ti-plus pb-1" /> Create Variable</a>
+        <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sourceVisits">
+        <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "colour"])}>Colour</a>
+        <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "text"])}>Text</a>
+          <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "number"])}>Number</a>
+          <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "image"])}>Image</a>
+          <a className="dropdown-item" href="javascript:void(0);" onClick={()=>setVariables([...variables, "video"])}>Video</a>
+        </div>
+      </div>
+      </div>
+      )}
     </div>
   </div>
 </div>
+<div className="modal fade" id="editColorVarModal" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel1">Edit Colour Variable</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      </div>
+      <div className="modal-body">
+      <div className='row'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Name</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="color variable" aria-describedby="defaultFormControlHelp" />
 
+        </div>
+      </div>
+      <div className='row mt-3'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Description</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="How to use this variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className="divider">
+  <div className="divider-text">Basic</div>
+</div>
+<h5 className='fw-500'>Value</h5>
+<div className='row'>
+  <div className='col-md-4'>
+  <p className='fw-400'>Mode 1</p>
+  </div>
+  <div className='col-md-4'>
+  <span className='fl pe-2'><toolcool-color-picker color="#7367f0"></toolcool-color-picker></span> #7367f0
+  </div>
+  <div className='col-md-4'>
+  <input type="number" className="form-control form-control-sm" id="defaultFormControlInput" placeholder="100%" aria-describedby="defaultFormControlHelp" value={number}
+        onChange={handleInputChange} /> 
+  </div>
+</div>
+      <div className="divider">
+  <div className="divider-text">Value</div>
+</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div className="modal fade" id="editTextVarModal" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel1">Edit Text Variable</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      </div>
+      <div className="modal-body">
+      <div className='row'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Name</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="color variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className='row mt-3'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Description</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="How to use this variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className="divider">
+  <div className="divider-text">Basic</div>
+</div>
+<p className='fw-500'>Value</p>
+      <div className="divider">
+  <div className="divider-text">Value</div>
+</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div className="modal fade" id="editNumberVarModal" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel1">Edit Number Variable</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      </div>
+      <div className="modal-body">
+      <div className='row'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Name</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="color variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className='row mt-3'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Description</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="How to use this variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className="divider">
+  <div className="divider-text">Basic</div>
+</div>
+<p className='fw-500'>Value</p>
+      <div className="divider">
+  <div className="divider-text">Value</div>
+</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div className="modal fade" id="editImageVarModal" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel1">Edit Image Variable</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      </div>
+      <div className="modal-body">
+      <div className='row'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Name</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="color variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className='row mt-3'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Description</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="How to use this variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className="divider">
+  <div className="divider-text">Basic</div>
+</div>
+<p className='fw-500'>Value</p>
+      <div className="divider">
+  <div className="divider-text">Value</div>
+</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div className="modal fade" id="editVideoVarModal" tabIndex={-1} aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel1">Edit Video Variable</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      </div>
+      <div className="modal-body">
+      <div className='row'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Name</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="color variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className='row mt-3'>
+        <div className='col-md-2'>
+  <label htmlFor="defaultFormControlInput" className="form-label fs-1 pt-2">Description</label>
+        </div>
+        <div className='col-md-10'>
+  <input type="text" className="form-control" id="defaultFormControlInput" placeholder="How to use this variable" aria-describedby="defaultFormControlHelp" />
+
+        </div>
+      </div>
+      <div className="divider">
+  <div className="divider-text">Basic</div>
+</div>
+<p className='fw-500'>Value</p>
+      <div className="divider">
+  <div className="divider-text">Value</div>
+</div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 {/* / Layout wrapper */}
     </>
