@@ -1,0 +1,202 @@
+.fw-600 {
+    font-weight : 600 !important;
+}
+.fw-620 {
+    font-weight : 620 !important;
+}
+.fw-650 {
+    font-weight : 650 !important;
+}
+.fw-510 {
+    font-weight : 510 !important;
+}
+.w-a {
+    width : auto !important;
+}
+
+.fl {
+    float:  left !important;
+}
+.fr {
+    float:  right !important;
+}
+
+.dropdown-menu li:hover {
+    /* Apply your styling here */
+    color: #7367f0 !important;
+  }
+
+.text-a-l {
+text-align: left !important;
+  }
+.d-inline-b {
+display: inline-block !important;
+  }
+
+  .user-profile-header-banner img {
+    width: 100%;
+    object-fit: cover;
+    height: 250px;
+  }
+
+  .active-create-app {
+    background-color: #7367f0;
+  color: #fff;
+  }
+
+  .op-70 {
+    opacity: 50%;
+  }
+
+  .bs-stepper-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .375rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    box-shadow: 0 .125rem .25rem rgba(165,163,174,.3);
+    background : rgb(111, 107, 125, .1)
+  }
+
+  .bs-stepper-label {
+    margin: 0;
+    max-width: 224px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: start;
+    display: inline-grid;
+    font-weight: 500;
+    font-size: .9375rem;
+  color: #5d596c !important;
+  }
+
+  .bs-stepper-title {
+    box-sizing: border-box;
+    text-align: start;
+      font-size: .9375rem;
+  }
+
+  .bs-stepper-subtitle {
+    font-size: .8125rem;
+  font-weight: 400;
+  margin-top: .25rem;
+color: #a5a3ae !important;
+  }
+
+  .bs-stepper-content {
+    padding: 1.5rem!important;
+  }
+
+  .step-trigger {
+    padding: .5rem 0;
+    flex-wrap: nowrap;
+gap: 1rem;
+font-weight: 500;
+display: inline-flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+padding: 20px;
+font-size: 1rem;
+font-weight: 700;
+line-height: 1.5;
+color: #6f6b7d;
+text-align: center;
+text-decoration: none;
+white-space: nowrap;
+vertical-align: middle;
+user-select: none;
+background-color: transparent;
+border: none;
+border-radius: .25rem;
+transition: background-color .15s ease-out,color .15s ease-out;
+  }
+
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color:  #7367f0;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+  }
+  
+  .image-container:hover .overlay {
+    opacity: .8;
+  }
+
+  .bs-stepper {
+    box-shadow: 0 .25rem 1.125rem rgba(75,70,92,.1);
+
+
+    background-color: #fff;
+  
+  
+    display: -ms-flexbox;
+    display: flex;
+  
+  
+    margin-top: .5rem !important;
+  
+  
+    border-radius: .375rem;
+  
+  
+    box-sizing: border-box;
+      
+  }
+  
+.centered-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlay2 {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background-color:  #7367f0;
+  opacity: 0.8;
+  transition: opacity .3s ease-in-out;
+}
+
+.fs-1 {
+  font-size: .8375rem !important;
+}
+.fs-2 {
+  font-size: 1.1rem !important;
+}
+
+/* CSS for truncating text */
+.truncate-text {
+  max-width: 80px; /* Adjust the max-width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.truncate-text-wide {
+  max-width: 150px; /* Adjust the max-width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ti-xxxl{font-size:8.25rem !important}
+
+.cursor-default {
+cursor: default !important;
+}
