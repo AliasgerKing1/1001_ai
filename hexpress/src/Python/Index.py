@@ -25,16 +25,65 @@ def find_html_files(directory, ignore_list=None):
 specific_directory = fr'{current_directory}\\InitDesigns'
 
 # Specify the folders you want to ignore
-ignore_folders = ['assets']
+ignore_folders = []
 
 # Call the function to find .html files in the specific directory, excluding the ignore folders
 html_files = find_html_files(specific_directory, ignore_folders)
+
+def organize_files(directory, extensions=None, ignore_list=None):
+    if extensions is None:
+        extensions = []
+
+    if ignore_list is None:
+        ignore_list = []
+
+    assets_folder_path = None
+
+    for root, dirs, files in os.walk(directory):
+        # Check if any directory in ignore_list is in dirs, and remove it if found
+        dirs[:] = [d for d in dirs if d not in ignore_list]
+
+        if 'assets' in dirs and assets_folder_path is None:
+            # Found an "assets" folder, copy it to the "public" folder and stop searching
+            assets_folder_path = os.path.join(root, 'assets')
+            dest_folder = os.path.join(current_directory, project_name, 'public', 'assets')
+            shutil.copytree(assets_folder_path, dest_folder)
+            break
+
+    # If the "assets" folder was not found, search for specific files
+    if assets_folder_path is None:
+        for root, _, files in os.walk(directory):
+            for file in files:
+                file_path = os.path.join(root, file)
+                file_extension = os.path.splitext(file)[1].lower()
+
+                if file_extension in extensions:
+                    # Determine the destination folder based on the file extension
+                    dest_folder = os.path.join(current_directory, project_name, 'public', "assets", file_extension.strip('.'))
+                    os.makedirs(dest_folder, exist_ok=True)
+
+                    # Copy the file to the appropriate subfolder while preserving the original directory structure
+                    dest_path = os.path.join(dest_folder, os.path.relpath(file_path, directory))
+                    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+                    shutil.copy(file_path, dest_path)
+
+# Specify the directory you want to organize
+specific_directory = fr'{current_directory}\\InitDesigns'
+
+# Specify the folders you want to ignore
+ignore_folders = []
+
+# Specify the extensions to organize into subfolders
+extensions_to_organize = ['.css', '.js', '.jpg', '.png', '.svg']
+
+# Call the function to organize files into subfolders based on their extensions
+organize_files(specific_directory, extensions_to_organize, ignore_folders)
 
 # Define the directory within the React app where you want to copy the HTML files
 destination_within_react_app = os.path.join(current_directory, project_name, 'src', 'Components','pages')
 
 # Process and copy HTML files to corresponding folders within the React app
-for html_file in html_files:
+for index_1, html_file in enumerate(html_files):
     only_name = os.path.basename(html_file)
     if not re.match(r'^[0-9]', only_name):
         # Remove the file extension
@@ -50,16 +99,29 @@ for html_file in html_files:
         # Check if the .js file already exists, and if not, copy the HTML file
         if not os.path.exists(js_file_path):
             shutil.copy(html_file, js_file_path)
-        #copy public Folder
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\public") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\public"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\public"
-            shutil.copytree(copyPublicDirSrc, copyPublicDirDest)
-        
         #copy gitignore
         if not os.path.exists(fr"{current_directory}\\{project_name}\\.gitignore") :
             copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\.gitignore"
             copyPublicDirDest = fr"{current_directory}\\{project_name}\\.gitignore"
+            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+        
+        #copy index.html
+        if not os.path.exists(fr"{current_directory}\\{project_name}\\public\\index.html") :
+            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\public\\index.html"
+            copyPublicDirDest = fr"{current_directory}\\{project_name}\\public\\index.html"
+            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+        
+        #copy manifest.json
+        if not os.path.exists(fr"{current_directory}\\{project_name}\\public\\manifest.json") :
+            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\public\\manifest.json"
+            copyPublicDirDest = fr"{current_directory}\\{project_name}\\public\\manifest.json"
+            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+        
+        
+        #copy robots.txt
+        if not os.path.exists(fr"{current_directory}\\{project_name}\\public\\robots.txt") :
+            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\public\\robots.txt"
+            copyPublicDirDest = fr"{current_directory}\\{project_name}\\public\\robots.txt"
             shutil.copy(copyPublicDirSrc, copyPublicDirDest)
         
         #copy package.json
@@ -73,62 +135,160 @@ for html_file in html_files:
             copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\README.md"
             copyPublicDirDest = fr"{current_directory}\\{project_name}\\README.md"
             shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+        
+        srcFolderItems = ["Layouts_dir", "Routes_dir", "App.js_file","index.js_file", "index.css_file", "App.css_file", "reportWebVitals.js_file", "setupTests.js_file", "App.test.js_file"]
+        for i, folderName in enumerate(srcFolderItems) :
+            # copy Layouts Folder
+            checkDirFile = folderName.split('_')[1]
+            file_folder_name = folderName.split('_')[0]
+            if(checkDirFile == 'dir') :
+                if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\{file_folder_name}") :
+                    copyPublicDirSrc = fr"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\{file_folder_name}"
+                    copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\{file_folder_name}"
+                    shutil.copytree(copyPublicDirSrc, copyPublicDirDest)
+            elif(checkDirFile == 'file') :
+                if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\{file_folder_name}") :
+                    copyPublicDirSrc = fr"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\{file_folder_name}"
+                    copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\{file_folder_name}"
+                    shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\{file_folder_name}") :
+                    copyPublicDirSrc = fr"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\{file_folder_name}"
+                    copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\{file_folder_name}"
+                    shutil.copytree(copyPublicDirSrc, copyPublicDirDest)
 
-        #copy Layouts Folder
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\Layouts") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\Layouts"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\Layouts"
-            shutil.copytree(copyPublicDirSrc, copyPublicDirDest)
+            output_file_path_css_edit = os.path.join(current_directory, project_name, 'src', 'Components', 'pages', file_name_without_extension, f'{file_name_without_extension}.js')
+            # Word to search for
+            word_to_search = 'class="template-customizer-core-css" '
 
-        #copy Routes Folder
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\Routes") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\Routes"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\Routes"
-            shutil.copytree(copyPublicDirSrc, copyPublicDirDest)
+            # New word to replace with
+            new_word = ''
 
-        #copy App.js
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\App.js") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\App.js"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\App.js"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # Open the input file and read its contents
+            with open(output_file_path_css_edit, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
 
-        #copy index.js
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\index.js") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\index.js"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\index.js"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # Perform the search and replace
+            new_lines = [line.replace(word_to_search, new_word) for line in lines]
 
-        #copy index.css
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\index.css") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\index.css"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\index.css"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # Open the file again in write mode to save the changes
+            with open(output_file_path_css_edit, 'w', encoding='utf-8') as f:
+                f.writelines(new_lines)
+            # Word to search for
+            word_to_search = 'class="template-customizer-theme-css" '
 
-        #copy App.css
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\App.css") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\App.css"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\App.css"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # New word to replace with
+            new_word = ''
 
-        #copy reportWebVitals.js
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\reportWebVitals.js") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\reportWebVitals.js"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\reportWebVitals.js"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # Open the input file and read its contents
+            with open(output_file_path_css_edit, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
 
-        #copy setupTests.js
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\setupTests.js") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\setupTests.js"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\setupTests.js"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # Perform the search and replace
+            new_lines = [line.replace(word_to_search, new_word) for line in lines]
 
-        #copy App.test.js
-        if not os.path.exists(fr"{current_directory}\\{project_name}\\src\\App.test.js") :
-            copyPublicDirSrc = r"C:\\Users\\Aliasger B\\1001_ai\\ReactApp\\src\\App.test.js"
-            copyPublicDirDest = fr"{current_directory}\\{project_name}\\src\\App.test.js"
-            shutil.copy(copyPublicDirSrc, copyPublicDirDest)
+            # Open the file again in write mode to save the changes
+            with open(output_file_path_css_edit, 'w', encoding='utf-8') as f:
+                f.writelines(new_lines)
 
+        if index_1 == 5 :
+            indexed_page_path = os.path.join(current_directory, project_name, 'src', 'Components','pages', file_name_without_extension)
+            output_file_path = os.path.join(current_directory, project_name, 'public', "index.html")
+            #copy script files to our proejct
 
-            # print(f"HTML file '{html_file}' copied and renamed to '{js_file_path}' in the React app.")
+            # Open the input file and read its contents
+            with open(fr'{indexed_page_path}\\{file_name_without_extension}.js', 'r', encoding='utf-8') as f:
+                lines = f.readlines()
 
-print("HTML files copied and renamed to .js files inside the React app directory structure.")
+            # Find all lines containing the word '<link'
+            link_lines2 = [line for line in lines if '<script src=' in line]
+
+            # Open the output file and read its contents
+            with open(output_file_path, 'r') as f:
+                lines = f.readlines()
+
+            # Insert the link lines at the specified line number
+            line_number = 12  # Change this to the desired line number
+            for link_line in link_lines2:
+                lines.insert(line_number - 1, link_line)
+                line_number += 1
+
+            # Write the modified contents back to the output file
+            with open(output_file_path, 'w') as f:
+                f.writelines(lines)
+            
+            # Word to search for
+            word_to_search = '<script src="../../assets/'
+
+            # New word to replace with
+            new_word = '<script src="/assets/'
+
+            # Open the input file and read its contents
+            with open(output_file_path, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+
+            # Perform the search and replace
+            new_lines = [line.replace(word_to_search, new_word) for line in lines]
+
+            # Open the file again in write mode to save the changes
+            with open(output_file_path, 'w', encoding='utf-8') as f:
+                f.writelines(new_lines)
+            # ------------------------------------------------------
+            output_file_path_css = os.path.join(current_directory, project_name, 'src', 'App.js')
+            #copy script files to our proejct
+
+            # Open the input file and read its contents
+            with open(fr'{indexed_page_path}\\{file_name_without_extension}.js', 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+
+            # Find all lines containing the word '<link rel="stylesheet" href="'
+            link_lines2 = [line for line in lines if '<link rel="stylesheet" href="' in line]
+            # Open the output file and read its contents
+            with open(output_file_path_css, 'r') as f:
+                lines = f.readlines()
+
+            # Insert the link lines at the specified line number
+            line_number = 2  # Change this to the desired line number
+            for link_line in link_lines2:
+                lines.insert(line_number - 1, link_line)
+                line_number += 1
+            
+            # Write the modified contents back to the output file
+            with open(output_file_path_css, 'w') as f:
+                f.writelines(lines)
+            
+            
+            # Word to search for
+            word_to_search = '<link rel="stylesheet" href="../../'
+
+            # New word to replace with
+            new_word = 'import "./'
+
+            # Open the input file and read its contents
+            with open(output_file_path_css, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+
+            # Perform the search and replace
+            new_lines = [line.replace(word_to_search, new_word) for line in lines]
+
+            # Open the file again in write mode to save the changes
+            with open(output_file_path_css, 'w', encoding='utf-8') as f:
+                f.writelines(new_lines)
+                
+            # Word to search for
+            word_to_search = '" />'
+
+            # New word to replace with
+            new_word = '"'
+
+            # Open the input file and read its contents
+            with open(output_file_path_css, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+
+            # Perform the search and replace
+            new_lines = [line.replace(word_to_search, new_word) for line in lines]
+
+            # Open the file again in write mode to save the changes
+            with open(output_file_path_css, 'w', encoding='utf-8') as f:
+                f.writelines(new_lines)
+
+print(f"HTML files copied and renamed to .js files inside the {project_name} directory structure.")

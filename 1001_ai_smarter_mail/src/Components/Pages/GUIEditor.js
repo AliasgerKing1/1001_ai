@@ -8,6 +8,8 @@ import { deviceList } from '../../Json/Design_system';
 import CreateComponents from '../Shared/Figma_clone/CreateComponents';
 import { Frames, step_1 } from '../../Redux/GUIEditorReducer';
 
+import Switch from '../Shared/Small_Components/Switch'
+
 // import { CompactPicker } from 'react-color'
 
 const GUIEditor = () => {
@@ -41,6 +43,13 @@ const GUIEditor = () => {
   const [numberEditValue, setNumberEditValue] = useState(0)
 
   const [variables, setVariables] = useState([])
+
+  let [selectAll, setSelectAll] = useState(true)
+  let [selectFill, setSelectFill] = useState({
+    frame : true,
+    shape : true,
+    text : true
+  })
 
   
   const handleMouseDown = (e) => {
@@ -746,7 +755,7 @@ const [number, setNumber] = useState('');
       <div className="divider">
   <div className="divider-text">Basic</div>
 </div>
-<h5 className='fw-500'>Value</h5>
+<h6 className='fw-500'>Value</h6>
 <div className='row'>
   <div className='col-md-4'>
   <p className='fw-400'>Mode 1</p>
@@ -762,6 +771,53 @@ const [number, setNumber] = useState('');
       <div className="divider">
   <div className="divider-text">Value</div>
 </div>
+
+  <h6 className='fw-500'>Color Scope</h6>
+  {/* <i className="ti ti-info-circle rounded-circle ti-xs cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Tooltip on right" 
+ aria-describedby = "tooltip246344"/> */}
+  <div className="form-check" onClick={()=> setSelectAll(!selectAll)}>
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectAll} />
+            <label className="form-check-label" for="defaultCheck3">
+              All include
+            </label>
+          </div>
+  <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.frame} onChange={()=> setSelectFill((prevState) => ({
+      ...prevState,
+      frame: !prevState.frame,
+    }))
+  }/>
+            <label className="form-check-label" for="defaultCheck3">
+              Fill
+            </label>
+          </div>
+          <div className='row'>
+            <div className='col-md-8'>
+            <div className="list-group">
+  <label className="list-group-item">
+    <input className="form-check-input me-1" type="checkbox" defaultValue />
+    Soufflé pastry pie ice
+  </label>
+  <label className="list-group-item">
+    <input className="form-check-input me-1" type="checkbox" defaultValue />
+    Bear claw cake biscuit
+  </label>
+  <label className="list-group-item">
+    <input className="form-check-input me-1" type="checkbox" defaultValue />
+    Tart tiramisu cake
+  </label>
+  <label className="list-group-item">
+    <input className="form-check-input me-1" type="checkbox" defaultValue />
+    Bonbon toffee muffin
+  </label>
+  <label className="list-group-item">
+    <input className="form-check-input me-1" type="checkbox" defaultValue />
+    Dragée tootsie roll
+  </label>
+</div>
+            </div>
+          </div>
+
       </div>
 
     </div>

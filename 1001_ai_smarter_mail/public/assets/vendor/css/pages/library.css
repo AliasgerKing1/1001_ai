@@ -200,3 +200,10 @@ transition: background-color .15s ease-out,color .15s ease-out;
 .cursor-default {
 cursor: default !important;
 }
+
+/* Tooltip container */
+.tooltip {
+  position: relative !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+}
