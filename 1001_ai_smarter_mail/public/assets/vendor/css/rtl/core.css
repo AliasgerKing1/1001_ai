@@ -6733,7 +6733,6 @@ fieldset:disabled .btn {
 .placeholder-xs {
   min-height: .6em
 }
-
 .placeholder-sm {
   min-height: .8em
 }
@@ -24298,6 +24297,24 @@ html:not([dir=rtl]) .switches-stacked .switch {
   border-radius: 50%
 }
 
+.avatar-xxs {
+  width: 1.2em;
+  height: 1.2rem
+}
+
+.avatar-xxs .avatar-initial {
+  font-size: .525rem
+}
+
+.avatar-xxs.avatar-online:after,
+.avatar-xxs.avatar-offline:after,
+.avatar-xxs.avatar-away:after,
+.avatar-xxs.avatar-busy:after {
+  width: .170rem;
+  height: .170rem;
+  right: .5px
+}
+
 .avatar-xs {
   width: 1.625rem;
   height: 1.625rem
@@ -24418,6 +24435,9 @@ html:not([dir=rtl]) .switches-stacked .switch {
 .avatar-group .avatar-xs {
   margin-left: -0.65rem
 }
+.avatar-group .avatar-xxs {
+  margin-left: -0.50rem
+}
 
 .avatar-group .avatar-sm {
   margin-left: -0.75rem
@@ -24442,6 +24462,9 @@ html:not([dir=rtl]) .switches-stacked .switch {
 
 [dir=rtl] .avatar-group .avatar-xs {
   margin-right: -0.65rem
+}
+[dir=rtl] .avatar-group .avatar-xxs {
+  margin-right: -0.50rem
 }
 
 [dir=rtl] .avatar-group .avatar-sm {

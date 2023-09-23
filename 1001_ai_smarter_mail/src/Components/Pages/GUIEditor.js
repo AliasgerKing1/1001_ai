@@ -48,9 +48,49 @@ const GUIEditor = () => {
   let [selectFill, setSelectFill] = useState({
     frame : true,
     shape : true,
-    text : true
+    text : true,
+    image_mask : true,
+    video_mask : true
   })
+  let [selectStroke, setSelectStroke] = useState(true)
 
+  const [currentBgColor, setCurrentBgColor] = useState("#F8F7FA")
+  const [isBg, setIsBg] = useState(true)
+
+  const [showColorStyleIcon, setShowColorStyleIcon] = useState(false)
+
+  const [showPrimaryStyle, setShowPrimaryStyle] = useState({
+    primary :false,
+    children : [
+      {
+        name : 'red',
+        state : false,
+        color : 'red',
+        style_opacity : [
+          {
+            value : 75, 
+            hover : false
+          },
+          {
+            value : 50, 
+            hover : false
+          },
+          {
+            value : 25,
+            hover : false
+          },
+          {
+            value :  10,
+            hover : false
+          },
+          {
+            value :  5,
+            hover : false
+          },
+        ]
+      }
+    ]
+  })
   
   const handleMouseDown = (e) => {
     if (!drawing &&  state.selectedShape === 'rectangle'  && !spacePressed) {
@@ -305,10 +345,49 @@ const [number, setNumber] = useState('');
       setNumber(inputValue);
     }
   };
+
+   
+  useEffect(() => {
+    // Check if all individual checkboxes are true
+    const allChecked = Object.values(selectFill).every((value) => value === true);
+
+    // Update the "Fill" checkbox based on the result
+    setSelectFill((prevState) => ({
+      ...prevState,
+      all: allChecked,
+    }));
+  }, [selectFill]);
+
+  const handleCheckboxChange2 = (key) => {
+    setSelectFill((prevState) => ({
+      ...prevState,
+      [key]: !prevState[key],
+    }));
+  };
+
+ 
+  useEffect(() => {
+    // Check if both selectFill and selectStroke are true
+    const allChecked = selectFill.all && selectStroke;
+
+    // Update the "All include" checkbox based on the result
+    setSelectAll(allChecked);
+  }, [selectFill, selectStroke]);
+
+  const handleCheckboxChange = (key) => {
+    setSelectFill((prevState) => ({
+      ...prevState,
+      [key]: !prevState[key],
+    }));
+  };
+
+  const handleSelectStrokeChange = () => {
+    setSelectStroke((prevState) => !prevState);
+  };
   return (
     <>
         {/* Layout wrapper */}
-<div className="layout-wrapper layout-content-navbar" style={{cursor : state?.move ? 'pointer' : 'default'}}>
+<div className="layout-wrapper layout-content-navbar" style={{cursor : state?.move ? 'pointer' : 'default', backgroundColor : isBg ? currentBgColor : '#ffffff'}}>
 {/* background : '#000' */}
   <div className="layout-container">
     {/* Menu */}
@@ -450,13 +529,15 @@ const [number, setNumber] = useState('');
   </ul>
   <div className="tab-content">
     <div className="tab-pane fade active show" id="navs-top-home" role="tabpanel">
-    {/* <CompactPicker /> */}
+
     <div className='row'>
-      <div className='col-md-10'>
-    <toolcool-color-picker color="#7367f0"></toolcool-color-picker>
+      <div className='col-md-4'>
+  <input className="form-control cursor-pointer" type="color" defaultValue="#666EE8" value={currentBgColor} id="html5-color-input"  onChange={(e) => setCurrentBgColor(e.target.value)} />
+
+
       </div>
-      <div className='col-md-2'>
-      <i className="ti ti-eye rounded-circle ti-md" />
+      <div className='col-md-2 offset-md-6'>
+        {isBg ? ( <i className="ti ti-eye rounded-circle ti-sm cursor-pointer" onClick={()=> setIsBg(false)} />) : (<i className="ti ti-eye-off rounded-circle ti-sm cursor-pointer" onClick={()=> setIsBg(true)} />)}
       </div>
     </div>
     <div className="divider">
@@ -469,9 +550,123 @@ const [number, setNumber] = useState('');
       </p>
       </div>
       <div className='col-md-2'>
-      <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#localVarModal" />
+      <i className="ti ti-adjustments-alt rounded-circle ti-sm cursor-pointer" data-bs-toggle="modal" data-bs-target="#localVarModal" />
       </div>
     </div>
+    <div className="divider">
+  <div className="divider-text">Local variables</div>
+  <div className='row'>
+      <div className='col-md-4'>
+      <p>
+        Local Styles
+      </p>
+      </div>
+      <div className='col-md-2 offset-md-6'>
+      <i className="ti ti-plus rounded-circle ti-sm cursor-pointer" />
+      </div>
+    </div>
+  <div className='row' onMouseEnter={()=>setShowColorStyleIcon(true)} onMouseLeave={()=>setShowColorStyleIcon(false)}>
+      <div className='col-md-4'>
+      <p className='fs-1'>
+        Color Styles
+      </p>
+      </div>
+      <div className='col-md-2 offset-md-6'>
+        {showColorStyleIcon && (<i className="ti ti-plus rounded-circle ti-sm cursor-pointer" />)}
+      </div>
+      </div>
+      <div className="text-start">
+        <a className="cursor-pointer me-5 fs-1" data-bs-toggle="collapse" data-bs-target="#collapsePrimary" aria-expanded="false" aria-controls="collapsePrimary" onClick={() => setShowPrimaryStyle((prevState) => ({
+              ...prevState,
+              primary: !prevState.primary,
+            }))
+          }>
+  {showPrimaryStyle?.primary ? (<i className="ti ti-caret-up rounded-circle ti-xs cursor-pointer" />) : (<i className="ti ti-caret-down rounded-circle ti-xs cursor-pointer" />)} Primary
+  </a>
+
+  <div className="collapse" id="collapsePrimary">
+  {showPrimaryStyle?.children?.map((child, index) => (
+  <>
+    <a className="cursor-pointer ms-4 fs-1" data-bs-toggle="collapse" data-bs-target={`#collapse${child.name}`} aria-expanded="false" aria-controls="collapseInside" onClick={() =>
+          setShowPrimaryStyle((prevState) => ({
+            ...prevState,
+            children: prevState.children.map((c, i) =>
+              i === index
+                ? { ...c, state: !c.state }
+                : c
+            ),
+          }))
+        }>
+{child?.state ? (<i className="ti ti-caret-up rounded-circle ti-xs cursor-pointer" />) : (<i className="ti ti-caret-down rounded-circle ti-xs cursor-pointer" />)}
+ {child?.name}
+  </a>
+<div className="collapse mt-2" id={`collapse${child?.name}`}>
+      {child?.style_opacity?.map((opacity, opacityIndex) => (
+        <>
+        <div className='row' key={opacityIndex}  
+                          onMouseEnter={() =>
+                    setShowPrimaryStyle((prevState) => ({
+                      ...prevState,
+                      children: prevState.children.map((c, i) =>
+                        i === index
+                          ? {
+                              ...c,
+                              style_opacity: c.style_opacity.map(
+                                (op, oi) =>
+                                  oi === opacityIndex
+                                    ? { ...op, hover: true }
+                                    : op
+                              ),
+                            }
+                          : c
+                      ),
+                    }))
+                  }
+                  onMouseLeave={() =>
+                    setShowPrimaryStyle((prevState) => ({
+                      ...prevState,
+                      children: prevState.children.map((c, i) =>
+                        i === index
+                          ? {
+                              ...c,
+                              style_opacity: c.style_opacity.map(
+                                (op, oi) =>
+                                  oi === opacityIndex
+                                    ? { ...op, hover: false }
+                                    : op
+                              ),
+                            }
+                          : c
+                      ),
+                    }))
+                  }>
+          <div className='col-md-5 offset-md-2'>
+          <div className='row cursor-pointer'>
+          <div className='col-md-2'>
+          <div className="avatar avatar-xxs mb-2" key={opacity}>
+    <span className="avatar-initial rounded-circle" style={{backgroundColor : child?.color, opacity : `${opacity?.value}%`}} />
+  </div>
+          </div>
+          <div className='col-md-2'>
+          <p className='fs-1'>{`${opacity?.value}%`}</p>
+          </div>
+        </div>
+          </div>
+          <div className='col-md-2 offset-md-3'>
+            {opacity.hover && ( <i className="ti ti-adjustments-alt rounded-circle ti-xs cursor-pointer" />)}
+          </div>
+        </div>
+    </>
+  ))}
+    </div>
+</>
+  ))}
+  </div>
+</div>
+
+
+
+</div>
     </div>
     <div className="tab-pane fade" id="navs-top-profile" role="tabpanel">
       <p>
@@ -596,7 +791,16 @@ const [number, setNumber] = useState('');
                             setNumberEdit(false)
                           }}>
                           <td className='cursor-default'><i className="ti ti-palette ti-md text-danger me-3" /> <span className="fw-medium">Color</span></td>
-                          <td className='cursor-default'><span className='fl pe-2'><toolcool-color-picker color="#7367f0"></toolcool-color-picker></span> #7367f0
+                          <td className='cursor-default'>
+                            {/* <toolcool-color-picker color="#7367f0"></toolcool-color-picker> */}
+                            <div className='row'>
+                              <div className='col-md-5'>
+                            <input className="form-control" type="color" defaultValue="#666EE8" id="html5-color-input" />
+                              </div>
+                              <div className='col-md-1 pt-1'>
+                                #7367f0
+                              </div>
+                            </div>
                 </td>
                           <td>
                           <i className="ti ti-adjustments-alt rounded-circle ti-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#editColorVarModal"/>
@@ -761,7 +965,14 @@ const [number, setNumber] = useState('');
   <p className='fw-400'>Mode 1</p>
   </div>
   <div className='col-md-4'>
-  <span className='fl pe-2'><toolcool-color-picker color="#7367f0"></toolcool-color-picker></span> #7367f0
+  <div className='row'>
+                              <div className='col-md-5'>
+                            <input className="form-control" type="color" defaultValue="#666EE8" id="html5-color-input" />
+                              </div>
+                              <div className='col-md-1 pt-1'>
+                                #7367f0
+                              </div>
+                            </div>
   </div>
   <div className='col-md-4'>
   <input type="number" className="form-control form-control-sm" id="defaultFormControlInput" placeholder="100%" aria-describedby="defaultFormControlHelp" value={number}
@@ -772,51 +983,124 @@ const [number, setNumber] = useState('');
   <div className="divider-text">Value</div>
 </div>
 
-  <h6 className='fw-500'>Color Scope</h6>
+  <h6 className='fw-500'>Color Scope <i className="ti ti-info-circle rounded-circle ti-xs cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Tooltip on right" 
+ aria-describedby = "tooltip246344"/></h6>
   {/* <i className="ti ti-info-circle rounded-circle ti-xs cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Tooltip on right" 
  aria-describedby = "tooltip246344"/> */}
-  <div className="form-check" onClick={()=> setSelectAll(!selectAll)}>
-            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectAll} />
+  <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectAll}
+          onChange={() => {
+            // Toggle both selectFill and selectStroke based on the state of "All include" checkbox
+            const allChecked = !selectAll;
+            setSelectFill((prevState) => ({
+              ...prevState,
+              all: allChecked,
+            }));
+            setSelectStroke(allChecked);
+          }} />
             <label className="form-check-label" for="defaultCheck3">
               All include
             </label>
           </div>
   <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.frame} onChange={()=> setSelectFill((prevState) => ({
-      ...prevState,
-      frame: !prevState.frame,
-    }))
-  }/>
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.all}
+          onChange={() => {
+            // Toggle all individual checkboxes based on the state of "Fill" checkbox
+            const allChecked = !selectFill.all;
+            setSelectFill((prevState) => ({
+              ...prevState,
+              all: allChecked,
+              frame: allChecked,
+              shape: allChecked,
+              text: allChecked,
+              image_mask: allChecked,
+              video_mask: allChecked,
+            }));
+          }}
+  />
             <label className="form-check-label" for="defaultCheck3">
               Fill
             </label>
           </div>
           <div className='row'>
             <div className='col-md-8'>
-            <div className="list-group">
-  <label className="list-group-item">
-    <input className="form-check-input me-1" type="checkbox" defaultValue />
-    Soufflé pastry pie ice
-  </label>
-  <label className="list-group-item">
-    <input className="form-check-input me-1" type="checkbox" defaultValue />
-    Bear claw cake biscuit
-  </label>
-  <label className="list-group-item">
-    <input className="form-check-input me-1" type="checkbox" defaultValue />
-    Tart tiramisu cake
-  </label>
-  <label className="list-group-item">
-    <input className="form-check-input me-1" type="checkbox" defaultValue />
-    Bonbon toffee muffin
-  </label>
-  <label className="list-group-item">
-    <input className="form-check-input me-1" type="checkbox" defaultValue />
-    Dragée tootsie roll
-  </label>
-</div>
+        <ul className="list-group list-group-timeline">
+  <li className="list-group-item list-group-timeline-primary ps-5">
+       <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.frame}
+          onChange={() => handleCheckboxChange2('frame')}/>
+            <label className="form-check-label" for="defaultCheck3">
+            Frame
+            </label>
+          </div></li>
+  <li className="list-group-item ps-5">
+  <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.shape}
+          onChange={() => handleCheckboxChange2('shape')}/>
+            <label className="form-check-label" for="defaultCheck3">
+            Shape
+            </label>
+          </div></li>
+  <li className="list-group-item ps-5">
+    <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.image_mask}
+          onChange={() => handleCheckboxChange2('image_mask')}/>
+            <label className="form-check-label" for="defaultCheck3">
+            Image mask
+            </label>
+          </div></li>
+  <li className="list-group-item ps-5">
+    <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.video_mask}
+          onChange={() => handleCheckboxChange2('video_mask')}/>
+            <label className="form-check-label" for="defaultCheck3">
+            Video mask
+            </label>
+          </div></li>
+  <li className="list-group-item list-group-timeline-primary ps-5">
+  <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectFill.text}
+          onChange={() => handleCheckboxChange2('text')}/>
+            <label className="form-check-label" for="defaultCheck3">
+            Text
+            </label>
+          </div></li>
+</ul>
+<div className="form-check mt-2" onClick={handleSelectStrokeChange}>
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck3" checked={selectStroke} />
+            <label className="form-check-label" for="defaultCheck3">
+            Stroke
+            </label>
+          </div>
             </div>
           </div>
+          <div className="divider">
+  <div className="divider-text">Color</div>
+</div>
+          <div className='row'>
+          <div className="col-sm-6 p-4">
+  <div className="text-light small fw-medium mb-3">Publish <i className="ti ti-info-circle rounded-circle ti-xs cursor-pointer text-dark" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Tooltip on right" 
+ aria-describedby = "tooltip246344"/></div>
+  <div className="switches-stacked">
+    <label className="switch switch-square">
+      <input type="radio" className="switch-input" name="switches-square-stacked-radio" defaultChecked />
+      <span className="switch-toggle-slider">
+        <span className="switch-on" />
+        <span className="switch-off" />
+      </span>
+      <span className="switch-label">Gobal</span>
+    </label>
+    <label className="switch switch-square">
+      <input type="radio" className="switch-input" name="switches-square-stacked-radio" />
+      <span className="switch-toggle-slider">
+        <span className="switch-on" />
+        <span className="switch-off" />
+      </span>
+      <span className="switch-label">Local</span>
+    </label>
+  </div>
+</div>
+</div>
 
       </div>
 
