@@ -61,10 +61,12 @@ const GUIEditor = () => {
 
   const [showPrimaryStyle, setShowPrimaryStyle] = useState({
     primary :false,
+    hover : false,
     children : [
       {
         name : 'red',
         state : false,
+        hover : false,
         color : 'red',
         style_opacity : [
           {
@@ -88,7 +90,31 @@ const GUIEditor = () => {
             hover : false
           },
         ]
-      }
+      },
+      {
+        name : 'green',
+        state : false,
+        hover : false,
+        color : 'green',
+        style_opacity : [
+          {
+            value : 75, 
+            hover : false
+          },
+          {
+            value : 50, 
+            hover : false
+          },
+          {
+            value : 25,
+            hover : false
+          },
+          {
+            value :  10,
+            hover : false
+          },
+        ]
+      },
     ]
   })
   
@@ -576,17 +602,48 @@ const [number, setNumber] = useState('');
       </div>
       </div>
       <div className="text-start">
-        <a className="cursor-pointer me-5 fs-1" data-bs-toggle="collapse" data-bs-target="#collapsePrimary" aria-expanded="false" aria-controls="collapsePrimary" onClick={() => setShowPrimaryStyle((prevState) => ({
+        <div className='row'  onMouseEnter={() =>
+                    setShowPrimaryStyle((prevState) => ({
+                      ...prevState, hover : true})
+                      )} onMouseLeave={() =>
+                        setShowPrimaryStyle((prevState) => ({
+                          ...prevState, hover : false})
+                          )}>
+          <div className='col-md-4'>
+          <a className="cursor-pointer me-5 fs-1" data-bs-toggle="collapse" data-bs-target="#collapsePrimary" aria-expanded="false" aria-controls="collapsePrimary" onClick={() => setShowPrimaryStyle((prevState) => ({
               ...prevState,
               primary: !prevState.primary,
             }))
           }>
   {showPrimaryStyle?.primary ? (<i className="ti ti-caret-up rounded-circle ti-xs cursor-pointer" />) : (<i className="ti ti-caret-down rounded-circle ti-xs cursor-pointer" />)} Primary
   </a>
+          </div>
+          <div className='col-md-2 offset-md-6'>
+          {showPrimaryStyle.hover && (<i className="ti ti-plus rounded-circle ti-xs cursor-pointer" />)}
+          </div>
+        </div>
 
   <div className="collapse" id="collapsePrimary">
   {showPrimaryStyle?.children?.map((child, index) => (
   <>
+          <div   
+          key={index}   
+          onMouseEnter={() =>
+          setShowPrimaryStyle((prevState) => ({
+            ...prevState,
+            children: prevState.children.map((c, i) =>
+              i === index ? { ...c, hover: true } : c
+            ),
+          }))
+        }
+        onMouseLeave={() =>
+          setShowPrimaryStyle((prevState) => ({
+            ...prevState,
+            children: prevState.children.map((c, i) =>
+              i === index ? { ...c, hover: false } : c
+            ),
+          }))
+        }>
     <a className="cursor-pointer ms-4 fs-1" data-bs-toggle="collapse" data-bs-target={`#collapse${child.name}`} aria-expanded="false" aria-controls="collapseInside" onClick={() =>
           setShowPrimaryStyle((prevState) => ({
             ...prevState,
@@ -659,6 +716,10 @@ const [number, setNumber] = useState('');
     </>
   ))}
     </div>
+
+          {showPrimaryStyle.children[index].hover && (<i className="ti ti-plus rounded-circle ti-xs cursor-pointer fr" />)}
+
+        </div>
 </>
   ))}
   </div>
