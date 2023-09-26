@@ -4,15 +4,17 @@ import {useDispatch, useSelector} from "react-redux"
 import {fetchUser} from "../../../Services/AuthService"
 import {SignInUserRed} from "../../../Redux/SignInUserReducer"
 import {generateImage} from "../../../Services/ImageGenerationService"
+import { DetailsImageRed } from '../../../Redux/DetailsReducer'
 
 const ImageGenerationContent = () => {
   const navigate = useNavigate();
   let dispatch = useDispatch()
   let state = useSelector(state => state.SignInUserReducer)
-  let [alchemy, setAlchemy] = useState(false)
+  let [mysticism, setMysticism] = useState(false)
   let [highRes, setHighRes] = useState(false)
   let [highContrast, setHighContrast] = useState(false)
   let [promptMagic, setPromptMagic] = useState(true)
+  let [photoReality, setPhotoReality] = useState(false)
   let [promptText, setPromptText] = useState("Copy Prompt")
   let [guidance_scale, setGuidance_scale] = useState(7)
   let [dimensions_delimeter, setDimensions_delimeter] = useState(false)
@@ -141,13 +143,16 @@ let generateImageFun = () => {
     magic_prompt_strength : promptStrength,
     high_contrast : highContrast,
     model : model,
-    alchemy : alchemy,
+    photo_reality : photoReality,
+    mysticism : mysticism,
   seed : "877743523",
     high_resolution : highRes,
+    guidance_scale : guidance_scale,
     likes : [],
     _id : "",
   }
-  generateImage(token, data)
+  dispatch(DetailsImageRed(data))
+  // generateImage(token, data)
 }
 
 let sendPrompt = (event) => {
@@ -1156,19 +1161,29 @@ scrollbarColor: "#999 #fff"}}>
               </div>
               <div className="sidebar_details">
               <div className="prompt_magic_switcher">
-                  <h4 className="title"><label htmlFor="prompt_switcher" style={{marginRight : '5px'}}>Alchemy</label>
+                  <h4 className="title"><label htmlFor="prompt_switcher">Photo reality</label><span className="fn__tooltip" title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
+                  <label className="fn__toggle">
+                    <span className="t_in">
+                      <input type="checkbox" id="prompt_switcher" onChange={()=>setPhotoReality(!photoReality)} />
+                      <span className="t_slider" />
+                      <span className="t_content" />
+                    </span>
+                  </label>
+                </div>
+              <div className="prompt_magic_switcher">
+                  <h4 className="title"><label htmlFor="prompt_switcher" style={{marginRight : '5px'}}>Mysticism</label>
                   <img src="/assets/svg/chemical.svg" alt className="fn__svg" />
                   <span className="fn__tooltip" title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <label className="fn__toggle">
                     <span className="t_in">
-                      <input type="checkbox" id="prompt_switcher" onClick={()=>setAlchemy(!alchemy)} />
+                      <input type="checkbox" id="prompt_switcher" onClick={()=>setMysticism(!mysticism)} />
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
                   </label>
                 </div>
                 <div style={{marginBottom : '20px'}}>
-                <div className="contrast_switcher" style={{display : alchemy === false ? "none" : ''}}>
+                <div className="contrast_switcher" style={{display : mysticism === false ? "none" : ''}}>
                   <h4 className="title"><label htmlFor="contrast_switcher">High Resolution</label>
                   <span className="fn__tooltip" title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."><img src="/assets/svg/question.svg" alt className="fn__svg" /></span></h4>
                   <label className="fn__toggle">
@@ -1179,7 +1194,7 @@ scrollbarColor: "#999 #fff"}}>
                     </span>
                   </label>
                 </div>
-                <p style={{color : "#7e7a86", fontSize : "13px", display : alchemy === true && highRes == true ? "" : 'none'}} className='text'>1050px x 1050px resolution</p>
+                <p style={{color : "#7e7a86", fontSize : "13px", display : mysticism === true && highRes == true ? "" : 'none'}} className='text'>1050px x 1050px resolution</p>
                 </div>
                 <div className="number_of_images" >
                   <h4 className="title">Number of Images</h4>

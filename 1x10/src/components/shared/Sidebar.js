@@ -65,7 +65,7 @@ let state = useSelector(state => state.SignInUserReducer)
         <div className="leftpanel_content">
           {/* #1 NavLinkigation group */}
           <div className="NavLink_group">
-            <h2 className="group__title">Start Here</h2>
+            <h2 className="group__title text-left">Start Here</h2>
             <ul className="group__list">
               <li onClick={()=> setSideBarSelected(0)}>
                 <NavLink to="/auth/home" className={`fn__tooltip menu__item ${sideBarSelected === 0 ? "active" : "" }`} data-position="right" title="Home">
@@ -163,7 +163,7 @@ let state = useSelector(state => state.SignInUserReducer)
           {/* !#1 NavLinkigation group */}
           {/* #2 NavLinkigation group */}
           <div className="NavLink_group">
-            <h2 className="group__title">User Tools</h2>
+            <h2 className="group__title text-left">User Tools</h2>
             <ul className="group__list">
               <li onClick={()=> setSideBarSelected(4)}>
                 <NavLink to="/auth/image/generation" className={`fn__tooltip menu__item ${sideBarSelected === 4 ? "active" : "" }`} data-position="right" title="Image Generation">
@@ -222,7 +222,7 @@ let state = useSelector(state => state.SignInUserReducer)
           {/* !#2 NavLinkigation group */}
           {/* #3 NavLinkigation group */}
           <div className="NavLink_group">
-            <h2 className="group__title">Support</h2>
+            <h2 className="group__title text-left">Support</h2>
             <ul className="group__list">
               <li onClick={()=> setSideBarSelected(6)}>
                 <NavLink to="/auth/pricing" className={`fn__tooltip menu__item ${sideBarSelected === 6 ? "active" : "" }`} data-position="right" title="Pricing">
