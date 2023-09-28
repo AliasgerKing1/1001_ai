@@ -3,6 +3,7 @@ import {NavLink, useNavigate} from "react-router-dom"
 import {useFormik} from "formik"
 import SignupSchema from "../../../Schemas/SignUpSchema"
 import { adduser } from '../../../Services/AuthService'
+import { useGoogleLogin } from '@react-oauth/google';
 
 function formatDate(timestamp) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -53,6 +54,8 @@ useEffect(()=> {
     setActiveStep(2)
   }
 }, [activeStep])
+
+
   return (
     <>
 {/* Sign Up */}
@@ -69,9 +72,9 @@ useEffect(()=> {
   {/* !Preloader */}
   <div className="sign__content">
     <h1 className="logo">Designed by Frenify</h1>
-    <form className="signup" onSubmit={handleSubmit}>
       <div className="form__content">
         <div className="form__title">Sign Up</div>
+    <form className="signup" onSubmit={handleSubmit}>
         {activeStep === 1 && (<>
           <div className="form__name mb-4">
           <label htmlFor="name" style={{textAlign : "left"}}>Name <span style={{color : "#dc3545"}}>*</span></label>
@@ -111,6 +114,7 @@ useEffect(()=> {
           </label>
         </div>)}
        
+    </form>
         <div className="form__alternative">
           <div className="fn__lined_text">
             <div className="line" />
@@ -119,10 +123,9 @@ useEffect(()=> {
           </div>
 
           
-          {activeStep === 2 ? (<a className="techwave_fn_button cursor" onClick={()=>setActiveStep(1)}><span>Previous Step</span></a>) : (          <a href="#" className="techwave_fn_button"><span>Sign up with Google</span></a>)}
+          {activeStep === 2 ? (<a className="techwave_fn_button cursor" onClick={()=>setActiveStep(1)}><span>Previous Step</span></a>) : (          <a className="techwave_fn_button cursor"><span>Sign up with Google</span></a>)}
         </div>
       </div>
-    </form>
     <div className="sign__desc">
       <p>Don't have an account?  <NavLink to="/signin">Sign In</NavLink></p>
     </div>

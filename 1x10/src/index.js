@@ -9,6 +9,9 @@ import {configureStore, combineReducers} from "@reduxjs/toolkit"
 import DetailsPageReducer from "./Redux/DetialPageReducer"
 import SignInUserReducer from "./Redux/SignInUserReducer"
 import DetailsReducer from "./Redux/DetailsReducer"
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let rootReducer = combineReducers({
@@ -20,11 +23,13 @@ let store = configureStore({
   reducer : rootReducer
 })
 root.render(
+  <GoogleOAuthProvider clientId="762966009515-5pqp4kphu99sfmvpupf35sdm8fo3n16c.apps.googleusercontent.com">
   <BrowserRouter>
   <Provider store={store}>
     <App />
   </Provider>
   </BrowserRouter>
+  </GoogleOAuthProvider>
 
 );
 

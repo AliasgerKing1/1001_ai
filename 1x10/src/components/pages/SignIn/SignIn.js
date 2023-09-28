@@ -5,6 +5,7 @@ import SigninSchema from "../../../Schemas/SignInSchema"
 import { loginUser } from '../../../Services/AuthService'
 import ErrorAlert from "../../shared/ErrorAlert"
 import { checkUser } from '../../../Services/WholeModuleService'
+import { useGoogleLogin } from '@react-oauth/google';
 let initialValues = {
   username:  "",
   password : ""
@@ -69,6 +70,9 @@ const SignIn = () => {
       }
     }
 })
+const login = useGoogleLogin({
+  onSuccess: tokenResponse => console.log(tokenResponse),
+});
   return (
     <>
 {/* Sign In */}
@@ -85,9 +89,9 @@ const SignIn = () => {
   {/* !Preloader */}
   <div className="sign__content">
     <h1 className="logo">Designed by Frenify</h1>
-    <form className="login" onSubmit={handleSubmit}>
       <div className="form__content">
         <div className="form__title">Sign In</div>
+    <form className="login" onSubmit={handleSubmit}>
         <div className="form__username">
           <label htmlFor="user_login" style={{float : "left"}}>Username or Email</label>
           <input type="text" className={`input ${touched.username && errors.username ? "is-invalid" : ""}`} id="user_login" name="username" autoCapitalize="off" autoComplete="username" aria-describedby="login-message" onChange={handleChange} onBlur={handleBlur} placeholder="Username" />
@@ -107,16 +111,16 @@ const SignIn = () => {
             <input type="submit" name="submit" value="Sign In" />
           </label>
         </div>
+    </form>
         <div className="form__alternative">
           <div className="fn__lined_text">
             <div className="line" />
             <div className="text">Or</div>
             <div className="line" />
           </div>
-          <a href="#" className="techwave_fn_button"><span>Sign in with Google</span></a>
+          <a href="#" className="techwave_fn_button cursor"  onClick={() => login()}><span>Sign in with Google</span></a>
         </div>
       </div>
-    </form>
     <div className="sign__desc">
       <p>Not a member? <NavLink to="/signup">Sign Up</NavLink></p>
     </div>
