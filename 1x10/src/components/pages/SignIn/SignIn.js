@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useEffect,useState } from 'react'
 import {NavLink, useNavigate} from "react-router-dom"
 import {useFormik} from "formik"
 import SigninSchema from "../../../Schemas/SignInSchema"
 import { loginUser } from '../../../Services/AuthService'
 import ErrorAlert from "../../shared/ErrorAlert"
 import { checkUser } from '../../../Services/WholeModuleService'
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode'
 let initialValues = {
   username:  "",
   password : ""
@@ -14,6 +15,7 @@ const SignIn = () => {
   let [showAlert, setShowAlert] = useState(false);
   let [showLoader, setShowLoader] = useState(false);
   let [msg, setMsg] = useState("");
+
   let navigate = useNavigate();
   let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormik({
     initialValues : initialValues,
@@ -70,9 +72,7 @@ const SignIn = () => {
       }
     }
 })
-const login = useGoogleLogin({
-  onSuccess: tokenResponse => console.log(tokenResponse),
-});
+
   return (
     <>
 {/* Sign In */}
@@ -118,7 +118,19 @@ const login = useGoogleLogin({
             <div className="text">Or</div>
             <div className="line" />
           </div>
-          <a href="#" className="techwave_fn_button cursor"  onClick={() => login()}><span>Sign in with Google</span></a>
+            {/* <a href="#" className="techwave_fn_button cursor"><span>Sign in with Google</span></a> */}
+            <GoogleOAuthProvider clientId="762966009515-5pqp4kphu99sfmvpupf35sdm8fo3n16c.apps.googleusercontent.com">
+<GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+    let data = jwt_decode(credentialResponse.credential)
+    console.log("decoded data : ", data)
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
+</GoogleOAuthProvider>
         </div>
       </div>
     <div className="sign__desc">
@@ -127,7 +139,6 @@ const login = useGoogleLogin({
   </div>
 </div>
 {/* !Sign In */}
-
     </>
   )
 }

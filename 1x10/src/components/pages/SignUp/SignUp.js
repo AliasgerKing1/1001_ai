@@ -3,7 +3,8 @@ import {NavLink, useNavigate} from "react-router-dom"
 import {useFormik} from "formik"
 import SignupSchema from "../../../Schemas/SignUpSchema"
 import { adduser } from '../../../Services/AuthService'
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode'
 
 function formatDate(timestamp) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -123,7 +124,21 @@ useEffect(()=> {
           </div>
 
           
-          {activeStep === 2 ? (<a className="techwave_fn_button cursor" onClick={()=>setActiveStep(1)}><span>Previous Step</span></a>) : (          <a className="techwave_fn_button cursor"><span>Sign up with Google</span></a>)}
+          {activeStep === 2 ? (<a className="techwave_fn_button cursor" onClick={()=>setActiveStep(1)}><span>Previous Step</span></a>) : (   
+                        <GoogleOAuthProvider clientId="762966009515-5pqp4kphu99sfmvpupf35sdm8fo3n16c.apps.googleusercontent.com">
+                        <GoogleLogin
+                          onSuccess={credentialResponse => {
+                            console.log(credentialResponse);
+                            let data = jwt_decode(credentialResponse.credential)
+                            console.log("decoded data : ", data)
+                          }}
+                          onError={() => {
+                            console.log('Login Failed');
+                          }}
+                        />
+                        </GoogleOAuthProvider>      
+            )}
+     {/* <a className="techwave_fn_button cursor"><span>Sign up with Google</span></a> */}
         </div>
       </div>
     <div className="sign__desc">
