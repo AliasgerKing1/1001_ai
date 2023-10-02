@@ -64,10 +64,17 @@ driver.execute_script(js_code, downloadBtnScript)
 
 pyautogui.moveTo(452,600)
 
-download_image = wait.until(ec.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/div/div[6]/div[2]/div[1]/div/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div/button[1]')))
+# in to execute_script method
+js_code = "arguments[0].scrollIntoView();"
+
+downloadBtnScript2 = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div[2]/div/button[1]')
+# Execute the JS script
+driver.execute_script(js_code, downloadBtnScript2)
+
+
+download_image = wait.until(ec.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div[2]/div/button[1]')))
 download_image.click()
-# /html/body/div[1]/div[1]/div[2]/div/div/div[6]/div[2]/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div[2]/div[2]/div/button[1]
-# /html/body/div[1]/div[1]/div[2]/div/div/div[6]/div[2]/div[1]/div/div[2]/div/div[2]/div[1]/div/div/div[2]/div[2]/div/button[1]
+
 
 
 # ru.tte.rsa.mu.el.e@googlemail.com
