@@ -1,6 +1,3 @@
-
-
-
 import {useRoutes, Navigate} from 'react-router-dom'
 import Layouts from '../Layouts/Layouts'
 import AuthRoutes from './Auth/AuthRoutes'
