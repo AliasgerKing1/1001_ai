@@ -5,12 +5,16 @@ const jwt = require("jsonwebtoken")
 const str = require("random-string")
 
 routes.post("/", async (req,res) => {
-
     try {
         delete req.body.conf_password
         req.body.password = sha1(req.body.password)
         let result = await User.create(req.body);
-        res.send({status : 200, success : true})
+        let obj = {
+                _id : result._id,
+                email : result.email
+            }
+            let token = jwt.sign(obj, "Aliasger web")
+        res.send({status : 200, success : true, token : token})
     }
     catch (error) {
         console.log(error)
@@ -22,8 +26,13 @@ routes.post("/google", async (req,res) => {
     try {
         delete req.body.conf_password
         req.body.password = sha1(req.body.password)
-        await User.create(req.body);
-        res.send({status : 200, success : true})
+        let result = await User.create(req.body);
+        let obj = {
+                _id : result._id,
+                email : result.email
+            }
+            let token = jwt.sign(obj, "Aliasger web")
+        res.send({status : 200, success : true, token : token})
     }
     catch (error) {
         console.log(error)
@@ -33,19 +42,19 @@ routes.post("/google", async (req,res) => {
 })
 
 routes.post("/loginauth",  async(req,res) => {
-    let username = req.body.username;
+    let email = req.body.email;
     let password = sha1(req.body.password);
-    let result = await User.find({username : username});
+    let result = await User.find({email : email});
     if(result.length > 0) {
         if(result[0]?.password == password) {
             let obj = {
                 _id : result[0]._id,
-                username : result[0].username,
                 email : result[0].email
             }
             let token = jwt.sign(obj, "Aliasger web")
-            let lock_token = str()
-            res.send({status : 200, success : true, token : token, lock_token : lock_token});
+            // let lock_token = str()
+            res.send({status : 200, success : true, token : token});
+            // res.send({status : 200, success : true, token : token, lock_token : lock_token});
         } else 
         res.send({status : 403, success : false, errType : 2});
     } else 

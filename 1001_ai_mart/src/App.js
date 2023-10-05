@@ -1,3 +1,4 @@
+/* eslint-disable */
 import './App.css';
 import Router from './Routes/Router';
 function App() {

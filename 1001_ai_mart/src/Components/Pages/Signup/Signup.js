@@ -5,7 +5,7 @@ import { NavLink,useNavigate } from 'react-router-dom';
 import {useFormik} from 'formik' 
 import SignupSchema from '../../../Schemas/SignUpSchema'
 import SignupSchema2 from '../../../Schemas/SignUpSchema2'
-import { signupGoogle } from '../../../Services/userService';
+import { signupGoogle, signup } from '../../../Services/userService';
 const Signup = () => {
   let [eye, setEye] = useState(false)
   let [eye2, setEye2] = useState(false)
@@ -32,7 +32,7 @@ const Signup = () => {
     conf_password: "",
   }
 
-  const signup = useGoogleLogin({
+  const signupFun = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
     onError: (error) => console.log('Login Failed:', error)
 });
@@ -64,31 +64,53 @@ let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormi
   initialValues : user.length != 0 ? (initialValues) : (initialValues2),
   validationSchema : user.length != 0 ? (SignupSchema) : (SignupSchema2),
   onSubmit : async () => {
-    try {
-      let f_name = profile.name.split(" ")[0].trim()
-      let l_name = profile.name.split(" ")[1].trim()
-      setShowLoader(true)
-      let data = {
-        f_name : f_name,
-        l_name : l_name,
-        email : profile.email.trim(),
-        password : values.password,
-        conf_password : values.conf_password,
-      }
-      let result = await signupGoogle(data);
-      if(result.data.status == 200) {
-        navigate("/signin")
+    if(user.length != 0) {
+      try {
+        let f_name = profile.name.split(" ")[0].trim()
+        let l_name = profile.name.split(" ")[1].trim()
+        setShowLoader(true)
+        let data = {
+          f_name : f_name,
+          l_name : l_name,
+          email : profile.email.trim(),
+          password : values.password,
+          conf_password : values.conf_password,
+        }
+        let result = await signupGoogle(data);
+        if(result.data.status == 200) {
+          localStorage.setItem("martToken", result.data.token)
+          navigate("/auth/home")
+          setShowLoader(false)
+        } else {
+          setShowLoader(true)
+          setMsg("Internal Server Error")
+        }
         setShowLoader(false)
-      } else {
+      } catch(error) {
         setShowLoader(true)
         setMsg("Internal Server Error")
+        console.log(error)
+        setShowLoader(false)
       }
-      setShowLoader(false)
-    } catch(error) {
-      setShowLoader(true)
-      setMsg("Internal Server Error")
-      console.log(error)
-      setShowLoader(false)
+    } else {
+      try {
+        setShowLoader(true)
+        let result = await signup(values);
+        if(result.data.status == 200) {
+          localStorage.setItem("martToken", result.data.token)
+          navigate("/auth/home")
+          setShowLoader(false)
+        } else {
+          setShowLoader(true)
+          setMsg("Internal Server Error")
+        }
+        setShowLoader(false)
+      } catch(error) {
+        setShowLoader(true)
+        setMsg("Internal Server Error")
+        console.log(error)
+        setShowLoader(false)
+      }
     }
 
   }
@@ -97,9 +119,9 @@ let {values, handleBlur, handleChange, handleSubmit, errors, touched} = useFormi
     <>
 <div>
   {/*preloader start*/}
-  {/* <div id="preloader">
+  {showLoader && (  <div id="preloader">
     <img src="/assets/img/preloader.gif" alt="preloader" width={450} className="img-fluid" />
-  </div> */}
+  </div>)}
   {/*preloader end*/}
   {/*main content wrapper start*/}
   <div className="main-wrapper">
@@ -157,7 +179,7 @@ onChange={handleChange} onBlur={handleBlur} value={values.conf_password} />
                 <div className="col-sm-12">
                   <div className="input-field check-password">
                     <input type={eye ? 'text' : "password"} placeholder="Password" className={`theme-input ${touched.password && errors.password ? "is-invalid" : ""}`} name="password"
-onChange={handleChange} onBlur={handleBlur} value={values.password}/>
+onChange={handleChange} onBlur={handleBlur} value={values.password} />
                     <span className="eye eye-icon"><i className="fa-solid fa-eye" onClick={()=>setEye(true)} /></span>
                     <span className="eye eye-slash"><i className="fa-solid fa-eye-slash" onClick={()=>setEye(false)} /></span>
                   </div>
@@ -181,7 +203,7 @@ onChange={handleChange} onBlur={handleBlur} value={values.conf_password} />
                   <button type="submit" className="btn btn-primary w-100">Create account</button>
                 </div>
                 <div className="col-sm-6">
-                  <a className="btn btn-outline google-btn w-100 cursor-pointer" onClick={() => signup()}><img src="assets/img/brands/google.png" alt="google" className="me-2" />Sign with Google</a>
+                  <a className="btn btn-outline google-btn w-100 cursor-pointer" onClick={() => signupFun()}><img src="assets/img/brands/google.png" alt="google" className="me-2" />Sign with Google</a>
                 </div>
               </div>)}
               <p className="mb-0 fs-xxs mt-4 text-center">By signing up, I agree to <a href="#" className="text-dark">Terms of Use and Privacy Policy</a></p>

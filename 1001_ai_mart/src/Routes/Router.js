@@ -1,6 +1,6 @@
 import React from 'react'
 import {useRoutes, Navigate} from 'react-router-dom'
-import rootRoutes from './rootRoutes'
+import authRoutes from './authRoutes'
 import Layouts from '../Layouts/Layouts'
 
 import Root from '../Components/Pages/Root/Root'
@@ -37,7 +37,7 @@ const Router = () => {
             {
                 path : '/auth',
                 element : <Layouts />,
-                children : rootRoutes
+                children : authRoutes
                 }
     ])
   return (router)
